@@ -1,8 +1,8 @@
 <template>
-  <el-dialog title="修改标注" v-model="dialogVisible" width="600" class="edit-mark-dialog">
+  <el-dialog title="Modification of Signs" v-model="dialogVisible" width="600" class="edit-mark-dialog">
     <template #header="{ titleId, titleClass }">
       <div class="flex-between">
-        <h4 :id="titleId" :class="titleClass">修改标注</h4>
+        <h4 :id="titleId" :class="titleClass">Modification of Signs</h4>
         <div class="text-right">
           <el-button text @click="isEdit = true" v-if="!isEdit">
             <el-icon><EditPen /></el-icon>
@@ -29,7 +29,7 @@
           <el-form-item prop="content">
             <el-input
               v-model="form.content"
-              placeholder="请输入分段内容"
+              placeholder="Please enter the section."
               maxlength="4096"
               show-word-limit
               :rows="15"
@@ -44,8 +44,8 @@
 
     <template #footer>
       <span class="dialog-footer" v-if="isEdit">
-        <el-button @click.prevent="isEdit = false"> 取消 </el-button>
-        <el-button type="primary" @click="submit(formRef)" :loading="loading"> 保存 </el-button>
+        <el-button @click.prevent="isEdit = false"> cancelled </el-button>
+        <el-button type="primary" @click="submit(formRef)" :loading="loading"> preserved </el-button>
       </span>
     </template>
   </el-dialog>
@@ -77,7 +77,7 @@ const isEdit = ref(false)
 const detail = ref<any>({})
 
 const rules = reactive<FormRules>({
-  content: [{ required: true, message: '请输入内容', trigger: 'blur' }]
+  content: [{ required: true, message: 'Please enter the content.', trigger: 'blur' }]
 })
 
 watch(dialogVisible, (bool) => {
@@ -100,7 +100,7 @@ function deleteMark() {
     )
     .then(() => {
       emit('refresh')
-      MsgSuccess('删除成功')
+      MsgSuccess('Remove Success')
       dialogVisible.value = false
     })
 }

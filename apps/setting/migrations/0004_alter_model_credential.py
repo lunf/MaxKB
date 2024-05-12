@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='model',
             name='credential',
-            field=models.CharField(max_length=102400, verbose_name='模型认证信息'),
+            field=models.CharField(max_length=102400, verbose_name='Model Certification Information'),
         ),
     ]

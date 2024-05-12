@@ -9,11 +9,11 @@ const guideHtml=`
           </svg>
   </div>
  
-  <div class="maxkb-title"> 🌟 遇见问题，不再有障碍！</div>
-  <p>你好，我是你的智能小助手。<br/>
-      点我，开启高效解答模式，让问题变成过去式。</p>
+  <div class="maxkb-title"> 🌟 Meeting the problem.，No more obstacles.！</div>
+  <p>Hello Hello，I am your intelligent little assistant.。<br/>
+      to me.，Open Efficient Answer Models，Make the problem a past.。</p>
   <div class="maxkb-button">
-      <button>我知道了</button>
+      <button>I know.</button>
   </div>
   <span class="maxkb-arrow" ></span>
 </div>
@@ -65,7 +65,7 @@ const getChatContainerHtml=(protocol,host,token)=>{
 `
 }
 /**
- * 初始化引导
+ * Initial guidance.
  * @param {*} root  
  */
 const initGuide=(root)=>{
@@ -81,13 +81,13 @@ const initGuide=(root)=>{
    close_icon.onclick=close_func
 }
 const initChat=(root)=>{
-  // 添加对话icon
+  // Add to Dialogueicon
   root.insertAdjacentHTML("beforeend",chatButtonHtml)
-  // 添加对话框
+  // Add the dialog box.
   root.insertAdjacentHTML('beforeend',getChatContainerHtml('{{protocol}}','{{host}}','{{token}}'))
-  // 按钮元素
+  // The button element.
   const chat_button=root.querySelector('.maxkb-chat-button')
-  //  对话框元素
+  //  Elements of the dialog box
   const chat_container=root.querySelector('#maxkb-chat-container')
 
   const viewport=root.querySelector('.maxkb-openviewport')
@@ -113,7 +113,7 @@ const initChat=(root)=>{
   closeviewport.onclick=viewport_func
 }
 /**
- * 第一次进来的引导提示
+ * First entry guidance.
  */
 function initMaxkb(){
   const maxkb=document.createElement('div')
@@ -130,12 +130,12 @@ function initMaxkb(){
 }
 
  
-// 初始化全局样式
+// Initial general style.
 function initMaxkbStyle(root){
   style=document.createElement('style')
   style.type='text/css'
   style.innerText=  `
-  /* 放大 */
+  /* Increased */
   #maxkb .maxkb-enlarge {
       width: 50%!important;
       height: 100%!important;
@@ -151,7 +151,7 @@ function initMaxkbStyle(root){
   }
   }
   
-  /* 引导 */
+  /* Guided */
   
   #maxkb .maxkb-mask {
       position: fixed;
@@ -300,7 +300,7 @@ function embedChatbot() {
   white_list=white_list_str.split(',')
 
   if ({{is_auth}}&&({{white_active}}?white_list.includes(window.location.origin):true)) {
-    // 初始化maxkb智能小助手
+    // InitiationmaxkbIntelligent Little Assistant
     initMaxkb()
   } else console.error('invalid parameter')
 }

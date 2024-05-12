@@ -49,7 +49,7 @@ const option_list = computed(() => {
 })
 
 const label = (option: any) => {
-  //置空
+  //put empty
   if (props.modelValue && option_list.value) {
     const oldItem = option_list.value.find((item) => item[valueField.value] === props.modelValue)
     if (!oldItem) {

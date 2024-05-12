@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： __init__.py
     @date：2023/11/10 10:43
     @desc:
@@ -15,4 +15,4 @@ def run():
     listener_manage.ListenerManagement().run()
     QuerySet(Document).filter(status=Status.embedding).update(**{'status': Status.error})
     QuerySet(Model).filter(status=setting.models.Status.DOWNLOAD).update(status=setting.models.Status.ERROR,
-                                                                         meta={'message': "下载程序被中断,请重试"})
+                                                                         meta={'message': "The download program is interrupted.,Please try again."})

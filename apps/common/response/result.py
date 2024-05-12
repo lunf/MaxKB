@@ -7,7 +7,7 @@ from rest_framework import status
 
 class Page(dict):
     """
-    分页对象
+    Page Objects
     """
 
     def __init__(self, total: int, records: List, current_page: int, page_size: int, **kwargs):
@@ -16,10 +16,10 @@ class Page(dict):
 
 class Result(JsonResponse):
     """
-     接口统一返回对象
+     Connect to return objects.
     """
 
-    def __init__(self, code=200, message="成功", data=None, response_status=status.HTTP_200_OK, **kwargs):
+    def __init__(self, code=200, message="Successful", data=None, response_status=status.HTTP_200_OK, **kwargs):
         back_info_dict = {"code": code, "message": message, 'data': data}
         super().__init__(data=back_info_dict, status=response_status, **kwargs)
 
@@ -31,13 +31,13 @@ def get_page_request_params(other_request_params=None):
                                      in_=openapi.IN_PATH,
                                      type=openapi.TYPE_INTEGER,
                                      required=True,
-                                     description='当前页')
+                                     description='Current page')
 
     page_size = openapi.Parameter(name='page_size',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_INTEGER,
                                   required=True,
-                                  description='每页大小')
+                                  description='Size of each page.')
     result = [current_page, page_size]
     for other_request_param in other_request_params:
         result.append(other_request_param)
@@ -46,43 +46,43 @@ def get_page_request_params(other_request_params=None):
 
 def get_page_api_response(response_data_schema: openapi.Schema):
     """
-        获取统一返回 响应Api
+        Get the unification back. ReplyApi
     """
-    return openapi.Responses(responses={200: openapi.Response(description="响应参数",
+    return openapi.Responses(responses={200: openapi.Response(description="Response to Parameters",
                                                               schema=openapi.Schema(
                                                                   type=openapi.TYPE_OBJECT,
                                                                   properties={
                                                                       'code': openapi.Schema(
                                                                           type=openapi.TYPE_INTEGER,
-                                                                          title="响应码",
+                                                                          title="The response code",
                                                                           default=200,
-                                                                          description="成功:200 失败:其他"),
+                                                                          description="Successful:200 Failure:Other"),
                                                                       "message": openapi.Schema(
                                                                           type=openapi.TYPE_STRING,
-                                                                          title="提示",
-                                                                          default='成功',
-                                                                          description="错误提示"),
+                                                                          title="The Tip",
+                                                                          default='Successful',
+                                                                          description="The wrong advice."),
                                                                       "data": openapi.Schema(
                                                                           type=openapi.TYPE_OBJECT,
                                                                           properties={
                                                                               'total': openapi.Schema(
                                                                                   type=openapi.TYPE_INTEGER,
-                                                                                  title="总条数",
+                                                                                  title="Total number",
                                                                                   default=1,
-                                                                                  description="数据总条数"),
+                                                                                  description="Total number of data"),
                                                                               "records": openapi.Schema(
                                                                                   type=openapi.TYPE_ARRAY,
                                                                                   items=response_data_schema),
                                                                               "current": openapi.Schema(
                                                                                   type=openapi.TYPE_INTEGER,
-                                                                                  title="当前页",
+                                                                                  title="Current page",
                                                                                   default=1,
-                                                                                  description="当前页"),
+                                                                                  description="Current page"),
                                                                               "size": openapi.Schema(
                                                                                   type=openapi.TYPE_INTEGER,
-                                                                                  title="每页大小",
+                                                                                  title="Size of each page.",
                                                                                   default=10,
-                                                                                  description="每页大小")
+                                                                                  description="Size of each page.")
 
                                                                           }
                                                                       )
@@ -94,22 +94,22 @@ def get_page_api_response(response_data_schema: openapi.Schema):
 
 def get_api_response(response_data_schema: openapi.Schema):
     """
-    获取统一返回 响应Api
+    Get the unification back. ReplyApi
     """
-    return openapi.Responses(responses={200: openapi.Response(description="响应参数",
+    return openapi.Responses(responses={200: openapi.Response(description="Response to Parameters",
                                                               schema=openapi.Schema(
                                                                   type=openapi.TYPE_OBJECT,
                                                                   properties={
                                                                       'code': openapi.Schema(
                                                                           type=openapi.TYPE_INTEGER,
-                                                                          title="响应码",
+                                                                          title="The response code",
                                                                           default=200,
-                                                                          description="成功:200 失败:其他"),
+                                                                          description="Successful:200 Failure:Other"),
                                                                       "message": openapi.Schema(
                                                                           type=openapi.TYPE_STRING,
-                                                                          title="提示",
-                                                                          default='成功',
-                                                                          description="错误提示"),
+                                                                          title="The Tip",
+                                                                          default='Successful',
+                                                                          description="The wrong advice."),
                                                                       "data": response_data_schema
 
                                                                   }
@@ -123,22 +123,22 @@ def get_default_response():
 
 def get_api_array_response(response_data_schema: openapi.Schema):
     """
-    获取统一返回 响应Api
+    Get the unification back. ReplyApi
     """
-    return openapi.Responses(responses={200: openapi.Response(description="响应参数",
+    return openapi.Responses(responses={200: openapi.Response(description="Response to Parameters",
                                                               schema=openapi.Schema(
                                                                   type=openapi.TYPE_OBJECT,
                                                                   properties={
                                                                       'code': openapi.Schema(
                                                                           type=openapi.TYPE_INTEGER,
-                                                                          title="响应码",
+                                                                          title="The response code",
                                                                           default=200,
-                                                                          description="成功:200 失败:其他"),
+                                                                          description="Successful:200 Failure:Other"),
                                                                       "message": openapi.Schema(
                                                                           type=openapi.TYPE_STRING,
-                                                                          title="提示",
-                                                                          default='成功',
-                                                                          description="错误提示"),
+                                                                          title="The Tip",
+                                                                          default='Successful',
+                                                                          description="The wrong advice."),
                                                                       "data": openapi.Schema(type=openapi.TYPE_ARRAY,
                                                                                              items=response_data_schema)
 
@@ -149,17 +149,17 @@ def get_api_array_response(response_data_schema: openapi.Schema):
 
 def success(data, **kwargs):
     """
-    获取一个成功的响应对象
-    :param data: 接口响应数据
-    :return: 请求响应对象
+    Obtaining a Successful Reaction Object
+    :param data: Interface Response Data
+    :return: Reply to requests
     """
     return Result(data=data, **kwargs)
 
 
 def error(message):
     """
-    获取一个失败的响应对象
-    :param message: 错误提示
-    :return: 接口响应对象
+    Obtaining a Failed Reaction Object
+    :param message: The wrong advice.
+    :return: Interface Response Objects
     """
     return Result(code=500, message=message)

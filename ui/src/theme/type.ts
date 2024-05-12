@@ -4,39 +4,39 @@ interface ThemeSetting {
    */
   namespace: string;
   /**
-   * 数据分隔符
+   * The data separator.
    */
   division: string;
   /**
-   * 前缀
+   * The Preview
    */
   startDivision: string;
   /**
-   * 颜色外推设置
+   * Color Output Setup
    */
   colorInferSetting: ColorInferSetting;
 }
 
 /**
- * 颜色混和设置
+ * Colour mix and setting.
  */
 interface ColorInferSetting {
   /**
-   * 与白色混
+   * with white mix.
    */
   light: Array<number>;
   /**
-   * 与黑色混
+   * with black mix.
    */
   dark: Array<number>;
   /**
-   * 类型
+   * Type of
    */
   type: string;
 }
 
 /**
- * 平滑数据
+ * smooth data
  */
 interface KeyValueData {
   [propName: string]: string;
@@ -45,19 +45,19 @@ type UpdateInferData = KeyValueData;
 
 type UpdateKeyValueData = KeyValueData;
 /**
- *平滑数据
+ *smooth data
  */
 interface InferData {
   /**
-   * 设置
+   * set up
    */
   setting?: ColorInferSetting | any;
   /**
-   * 健
+   * by Qin
    */
   key: string;
   /**
-   * 值
+   * Value
    */
   value: string;
 }

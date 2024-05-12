@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： authenticate.py
     @date：2024/3/14 03:02
-    @desc:  应用api key认证
+    @desc:  Applicationsapi keyCertification
 """
 from django.db.models import QuerySet
 
@@ -19,9 +19,9 @@ class ApplicationKey(AuthBaseHandle):
     def handle(self, request, token: str, get_token_details):
         application_api_key = QuerySet(ApplicationApiKey).filter(secret_key=token).first()
         if application_api_key is None:
-            raise AppAuthenticationFailed(500, "secret_key 无效")
+            raise AppAuthenticationFailed(500, "secret_key inefficient")
         if not application_api_key.is_active:
-            raise AppAuthenticationFailed(500, "secret_key 无效")
+            raise AppAuthenticationFailed(500, "secret_key inefficient")
         permission_list = [Permission(group=Group.APPLICATION,
                                       operate=Operate.USE,
                                       dynamic_tag=str(

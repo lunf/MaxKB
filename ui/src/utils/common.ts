@@ -1,8 +1,8 @@
 /**
- * 拆分数组 每n个拆分为一个数组
- * @param sourceDataList 资源数据
- * @param splitNum       每多少个拆分为一个数组
- * @returns              拆分后数组
+ * Divide the number group. Every onenDivide into a number.
+ * @param sourceDataList Resource data
+ * @param splitNum       Each number is divided into a group.
+ * @returns              Division of Groups.
  */
 export function splitArray<T>(sourceDataList: Array<T>, splitNum: number) {
   const count =

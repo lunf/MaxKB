@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： table_radio.py
     @date：2023/10/31 18:01
     @desc:
@@ -13,7 +13,7 @@ from common.forms.base_field import TriggerType, BaseExecField
 
 class TableRadio(BaseExecField):
     """
-    table 单选
+    table Single Selected
     """
 
     def __init__(self,

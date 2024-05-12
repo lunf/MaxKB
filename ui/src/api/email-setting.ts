@@ -5,14 +5,14 @@ import { type Ref } from 'vue'
 
 const prefix = '/email_setting'
 /**
- * 获取邮箱设置
+ * Get the mailbox setting.
  */
 const getEmailSetting: (loading?: Ref<boolean>) => Promise<Result<any>> = (loading) => {
   return get(`${prefix}`, undefined, loading)
 }
 
 /**
- * 邮箱测试
+ * The mailbox test.
  */
 const postTestEmail: (data: any, loading?: Ref<boolean>) => Promise<Result<any>> = (
   data,
@@ -22,7 +22,7 @@ const postTestEmail: (data: any, loading?: Ref<boolean>) => Promise<Result<any>>
 }
 
 /**
- * 修改邮箱设置
+ * Change the mailbox setting.
  */
 const putEmailSetting: (data: any, loading?: Ref<boolean>) => Promise<Result<any>> = (
   data,

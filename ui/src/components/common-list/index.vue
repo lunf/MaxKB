@@ -12,7 +12,7 @@
           </li>
         </template>
       </ul>
-      <el-empty description="暂无数据" v-else />
+      <el-empty description="No data" v-else />
     </el-scrollbar>
   </div>
 </template>
@@ -52,7 +52,7 @@ function clickHandle(row: any, index: number) {
 }
 </script>
 <style lang="scss" scoped>
-/* 通用 ui li样式 */
+/* General ui liStyle */
 .common-list {
   li {
     padding: 10px 16px;

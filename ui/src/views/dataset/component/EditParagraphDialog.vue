@@ -1,10 +1,10 @@
 <template>
-  <el-dialog title="编辑分段" v-model="dialogVisible" width="80%" destroy-on-close>
+  <el-dialog title="Editing Section" v-model="dialogVisible" width="80%" destroy-on-close>
     <ParagraphForm ref="paragraphFormRef" :data="detail" :isEdit="true" />
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
-        <el-button type="primary" @click="submitHandle"> 保存 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button type="primary" @click="submitHandle"> preserved </el-button>
       </span>
     </template>
   </el-dialog>

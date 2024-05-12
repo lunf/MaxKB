@@ -1,9 +1,9 @@
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： permission_constants.py
     @date：2023/9/13 18:23
-    @desc: 权限,角色 常量
+    @desc: Authority,The role Permanent
 """
 from enum import Enum
 from typing import List
@@ -11,7 +11,7 @@ from typing import List
 
 class Group(Enum):
     """
-    权限组 一个组一般对应前端一个菜单
+    Authority Group A group usually corresponds to the front of a menu.
     """
     USER = "USER"
 
@@ -28,18 +28,18 @@ class Group(Enum):
 
 class Operate(Enum):
     """
-     一个权限组的操作权限
+     Operating authority of a authority group
     """
     READ = 'READ'
     EDIT = "EDIT"
     CREATE = "CREATE"
     DELETE = "DELETE"
     """
-    管理权限
+    Authority of management
     """
     MANAGE = "MANAGE"
     """
-    使用权限
+    Use of permits
     """
     USE = "USE"
 
@@ -58,15 +58,15 @@ class Role:
 
 
 class RoleConstants(Enum):
-    ADMIN = Role("管理员", "管理员,预制目前不会使用", RoleGroup.USER)
-    USER = Role("用户", "用户所有权限", RoleGroup.USER)
-    APPLICATION_ACCESS_TOKEN = Role("会话", "只拥有应用会话框接口权限", RoleGroup.APPLICATION_ACCESS_TOKEN),
-    APPLICATION_KEY = Role("应用私钥", "应用私钥", RoleGroup.APPLICATION_KEY)
+    ADMIN = Role("Managers", "Managers,Preparation is currently not used.", RoleGroup.USER)
+    USER = Role("Users", "All user permissions", RoleGroup.USER)
+    APPLICATION_ACCESS_TOKEN = Role("Meeting", "Only the application session box interface permits.", RoleGroup.APPLICATION_ACCESS_TOKEN),
+    APPLICATION_KEY = Role("Apply the private key.", "Apply the private key.", RoleGroup.APPLICATION_KEY)
 
 
 class Permission:
     """
-    权限信息
+    Authority Information
     """
 
     def __init__(self, group: Group, operate: Operate, roles=None, dynamic_tag=None):
@@ -87,7 +87,7 @@ class Permission:
 
 class PermissionConstants(Enum):
     """
-     权限枚举
+     The authority.
     """
     USER_READ = Permission(group=Group.USER, operate=Operate.READ, roles=[RoleConstants.ADMIN, RoleConstants.USER])
     USER_EDIT = Permission(group=Group.USER, operate=Operate.EDIT, roles=[RoleConstants.ADMIN, RoleConstants.USER])
@@ -137,9 +137,9 @@ class PermissionConstants(Enum):
 
 def get_permission_list_by_role(role: RoleConstants):
     """
-    根据角色 获取角色对应的权限
-    :param role: 角色
-    :return: 权限
+    According to the role Obtaining the right to match the role
+    :param role: The role
+    :return: Authority
     """
     return list(map(lambda k: PermissionConstants[k],
                     list(filter(lambda k: PermissionConstants[k].value.roleList.__contains__(role),
@@ -148,7 +148,7 @@ def get_permission_list_by_role(role: RoleConstants):
 
 class Auth:
     """
-     用于存储当前用户的角色和权限
+     Storage of current users' roles and permissions
     """
 
     def __init__(self, role_list: List[RoleConstants], permission_list: List[PermissionConstants | Permission]
@@ -162,9 +162,9 @@ class Auth:
 
 
 class CompareConstants(Enum):
-    # 或者
+    # or
     OR = "OR"
-    # 并且
+    # and
     AND = "AND"
 
 

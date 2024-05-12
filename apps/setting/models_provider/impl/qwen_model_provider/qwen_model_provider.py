@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： qwen_model_provider.py
     @date：2023/10/31 16:19
     @desc:
@@ -27,21 +27,21 @@ class OpenAILLMModelCredential(BaseForm, BaseModelCredential):
     def is_valid(self, model_type: str, model_name, model_credential: Dict[str, object], raise_exception=False):
         model_type_list = QwenModelProvider().get_model_type_list()
         if not any(list(filter(lambda mt: mt.get('value') == model_type, model_type_list))):
-            raise AppApiException(ValidCode.valid_error.value, f'{model_type} 模型类型不支持')
+            raise AppApiException(ValidCode.valid_error.value, f'{model_type} Models are not supported.')
         for key in ['api_key']:
             if key not in model_credential:
                 if raise_exception:
-                    raise AppApiException(ValidCode.valid_error.value, f'{key} 字段为必填字段')
+                    raise AppApiException(ValidCode.valid_error.value, f'{key} Fields to fill fields.')
                 else:
                     return False
         try:
             model = QwenModelProvider().get_model(model_type, model_name, model_credential)
-            model.invoke([HumanMessage(content='你好')])
+            model.invoke([HumanMessage(content='Hello Hello')])
         except Exception as e:
             if isinstance(e, AppApiException):
                 raise e
             if raise_exception:
-                raise AppApiException(ValidCode.valid_error.value, f'校验失败,请检查参数是否正确: {str(e)}')
+                raise AppApiException(ValidCode.valid_error.value, f'Study Failure,Please check if the parameters are correct.: {str(e)}')
             else:
                 return False
         return True
@@ -79,15 +79,15 @@ class QwenModelProvider(IModelProvider):
         return qwen_model_credential
 
     def get_model_provide_info(self):
-        return ModelProvideInfo(provider='model_qwen_provider', name='通义千问', icon=get_file_content(
+        return ModelProvideInfo(provider='model_qwen_provider', name='A Thousand Questions', icon=get_file_content(
             os.path.join(PROJECT_DIR, "apps", "setting", 'models_provider', 'impl', 'qwen_model_provider', 'icon',
                          'qwen_icon_svg')))
 
     def get_model_list(self, model_type: str):
         if model_type is None:
-            raise AppApiException(500, '模型类型不能为空')
+            raise AppApiException(500, 'Models cannot be empty.')
         return [model_dict.get(key).to_dict() for key in
                 list(filter(lambda key: model_dict.get(key).model_type == model_type, model_dict.keys()))]
 
     def get_model_type_list(self):
-        return [{'key': "大语言模型", 'value': "LLM"}]
+        return [{'key': "The big language model.", 'value': "LLM"}]

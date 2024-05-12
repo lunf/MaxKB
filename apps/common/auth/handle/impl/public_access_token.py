@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： authenticate.py
     @date：2024/3/14 03:02
-    @desc:  公共访问连接认证
+    @desc:  Public Access Connection Certification
 """
 from django.db.models import QuerySet
 
@@ -30,11 +30,11 @@ class PublicAccessToken(AuthBaseHandle):
         application_access_token = QuerySet(ApplicationAccessToken).filter(
             application_id=auth_details.get('application_id')).first()
         if application_access_token is None:
-            raise AppAuthenticationFailed(1002, "身份验证信息不正确")
+            raise AppAuthenticationFailed(1002, "Identification information is incorrect.")
         if not application_access_token.is_active:
-            raise AppAuthenticationFailed(1002, "身份验证信息不正确")
+            raise AppAuthenticationFailed(1002, "Identification information is incorrect.")
         if not application_access_token.access_token == auth_details.get('access_token'):
-            raise AppAuthenticationFailed(1002, "身份验证信息不正确")
+            raise AppAuthenticationFailed(1002, "Identification information is incorrect.")
 
         return application_access_token.application.user, Auth(
             role_list=[RoleConstants.APPLICATION_ACCESS_TOKEN],

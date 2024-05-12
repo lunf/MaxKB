@@ -4,7 +4,7 @@ import layout from './layout';
 import pages from './pages';
 
 export default {
-    lang: '简体中文',
+    lang: 'Simple Chinese',
     layout,
     pages,
     components,

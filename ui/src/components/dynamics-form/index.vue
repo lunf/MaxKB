@@ -43,13 +43,13 @@ defineOptions({ name: 'dynamicsForm' })
 
 const props = withDefaults(
   defineProps<{
-    // 页面渲染数据
+    // Page rendering data
     render_data: Promise<Result<Array<FormField>>> | string | Array<FormField>
-    // 调用接口所需要的其他参数
+    // Other parameters required for the call interface
     otherParams?: any
-    // 是否只读
+    // Only to read.
     view?: boolean
-    // 默认每个宽度
+    // Each width.
     defaultItemWidth?: string
 
     parent_field?: string
@@ -69,7 +69,7 @@ const ruleFormRef = ref<FormInstance>()
 
 const formFieldRef = ref<Array<InstanceType<typeof FormItem>>>([])
 /**
- * 当前 field是否展示
+ * Currently fieldShould show
  * @param field
  */
 const show = (field: FormField) => {
@@ -95,7 +95,7 @@ const show = (field: FormField) => {
 
 const emit = defineEmits(['update:modelValue'])
 /**
- * 表单字段修改
+ * Modification of the form field
  * @param field
  * @param value
  */
@@ -112,7 +112,7 @@ watch(
 )
 
 /**
- * 触发器,用户获取子表单 或者 下拉选项
+ * the trigger.,User receives subforms or The option down.
  * @param field
  * @param loading
  */
@@ -139,7 +139,7 @@ const trigger = (field: FormField, loading: Ref<boolean>) => {
   return Promise.resolve([])
 }
 /**
- * 初始化默认数据
+ * Initialization of data
  */
 const initDefaultData = (formField: FormField) => {
   if (
@@ -176,7 +176,7 @@ const render = (
   }
 }
 /**
- * 校验函数
+ * Examination functions
  */
 const validate = () => {
   return Promise.all([
@@ -185,7 +185,7 @@ const validate = () => {
   ])
 }
 
-// 暴露获取当前表单数据函数
+// Exposure to obtain the current form data function
 defineExpose({
   initDefaultData,
   validate,

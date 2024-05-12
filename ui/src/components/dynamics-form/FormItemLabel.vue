@@ -4,7 +4,7 @@
 <script setup lang="ts">
 import type { FormField } from '@/components/dynamics-form/type'
 const props = defineProps<{
-  // 表单Item
+  // FormsItem
   formField: FormField
 }>()
 </script>

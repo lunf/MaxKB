@@ -1,8 +1,8 @@
 <template>
-  <!-- 外层div -->
+  <!-- The externaldiv -->
   <div ref="InputTag" class="tags-input">
     <div class="tags-container" v-if="tagsList.length">
-      <!-- 标签 -->
+      <!-- Tagged -->
       <el-tag
         v-for="(item, index) in tagsList"
         :key="index"
@@ -13,7 +13,7 @@
         >{{ item.username }}
       </el-tag>
     </div>
-    <!-- 输入框 -->
+    <!-- The entrance box -->
     <el-autocomplete
       :placeholder="tagsList.length == 0 ? placeholder : ''"
       :validate-event="false"
@@ -23,7 +23,7 @@
       :popper-class="noData ? 'platform-auto-complete' : ''"
     >
       <template #default="{ item }">
-        <!-- 解决匹配不到提示无匹配数据 -->
+        <!-- Uncompatible information Uncompatible data -->
         <div class="default" v-if="noData">{{ item.default }}</div>
         <div class="value" v-else>{{ item.username }}</div>
       </template>
@@ -42,16 +42,16 @@ import UserApi from '@/api/user'
 defineOptions({ name: 'TagsInput' })
 const props = defineProps({
   tags: {
-    /* 多个 */
+    /* Many of */
     type: Array<any>,
     default: () => []
   },
   placeholder: {
     type: String,
-    default: '请输入'
+    default: 'Please enter.'
   },
   limit: {
-    /* 最多生成标签数 */
+    /* Maximum number of labels. */
     type: Number,
     default: -1
   }
@@ -59,7 +59,7 @@ const props = defineProps({
 const emit = defineEmits(['update:tags'])
 const currentval = ref('')
 const tagsList = ref<any[]>([])
-const noData = ref(false) // 是否匹配到数据了
+const noData = ref(false) // Compatible with the data.
 
 watch([tagsList, currentval], (val) => {
   emit('update:tags', val[0])
@@ -71,7 +71,7 @@ const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
     UserApi.getUserList(queryString).then((res) => {
       if (res.data.length === 0) {
         noData.value = true
-        matchResults = [{ default: '无匹配数据' }]
+        matchResults = [{ default: 'No matching data.' }]
       } else {
         noData.value = false
         matchResults = res.data

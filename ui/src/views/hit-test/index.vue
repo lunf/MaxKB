@@ -3,8 +3,8 @@
     <LayoutContainer>
       <template #header>
         <h3>
-          命中测试
-          <el-text type="info" class="ml-4">针对用户提问调试段落匹配情况，保障回答效果。</el-text>
+          Test of fate.
+          <el-text type="info" class="ml-4">Customer Questions for Compatibility of Debit Sections，Guaranteed Response Effects。</el-text>
         </h3>
       </template>
       <div class="hit-test__main p-16" v-loading="loading">
@@ -20,8 +20,8 @@
         </div>
         <el-scrollbar>
           <div class="hit-test-height">
-            <el-empty v-if="first" :image="emptyImg" description="命中段落显示在这里" />
-            <el-empty v-else-if="paragraphDetail.length == 0" description="没有命中的分段" />
+            <el-empty v-if="first" :image="emptyImg" description="The fate appears here." />
+            <el-empty v-else-if="paragraphDetail.length == 0" description="No part of fate." />
             <el-row v-else>
               <el-col
                 :xs="24"
@@ -80,10 +80,10 @@
     <div class="hit-test__operate p-24 pt-0">
       <el-popover :visible="popoverVisible" placement="right-end" :width="500" trigger="click">
         <template #reference>
-          <el-button icon="Setting" class="mb-8" @click="settingChange('open')">参数设置</el-button>
+          <el-button icon="Setting" class="mb-8" @click="settingChange('open')">The parameter set.</el-button>
         </template>
         <div class="mb-16">
-          <div class="title mb-8">检索模式</div>
+          <div class="title mb-8">The search model.</div>
           <el-radio-group
             v-model="cloneForm.search_mode"
             class="card__radio"
@@ -95,8 +95,8 @@
               :class="cloneForm.search_mode === 'embedding' ? 'active' : ''"
             >
               <el-radio value="embedding" size="large">
-                <p class="mb-4">向量检索</p>
-                <el-text type="info">通过向量距离计算与用户问题最相似的文本分段</el-text>
+                <p class="mb-4">Quantity Recovery</p>
+                <el-text type="info">By calculating the vector distance the most similar text sections to the user's problem</el-text>
               </el-radio>
             </el-card>
             <el-card
@@ -105,8 +105,8 @@
               :class="cloneForm.search_mode === 'keywords' ? 'active' : ''"
             >
               <el-radio value="keywords" size="large">
-                <p class="mb-4">全文检索</p>
-                <el-text type="info">通过关键词检索，返回包含关键词最多的文本分段</el-text>
+                <p class="mb-4">The complete search.</p>
+                <el-text type="info">Search through Keywords.，Return to the text section containing the most keywords</el-text>
               </el-radio>
             </el-card>
             <el-card
@@ -115,9 +115,9 @@
               :class="cloneForm.search_mode === 'blend' ? 'active' : ''"
             >
               <el-radio value="blend" size="large">
-                <p class="mb-4">混合检索</p>
+                <p class="mb-4">Mixed search</p>
                 <el-text type="info"
-                  >同时执行全文检索和向量检索，再进行重排序，从两类查询结果中选择匹配用户问题的最佳结果</el-text
+                  >At the same time, the full-length recovery and vector recovery.，Again a heavy order.，Select the best results from two categories of query results that match the user problem.</el-text
                 >
               </el-radio>
             </el-card>
@@ -126,7 +126,7 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <div class="mb-16">
-              <div class="title mb-8">相似度高于</div>
+              <div class="title mb-8">Similarity is higher than</div>
               <el-input-number
                 v-model="cloneForm.similarity"
                 :min="0"
@@ -140,7 +140,7 @@
           </el-col>
           <el-col :span="12">
             <div class="mb-16">
-              <div class="title mb-8">返回分段数 TOP</div>
+              <div class="title mb-8">Return to the number. TOP</div>
               <el-input-number
                 v-model="cloneForm.top_number"
                 :min="1"
@@ -153,8 +153,8 @@
         </el-row>
 
         <div class="text-right">
-          <el-button @click="popoverVisible = false">取消</el-button>
-          <el-button type="primary" @click="settingChange('close')">确认</el-button>
+          <el-button @click="popoverVisible = false">cancelled</el-button>
+          <el-button type="primary" @click="settingChange('close')">confirmed</el-button>
         </div>
       </el-popover>
       <div class="operate-textarea flex">
@@ -162,7 +162,7 @@
           ref="quickInputRef"
           v-model="inputValue"
           type="textarea"
-          placeholder="请输入"
+          placeholder="Please enter."
           :autosize="{ minRows: 1, maxRows: 8 }"
           @keydown.enter="sendChatHandle($event)"
         />
@@ -211,7 +211,7 @@ const formInline = ref({
   search_mode: 'embedding'
 })
 
-// 第一次加载
+// first charged.
 const first = ref(true)
 
 const cloneForm = ref<any>({})
@@ -249,19 +249,19 @@ function settingChange(val: string) {
 }
 
 function editParagraph(row: any) {
-  title.value = '分段详情'
+  title.value = 'Section Details'
   ParagraphDialogRef.value.open(row)
 }
 
 function sendChatHandle(event: any) {
   if (!event.ctrlKey) {
-    // 如果没有按下组合键ctrl，则会阻止默认事件
+    // If you do not press the combination key.ctrl，It will stop the default event.
     event.preventDefault()
     if (!isDisabledChart.value && !loading.value) {
       getHitTestList()
     }
   } else {
-    // 如果同时按下ctrl+回车键，则会换行
+    // Pressing at the same time.ctrl+Back to the car key.，It will change.
     inputValue.value += '\n'
   }
 }

@@ -1,11 +1,11 @@
 <template>
   <div class="application-list-container p-24" style="padding-top: 16px">
     <div class="flex-between mb-16">
-      <h3>应用</h3>
+      <h3>Applications</h3>
       <el-input
         v-model="searchValue"
         @change="searchHandle"
-        placeholder="按名称搜索"
+        placeholder="Search by name."
         prefix-icon="Search"
         class="w-240"
         clearable
@@ -22,7 +22,7 @@
       >
         <el-row :gutter="15">
           <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb-16">
-            <CardAdd title="创建应用" @click="router.push({ path: '/application/create' })" />
+            <CardAdd title="Creating Applications" @click="router.push({ path: '/application/create' })" />
           </el-col>
           <el-col
             :xs="24"
@@ -62,13 +62,13 @@
 
               <template #footer>
                 <div class="footer-content">
-                  <el-tooltip effect="dark" content="演示" placement="top">
+                  <el-tooltip effect="dark" content="Presentation" placement="top">
                     <el-button text @click.stop @click="getAccessToken(item.id)">
                       <AppIcon iconName="app-view"></AppIcon>
                     </el-button>
                   </el-tooltip>
                   <el-divider direction="vertical" />
-                  <el-tooltip effect="dark" content="设置" placement="top">
+                  <el-tooltip effect="dark" content="set up" placement="top">
                     <el-button
                       text
                       @click.stop="router.push({ path: `/application/${item.id}/setting` })"
@@ -77,7 +77,7 @@
                     </el-button>
                   </el-tooltip>
                   <el-divider direction="vertical" />
-                  <el-tooltip effect="dark" content="删除" placement="top">
+                  <el-tooltip effect="dark" content="removed" placement="top">
                     <el-button text @click.stop="deleteApplication(item)">
                       <el-icon><Delete /></el-icon>
                     </el-button>
@@ -126,15 +126,15 @@ function getAccessToken(id: string) {
 }
 
 function deleteApplication(row: any) {
-  MsgConfirm(`是否删除应用：${row.name} ?`, `删除后该应用将不再提供服务，请谨慎操作。`, {
-    confirmButtonText: '删除',
+  MsgConfirm(`Remove the application.：${row.name} ?`, `After deletion, the app will no longer provide services.，Please be careful.。`, {
+    confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })
     .then(() => {
       applicationApi.delApplication(row.id, loading).then(() => {
         const index = applicationList.value.findIndex((v) => v.id === row.id)
         applicationList.value.splice(index, 1)
-        MsgSuccess('删除成功')
+        MsgSuccess('Remove Success')
       })
     })
     .catch(() => {})

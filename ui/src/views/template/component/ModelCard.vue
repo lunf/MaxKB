@@ -7,7 +7,7 @@
           {{ model.name }}
         </auto-tooltip>
         <div class="flex align-center" v-if="currentModel.status === 'ERROR'">
-          <el-tag type="danger" class="ml-8">失败</el-tag>
+          <el-tag type="danger" class="ml-8">Failure</el-tag>
           <el-tooltip effect="dark" :content="errMessage" placement="top">
             <el-icon class="danger ml-4" size="20"><Warning /></el-icon>
           </el-tooltip>
@@ -18,11 +18,11 @@
     <div class="border-t mt-16">
       <ul>
         <li class="flex mt-16">
-          <el-text type="info">模型类型</el-text>
+          <el-text type="info">Type of Model</el-text>
           <span class="ellipsis ml-16"> {{ model.model_type }}</span>
         </li>
         <li class="flex mt-12">
-          <el-text type="info">基础模型</el-text>
+          <el-text type="info">The Basic Model</el-text>
           <span class="ellipsis ml-16"> {{ model.model_name }}</span>
         </li>
       </ul>
@@ -40,12 +40,12 @@
           <span class="percentage-value">{{ percentage }}%</span>
         </template>
       </el-progress>
-      <span class="percentage-label">正在下载 <span class="dotting"></span></span>
+      <span class="percentage-label">is downloading. <span class="dotting"></span></span>
     </div>
 
     <template #mouseEnter>
       <div class="operation-button">
-        <el-tooltip effect="dark" content="修改" placement="top">
+        <el-tooltip effect="dark" content="Modified" placement="top">
           <el-button text @click.stop="openEditModel">
             <el-icon>
               <component :is="currentModel.status === 'ERROR' ? 'RefreshRight' : 'EditPen'" />
@@ -53,7 +53,7 @@
           </el-button>
         </el-tooltip>
 
-        <el-tooltip effect="dark" content="删除" placement="top">
+        <el-tooltip effect="dark" content="removed" placement="top">
           <el-button text @click.stop="deleteModel">
             <el-icon><Delete /></el-icon>
           </el-button>
@@ -88,7 +88,7 @@ const currentModel = computed(() => {
 const errMessage = computed(() => {
   if (currentModel.value.meta && currentModel.value.meta.message) {
     if (currentModel.value.meta.message === 'pull model manifest: file does not exist') {
-      return `${currentModel.value.model_name} 模型在Ollama不存在`
+      return `${currentModel.value.model_name} The model isOllamaThere is no`
     }
     return currentModel.value.meta.message
   }
@@ -119,8 +119,8 @@ const emit = defineEmits(['change', 'update:model'])
 const eidtModelRef = ref<InstanceType<typeof EditModel>>()
 let interval: any
 const deleteModel = () => {
-  MsgConfirm(`删除模型 `, `是否删除模型：${props.model.name} ?`, {
-    confirmButtonText: '删除',
+  MsgConfirm(`Remove the model. `, `Remove the model.：${props.model.name} ?`, {
+    confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })
     .then(() => {
@@ -141,7 +141,7 @@ const icon = computed(() => {
 })
 
 /**
- * 初始化轮询
+ * Initial Question.
  */
 const initInterval = () => {
   interval = setInterval(() => {
@@ -159,7 +159,7 @@ const initInterval = () => {
 }
 
 /**
- * 关闭轮询
+ * Closing the query.
  */
 const closeInterval = () => {
   if (interval) {
@@ -170,7 +170,7 @@ onMounted(() => {
   initInterval()
 })
 onBeforeUnmount(() => {
-  // 清除定时任务
+  // Delete timely tasks.
   closeInterval()
 })
 </script>

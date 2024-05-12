@@ -1,4 +1,4 @@
 export const hitHandlingMethod: any = {
-  optimization: '模型优化',
-  directly_return: '直接回答'
+  optimization: 'Models optimized',
+  directly_return: 'Answer directly.'
 }

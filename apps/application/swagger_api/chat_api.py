@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： chat_api.py
     @date：2023/11/7 17:29
     @desc:
@@ -19,9 +19,9 @@ class ChatApi(ApiMixin):
             type=openapi.TYPE_OBJECT,
             required=['message'],
             properties={
-                'message': openapi.Schema(type=openapi.TYPE_STRING, title="问题", description="问题"),
-                're_chat': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="重新生成", default=False),
-                'stream': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="重新生成", default=True)
+                'message': openapi.Schema(type=openapi.TYPE_STRING, title="The problem", description="The problem"),
+                're_chat': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Re-created", default=False),
+                'stream': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Re-created", default=True)
 
             }
         )
@@ -35,26 +35,26 @@ class ChatApi(ApiMixin):
             properties={
                 'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                      description="id", default="xx"),
-                'application_id': openapi.Schema(type=openapi.TYPE_STRING, title="应用id",
-                                                 description="应用id", default='应用id'),
-                'abstract': openapi.Schema(type=openapi.TYPE_STRING, title="摘要",
-                                           description="摘要", default='摘要'),
-                'chat_id': openapi.Schema(type=openapi.TYPE_STRING, title="对话id",
-                                          description="对话id", default="对话id"),
-                'chat_record_count': openapi.Schema(type=openapi.TYPE_STRING, title="对话提问数量",
-                                                    description="对话提问数量",
-                                                    default="对话提问数量"),
-                'mark_sum': openapi.Schema(type=openapi.TYPE_STRING, title="标记数量",
-                                           description="标记数量", default=1),
-                'star_num': openapi.Schema(type=openapi.TYPE_STRING, title="点赞数量",
-                                           description="点赞数量", default=1),
-                'trample_num': openapi.Schema(type=openapi.TYPE_NUMBER, title="点踩数量",
-                                              description="点踩数量", default=1),
-                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                              description="修改时间",
+                'application_id': openapi.Schema(type=openapi.TYPE_STRING, title="Applicationsid",
+                                                 description="Applicationsid", default='Applicationsid'),
+                'abstract': openapi.Schema(type=openapi.TYPE_STRING, title="The summary",
+                                           description="The summary", default='The summary'),
+                'chat_id': openapi.Schema(type=openapi.TYPE_STRING, title="Dialogueid",
+                                          description="Dialogueid", default="Dialogueid"),
+                'chat_record_count': openapi.Schema(type=openapi.TYPE_STRING, title="Number of Questions",
+                                                    description="Number of Questions",
+                                                    default="Number of Questions"),
+                'mark_sum': openapi.Schema(type=openapi.TYPE_STRING, title="Number of Signs",
+                                           description="Number of Signs", default=1),
+                'star_num': openapi.Schema(type=openapi.TYPE_STRING, title="The number of praise.",
+                                           description="The number of praise.", default=1),
+                'trample_num': openapi.Schema(type=openapi.TYPE_NUMBER, title="The number of steps.",
+                                              description="The number of steps.", default=1),
+                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                              description="Change time.",
                                               default="1970-01-01 00:00:00"),
-                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                              description="创建时间",
+                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                              description="Creating time.",
                                               default="1970-01-01 00:00:00"
                                               )
             }
@@ -67,7 +67,7 @@ class ChatApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='应用id'),
+                                      description='Applicationsid'),
 
                     ]
 
@@ -79,18 +79,18 @@ class ChatApi(ApiMixin):
                 required=['model_id', 'multiple_rounds_dialogue', 'dataset_setting', 'model_setting',
                           'problem_optimization'],
                 properties={
-                    'id': openapi.Schema(type=openapi.TYPE_STRING, title="应用id",
-                                                     description="应用id,修改的时候传,创建的时候不传"),
-                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="模型id", description="模型id"),
+                    'id': openapi.Schema(type=openapi.TYPE_STRING, title="Applicationsid",
+                                                     description="Applicationsid,The time of modification,No time for creation."),
+                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="The modelid", description="The modelid"),
                     'dataset_id_list': openapi.Schema(type=openapi.TYPE_ARRAY,
                                                       items=openapi.Schema(type=openapi.TYPE_STRING),
-                                                      title="关联知识库Id列表", description="关联知识库Id列表"),
-                    'multiple_rounds_dialogue': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否开启多轮会话",
-                                                               description="是否开启多轮会话"),
+                                                      title="The Knowledge BaseIdList of", description="The Knowledge BaseIdList of"),
+                    'multiple_rounds_dialogue': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Opening multiple sessions.",
+                                                               description="Opening multiple sessions."),
                     'dataset_setting': ApplicationApi.DatasetSetting.get_request_body_api(),
                     'model_setting': ApplicationApi.ModelSetting.get_request_body_api(),
-                    'problem_optimization': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="问题优化",
-                                                           description="是否开启问题优化", default=True)
+                    'problem_optimization': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Problems optimized",
+                                                           description="Optimization of the problem.", default=True)
                 }
             )
 
@@ -100,20 +100,20 @@ class ChatApi(ApiMixin):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='应用id'),
+                                  description='Applicationsid'),
                 openapi.Parameter(name='history_day',
                                   in_=openapi.IN_QUERY,
                                   type=openapi.TYPE_NUMBER,
                                   required=True,
-                                  description='历史天数'),
+                                  description='History of Days'),
                 openapi.Parameter(name='abstract', in_=openapi.IN_QUERY, type=openapi.TYPE_STRING, required=False,
-                                  description="摘要"),
+                                  description="The summary"),
                 openapi.Parameter(name='min_star', in_=openapi.IN_QUERY, type=openapi.TYPE_INTEGER, required=False,
-                                  description="最小点赞数"),
+                                  description="The minimum number."),
                 openapi.Parameter(name='min_trample', in_=openapi.IN_QUERY, type=openapi.TYPE_INTEGER, required=False,
-                                  description="最小点踩数"),
+                                  description="The minimum number of steps."),
                 openapi.Parameter(name='comparer', in_=openapi.IN_QUERY, type=openapi.TYPE_STRING, required=False,
-                                  description="or|and 比较器")
+                                  description="or|and comparator")
                 ]
 
 
@@ -124,12 +124,12 @@ class ChatRecordApi(ApiMixin):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='应用id'),
+                                  description='Applicationsid'),
                 openapi.Parameter(name='chat_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='对话id'),
+                                  description='Dialogueid'),
                 ]
 
     @staticmethod
@@ -142,34 +142,34 @@ class ChatRecordApi(ApiMixin):
             properties={
                 'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                      description="id", default="xx"),
-                'chat': openapi.Schema(type=openapi.TYPE_STRING, title="会话日志id",
-                                       description="会话日志id", default='会话日志id'),
-                'vote_status': openapi.Schema(type=openapi.TYPE_STRING, title="投票状态",
-                                              description="投票状态", default="投票状态"),
-                'dataset': openapi.Schema(type=openapi.TYPE_STRING, title="数据集id", description="数据集id",
-                                          default="数据集id"),
-                'paragraph': openapi.Schema(type=openapi.TYPE_STRING, title="段落id",
-                                            description="段落id", default=1),
-                'source_id': openapi.Schema(type=openapi.TYPE_STRING, title="资源id",
-                                            description="资源id", default=1),
-                'source_type': openapi.Schema(type=openapi.TYPE_STRING, title="资源类型",
-                                              description="资源类型", default='xxx'),
-                'message_tokens': openapi.Schema(type=openapi.TYPE_INTEGER, title="问题消耗token数量",
-                                                 description="问题消耗token数量", default=0),
-                'answer_tokens': openapi.Schema(type=openapi.TYPE_INTEGER, title="答案消耗token数量",
-                                                description="答案消耗token数量", default=0),
-                'improve_paragraph_id_list': openapi.Schema(type=openapi.TYPE_STRING, title="改进标注列表",
-                                                            description="改进标注列表",
+                'chat': openapi.Schema(type=openapi.TYPE_STRING, title="Meeting Diaryid",
+                                       description="Meeting Diaryid", default='Meeting Diaryid'),
+                'vote_status': openapi.Schema(type=openapi.TYPE_STRING, title="state of voting",
+                                              description="state of voting", default="state of voting"),
+                'dataset': openapi.Schema(type=openapi.TYPE_STRING, title="The data collectionid", description="The data collectionid",
+                                          default="The data collectionid"),
+                'paragraph': openapi.Schema(type=openapi.TYPE_STRING, title="Paragraphsid",
+                                            description="Paragraphsid", default=1),
+                'source_id': openapi.Schema(type=openapi.TYPE_STRING, title="Resourcesid",
+                                            description="Resourcesid", default=1),
+                'source_type': openapi.Schema(type=openapi.TYPE_STRING, title="Type of Resource",
+                                              description="Type of Resource", default='xxx'),
+                'message_tokens': openapi.Schema(type=openapi.TYPE_INTEGER, title="The problem consumption.tokenNumber of",
+                                                 description="The problem consumption.tokenNumber of", default=0),
+                'answer_tokens': openapi.Schema(type=openapi.TYPE_INTEGER, title="The answer is consumed.tokenNumber of",
+                                                description="The answer is consumed.tokenNumber of", default=0),
+                'improve_paragraph_id_list': openapi.Schema(type=openapi.TYPE_STRING, title="Improve the list of notes",
+                                                            description="Improve the list of notes",
                                                             default=[]),
-                'index': openapi.Schema(type=openapi.TYPE_STRING, title="对应会话 对应下标",
-                                        description="对应会话id对应下标",
-                                        default="对应会话id对应下标"
+                'index': openapi.Schema(type=openapi.TYPE_STRING, title="The meeting. corresponding to below.",
+                                        description="The meeting.idcorresponding to below.",
+                                        default="The meeting.idcorresponding to below."
                                         ),
-                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                              description="修改时间",
+                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                              description="Change time.",
                                               default="1970-01-01 00:00:00"),
-                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                              description="创建时间",
+                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                              description="Creating time.",
                                               default="1970-01-01 00:00:00"
                                               )
             }
@@ -183,27 +183,27 @@ class ImproveApi(ApiMixin):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='应用id'),
+                                  description='Applicationsid'),
                 openapi.Parameter(name='chat_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='会话id'),
+                                  description='Meetingid'),
                 openapi.Parameter(name='chat_record_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='会话记录id'),
+                                  description='Meeting recordsid'),
                 openapi.Parameter(name='dataset_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='知识库id'),
+                                  description='The knowledge baseid'),
                 openapi.Parameter(name='document_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='文档id'),
+                                  description='Documentsid'),
                 ]
 
     @staticmethod
@@ -212,10 +212,10 @@ class ImproveApi(ApiMixin):
             type=openapi.TYPE_OBJECT,
             required=['content'],
             properties={
-                'title': openapi.Schema(type=openapi.TYPE_STRING, title="段落标题",
-                                        description="段落标题"),
-                'content': openapi.Schema(type=openapi.TYPE_STRING, title="段落内容",
-                                          description="段落内容")
+                'title': openapi.Schema(type=openapi.TYPE_STRING, title="Title of paragraph",
+                                        description="Title of paragraph"),
+                'content': openapi.Schema(type=openapi.TYPE_STRING, title="Contents of paragraph",
+                                          description="Contents of paragraph")
 
             }
         )
@@ -228,17 +228,17 @@ class VoteApi(ApiMixin):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='应用id'),
+                                  description='Applicationsid'),
                 openapi.Parameter(name='chat_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='会话id'),
+                                  description='Meetingid'),
                 openapi.Parameter(name='chat_record_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='会话记录id')
+                                  description='Meeting recordsid')
                 ]
 
     @staticmethod
@@ -247,8 +247,8 @@ class VoteApi(ApiMixin):
             type=openapi.TYPE_OBJECT,
             required=['vote_status'],
             properties={
-                'vote_status': openapi.Schema(type=openapi.TYPE_STRING, title="投票状态",
-                                              description="-1:取消投票|0:赞同|1:反对"),
+                'vote_status': openapi.Schema(type=openapi.TYPE_STRING, title="state of voting",
+                                              description="-1:Cancel voting.|0:agreed|1:opposed"),
 
             }
         )
@@ -261,17 +261,17 @@ class ChatRecordImproveApi(ApiMixin):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='应用id'),
+                                  description='Applicationsid'),
                 openapi.Parameter(name='chat_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='会话id'),
+                                  description='Meetingid'),
                 openapi.Parameter(name='chat_record_id',
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='会话记录id')
+                                  description='Meeting recordsid')
                 ]
 
     @staticmethod
@@ -284,27 +284,27 @@ class ChatRecordImproveApi(ApiMixin):
             properties={
                 'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                      description="id", default="xx"),
-                'content': openapi.Schema(type=openapi.TYPE_STRING, title="段落内容",
-                                          description="段落内容", default='段落内容'),
-                'title': openapi.Schema(type=openapi.TYPE_STRING, title="标题",
-                                        description="标题", default="xxx的描述"),
-                'hit_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="命中数量", description="命中数量",
+                'content': openapi.Schema(type=openapi.TYPE_STRING, title="Contents of paragraph",
+                                          description="Contents of paragraph", default='Contents of paragraph'),
+                'title': openapi.Schema(type=openapi.TYPE_STRING, title="The title",
+                                        description="The title", default="xxxThe description"),
+                'hit_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of fate", description="The number of fate",
                                           default=1),
-                'star_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="点赞数量",
-                                           description="点赞数量", default=1),
-                'trample_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="点踩数量",
-                                              description="点踩数", default=1),
-                'dataset_id': openapi.Schema(type=openapi.TYPE_STRING, title="知识库id",
-                                             description="知识库id", default='xxx'),
-                'document_id': openapi.Schema(type=openapi.TYPE_STRING, title="文档id",
-                                              description="文档id", default='xxx'),
-                'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否可用",
-                                            description="是否可用", default=True),
-                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                              description="修改时间",
+                'star_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of praise.",
+                                           description="The number of praise.", default=1),
+                'trample_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of steps.",
+                                              description="The number of steps.", default=1),
+                'dataset_id': openapi.Schema(type=openapi.TYPE_STRING, title="The knowledge baseid",
+                                             description="The knowledge baseid", default='xxx'),
+                'document_id': openapi.Schema(type=openapi.TYPE_STRING, title="Documentsid",
+                                              description="Documentsid", default='xxx'),
+                'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is Available",
+                                            description="Is Available", default=True),
+                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                              description="Change time.",
                                               default="1970-01-01 00:00:00"),
-                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                              description="创建时间",
+                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                              description="Creating time.",
                                               default="1970-01-01 00:00:00"
                                               )
             }

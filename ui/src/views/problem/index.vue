@@ -1,18 +1,18 @@
 <template>
-  <LayoutContainer header="问题">
+  <LayoutContainer header="The problem">
     <div class="main-calc-height">
       <div class="p-24">
         <div class="flex-between">
           <div>
-            <el-button type="primary" @click="createProblem">创建问题</el-button>
+            <el-button type="primary" @click="createProblem">Creating problems.</el-button>
             <el-button @click="deleteMulDocument" :disabled="multipleSelection.length === 0"
-              >批量删除</el-button
+              >Mass removal.</el-button
             >
           </div>
 
           <el-input
             v-model="filterText"
-            placeholder="搜索内容"
+            placeholder="Search of content"
             prefix-icon="Search"
             class="w-240"
             @change="getList"
@@ -25,8 +25,8 @@
           :data="problemData"
           :pagination-config="paginationConfig"
           quick-create
-          quickCreateName="问题"
-          quickCreatePlaceholder="快速创建问题"
+          quickCreateName="The problem"
+          quickCreatePlaceholder="Create problems quickly."
           :quickCreateMaxlength="256"
           @sizeChange="handleSizeChange"
           @changePage="getList"
@@ -40,7 +40,7 @@
           :row-key="(row: any) => row.id"
         >
           <el-table-column type="selection" width="55" :reserve-selection="true" />
-          <el-table-column prop="content" label="问题" min-width="280">
+          <el-table-column prop="content" label="The problem" min-width="280">
             <template #default="{ row }">
               <ReadWrite
                 @change="editName($event, row.id)"
@@ -50,7 +50,7 @@
               />
             </template>
           </el-table-column>
-          <el-table-column prop="paragraph_count" label="关联分段数" align="right" min-width="100">
+          <el-table-column prop="paragraph_count" label="Related numbers" align="right" min-width="100">
             <template #default="{ row }">
               <el-link type="primary" @click.stop="rowClickHandle(row)" v-if="row.paragraph_count">
                 {{ row.paragraph_count }}
@@ -60,28 +60,28 @@
               </span>
             </template>
           </el-table-column>
-          <el-table-column prop="create_time" label="创建时间" width="170">
+          <el-table-column prop="create_time" label="Creating time." width="170">
             <template #default="{ row }">
               {{ datetimeFormat(row.create_time) }}
             </template>
           </el-table-column>
-          <el-table-column prop="update_time" label="更新时间" width="170">
+          <el-table-column prop="update_time" label="Updated time" width="170">
             <template #default="{ row }">
               {{ datetimeFormat(row.update_time) }}
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="left">
+          <el-table-column label="Operations" align="left">
             <template #default="{ row }">
               <div>
                 <span class="mr-4">
-                  <el-tooltip effect="dark" content="关联分段" placement="top">
+                  <el-tooltip effect="dark" content="Related Sections" placement="top">
                     <el-button type="primary" text @click.stop="relateProblem(row)">
                       <el-icon><Connection /></el-icon>
                     </el-button>
                   </el-tooltip>
                 </span>
                 <span>
-                  <el-tooltip effect="dark" content="删除" placement="top">
+                  <el-tooltip effect="dark" content="removed" placement="top">
                     <el-button type="primary" text @click.stop="deleteProblem(row)">
                       <el-icon><Delete /></el-icon>
                     </el-button>
@@ -122,7 +122,7 @@ import useStore from '@/stores'
 
 const route = useRoute()
 const {
-  params: { id } // 知识库id
+  params: { id } // The knowledge baseid
 } = route as any
 
 const { problem } = useStore()
@@ -132,9 +132,9 @@ const DetailProblemRef = ref()
 const CreateProblemDialogRef = ref()
 const loading = ref(false)
 
-// 当前需要修改问题的id
+// The problem needs to be modified.id
 const currentMouseId = ref('')
-// 当前点击打开drawer的id
+// Now click open.drawerofid
 const currentClickId = ref('')
 const currentContent = ref('')
 
@@ -170,7 +170,7 @@ const handleSelectionChange = (val: any[]) => {
 }
 
 /*
-  快速创建空白文档
+  Create empty documents quickly.
 */
 function creatQuickHandle(val: string) {
   loading.value = true
@@ -179,7 +179,7 @@ function creatQuickHandle(val: string) {
     .asyncPostProblem(id, obj)
     .then((res) => {
       getList()
-      MsgSuccess('创建成功')
+      MsgSuccess('Creating Success')
     })
     .catch(() => {
       loading.value = false
@@ -194,23 +194,23 @@ function deleteMulDocument() {
     }
   })
   problemApi.delMulProblem(id, arr, loading).then(() => {
-    MsgSuccess('批量删除成功')
+    MsgSuccess('Removal of success.')
     getList()
   })
 }
 
 function deleteProblem(row: any) {
   MsgConfirm(
-    `是否删除问题：${row.content} ?`,
-    `删除问题关联的 ${row.paragraph_count} 个分段会被取消关联，请谨慎操作。`,
+    `Remove the problem.：${row.content} ?`,
+    `Delete the problem related. ${row.paragraph_count} A section will be cancelled.，Please be careful.。`,
     {
-      confirmButtonText: '删除',
+      confirmButtonText: 'removed',
       confirmButtonClass: 'danger'
     }
   )
     .then(() => {
       problemApi.delProblems(id, row.id, loading).then(() => {
-        MsgSuccess('删除成功')
+        MsgSuccess('Remove Success')
         getList()
       })
     })
@@ -224,10 +224,10 @@ function editName(val: string, problemId: string) {
     }
     problemApi.putProblems(id, problemId, obj, loading).then(() => {
       getList()
-      MsgSuccess('修改成功')
+      MsgSuccess('Changes are Successful')
     })
   } else {
-    MsgError('问题不能为空！')
+    MsgError('The problem cannot be empty.！')
   }
 }
 
@@ -239,7 +239,7 @@ function cellMouseLeave() {
 }
 
 /**
- * 下一页
+ * Next page
  */
 const nextChatRecord = () => {
   let index = problemIndexMap.value[currentClickId.value] + 1
@@ -275,7 +275,7 @@ const next_disable = computed(() => {
   )
 })
 /**
- * 上一页
+ * The previous page
  */
 const preChatRecord = () => {
   let index = problemIndexMap.value[currentClickId.value] - 1

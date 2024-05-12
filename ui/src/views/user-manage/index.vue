@@ -1,12 +1,12 @@
 <template>
-  <LayoutContainer header="用户管理">
+  <LayoutContainer header="User Management">
     <div class="p-24">
       <div class="flex-between">
-        <el-button type="primary" @click="createUser">创建用户</el-button>
+        <el-button type="primary" @click="createUser">Creating Users</el-button>
         <el-input
           v-model="searchValue"
           @change="searchHandle"
-          placeholder="搜索"
+          placeholder="Searching"
           prefix-icon="Search"
           class="w-240"
           clearable
@@ -21,11 +21,11 @@
         @changePage="getList"
         v-loading="loading"
       >
-        <el-table-column prop="username" label="用户名" />
-        <el-table-column prop="nick_name" label="姓名" />
-        <el-table-column prop="email" label="邮箱" show-overflow-tooltip />
-        <el-table-column prop="phone" label="手机号" />
-        <el-table-column label="状态" width="60">
+        <el-table-column prop="username" label="User Name" />
+        <el-table-column prop="nick_name" label="Name of" />
+        <el-table-column prop="email" label="The mailbox" show-overflow-tooltip />
+        <el-table-column prop="phone" label="The phone number." />
+        <el-table-column label="state of" width="60">
           <template #default="{ row }">
             <div @click.stop>
               <el-switch
@@ -37,30 +37,30 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="创建时间" width="180">
+        <el-table-column label="Creating time." width="180">
           <template #default="{ row }">
             {{ datetimeFormat(row.create_time) }}
           </template>
         </el-table-column>
 
-        <el-table-column label="操作" width="110" align="left">
+        <el-table-column label="Operations" width="110" align="left">
           <template #default="{ row }">
             <span class="mr-4">
-              <el-tooltip effect="dark" content="编辑" placement="top">
+              <el-tooltip effect="dark" content="The Editor" placement="top">
                 <el-button type="primary" text @click.stop="editUser(row)">
                   <el-icon><EditPen /></el-icon>
                 </el-button>
               </el-tooltip>
             </span>
             <span class="mr-4">
-              <el-tooltip effect="dark" content="修改用户密码" placement="top">
+              <el-tooltip effect="dark" content="Change the user password." placement="top">
                 <el-button type="primary" text @click.stop="editPwdUser(row)">
                   <el-icon><Lock /></el-icon>
                 </el-button>
               </el-tooltip>
             </span>
             <span class="mr-4">
-              <el-tooltip effect="dark" content="删除" placement="top">
+              <el-tooltip effect="dark" content="removed" placement="top">
                 <el-button
                   :disabled="row.role === 'ADMIN'"
                   type="primary"
@@ -111,7 +111,7 @@ function changeState(bool: Boolean, row: any) {
   const obj = {
     is_active: bool
   }
-  const str = bool ? '启用成功' : '禁用成功'
+  const str = bool ? 'Activate Success' : 'Prohibited success.'
   userApi.putUserManage(row.id, obj, loading).then((res) => {
     getList()
     MsgSuccess(str)
@@ -122,28 +122,28 @@ function editPwdUser(row: any) {
   UserPwdDialogRef.value.open(row)
 }
 function editUser(row: any) {
-  title.value = '编辑用户'
+  title.value = 'Editor User'
   UserDialogRef.value.open(row)
 }
 
 function createUser() {
-  title.value = '创建用户'
+  title.value = 'Creating Users'
   UserDialogRef.value.open()
 }
 
 function deleteUserManage(row: any) {
   MsgConfirm(
-    `是否删除用户：${row.username} ?`,
-    `删除用户，该用户创建的资源（应用、知识库、模型）都会删除，请谨慎操作。`,
+    `Remove the user.：${row.username} ?`,
+    `Remove Users，The resources created by the user.（Applications、The knowledge base、The model）They will be removed.，Please be careful.。`,
     {
-      confirmButtonText: '删除',
+      confirmButtonText: 'removed',
       confirmButtonClass: 'danger'
     }
   )
     .then(() => {
       loading.value = true
       userApi.delUserManage(row.id, loading).then(() => {
-        MsgSuccess('删除成功')
+        MsgSuccess('Remove Success')
         getList()
       })
     })

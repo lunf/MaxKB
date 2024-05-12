@@ -21,8 +21,8 @@
     </div>
     <template #footer>
       <div>
-        <el-button @click="pre" :disabled="pre_disable || loading">上一条</el-button>
-        <el-button @click="next" :disabled="next_disable || loading">下一条</el-button>
+        <el-button @click="pre" :disabled="pre_disable || loading">The previous one</el-button>
+        <el-button @click="next" :disabled="next_disable || loading">The next one</el-button>
       </div>
     </template>
   </el-drawer>
@@ -37,20 +37,20 @@ import { type ApplicationFormType } from '@/api/type/application'
 const props = withDefaults(
   defineProps<{
     /**
-     * 应用信息
+     * Application of information
      */
     application?: ApplicationFormType
     /**
-     * 对话 记录id
+     * Dialogue Recordedid
      */
     chartId: string
     currentAbstract: string
     /**
-     * 下一条
+     * The next one
      */
     next: () => void
     /**
-     * 上一条
+     * The previous one
      */
     pre: () => void
 

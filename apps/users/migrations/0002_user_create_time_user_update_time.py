@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='create_time',
-            field=models.DateTimeField(auto_now_add=True, null=True, verbose_name='创建时间'),
+            field=models.DateTimeField(auto_now_add=True, null=True, verbose_name='Creating time.'),
         ),
         migrations.AddField(
             model_name='user',
             name='update_time',
-            field=models.DateTimeField(auto_now=True, null=True, verbose_name='修改时间'),
+            field=models.DateTimeField(auto_now=True, null=True, verbose_name='Change time.'),
         ),
     ]

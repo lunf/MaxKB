@@ -8,7 +8,7 @@ import uuid
 
 def insert_default_data(apps, schema_editor):
     TeamModel = apps.get_model('setting', 'Team')
-    TeamModel.objects.create(user_id='f0dd8f71-e4ee-11ee-8c84-a8a1595801ab', name='admin的团队')
+    TeamModel.objects.create(user_id='f0dd8f71-e4ee-11ee-8c84-a8a1595801ab', name='adminThe team.')
 
 
 class Migration(migrations.Migration):
@@ -22,12 +22,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Team',
             fields=[
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='修改时间')),
+                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='Creating time.')),
+                ('update_time', models.DateTimeField(auto_now=True, verbose_name='Change time.')),
                 ('user',
                  models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False,
-                                      to='users.user', verbose_name='团队所有者')),
-                ('name', models.CharField(max_length=128, verbose_name='团队名称')),
+                                      to='users.user', verbose_name='The team owners.')),
+                ('name', models.CharField(max_length=128, verbose_name='The Team Name')),
             ],
             options={
                 'db_table': 'team',
@@ -37,14 +37,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TeamMember',
             fields=[
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='修改时间')),
+                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='Creating time.')),
+                ('update_time', models.DateTimeField(auto_now=True, verbose_name='Change time.')),
                 ('id', models.UUIDField(default=uuid.uuid1, editable=False, primary_key=True, serialize=False,
-                                        verbose_name='主键id')),
+                                        verbose_name='The key.id')),
                 ('team', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='setting.team',
-                                           verbose_name='团队id')),
+                                           verbose_name='The teamid')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='users.user',
-                                           verbose_name='成员用户id')),
+                                           verbose_name='Member Usersid')),
             ],
             options={
                 'db_table': 'team_member',
@@ -53,20 +53,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TeamMemberPermission',
             fields=[
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='修改时间')),
+                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='Creating time.')),
+                ('update_time', models.DateTimeField(auto_now=True, verbose_name='Change time.')),
                 ('id', models.UUIDField(default=uuid.uuid1, editable=False, primary_key=True, serialize=False,
-                                        verbose_name='主键id')),
+                                        verbose_name='The key.id')),
                 ('auth_target_type',
-                 models.CharField(choices=[('DATASET', '数据集'), ('APPLICATION', '应用')], default='DATASET',
-                                  max_length=128, verbose_name='授权目标')),
-                ('target', models.UUIDField(verbose_name='数据集/应用id')),
+                 models.CharField(choices=[('DATASET', 'The data collection'), ('APPLICATION', 'Applications')], default='DATASET',
+                                  max_length=128, verbose_name='Authorized objectives')),
+                ('target', models.UUIDField(verbose_name='The data collection/Applicationsid')),
                 ('operate', django.contrib.postgres.fields.ArrayField(
-                    base_field=models.CharField(blank=True, choices=[('MANAGE', '管理'), ('USE', '使用')],
+                    base_field=models.CharField(blank=True, choices=[('MANAGE', 'management'), ('USE', 'Use of')],
                                                 default='USE', max_length=256), size=None,
-                    verbose_name='权限操作列表')),
+                    verbose_name='Authorization operating list')),
                 ('member', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='setting.teammember',
-                                             verbose_name='团队成员')),
+                                             verbose_name='Members of Team')),
             ],
             options={
                 'db_table': 'team_member_permission',
@@ -75,17 +75,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Model',
             fields=[
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='修改时间')),
+                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='Creating time.')),
+                ('update_time', models.DateTimeField(auto_now=True, verbose_name='Change time.')),
                 ('id', models.UUIDField(default=uuid.uuid1, editable=False, primary_key=True, serialize=False,
-                                        verbose_name='主键id')),
-                ('name', models.CharField(max_length=128, verbose_name='名称')),
-                ('model_type', models.CharField(max_length=128, verbose_name='模型类型')),
-                ('model_name', models.CharField(max_length=128, verbose_name='模型名称')),
-                ('provider', models.CharField(max_length=128, verbose_name='供应商')),
-                ('credential', models.CharField(max_length=5120, verbose_name='模型认证信息')),
+                                        verbose_name='The key.id')),
+                ('name', models.CharField(max_length=128, verbose_name='The name')),
+                ('model_type', models.CharField(max_length=128, verbose_name='Type of Model')),
+                ('model_name', models.CharField(max_length=128, verbose_name='Name of model')),
+                ('provider', models.CharField(max_length=128, verbose_name='Suppliers')),
+                ('credential', models.CharField(max_length=5120, verbose_name='Model Certification Information')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='users.user',
-                                           verbose_name='成员用户id')),
+                                           verbose_name='Member Usersid')),
             ],
             options={
                 'db_table': 'model',

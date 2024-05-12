@@ -6,7 +6,7 @@
           <el-input
             ref="quickInputRef"
             v-model="inputValue"
-            :placeholder="`请输入${quickCreateName}`"
+            :placeholder="`Please enter.${quickCreateName}`"
             class="w-500 mr-12"
             autofocus
             :maxlength="quickCreateMaxlength || '-'"
@@ -14,8 +14,8 @@
             @keydown.enter="submitHandle"
           />
 
-          <el-button type="primary" @click="submitHandle" :disabled="loading">创建</el-button>
-          <el-button @click="showInput = false" :disabled="loading">取消</el-button>
+          <el-button type="primary" @click="submitHandle" :disabled="loading">Created</el-button>
+          <el-button @click="showInput = false" :disabled="loading">cancelled</el-button>
         </div>
         <div v-else @click="quickCreateHandle" class="w-full">
           <el-button type="primary" link class="quich-button">
@@ -60,11 +60,11 @@ const props = defineProps({
   },
   quickCreateName: {
     type: String,
-    default: '文档名称'
+    default: 'Name of documentation'
   },
   quickCreatePlaceholder: {
     type: String,
-    default: '快速创建空白文档'
+    default: 'Create empty documents quickly.'
   },
   quickCreateMaxlength: {
     type: Number,
@@ -100,7 +100,7 @@ function submitHandle() {
       loading.value = false
     }, 200)
   } else {
-    MsgError(`${props.quickCreateName}不能为空！`)
+    MsgError(`${props.quickCreateName}cannot be empty.！`)
   }
 }
 

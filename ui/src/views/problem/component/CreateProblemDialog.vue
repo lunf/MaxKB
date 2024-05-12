@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="创建问题"
+    title="Creating problems."
     v-model="dialogVisible"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
@@ -13,10 +13,10 @@
       :model="form"
       require-asterisk-position="right"
     >
-      <el-form-item label="问题" prop="data">
+      <el-form-item label="The problem" prop="data">
         <el-input
           v-model="form.data"
-          placeholder="请输入问题，支持输入多个，一行一个。"
+          placeholder="Please enter the question.，Support for multiple entries.，One line one.。"
           :rows="10"
           type="textarea"
         />
@@ -24,9 +24,9 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
         <el-button type="primary" @click="submit(problemFormRef)" :loading="loading">
-          确定
+          Certainly
         </el-button>
       </span>
     </template>
@@ -54,7 +54,7 @@ const form = ref<any>({
 })
 
 const rules = reactive({
-  data: [{ required: true, message: '请输入问题', trigger: 'blur' }]
+  data: [{ required: true, message: 'Please enter the question.', trigger: 'blur' }]
 })
 
 const dialogVisible = ref<boolean>(false)
@@ -79,7 +79,7 @@ const submit = async (formEl: FormInstance | undefined) => {
         return item !== ''
       })
       problem.asyncPostProblem(id, arr, loading).then((res: any) => {
-        MsgSuccess('创建成功')
+        MsgSuccess('Creating Success')
         emit('refresh')
         dialogVisible.value = false
       })

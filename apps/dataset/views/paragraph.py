@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： paragraph_serializers.py
     @date：2023/10/16 15:51
     @desc:
@@ -22,11 +22,11 @@ class Paragraph(APIView):
     authentication_classes = [TokenAuth]
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="段落列表",
-                         operation_id="段落列表",
+    @swagger_auto_schema(operation_summary="List of paragraphs",
+                         operation_id="List of paragraphs",
                          manual_parameters=ParagraphSerializers.Query.get_request_params_api(),
                          responses=result.get_api_array_response(ParagraphSerializers.Query.get_response_body_api()),
-                         tags=["知识库/文档/段落"]
+                         tags=["The knowledge base/Documents/Paragraphs"]
                          )
     @has_permissions(
         lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
@@ -39,12 +39,12 @@ class Paragraph(APIView):
         return result.success(q.list())
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="创建段落",
-                         operation_id="创建段落",
+    @swagger_auto_schema(operation_summary="Creating paragraphs",
+                         operation_id="Creating paragraphs",
                          manual_parameters=ParagraphSerializers.Create.get_request_params_api(),
                          request_body=ParagraphSerializers.Create.get_request_body_api(),
                          responses=result.get_api_response(ParagraphSerializers.Query.get_response_body_api()),
-                         tags=["知识库/文档/段落"])
+                         tags=["The knowledge base/Documents/Paragraphs"])
     @has_permissions(
         lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                 dynamic_tag=k.get('dataset_id')))
@@ -56,12 +56,12 @@ class Paragraph(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="添加关联问题",
-                             operation_id="添加段落关联问题",
+        @swagger_auto_schema(operation_summary="Add Related Problems",
+                             operation_id="Adding paragraph related issues",
                              manual_parameters=ParagraphSerializers.Problem.get_request_params_api(),
                              request_body=ParagraphSerializers.Problem.get_request_body_api(),
                              responses=result.get_api_response(ParagraphSerializers.Problem.get_response_body_api()),
-                             tags=["知识库/文档/段落"])
+                             tags=["The knowledge base/Documents/Paragraphs"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -71,12 +71,12 @@ class Paragraph(APIView):
                 request.data, with_valid=True))
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取段落问题列表",
-                             operation_id="获取段落问题列表",
+        @swagger_auto_schema(operation_summary="Get the question list of paragraphs",
+                             operation_id="Get the question list of paragraphs",
                              manual_parameters=ParagraphSerializers.Problem.get_request_params_api(),
                              responses=result.get_api_array_response(
                                  ParagraphSerializers.Problem.get_response_body_api()),
-                             tags=["知识库/文档/段落"])
+                             tags=["The knowledge base/Documents/Paragraphs"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -89,11 +89,11 @@ class Paragraph(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['PUT'], detail=False)
-            @swagger_auto_schema(operation_summary="解除关联问题",
-                                 operation_id="解除关联问题",
+            @swagger_auto_schema(operation_summary="Removing Relationship Problems",
+                                 operation_id="Removing Relationship Problems",
                                  manual_parameters=ParagraphSerializers.Association.get_request_params_api(),
                                  responses=result.get_default_response(),
-                                 tags=["知识库/文档/段落"])
+                                 tags=["The knowledge base/Documents/Paragraphs"])
             @has_permissions(
                 lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                         dynamic_tag=k.get('dataset_id')))
@@ -106,11 +106,11 @@ class Paragraph(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['PUT'], detail=False)
-            @swagger_auto_schema(operation_summary="关联问题",
-                                 operation_id="关联问题",
+            @swagger_auto_schema(operation_summary="Related issues",
+                                 operation_id="Related issues",
                                  manual_parameters=ParagraphSerializers.Association.get_request_params_api(),
                                  responses=result.get_default_response(),
-                                 tags=["知识库/文档/段落"])
+                                 tags=["The knowledge base/Documents/Paragraphs"])
             @has_permissions(
                 lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                         dynamic_tag=k.get('dataset_id')))
@@ -123,12 +123,12 @@ class Paragraph(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['UPDATE'], detail=False)
-        @swagger_auto_schema(operation_summary="修改段落数据",
-                             operation_id="修改段落数据",
+        @swagger_auto_schema(operation_summary="Modification of paragraph data",
+                             operation_id="Modification of paragraph data",
                              manual_parameters=ParagraphSerializers.Operate.get_request_params_api(),
                              request_body=ParagraphSerializers.Operate.get_request_body_api(),
                              responses=result.get_api_response(ParagraphSerializers.Operate.get_response_body_api())
-            , tags=["知识库/文档/段落"])
+            , tags=["The knowledge base/Documents/Paragraphs"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -139,11 +139,11 @@ class Paragraph(APIView):
             return result.success(o.edit(request.data))
 
         @action(methods=['UPDATE'], detail=False)
-        @swagger_auto_schema(operation_summary="获取段落详情",
-                             operation_id="获取段落详情",
+        @swagger_auto_schema(operation_summary="Get detailed paragraphs.",
+                             operation_id="Get detailed paragraphs.",
                              manual_parameters=ParagraphSerializers.Operate.get_request_params_api(),
                              responses=result.get_api_response(ParagraphSerializers.Operate.get_response_body_api()),
-                             tags=["知识库/文档/段落"])
+                             tags=["The knowledge base/Documents/Paragraphs"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -154,11 +154,11 @@ class Paragraph(APIView):
             return result.success(o.one())
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="删除段落",
-                             operation_id="删除段落",
+        @swagger_auto_schema(operation_summary="Delete the paragraph.",
+                             operation_id="Delete the paragraph.",
                              manual_parameters=ParagraphSerializers.Operate.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档/段落"])
+                             tags=["The knowledge base/Documents/Paragraphs"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -172,12 +172,12 @@ class Paragraph(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="分页获取段落列表",
-                             operation_id="分页获取段落列表",
+        @swagger_auto_schema(operation_summary="Section page to get paragraph list",
+                             operation_id="Section page to get paragraph list",
                              manual_parameters=result.get_page_request_params(
                                  ParagraphSerializers.Query.get_request_params_api()),
                              responses=result.get_page_api_response(ParagraphSerializers.Query.get_response_body_api()),
-                             tags=["知识库/文档/段落"])
+                             tags=["The knowledge base/Documents/Paragraphs"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
                                     dynamic_tag=k.get('dataset_id')))

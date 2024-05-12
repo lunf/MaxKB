@@ -1,5 +1,5 @@
 <p align="center"><img src= "https://github.com/1Panel-dev/maxkb/assets/52996290/c0694996-0eed-40d8-b369-322bf2a380bf" alt="MaxKB" width="300" /></p>
-<h3 align="center">基于 LLM 大语言模型的知识库问答系统</h3>
+<h3 align="center">Based on LLM Big Language Model Knowledge Base Questions System</h3>
 <p align="center">
   <a href="https://www.gnu.org/licenses/old-licenses/gpl-3.0"><img src="https://img.shields.io/github/license/1Panel-dev/maxkb?color=%231890FF" alt="License: GPL v3"></a>
   <a href="https://app.codacy.com/gh/1Panel-dev/maxkb?utm_source=github.com&utm_medium=referral&utm_content=1Panel-dev/maxkb&utm_campaign=Badge_Grade_Dashboard"><img src="https://app.codacy.com/project/badge/Grade/da67574fd82b473992781d1386b937ef" alt="Codacy"></a>
@@ -7,37 +7,135 @@
   <a href="https://github.com/1Panel-dev/maxkb"><img src="https://img.shields.io/github/stars/1Panel-dev/maxkb?color=%231890FF&style=flat-square" alt="Stars"></a>    
   <a href="https://hub.docker.com/r/1panel/maxkb"><img src="https://img.shields.io/docker/pulls/1panel/maxkb?label=downloads" alt="Download"></a>  
 </p>
+
 <hr/>
+This is English version. For the latest updates, please visit the original at:
 
-MaxKB 是一款基于 LLM 大语言模型的知识库问答系统。MaxKB = Max Knowledge Base，旨在成为企业的最强大脑。
+ - <https://github.com/1Panel-dev/maxkb>
 
-- **开箱即用**：支持直接上传文档、自动爬取在线文档，支持文本自动拆分、向量化，智能问答交互体验好；
-- **无缝嵌入**：支持零编码快速嵌入到第三方业务系统；
-- **多模型支持**：支持对接主流的大模型，包括 Ollama 本地私有大模型（如 Llama 2、Llama 3、qwen）、通义千问、OpenAI、Azure OpenAI、Kimi、智谱 AI、讯飞星火和百度千帆大模型等。
+<hr>
+MaxKB It is based on LLM Big Language Model Knowledge Base Questions System。MaxKB = Max Knowledge Base，It is designed to be the strongest brain of the company.。
 
-## 快速开始
+- **Open the box.**：Support for direct upload of documents.、Automatic retrieval of online documents，Support text automatic separation.、to Quantity.，Intelligent Questions Interactive Experience；
+- **Smoothly Embedded.**：Support zero-coding rapidly embedded into third-party business systems；
+- **Multi-Model Support**：Supporting large-scale connectivity models，Included Ollama Local private model.（as Llama 2、Llama 3、qwen）、A Thousand Questions、OpenAI、Azure OpenAI、Kimi、Intelligence AI、Starfire and a hundred-thousand-layer model.。
+
+## Start quickly.
 
 ```
 docker run -d --name=maxkb -p 8080:8080 -v ~/.maxkb:/var/lib/postgresql/data 1panel/maxkb
 
-# 用户名: admin
-# 密码: MaxKB@123..
+# User Name: admin
+# The code: MaxKB@123..
 ```
 
-你也可以通过 [1Panel 应用商店](https://apps.fit2cloud.com/1panel) 快速部署 MaxKB + Ollama + Llama 2，30 分钟内即可上线基于本地大模型的知识库问答系统，并嵌入到第三方业务系统中。
+## Development
 
-你也可以在线体验：[DataEase 小助手](https://dataease.io/docs/v2/)，它是基于 MaxKB 搭建的智能问答系统，已经嵌入到 DataEase 产品及在线文档中。
+The [official guide](https://github.com/1Panel-dev/MaxKB/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
 
-如你有更多问题，可以查看使用手册，或者通过论坛与我们交流。
+### Prerequisite
 
--   [使用手册](https://github.com/1Panel-dev/MaxKB/wiki/1-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2)
--   [演示视频](https://www.bilibili.com/video/BV1BE421M7YM/)
--   [论坛求助](https://bbs.fit2cloud.com/c/mk/11)
--   技术交流群     
+Install Python 3.11
+
+```
+# Add the deadsnakes repository
+sudo add-apt-repository ppa:deadsnakes/ppa
+
+# Update package lists
+sudo apt update
+
+# Install Python 3.11
+sudo apt install python3.11
+```
+
+Enable Python virtual env
+
+```
+# Install the venv package for Python 3.11
+sudo apt install python3.11-venv
+
+# Make a folder for venv virtual environments
+mkdir ~/.venvs
+
+# Create a new venv virtual environment with Python 3.11 in it
+python3.11 -m venv ~/.venvs/my-venv-name
+
+# Activate the new venv
+source ~/.venvs/my-venv-name/bin/activate
+```
+Exit from the virtual environment
+
+```deactivate```
+
+Setup `peotry`
+
+```
+# Install poetry
+pipx install poetry
+
+# Install application dependencies
+poetry install
+```
+
+Update `config_example.yml` file & rename it to `config.yml`
+
+### Start Backend system
+
+Run Postgres Docker image (equals or above:15.x)  
+
+```docker compose -f installer/docker-compose-dev.yml up -d```
+
+Start main application (python:3.11.x)
+
+```poetry python main.py start```
+
+You might need to change the following paths
+```
+main.py --> HF_HOME 
+apps/smartdoc/const.py --> CONFIG
+
+# config file
+EMBEDDING_MODEL_PATH: ./models
+
+# Change cache dir for Tokenizer
+apps/common/config/tokenizer_manage_config.py  ---> cache_dir
+```
+
+### Start Frontend system
+
+```
+# Frontend code
+cd ui
+
+# Node version >= v18.20.2
+yarn install
+
+# Start UI app
+yarn dev
+```
+
+Inital credentials
+```
+# User Name: admin
+# The code: MaxKB@123..
+```
+
+## Additional
+
+You can also pass. [1Panel Applied store](https://apps.fit2cloud.com/1panel) Fast implementation. MaxKB + Ollama + Llama 2，30 In a minute you can get online based on a local big model knowledge base questioning system.，Incorporated into a third-party business system.。
+
+You can also experience online.：[DataEase The Little Assistant](https://dataease.io/docs/v2/)，It is based on MaxKB Building an Intelligent Question System，has been embedded. DataEase Products and online documents.。
+
+If you have more problems.，You can view the manual.，Contact us through the forum.。
+
+-   [Use of Manual](https://github.com/1Panel-dev/MaxKB/wiki/1-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2)
+-   [Showing video](https://www.bilibili.com/video/BV1BE421M7YM/)
+-   [Forum for assistance](https://bbs.fit2cloud.com/c/mk/11)
+-   Technical Communications Group     
       <image height="150px" width="150px" src="https://github.com/1Panel-dev/MaxKB/assets/52996290/a4f6303d-9667-4be0-bc2d-0110af782f67"/>
 
 
-## UI 展示
+## UI Showing
 
 <table style="border-collapse: collapse; border: 1px solid black;">
   <tr>
@@ -50,29 +148,18 @@ docker run -d --name=maxkb -p 8080:8080 -v ~/.maxkb:/var/lib/postgresql/data 1pa
   </tr>
 </table>
 
-## 技术栈
+## Technical Stack
 
--   前端：[Vue.js](https://cn.vuejs.org/)
--   后端：[Python / Django](https://www.djangoproject.com/)
+-   The front：[Vue.js](https://cn.vuejs.org/)
+-   The back.：[Python / Django](https://www.djangoproject.com/)
 -   LangChain：[LangChain](https://www.langchain.com/)
--   向量数据库：[PostgreSQL / pgvector](https://www.postgresql.org/)
--   大模型：Azure OpenAI、OpenAI、百度千帆大模型、[Ollama](https://github.com/ollama/ollama)、通义千问、Kimi、智谱 AI、讯飞星火
+-   Veto Database：[PostgreSQL / pgvector](https://www.postgresql.org/)
+-   The big model.：Azure OpenAI、OpenAI、A hundred-thousand model.、[Ollama](https://github.com/ollama/ollama)、A Thousand Questions、Kimi、Intelligence AI、The Star Fire.
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=1Panel-dev/MaxKB&type=Date)](https://star-history.com/#1Panel-dev/MaxKB&Date)
-
-## 我们的其他开源产品
-
-- [JumpServer](https://github.com/jumpserver/jumpserver/) - 广受欢迎的开源堡垒机
-- [DataEase](https://github.com/dataease/dataease/) - 人人可用的开源数据可视化分析工具
-- [MeterSphere](https://github.com/metersphere/metersphere/) - 一站式开源自动化测试平台
-- [1Panel](https://github.com/1panel-dev/1panel/) - 现代化、开源的 Linux 服务器运维管理面板
-- [Halo](https://github.com/halo-dev/halo/) - 强大易用的开源建站工具
 
 ## License
 
-Copyright (c) 2014-2024 飞致云 FIT2CLOUD, All rights reserved.
+Copyright (c) 2014-2024 Flying to the cloud. FIT2CLOUD, All rights reserved.
 
 Licensed under The GNU General Public License version 3 (GPLv3)  (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

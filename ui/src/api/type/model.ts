@@ -8,125 +8,125 @@ interface modelRequest {
 
 interface Provider {
   /**
-   * 供应商代号
+   * Code of Supplier
    */
   provider: string
   /**
-   * 供应商名称
+   * Name of Supplier
    */
   name: string
   /**
-   * 供应商icon
+   * Suppliersicon
    */
   icon: string
 }
 
 interface ListModelRequest {
   /**
-   * 模型名称
+   * Name of model
    */
   name?: string
   /**
-   * 模型类型
+   * Type of Model
    */
   model_type?: string
   /**
-   * 基础模型名称
+   * The basic model name.
    */
   model_name?: string
   /**
-   * 供应商
+   * Suppliers
    */
   provider?: string
 }
 
 interface Model {
   /**
-   * 主键id
+   * The key.id
    */
   id: string
   /**
-   * 模型名
+   * The model name
    */
   name: string
   /**
-   * 模型类型
+   * Type of Model
    */
   model_type: string
   /**
-   * 基础模型
+   * The Basic Model
    */
   model_name: string
   /**
-   * 认证信息
+   * Certification Information
    */
   credential: any
   /**
-   * 供应商
+   * Suppliers
    */
   provider: string
   /**
-   * 状态
+   * state of
    */
   status: 'SUCCESS' | 'DOWNLOAD' | 'ERROR'
   /**
-   * 元数据
+   * The data
    */
   meta: Dict<any>
 }
 interface CreateModelRequest {
   /**
-   * 模型名
+   * The model name
    */
   name: string
   /**
-   * 模型类型
+   * Type of Model
    */
   model_type: string
   /**
-   * 基础模型
+   * The Basic Model
    */
   model_name: string
   /**
-   * 认证信息
+   * Certification Information
    */
   credential: any
   /**
-   * 供应商
+   * Suppliers
    */
   provider: string
 }
 
 interface EditModelRequest {
   /**
-   * 模型名
+   * The model name
    */
   name: string
   /**
-   * 模型类型
+   * Type of Model
    */
   model_type: string
   /**
-   * 基础模型
+   * The Basic Model
    */
   model_name: string
   /**
-   * 认证信息
+   * Certification Information
    */
   credential: any
 }
 
 interface BaseModel {
   /**
-   * 基础模型名称
+   * The basic model name.
    */
   name: string
   /**
-   * 基础模型描述
+   * Basic Model Description
    */
   desc: string
   /**
-   * 基础模型类型
+   * Type of Basic Model
    */
   model_type: string
 }

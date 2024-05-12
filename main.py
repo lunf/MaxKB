@@ -17,8 +17,8 @@ django.setup()
 
 def collect_static():
     """
-     收集静态文件到指定目录
-     本项目主要是将前端vue/dist的前端项目放到静态目录下面
+     Collect static files to the specified directory
+     This project is mainly the front.vue/distThe front-end project is placed in the static directory below.
     :return:
     """
     logging.info("Collect static files")
@@ -31,7 +31,7 @@ def collect_static():
 
 def perform_db_migrate():
     """
-    初始化数据库表
+    Initial Database Table
     """
     logging.info("Check database structure change ...")
     logging.info("Migrate model change to database ...")
@@ -48,7 +48,7 @@ def start_services():
 
 
 if __name__ == '__main__':
-    os.environ['HF_HOME'] = '/opt/maxkb/model/base'
+    os.environ['HF_HOME'] = './'
     parser = argparse.ArgumentParser(
         description="""
            qabot service control tools;

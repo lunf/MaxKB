@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： authenticate.py
     @date：2023/9/4 11:16
-    @desc:  认证类
+    @desc:  Certification Classes
 """
 import traceback
 
@@ -45,20 +45,20 @@ class TokenDetails:
 
 
 class TokenAuth(TokenAuthentication):
-    # 重新 authenticate 方法，自定义认证规则
+    # again authenticate Method，Customized Certification Rules
     def authenticate(self, request):
         auth = request.META.get('HTTP_AUTHORIZATION')
-        # 未认证
+        # Uncertified
         if auth is None:
-            raise AppAuthenticationFailed(1003, '未登录,请先登录')
+            raise AppAuthenticationFailed(1003, 'not registered.,Please log in first.')
         try:
             token_details = TokenDetails(auth)
             for handle in handles:
                 if handle.support(request, auth, token_details.get_token_details):
                     return handle.handle(request, auth, token_details.get_token_details)
-            raise AppAuthenticationFailed(1002, "身份验证信息不正确！非法用户")
+            raise AppAuthenticationFailed(1002, "Identification information is incorrect.！illegal users")
         except Exception as e:
             traceback.format_exc()
             if isinstance(e, AppEmbedIdentityFailed) or isinstance(e, AppChatNumOutOfBoundsFailed):
                 raise e
-            raise AppAuthenticationFailed(1002, "身份验证信息不正确！非法用户")
+            raise AppAuthenticationFailed(1002, "Identification information is incorrect.！illegal users")

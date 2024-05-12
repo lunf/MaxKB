@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
-    @file： embedding_config.py
-    @date：2023/10/23 16:03
+    @Author:The Tiger
+    @file: embedding_config.py
+    @date:2023/10/23 16:03
     @desc:
 """
 from langchain_community.embeddings import HuggingFaceEmbeddings
@@ -17,7 +17,7 @@ class EmbeddingModel:
     @staticmethod
     def get_embedding_model():
         """
-        获取向量化模型
+        Obtaining a Quantitative Model
         :return:
         """
         if EmbeddingModel.instance is None:
@@ -26,7 +26,7 @@ class EmbeddingModel:
             device = CONFIG.get('EMBEDDING_DEVICE')
             e = HuggingFaceEmbeddings(
                 model_name=model_name,
-                cache_folder=cache_folder,
+                #cache_folder=cache_folder,
                 model_kwargs={'device': device})
             EmbeddingModel.instance = e
         return EmbeddingModel.instance

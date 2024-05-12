@@ -33,7 +33,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Python API",
         default_version='v1',
-        description="智能客服平台",
+        description="Smart Customer Service Platform",
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
@@ -49,11 +49,11 @@ urlpatterns = [
 
 
 def pro():
-    # 暴露静态主要是swagger资源
+    # Static exposure is primarilyswaggerResources
     urlpatterns.append(
         re_path(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
     )
-    # 暴露ui静态资源
+    # Exposureuistatic resources
     urlpatterns.append(
         re_path(r'^ui/(?P<path>.*)$', static.serve, {'document_root': os.path.join(settings.STATIC_ROOT, "ui")},
                 name='ui'),
@@ -66,14 +66,14 @@ if not settings.DEBUG:
 
 def page_not_found(request, exception):
     """
-    页面不存在处理
+    Page is not processed.
     """
     if request.path.startswith("/api/"):
-        return Result(response_status=status.HTTP_404_NOT_FOUND, code=404, message="找不到接口")
+        return Result(response_status=status.HTTP_404_NOT_FOUND, code=404, message="Not found an interface.")
     else:
         index_path = os.path.join(PROJECT_DIR, 'apps', "static", 'ui', 'index.html')
         if not os.path.exists(index_path):
-            return HttpResponse("页面不存在", status=404)
+            return HttpResponse("Page does not exist.", status=404)
         file = open(index_path, "r", encoding='utf-8')
         content = file.read()
         file.close()
@@ -86,7 +86,7 @@ handler404 = page_not_found
 
 urlpatterns += [
     re_path(r'^doc(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
-            name='schema-json'),  # 导出
+            name='schema-json'),  # Exported
     path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： dataset_serializers.py
     @date：2023/9/21 16:14
     @desc:
@@ -42,23 +42,23 @@ from setting.models import AuthOperate
 from smartdoc.conf import PROJECT_DIR
 
 """
-# __exact  精确等于 like ‘aaa’
-# __iexact 精确等于 忽略大小写 ilike 'aaa'
-# __contains 包含like '%aaa%'
-# __icontains 包含 忽略大小写 ilike ‘%aaa%’，但是对于sqlite来说，contains的作用效果等同于icontains。
-# __gt  大于
-# __gte 大于等于
-# __lt 小于
-# __lte 小于等于
-# __in 存在于一个list范围内
-# __startswith 以…开头
-# __istartswith 以…开头 忽略大小写
-# __endswith 以…结尾
-# __iendswith 以…结尾，忽略大小写
-# __range 在…范围内
-# __year 日期字段的年份
-# __month 日期字段的月份
-# __day 日期字段的日
+# __exact  Exactly equal to like ‘aaa’
+# __iexact Exactly equal to Ignoring the size of writing. ilike 'aaa'
+# __contains Includedlike '%aaa%'
+# __icontains Included Ignoring the size of writing. ilike ‘%aaa%’，But forsqlitefor，containsThe effect is equal toicontains。
+# __gt  greater than
+# __gte More than equal.
+# __lt less than
+# __lte Less than equal.
+# __in It exists in onelistwithin the range
+# __startswith by…Beginning
+# __istartswith by…Beginning Ignoring the size of writing.
+# __endswith by…The end
+# __iendswith by…The end，Ignoring the size of writing.
+# __range in…within the range
+# __year Year of the Date Field
+# __month Month of Date Fields
+# __day Day of the Date Field
 # __isnull=True/False
 """
 
@@ -69,9 +69,9 @@ class DataSetSerializers(serializers.ModelSerializer):
         fields = ['id', 'name', 'desc', 'meta', 'create_time', 'update_time']
 
     class Application(ApiMixin, serializers.Serializer):
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("用户id"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("Usersid"))
 
-        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("数据集id"))
+        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("The data collectionid"))
 
         @staticmethod
         def get_request_params_api():
@@ -80,7 +80,7 @@ class DataSetSerializers(serializers.ModelSerializer):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='知识库id')
+                                  description='The knowledge baseid')
             ]
 
         @staticmethod
@@ -91,36 +91,36 @@ class DataSetSerializers(serializers.ModelSerializer):
                           'create_time',
                           'update_time'],
                 properties={
-                    'id': openapi.Schema(type=openapi.TYPE_STRING, title="", description="主键id"),
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="应用名称", description="应用名称"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="应用描述", description="应用描述"),
-                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="模型id", description="模型id"),
-                    "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否开启多轮对话",
-                                                               description="是否开启多轮对话"),
-                    'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="开场白", description="开场白"),
+                    'id': openapi.Schema(type=openapi.TYPE_STRING, title="", description="The key.id"),
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Application Name", description="Application Name"),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Application Description", description="Application Description"),
+                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="The modelid", description="The modelid"),
+                    "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Open multiple rounds of dialogue.",
+                                                               description="Open multiple rounds of dialogue."),
+                    'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="Opening White.", description="Opening White."),
                     'example': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Schema(type=openapi.TYPE_STRING),
-                                              title="示例列表", description="示例列表"),
-                    'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="所属用户", description="所属用户"),
+                                              title="Examples List", description="Examples List"),
+                    'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="The User", description="The User"),
 
-                    'status': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否发布", description='是否发布'),
+                    'status': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="is published.", description='is published.'),
 
-                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间", description='创建时间'),
+                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.", description='Creating time.'),
 
-                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间", description='修改时间')
+                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.", description='Change time.')
                 }
             )
 
     class Query(ApiMixin, serializers.Serializer):
         """
-        查询对象
+        Question of objects.
         """
         name = serializers.CharField(required=False,
-                                     error_messages=ErrMessage.char("知识库名称"),
+                                     error_messages=ErrMessage.char("Name of Knowledge Base"),
                                      max_length=64,
                                      min_length=1)
 
         desc = serializers.CharField(required=False,
-                                     error_messages=ErrMessage.char("知识库描述"),
+                                     error_messages=ErrMessage.char("Knowledge Base Description"),
                                      max_length=256,
                                      min_length=1,
                                      )
@@ -149,7 +149,7 @@ class DataSetSerializers(serializers.ModelSerializer):
             query_set_dict['team_member_permission_custom_sql'] = QuerySet(model=get_dynamics_model(
                 {'user_id': models.CharField(),
                  'team_member_permission.auth_target_type': models.CharField(),
-                 'team_member_permission.operate': ArrayField(verbose_name="权限操作列表",
+                 'team_member_permission.operate': ArrayField(verbose_name="Authorization operating list",
                                                               base_field=models.CharField(max_length=256,
                                                                                           blank=True,
                                                                                           choices=AuthOperate.choices,
@@ -175,12 +175,12 @@ class DataSetSerializers(serializers.ModelSerializer):
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=False,
-                                      description='知识库名称'),
+                                      description='Name of Knowledge Base'),
                     openapi.Parameter(name='desc',
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=False,
-                                      description='知识库描述')
+                                      description='Knowledge Base Description')
                     ]
 
         @staticmethod
@@ -188,19 +188,19 @@ class DataSetSerializers(serializers.ModelSerializer):
             return DataSetSerializers.Operate.get_response_body_api()
 
     class Create(ApiMixin, serializers.Serializer):
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("用户id"), )
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("Usersid"), )
 
         class CreateBaseSerializers(ApiMixin, serializers.Serializer):
             """
-            创建通用数据集序列化对象
+            Create general data set sequencing objects
             """
             name = serializers.CharField(required=True,
-                                         error_messages=ErrMessage.char("知识库名称"),
+                                         error_messages=ErrMessage.char("Name of Knowledge Base"),
                                          max_length=64,
                                          min_length=1)
 
             desc = serializers.CharField(required=True,
-                                         error_messages=ErrMessage.char("知识库描述"),
+                                         error_messages=ErrMessage.char("Knowledge Base Description"),
                                          max_length=256,
                                          min_length=1)
 
@@ -212,28 +212,28 @@ class DataSetSerializers(serializers.ModelSerializer):
 
         class CreateWebSerializers(serializers.Serializer):
             """
-            创建web站点序列化对象
+            CreatedwebSite Setting Objects
             """
             name = serializers.CharField(required=True,
-                                         error_messages=ErrMessage.char("知识库名称"),
+                                         error_messages=ErrMessage.char("Name of Knowledge Base"),
                                          max_length=64,
                                          min_length=1)
 
             desc = serializers.CharField(required=True,
-                                         error_messages=ErrMessage.char("知识库描述"),
+                                         error_messages=ErrMessage.char("Knowledge Base Description"),
                                          max_length=256,
                                          min_length=1)
-            source_url = serializers.CharField(required=True, error_messages=ErrMessage.char("Web 根地址"), )
+            source_url = serializers.CharField(required=True, error_messages=ErrMessage.char("Web root address"), )
 
             selector = serializers.CharField(required=False, allow_null=True, allow_blank=True,
-                                             error_messages=ErrMessage.char("选择器"))
+                                             error_messages=ErrMessage.char("The Selector"))
 
             def is_valid(self, *, raise_exception=False):
                 super().is_valid(raise_exception=True)
                 source_url = self.data.get('source_url')
                 response = Fork(source_url, []).fork()
                 if response.status == 500:
-                    raise AppApiException(500, f"url错误,无法解析【{source_url}】")
+                    raise AppApiException(500, f"urlerrors,Unable to analyze【{source_url}】")
                 return True
 
             @staticmethod
@@ -245,25 +245,25 @@ class DataSetSerializers(serializers.ModelSerializer):
                     properties={
                         'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                              description="id", default="xx"),
-                        'name': openapi.Schema(type=openapi.TYPE_STRING, title="名称",
-                                               description="名称", default="测试知识库"),
-                        'desc': openapi.Schema(type=openapi.TYPE_STRING, title="描述",
-                                               description="描述", default="测试知识库描述"),
-                        'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="所属用户id",
-                                                  description="所属用户id", default="user_xxxx"),
-                        'char_length': openapi.Schema(type=openapi.TYPE_STRING, title="字符数",
-                                                      description="字符数", default=10),
-                        'document_count': openapi.Schema(type=openapi.TYPE_STRING, title="文档数量",
-                                                         description="文档数量", default=1),
-                        'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                                      description="修改时间",
+                        'name': openapi.Schema(type=openapi.TYPE_STRING, title="The name",
+                                               description="The name", default="Testing knowledge."),
+                        'desc': openapi.Schema(type=openapi.TYPE_STRING, title="described",
+                                               description="described", default="Test Knowledge Base Description"),
+                        'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="The Userid",
+                                                  description="The Userid", default="user_xxxx"),
+                        'char_length': openapi.Schema(type=openapi.TYPE_STRING, title="Number of characters",
+                                                      description="Number of characters", default=10),
+                        'document_count': openapi.Schema(type=openapi.TYPE_STRING, title="Number of documents",
+                                                         description="Number of documents", default=1),
+                        'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                                      description="Change time.",
                                                       default="1970-01-01 00:00:00"),
-                        'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                                      description="创建时间",
+                        'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                                      description="Creating time.",
                                                       default="1970-01-01 00:00:00"
                                                       ),
-                        'document_list': openapi.Schema(type=openapi.TYPE_ARRAY, title="文档列表",
-                                                        description="文档列表",
+                        'document_list': openapi.Schema(type=openapi.TYPE_ARRAY, title="List of documents",
+                                                        description="List of documents",
                                                         items=DocumentSerializers.Operate.get_response_body_api())
                     }
                 )
@@ -274,17 +274,17 @@ class DataSetSerializers(serializers.ModelSerializer):
                     type=openapi.TYPE_OBJECT,
                     required=['name', 'desc', 'url'],
                     properties={
-                        'name': openapi.Schema(type=openapi.TYPE_STRING, title="知识库名称", description="知识库名称"),
-                        'desc': openapi.Schema(type=openapi.TYPE_STRING, title="知识库描述", description="知识库描述"),
-                        'source_url': openapi.Schema(type=openapi.TYPE_STRING, title="web站点url",
-                                                     description="web站点url"),
-                        'selector': openapi.Schema(type=openapi.TYPE_STRING, title="选择器", description="选择器")
+                        'name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of Knowledge Base", description="Name of Knowledge Base"),
+                        'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Knowledge Base Description", description="Knowledge Base Description"),
+                        'source_url': openapi.Schema(type=openapi.TYPE_STRING, title="webThe siteurl",
+                                                     description="webThe siteurl"),
+                        'selector': openapi.Schema(type=openapi.TYPE_STRING, title="The Selector", description="The Selector")
                     }
                 )
 
         @staticmethod
         def post_embedding_dataset(document_list, dataset_id):
-            # 发送向量化事件
+            # Send to Quantitative Events
             ListenerManagement.embedding_by_dataset_signal.send(dataset_id)
             return document_list
 
@@ -297,7 +297,7 @@ class DataSetSerializers(serializers.ModelSerializer):
             dataset_id = uuid.uuid1()
             user_id = self.data.get('user_id')
             if QuerySet(DataSet).filter(user_id=user_id, name=instance.get('name')).exists():
-                raise AppApiException(500, "知识库名称重复!")
+                raise AppApiException(500, "Repeat the name of the knowledge base!")
             dataset = DataSet(
                 **{'id': dataset_id, 'name': instance.get("name"), 'desc': instance.get('desc'), 'user_id': user_id})
 
@@ -305,7 +305,7 @@ class DataSetSerializers(serializers.ModelSerializer):
             paragraph_model_list = []
             problem_model_list = []
             problem_paragraph_mapping_list = []
-            # 插入文档
+            # Insert the document.
             for document in instance.get('documents') if 'documents' in instance else []:
                 document_paragraph_dict_model = DocumentSerializers.Create.get_document_paragraph_model(dataset_id,
                                                                                                         document)
@@ -317,19 +317,19 @@ class DataSetSerializers(serializers.ModelSerializer):
                 for problem_paragraph_mapping in document_paragraph_dict_model.get('problem_paragraph_mapping_list'):
                     problem_paragraph_mapping_list.append(problem_paragraph_mapping)
 
-            # 插入知识库
+            # Insert the Knowledge Base.
             dataset.save()
-            # 插入文档
+            # Insert the document.
             QuerySet(Document).bulk_create(document_model_list) if len(document_model_list) > 0 else None
-            # 批量插入段落
+            # Introduction to paragraphs
             QuerySet(Paragraph).bulk_create(paragraph_model_list) if len(paragraph_model_list) > 0 else None
-            # 批量插入问题
+            # Mass Injection Problems
             QuerySet(Problem).bulk_create(problem_model_list) if len(problem_model_list) > 0 else None
-            # 批量插入关联问题
+            # A lot of connected issues.
             QuerySet(ProblemParagraphMapping).bulk_create(problem_paragraph_mapping_list) if len(
                 problem_paragraph_mapping_list) > 0 else None
 
-            # 响应数据
+            # Reacting data
             return {**DataSetSerializers(dataset).data,
                 'document_list': DocumentSerializers.Query(data={'dataset_id': dataset_id}).list(
                     with_valid=True)}, dataset_id
@@ -365,7 +365,7 @@ class DataSetSerializers(serializers.ModelSerializer):
                 self.CreateWebSerializers(data=instance).is_valid(raise_exception=True)
             user_id = self.data.get('user_id')
             if QuerySet(DataSet).filter(user_id=user_id, name=instance.get('name')).exists():
-                raise AppApiException(500, "知识库名称重复!")
+                raise AppApiException(500, "Repeat the name of the knowledge base!")
             dataset_id = uuid.uuid1()
             dataset = DataSet(
                 **{'id': dataset_id, 'name': instance.get("name"), 'desc': instance.get('desc'), 'user_id': user_id,
@@ -387,25 +387,25 @@ class DataSetSerializers(serializers.ModelSerializer):
                 properties={
                     'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                          description="id", default="xx"),
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="名称",
-                                           description="名称", default="测试知识库"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="描述",
-                                           description="描述", default="测试知识库描述"),
-                    'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="所属用户id",
-                                              description="所属用户id", default="user_xxxx"),
-                    'char_length': openapi.Schema(type=openapi.TYPE_STRING, title="字符数",
-                                                  description="字符数", default=10),
-                    'document_count': openapi.Schema(type=openapi.TYPE_STRING, title="文档数量",
-                                                     description="文档数量", default=1),
-                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                                  description="修改时间",
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="The name",
+                                           description="The name", default="Testing knowledge."),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="described",
+                                           description="described", default="Test Knowledge Base Description"),
+                    'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="The Userid",
+                                              description="The Userid", default="user_xxxx"),
+                    'char_length': openapi.Schema(type=openapi.TYPE_STRING, title="Number of characters",
+                                                  description="Number of characters", default=10),
+                    'document_count': openapi.Schema(type=openapi.TYPE_STRING, title="Number of documents",
+                                                     description="Number of documents", default=1),
+                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                                  description="Change time.",
                                                   default="1970-01-01 00:00:00"),
-                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                                  description="创建时间",
+                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                                  description="Creating time.",
                                                   default="1970-01-01 00:00:00"
                                                   ),
-                    'document_list': openapi.Schema(type=openapi.TYPE_ARRAY, title="文档列表",
-                                                    description="文档列表",
+                    'document_list': openapi.Schema(type=openapi.TYPE_ARRAY, title="List of documents",
+                                                    description="List of documents",
                                                     items=DocumentSerializers.Operate.get_response_body_api())
                 }
             )
@@ -416,9 +416,9 @@ class DataSetSerializers(serializers.ModelSerializer):
                 type=openapi.TYPE_OBJECT,
                 required=['name', 'desc'],
                 properties={
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="知识库名称", description="知识库名称"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="知识库描述", description="知识库描述"),
-                    'documents': openapi.Schema(type=openapi.TYPE_ARRAY, title="文档数据", description="文档数据",
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of Knowledge Base", description="Name of Knowledge Base"),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Knowledge Base Description", description="Knowledge Base Description"),
+                    'documents': openapi.Schema(type=openapi.TYPE_ARRAY, title="Documents Data", description="Documents Data",
                                                 items=DocumentSerializers().Create.get_request_body_api()
                                                 )
                 }
@@ -426,14 +426,14 @@ class DataSetSerializers(serializers.ModelSerializer):
 
     class Edit(serializers.Serializer):
         name = serializers.CharField(required=False, max_length=64, min_length=1,
-                                     error_messages=ErrMessage.char("知识库名称"))
+                                     error_messages=ErrMessage.char("Name of Knowledge Base"))
         desc = serializers.CharField(required=False, max_length=256, min_length=1,
-                                     error_messages=ErrMessage.char("知识库描述"))
+                                     error_messages=ErrMessage.char("Knowledge Base Description"))
         meta = serializers.DictField(required=False)
         application_id_list = serializers.ListSerializer(required=False, child=serializers.UUIDField(required=True,
                                                                                                      error_messages=ErrMessage.char(
-                                                                                                         "应用id")),
-                                                         error_messages=ErrMessage.char("应用列表"))
+                                                                                                         "Applicationsid")),
+                                                         error_messages=ErrMessage.char("Applied lists"))
 
         @staticmethod
         def get_dataset_meta_valid_map():
@@ -452,21 +452,21 @@ class DataSetSerializers(serializers.ModelSerializer):
 
     class HitTest(ApiMixin, serializers.Serializer):
         id = serializers.CharField(required=True, error_messages=ErrMessage.char("id"))
-        user_id = serializers.UUIDField(required=False, error_messages=ErrMessage.char("用户id"))
-        query_text = serializers.CharField(required=True, error_messages=ErrMessage.char("查询文本"))
+        user_id = serializers.UUIDField(required=False, error_messages=ErrMessage.char("Usersid"))
+        query_text = serializers.CharField(required=True, error_messages=ErrMessage.char("Question of text."))
         top_number = serializers.IntegerField(required=True, max_value=10, min_value=1,
-                                              error_messages=ErrMessage.char("响应Top"))
+                                              error_messages=ErrMessage.char("ReplyTop"))
         similarity = serializers.FloatField(required=True, max_value=1, min_value=0,
-                                            error_messages=ErrMessage.char("相似度"))
+                                            error_messages=ErrMessage.char("similarity"))
         search_mode = serializers.CharField(required=True, validators=[
             validators.RegexValidator(regex=re.compile("^embedding|keywords|blend$"),
-                                      message="类型只支持register|reset_password", code=500)
-        ], error_messages=ErrMessage.char("检索模式"))
+                                      message="Type only supports.register|reset_password", code=500)
+        ], error_messages=ErrMessage.char("The search model."))
 
         def is_valid(self, *, raise_exception=True):
             super().is_valid(raise_exception=True)
             if not QuerySet(DataSet).filter(id=self.data.get("id")).exists():
-                raise AppApiException(300, "id不存在")
+                raise AppApiException(300, "idThere is no")
 
         def hit_test(self):
             self.is_valid()
@@ -475,7 +475,7 @@ class DataSetSerializers(serializers.ModelSerializer):
                                         QuerySet(Document).filter(
                                             dataset_id=self.data.get('id'),
                                             is_active=False)]
-            # 向量库检索
+            # Recovered to Quantum.
             hit_list = vector.hit_test(self.data.get('query_text'), [self.data.get('id')], exclude_document_id_list,
                                        self.data.get('top_number'),
                                        self.data.get('similarity'),
@@ -488,22 +488,22 @@ class DataSetSerializers(serializers.ModelSerializer):
 
     class SyncWeb(ApiMixin, serializers.Serializer):
         id = serializers.CharField(required=True, error_messages=ErrMessage.char(
-            "知识库id"))
+            "The knowledge baseid"))
         user_id = serializers.UUIDField(required=False, error_messages=ErrMessage.char(
-            "用户id"))
+            "Usersid"))
         sync_type = serializers.CharField(required=True, error_messages=ErrMessage.char(
-            "同步类型"), validators=[
+            "Types of Sync"), validators=[
             validators.RegexValidator(regex=re.compile("^replace|complete$"),
-                                      message="同步类型只支持:replace|complete", code=500)
+                                      message="Simultaneous types only support.:replace|complete", code=500)
         ])
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             first = QuerySet(DataSet).filter(id=self.data.get("id")).first()
             if first is None:
-                raise AppApiException(300, "id不存在")
+                raise AppApiException(300, "idThere is no")
             if first.type != Type.web:
-                raise AppApiException(500, "只有web站点类型才支持同步")
+                raise AppApiException(500, "OnlywebSite types support synchronization.")
 
         def sync(self, with_valid=True):
             if with_valid:
@@ -524,10 +524,10 @@ class DataSetSerializers(serializers.ModelSerializer):
                         paragraphs = get_split_model('web.md').parse(response.content)
                         first = QuerySet(Document).filter(meta__source_url=child_link.url, dataset=dataset).first()
                         if first is not None:
-                            # 如果存在,使用文档同步
+                            # If there is,Use the document sync.
                             DocumentSerializers.Sync(data={'document_id': first.id}).sync()
                         else:
-                            # 插入
+                            # Inserted
                             DocumentSerializers.Create(data={'dataset_id': dataset.id}).save(
                                 {'name': document_name, 'paragraphs': paragraphs,
                                  'meta': {'source_url': child_link.url, 'selector': dataset.meta.get('selector')},
@@ -539,7 +539,7 @@ class DataSetSerializers(serializers.ModelSerializer):
 
         def replace_sync(self, dataset):
             """
-            替换同步
+            Replacement of Sync.
             :return:
             """
             url = dataset.meta.get('source_url')
@@ -550,18 +550,18 @@ class DataSetSerializers(serializers.ModelSerializer):
 
         def complete_sync(self, dataset):
             """
-            完整同步  删掉当前数据集下所有的文档,再进行同步
+            Complete synchronization  Remove all current data collected documents.,Another synchronization.
             :return:
             """
-            # 删除关联问题
+            # Remove related issues.
             QuerySet(ProblemParagraphMapping).filter(dataset=dataset).delete()
-            # 删除文档
+            # Delete the document.
             QuerySet(Document).filter(dataset=dataset).delete()
-            # 删除段落
+            # Delete the paragraph.
             QuerySet(Paragraph).filter(dataset=dataset).delete()
-            # 删除向量
+            # Remove the quantity.
             ListenerManagement.delete_embedding_by_dataset_signal.send(self.data.get('id'))
-            # 同步
+            # synchronized
             self.replace_sync(dataset)
 
         @staticmethod
@@ -570,24 +570,24 @@ class DataSetSerializers(serializers.ModelSerializer):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='知识库id'),
+                                      description='The knowledge baseid'),
                     openapi.Parameter(name='sync_type',
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='同步类型->replace:替换同步,complete:完整同步')
+                                      description='Types of Sync->replace:Replacement of Sync.,complete:Complete synchronization')
                     ]
 
     class Operate(ApiMixin, serializers.Serializer):
         id = serializers.CharField(required=True, error_messages=ErrMessage.char(
-            "知识库id"))
+            "The knowledge baseid"))
         user_id = serializers.UUIDField(required=False, error_messages=ErrMessage.char(
-            "用户id"))
+            "Usersid"))
 
         def is_valid(self, *, raise_exception=True):
             super().is_valid(raise_exception=True)
             if not QuerySet(DataSet).filter(id=self.data.get("id")).exists():
-                raise AppApiException(300, "id不存在")
+                raise AppApiException(300, "idThere is no")
 
         @transaction.atomic
         def delete(self):
@@ -621,7 +621,7 @@ class DataSetSerializers(serializers.ModelSerializer):
                               ), 'team_member_permission_custom_sql': QuerySet(
                     model=get_dynamics_model({'user_id': models.CharField(),
                                               'team_member_permission.operate': ArrayField(
-                                                  verbose_name="权限操作列表",
+                                                  verbose_name="Authorization operating list",
                                                   base_field=models.CharField(max_length=256,
                                                                               blank=True,
                                                                               choices=AuthOperate.choices,
@@ -640,15 +640,15 @@ class DataSetSerializers(serializers.ModelSerializer):
 
         def edit(self, dataset: Dict, user_id: str):
             """
-            修改知识库
-            :param user_id: 用户id
+            Modifying the Knowledge Base
+            :param user_id: Usersid
             :param dataset: Dict name desc
             :return:
             """
             self.is_valid()
             if QuerySet(DataSet).filter(user_id=user_id, name=dataset.get('name')).exclude(
                     id=self.data.get('id')).exists():
-                raise AppApiException(500, "知识库名称重复!")
+                raise AppApiException(500, "Repeat the name of the knowledge base!")
             _dataset = QuerySet(DataSet).get(id=self.data.get("id"))
             DataSetSerializers.Edit(data=dataset).is_valid(dataset=_dataset)
             if "name" in dataset:
@@ -659,17 +659,17 @@ class DataSetSerializers(serializers.ModelSerializer):
                 _dataset.meta = dataset.get('meta')
             if 'application_id_list' in dataset and dataset.get('application_id_list') is not None:
                 application_id_list = dataset.get('application_id_list')
-                # 当前用户可修改关联的知识库列表
+                # Current users can modify the list of related knowledge bases
                 application_dataset_id_list = [str(dataset_dict.get('id')) for dataset_dict in
                                                self.list_application(with_valid=False)]
                 for dataset_id in application_id_list:
                     if not application_dataset_id_list.__contains__(dataset_id):
-                        raise AppApiException(500, f"未知的应用id${dataset_id},无法关联")
+                        raise AppApiException(500, f"Unknown Applicationid${dataset_id},not connected.")
 
-                # 删除已经关联的id
+                # Removing already connected.id
                 QuerySet(ApplicationDatasetMapping).filter(application_id__in=application_dataset_id_list,
                                                            dataset_id=self.data.get("id")).delete()
-                # 插入
+                # Inserted
                 QuerySet(ApplicationDatasetMapping).bulk_create(
                     [ApplicationDatasetMapping(application_id=application_id, dataset_id=self.data.get('id')) for
                      application_id in
@@ -686,12 +686,12 @@ class DataSetSerializers(serializers.ModelSerializer):
                 type=openapi.TYPE_OBJECT,
                 required=['name', 'desc'],
                 properties={
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="知识库名称", description="知识库名称"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="知识库描述", description="知识库描述"),
-                    'meta': openapi.Schema(type=openapi.TYPE_OBJECT, title="知识库元数据",
-                                           description="知识库元数据->web:{source_url:xxx,selector:'xxx'},base:{}"),
-                    'application_id_list': openapi.Schema(type=openapi.TYPE_ARRAY, title="应用id列表",
-                                                          description="应用id列表",
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of Knowledge Base", description="Name of Knowledge Base"),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Knowledge Base Description", description="Knowledge Base Description"),
+                    'meta': openapi.Schema(type=openapi.TYPE_OBJECT, title="Database of Knowledge",
+                                           description="Database of Knowledge->web:{source_url:xxx,selector:'xxx'},base:{}"),
+                    'application_id_list': openapi.Schema(type=openapi.TYPE_ARRAY, title="ApplicationsidList of",
+                                                          description="ApplicationsidList of",
                                                           items=openapi.Schema(type=openapi.TYPE_STRING))
                 }
             )
@@ -705,21 +705,21 @@ class DataSetSerializers(serializers.ModelSerializer):
                 properties={
                     'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                          description="id", default="xx"),
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="名称",
-                                           description="名称", default="测试知识库"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="描述",
-                                           description="描述", default="测试知识库描述"),
-                    'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="所属用户id",
-                                              description="所属用户id", default="user_xxxx"),
-                    'char_length': openapi.Schema(type=openapi.TYPE_STRING, title="字符数",
-                                                  description="字符数", default=10),
-                    'document_count': openapi.Schema(type=openapi.TYPE_STRING, title="文档数量",
-                                                     description="文档数量", default=1),
-                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                                  description="修改时间",
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="The name",
+                                           description="The name", default="Testing knowledge."),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="described",
+                                           description="described", default="Test Knowledge Base Description"),
+                    'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="The Userid",
+                                              description="The Userid", default="user_xxxx"),
+                    'char_length': openapi.Schema(type=openapi.TYPE_STRING, title="Number of characters",
+                                                  description="Number of characters", default=10),
+                    'document_count': openapi.Schema(type=openapi.TYPE_STRING, title="Number of documents",
+                                                     description="Number of documents", default=1),
+                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                                  description="Change time.",
                                                   default="1970-01-01 00:00:00"),
-                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                                  description="创建时间",
+                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                                  description="Creating time.",
                                                   default="1970-01-01 00:00:00"
                                                   )
                 }
@@ -731,5 +731,5 @@ class DataSetSerializers(serializers.ModelSerializer):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='知识库id')
+                                      description='The knowledge baseid')
                     ]

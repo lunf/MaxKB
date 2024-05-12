@@ -33,7 +33,7 @@
           </div>
         </div>
         <template v-for="(item, index) in chatList" :key="index">
-          <!-- 问题 -->
+          <!-- The problem -->
           <div class="item-content mb-16 lighter">
             <div class="avatar">
               <AppAvatar>
@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <!-- 回答 -->
+          <!-- Reply -->
           <div class="item-content mb-16 lighter">
             <div class="avatar">
               <AppAvatar class="avatar-gradient">
@@ -61,13 +61,13 @@
                   shadow="always"
                   class="dialog-card"
                 >
-                  抱歉，没有查找到相关内容，请重新描述您的问题或提供更多信息。
+                  Sorry to，Not found relevant content.，Please resume your question or provide more information.。
                 </el-card>
                 <el-card v-else-if="item.is_stop" shadow="always" class="dialog-card">
-                  已停止回答
+                  stopped answering.
                 </el-card>
                 <el-card v-else shadow="always" class="dialog-card">
-                  回答中 <span class="dotting"></span>
+                  in reply. <span class="dotting"></span>
                 </el-card>
               </div>
 
@@ -76,7 +76,7 @@
                 <div
                   v-if="(id && item.write_ed) || (props.data?.show_source && item.write_ed) || log"
                 >
-                  <el-divider> <el-text type="info">知识来源</el-text> </el-divider>
+                  <el-divider> <el-text type="info">Source of Knowledge</el-text> </el-divider>
                   <div class="mb-8">
                     <el-space wrap>
                       <el-button
@@ -99,13 +99,13 @@
                       size="small"
                       @click="openParagraph(item)"
                       :disabled="!item.paragraph_list || item.paragraph_list?.length === 0"
-                      >引用分段：{{ item.paragraph_list?.length || 0 }}</el-button
+                      >Reference to Section：{{ item.paragraph_list?.length || 0 }}</el-button
                     >
                     <el-tag type="info" effect="plain">
-                      消耗 tokens: {{ item?.message_tokens + item?.answer_tokens }}
+                      consumption tokens: {{ item?.message_tokens + item?.answer_tokens }}
                     </el-tag>
                     <el-tag class="ml-8" type="info" effect="plain">
-                      耗时: {{ item.run_time?.toFixed(2) }} s
+                      It takes time: {{ item.run_time?.toFixed(2) }} s
                     </el-tag>
                   </div>
                 </div>
@@ -121,10 +121,10 @@
                     v-if="item.is_stop && !item.write_ed"
                     @click="startChat(item)"
                     link
-                    >继续</el-button
+                    >Continued</el-button
                   >
                   <el-button type="primary" v-else-if="!item.write_ed" @click="stopChat(item)" link
-                    >停止回答</el-button
+                    >Stop answering.</el-button
                   >
                 </div>
 
@@ -147,7 +147,7 @@
         <el-input
           ref="quickInputRef"
           v-model="inputValue"
-          placeholder="请输入"
+          placeholder="Please enter."
           :rows="1"
           type="textarea"
           :maxlength="1024"
@@ -170,7 +170,7 @@
         </div>
       </div>
     </div>
-    <!-- 知识库引用 dialog -->
+    <!-- The Knowledge Base dialog -->
     <ParagraphSourceDialog ref="ParagraphSourceDialogRef" />
   </div>
 </template>
@@ -199,13 +199,13 @@ const props = defineProps({
     type: Object,
     default: () => {}
   },
-  appId: String, // 仅分享链接有
+  appId: String, // Only share the link.
   log: Boolean,
   record: {
     type: Array<chatType[]>,
     default: () => []
   },
-  // 应用是否可用
+  // Application is available.
   available: {
     type: Boolean,
     default: true
@@ -230,7 +230,7 @@ const isMdArray = (val: string) => val.match(/^-\s.*/m)
 const prologueList = computed(() => {
   const temp = props.available
     ? props.data?.prologue
-    : '抱歉，当前正在维护，无法提供服务，请稍后再试！'
+    : 'Sorry to，Currently beingined.，cannot provide services.，Please try again later.！'
   let arr: any = []
   const lines = temp?.split('\n')
   lines?.forEach((str: string, index: number) => {
@@ -285,7 +285,7 @@ const handleDebounceClick = debounce((val) => {
 
 function sendChatHandle(event: any) {
   if (!event.ctrlKey) {
-    // 如果没有按下组合键ctrl，则会阻止默认事件
+    // If you do not press the combination key.ctrl，It will stop the default event.
     event.preventDefault()
     if (!isDisabledChart.value && !loading.value && !event.isComposing) {
       if (inputValue.value.trim()) {
@@ -293,7 +293,7 @@ function sendChatHandle(event: any) {
       }
     }
   } else {
-    // 如果同时按下ctrl+回车键，则会换行
+    // Pressing at the same time.ctrl+Back to the car key.，It will change.
     inputValue.value += '\n'
   }
 }
@@ -304,7 +304,7 @@ const startChat = (chat: chatType) => {
   ChatManagement.write(chat.id)
 }
 /**
- * 对话
+ * Dialogue
  */
 function getChartOpenId(chat?: any) {
   loading.value = true
@@ -340,17 +340,17 @@ function getChartOpenId(chat?: any) {
   }
 }
 /**
- * 获取一个递归函数,处理流式数据
- * @param chat    每一条对话记录
- * @param reader  流数据
- * @param stream  是否是流式数据
+ * Get a transfer function.,Processing of flow data
+ * @param chat    Record of each conversation.
+ * @param reader  flow data
+ * @param stream  Is it flow data?
  */
 const getWrite = (chat: any, reader: any, stream: boolean) => {
   let tempResult = ''
   /**
    *
-   * @param done  是否结束
-   * @param value 值
+   * @param done  Is it ended
+   * @param value Value
    */
   const write_stream = ({ done, value }: { done: boolean; value: any }) => {
     try {
@@ -360,7 +360,7 @@ const getWrite = (chat: any, reader: any, stream: boolean) => {
       }
       const decoder = new TextDecoder('utf-8')
       let str = decoder.decode(value, { stream: true })
-      // 这里解释一下 start 因为数据流返回流并不是按照后端chunk返回 我们希望得到的chunk是data:{xxx}\n\n 但是它获取到的可能是 data:{ -> xxx}\n\n 总而言之就是 fetch不能保证每个chunk都说以data:开始 \n\n结束
+      // Explain here. start The data flow is not backward.chunkReturn to What we want to get.chunkisdata:{xxx}\n\n But it may be obtained. data:{ -> xxx}\n\n In the whole, it is fetchNot guaranteed each.chunkEveryone saysdata:Started \n\nended
       tempResult += str
       const split = tempResult.match(/data:.*}\n\n/g)
       if (split) {
@@ -369,7 +369,7 @@ const getWrite = (chat: any, reader: any, stream: boolean) => {
       } else {
         return reader.read().then(write_stream)
       }
-      // 这里解释一下 end
+      // Explain here. end
       if (str && str.startsWith('data:')) {
         if (split) {
           for (const index in split) {
@@ -381,7 +381,7 @@ const getWrite = (chat: any, reader: any, stream: boolean) => {
               ChatManagement.append(chat.id, content)
             }
             if (chunk.is_end) {
-              // 流处理成功 返回成功回调
+              // Successful processing. Successful return.
               return Promise.resolve()
             }
           }
@@ -393,7 +393,7 @@ const getWrite = (chat: any, reader: any, stream: boolean) => {
     return reader.read().then(write_stream)
   }
   /**
-   * 处理 json 响应
+   * Processed json Reply
    * @param param0
    */
   const write_json = ({ done, value }: { done: boolean; value: any }) => {
@@ -420,7 +420,7 @@ const getWrite = (chat: any, reader: any, stream: boolean) => {
 const errorWrite = (chat: any, message?: string) => {
   ChatManagement.addChatRecord(chat, 50, loading)
   ChatManagement.write(chat.id)
-  ChatManagement.append(chat.id, message || '抱歉，当前正在维护，无法提供服务，请稍后再试！')
+  ChatManagement.append(chat.id, message || 'Sorry to，Currently beingined.，cannot provide services.，Please try again later.！')
   ChatManagement.close(chat.id)
 }
 function chatMessage(chat?: any, problem?: string, re_chat?: boolean) {
@@ -441,7 +441,7 @@ function chatMessage(chat?: any, problem?: string, re_chat?: boolean) {
     ChatManagement.write(chat.id)
     inputValue.value = ''
     nextTick(() => {
-      // 将滚动条滚动到最下面
+      // Turn the rotating line to the bottom.
       scrollDiv.value.setScrollTop(getMaxHeight())
     })
   }
@@ -454,7 +454,7 @@ function chatMessage(chat?: any, problem?: string, re_chat?: boolean) {
       message: chat.problem_text,
       re_chat: re_chat || false
     }
-    // 对话
+    // Dialogue
     applicationApi
       .postChatMessage(chartOpenId.value, obj)
       .then((response) => {
@@ -468,16 +468,16 @@ function chatMessage(chat?: any, problem?: string, re_chat?: boolean) {
               errorWrite(chat)
             })
         } else if (response.status === 460) {
-          return Promise.reject('无法识别用户身份')
+          return Promise.reject('Unable to identify user identity.')
         } else if (response.status === 461) {
-          return Promise.reject('抱歉，您的提问已达到最大限制，请明天再来吧！')
+          return Promise.reject('Sorry to，Your questions have reached the maximum limit.，Please come again tomorrow.！')
         } else {
           nextTick(() => {
-            // 将滚动条滚动到最下面
+            // Turn the rotating line to the bottom.
             scrollDiv.value.setScrollTop(getMaxHeight())
           })
           const reader = response.body.getReader()
-          // 处理流数据
+          // Processing flow data
           const write = getWrite(
             chat,
             reader,
@@ -516,7 +516,7 @@ function getSourceDetail(row: any) {
 }
 
 /**
- * 滚动条距离最上面的高度
+ * Roll the distance to the top height.
  */
 const scrollTop = ref(0)
 
@@ -539,9 +539,9 @@ const handleScrollTop = ($event: any) => {
 
 const handleScroll = () => {
   if (!props.log && scrollDiv.value) {
-    // 内部高度小于外部高度 就需要出滚动条
+    // Interior height is less than external height. You need to roll out.
     if (scrollDiv.value.wrapRef.offsetHeight < dialogScrollbar.value.scrollHeight) {
-      // 如果当前滚动条距离最下面的距离在 规定距离 滚动条就跟随
+      // If the current roll line is at the lowest distance. Set the distance. Rolling track followed.
       if (scorll.value) {
         scrollDiv.value.setScrollTop(getMaxHeight())
       }

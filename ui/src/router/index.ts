@@ -14,7 +14,7 @@ const router = createRouter({
   routes: routes
 })
 
-// 路由前置拦截器
+// The routing front blocker.
 router.beforeEach(
   async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
     if (to.name === '404') {
@@ -36,11 +36,11 @@ router.beforeEach(
         await user.profile()
       }
     }
-    // 判断是否有菜单权限
+    // To determine whether the menu is authorized.
     if (to.meta.permission ? hasPermission(to.meta.permission as any, 'OR') : true) {
       next()
     } else {
-      // 如果没有权限则直接取404页面
+      // If there is no authorization, take it directly.404page
       next('404')
     }
   }

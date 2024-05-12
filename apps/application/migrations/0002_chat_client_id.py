@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='chat',
             name='client_id',
-            field=models.UUIDField(default=None, null=True, verbose_name='客户端id'),
+            field=models.UUIDField(default=None, null=True, verbose_name='The clientid'),
         ),
     ]

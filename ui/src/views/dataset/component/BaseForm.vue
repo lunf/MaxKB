@@ -1,5 +1,5 @@
 <template>
-  <h4 class="title-decoration-1 mb-16">基本信息</h4>
+  <h4 class="title-decoration-1 mb-16">Basic information</h4>
   <el-form
     ref="FormRef"
     :model="form"
@@ -7,20 +7,20 @@
     label-position="top"
     require-asterisk-position="right"
   >
-    <el-form-item label="知识库名称" prop="name">
+    <el-form-item label="Name of Knowledge Base" prop="name">
       <el-input
         v-model="form.name"
-        placeholder="请输入知识库名称"
+        placeholder="Please enter the knowledge base name."
         maxlength="64"
         show-word-limit
         @blur="form.name = form.name.trim()"
       />
     </el-form-item>
-    <el-form-item label="知识库描述" prop="desc">
+    <el-form-item label="Knowledge Base Description" prop="desc">
       <el-input
         v-model="form.desc"
         type="textarea"
-        placeholder="描述知识库的内容，详尽的描述将帮助AI能深入理解该知识库的内容，能更准确的检索到内容，提高该知识库的命中率。"
+        placeholder="Description of the knowledge base.，Detailed description will help.AIUnderstand the content of the knowledge base.，To get more accurate content.，Increase the knowledge base.。"
         maxlength="256"
         show-word-limit
         :autosize="{ minRows: 3 }"
@@ -55,8 +55,8 @@ const form = ref<datasetData>({
 })
 
 const rules = reactive({
-  name: [{ required: true, message: '请输入知识库名称', trigger: 'blur' }],
-  desc: [{ required: true, message: '请输入知识库描述', trigger: 'blur' }]
+  name: [{ required: true, message: 'Please enter the knowledge base name.', trigger: 'blur' }],
+  desc: [{ required: true, message: 'Please enter the knowledge base description.', trigger: 'blur' }]
 })
 const FormRef = ref()
 
@@ -84,7 +84,7 @@ watch(form.value, (value) => {
 })
 
 /*
-  表单校验
+  Forms of Examination
 */
 function validate() {
   if (!FormRef.value) return

@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： system_management.py
     @date：2024/3/19 13:47
-    @desc: 邮箱管理
+    @desc: Postbox management
 """
 
 from django.db import models
@@ -13,20 +13,20 @@ from common.mixins.app_model_mixin import AppModelMixin
 
 
 class SettingType(models.IntegerChoices):
-    """系统设置类型"""
-    EMAIL = 0, '邮箱'
+    """Type of system setting."""
+    EMAIL = 0, 'The mailbox'
 
-    RSA = 1, "私钥秘钥"
+    RSA = 1, "Private key."
 
 
 class SystemSetting(AppModelMixin):
     """
-     系统设置
+     System settings
     """
-    type = models.IntegerField(primary_key=True, verbose_name='设置类型', choices=SettingType.choices,
+    type = models.IntegerField(primary_key=True, verbose_name='Set the type.', choices=SettingType.choices,
                                default=SettingType.EMAIL)
 
-    meta = models.JSONField(verbose_name="配置数据", default=dict)
+    meta = models.JSONField(verbose_name="Configuration of data", default=dict)
 
     class Meta:
         db_table = "system_setting"

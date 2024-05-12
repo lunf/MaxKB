@@ -17,9 +17,9 @@ import MarkdownItTOC from 'markdown-it-toc-done-right'
 defineOptions({ name: 'MarkdownRenderer' })
 
 const markdownIt = MarkdownIt({
-  html: true, // 允许HTML语法
-  typographer: true, // 启用Typographer插件，可以更好地处理中文字符和标点符号
-  linkify: true // 自动将文本中的URL转换为链接
+  html: true, // permittedHTMLThe language
+  typographer: true, // activatedTypographerAdditional，You can better handle the characters and point symbols.
+  linkify: true // automatically in the text.URLConvert to link.
 })
 
 markdownIt

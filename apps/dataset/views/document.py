@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： document.py
     @date：2023/9/22 11:32
     @desc:
@@ -26,12 +26,12 @@ class WebDocument(APIView):
     authentication_classes = [TokenAuth]
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="创建Web站点文档",
-                         operation_id="创建Web站点文档",
+    @swagger_auto_schema(operation_summary="CreatedWebSite Documents",
+                         operation_id="CreatedWebSite Documents",
                          request_body=DocumentWebInstanceSerializer.get_request_body_api(),
                          manual_parameters=DocumentSerializers.Create.get_request_params_api(),
                          responses=result.get_api_response(DocumentSerializers.Operate.get_response_body_api()),
-                         tags=["知识库/文档"])
+                         tags=["The knowledge base/Documents"])
     @has_permissions(
         lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                 dynamic_tag=k.get('dataset_id')))
@@ -44,12 +44,12 @@ class Document(APIView):
     authentication_classes = [TokenAuth]
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="创建文档",
-                         operation_id="创建文档",
+    @swagger_auto_schema(operation_summary="Creating Documents",
+                         operation_id="Creating Documents",
                          request_body=DocumentSerializers.Create.get_request_body_api(),
                          manual_parameters=DocumentSerializers.Create.get_request_params_api(),
                          responses=result.get_api_response(DocumentSerializers.Operate.get_response_body_api()),
-                         tags=["知识库/文档"])
+                         tags=["The knowledge base/Documents"])
     @has_permissions(
         lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                 dynamic_tag=k.get('dataset_id')))
@@ -58,11 +58,11 @@ class Document(APIView):
             DocumentSerializers.Create(data={'dataset_id': dataset_id}).save(request.data, with_valid=True))
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="文档列表",
-                         operation_id="文档列表",
+    @swagger_auto_schema(operation_summary="List of documents",
+                         operation_id="List of documents",
                          manual_parameters=DocumentSerializers.Query.get_request_params_api(),
                          responses=result.get_api_response(DocumentSerializers.Query.get_response_body_api()),
-                         tags=["知识库/文档"])
+                         tags=["The knowledge base/Documents"])
     @has_permissions(
         lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
                                 dynamic_tag=k.get('dataset_id')))
@@ -76,13 +76,13 @@ class Document(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="批量修改文档命中处理方式",
-                             operation_id="批量修改文档命中处理方式",
+        @swagger_auto_schema(operation_summary="Modification of the method of handling documents.",
+                             operation_id="Modification of the method of handling documents.",
                              request_body=
                              DocumentApi.BatchEditHitHandlingApi.get_request_body_api(),
                              manual_parameters=DocumentSerializers.Create.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -94,14 +94,14 @@ class Document(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="批量创建文档",
-                             operation_id="批量创建文档",
+        @swagger_auto_schema(operation_summary="Create a lot of documents",
+                             operation_id="Create a lot of documents",
                              request_body=
                              DocumentSerializers.Batch.get_request_body_api(),
                              manual_parameters=DocumentSerializers.Create.get_request_params_api(),
                              responses=result.get_api_array_response(
                                  DocumentSerializers.Operate.get_response_body_api()),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -109,13 +109,13 @@ class Document(APIView):
             return result.success(DocumentSerializers.Batch(data={'dataset_id': dataset_id}).batch_save(request.data))
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="批量同步文档",
-                             operation_id="批量同步文档",
+        @swagger_auto_schema(operation_summary="Multiple synchronous documents",
+                             operation_id="Multiple synchronous documents",
                              request_body=
                              BatchSerializer.get_request_body_api(),
                              manual_parameters=DocumentSerializers.Create.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -123,13 +123,13 @@ class Document(APIView):
             return result.success(DocumentSerializers.Batch(data={'dataset_id': dataset_id}).batch_sync(request.data))
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="批量删除文档",
-                             operation_id="批量删除文档",
+        @swagger_auto_schema(operation_summary="Remove the document.",
+                             operation_id="Remove the document.",
                              request_body=
                              BatchSerializer.get_request_body_api(),
                              manual_parameters=DocumentSerializers.Create.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -140,11 +140,11 @@ class Document(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="刷新文档向量库",
-                             operation_id="刷新文档向量库",
+        @swagger_auto_schema(operation_summary="Update the document to the quantum library.",
+                             operation_id="Update the document to the quantum library.",
                              manual_parameters=DocumentSerializers.Operate.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档"]
+                             tags=["The knowledge base/Documents"]
                              )
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
@@ -158,12 +158,12 @@ class Document(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="批量迁移文档",
-                             operation_id="批量迁移文档",
+        @swagger_auto_schema(operation_summary="Mass Migration Documents",
+                             operation_id="Mass Migration Documents",
                              manual_parameters=DocumentSerializers.Migrate.get_request_params_api(),
                              request_body=DocumentSerializers.Migrate.get_request_body_api(),
                              responses=result.get_api_response(DocumentSerializers.Operate.get_response_body_api()),
-                             tags=["知识库/文档"]
+                             tags=["The knowledge base/Documents"]
                              )
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
@@ -184,11 +184,11 @@ class Document(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取文档详情",
-                             operation_id="获取文档详情",
+        @swagger_auto_schema(operation_summary="Get the document details.",
+                             operation_id="Get the document details.",
                              manual_parameters=DocumentSerializers.Operate.get_request_params_api(),
                              responses=result.get_api_response(DocumentSerializers.Operate.get_response_body_api()),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -198,12 +198,12 @@ class Document(APIView):
             return result.success(operate.one())
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="修改文档",
-                             operation_id="修改文档",
+        @swagger_auto_schema(operation_summary="Modifying the document.",
+                             operation_id="Modifying the document.",
                              manual_parameters=DocumentSerializers.Operate.get_request_params_api(),
                              request_body=DocumentSerializers.Operate.get_request_body_api(),
                              responses=result.get_api_response(DocumentSerializers.Operate.get_response_body_api()),
-                             tags=["知识库/文档"]
+                             tags=["The knowledge base/Documents"]
                              )
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
@@ -215,11 +215,11 @@ class Document(APIView):
                     with_valid=True))
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="删除文档",
-                             operation_id="删除文档",
+        @swagger_auto_schema(operation_summary="Delete the document.",
+                             operation_id="Delete the document.",
                              manual_parameters=DocumentSerializers.Operate.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -230,9 +230,9 @@ class Document(APIView):
 
     class SplitPattern(APIView):
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取分段标识列表",
-                             operation_id="获取分段标识列表",
-                             tags=["知识库/文档"],
+        @swagger_auto_schema(operation_summary="Get a section identification list.",
+                             operation_id="Get a section identification list.",
+                             tags=["The knowledge base/Documents"],
                              security=[])
         def get(self, request: Request):
             return result.success(DocumentSerializers.SplitPattern.list())
@@ -241,10 +241,10 @@ class Document(APIView):
         parser_classes = [MultiPartParser]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="分段文档",
-                             operation_id="分段文档",
+        @swagger_auto_schema(operation_summary="Section of documents.",
+                             operation_id="Section of documents.",
                              manual_parameters=DocumentSerializers.Split.get_request_params_api(),
-                             tags=["知识库/文档"],
+                             tags=["The knowledge base/Documents"],
                              security=[])
         def post(self, request: Request):
             split_data = {'file': request.FILES.getlist('file')}
@@ -265,11 +265,11 @@ class Document(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取知识库分页列表",
-                             operation_id="获取知识库分页列表",
+        @swagger_auto_schema(operation_summary="Get the Knowledge Base Page List",
+                             operation_id="Get the Knowledge Base Page List",
                              manual_parameters=DocumentSerializers.Query.get_request_params_api(),
                              responses=result.get_page_api_response(DocumentSerializers.Query.get_response_body_api()),
-                             tags=["知识库/文档"])
+                             tags=["The knowledge base/Documents"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.USE,
                                     dynamic_tag=k.get('dataset_id')))

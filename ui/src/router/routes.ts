@@ -11,11 +11,11 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/layout/app-layout/index.vue'),
     redirect: '/application',
     children: [
-      // TODO 待处理
+      // TODO to be treated
       // {
       //   path: '/first',
       //   name: 'first',
-      //   meta: { icon: 'House', title: '首页' },
+      //   meta: { icon: 'House', title: 'The first page' },
       //   component: () => import('@/views/first/index.vue')
       // },
       ...rolesRoutes

@@ -127,7 +127,7 @@ const rules = ref<FormRules<ResetCurrentUserPasswordRequest>>({
   ]
 })
 /**
- * 发送验证码
+ * Send the verification code.
  */
 const sendEmail = () => {
   UserApi.sendEmailToCurrent(loading).then(() => {

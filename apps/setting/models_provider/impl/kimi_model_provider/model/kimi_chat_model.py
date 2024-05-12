@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： kimi_chat_model.py
     @date：2023/11/10 17:45
     @desc:

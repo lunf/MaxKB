@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： application_key.py
     @date：2023/11/7 10:50
     @desc:
@@ -20,7 +20,7 @@ class ApplicationApi(ApiMixin):
                                   in_=openapi.IN_FORM,
                                   type=openapi.TYPE_FILE,
                                   required=True,
-                                  description='上传文件')
+                                  description='uploaded documents')
             ]
 
     class Authentication(ApiMixin):
@@ -30,8 +30,8 @@ class ApplicationApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=['access_token', ],
                 properties={
-                    'access_token': openapi.Schema(type=openapi.TYPE_STRING, title="应用认证token",
-                                                   description="应用认证token"),
+                    'access_token': openapi.Schema(type=openapi.TYPE_STRING, title="Applied certificationtoken",
+                                                   description="Applied certificationtoken"),
 
                 }
             )
@@ -43,27 +43,27 @@ class ApplicationApi(ApiMixin):
             required=['id', 'name', 'desc', 'model_id', 'multiple_rounds_dialogue', 'user_id', 'status', 'create_time',
                       'update_time'],
             properties={
-                'id': openapi.Schema(type=openapi.TYPE_STRING, title="", description="主键id"),
-                'name': openapi.Schema(type=openapi.TYPE_STRING, title="应用名称", description="应用名称"),
-                'desc': openapi.Schema(type=openapi.TYPE_STRING, title="应用描述", description="应用描述"),
-                'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="模型id", description="模型id"),
-                "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否开启多轮对话",
-                                                           description="是否开启多轮对话"),
-                'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="开场白", description="开场白"),
+                'id': openapi.Schema(type=openapi.TYPE_STRING, title="", description="The key.id"),
+                'name': openapi.Schema(type=openapi.TYPE_STRING, title="Application Name", description="Application Name"),
+                'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Application Description", description="Application Description"),
+                'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="The modelid", description="The modelid"),
+                "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Open multiple rounds of dialogue.",
+                                                           description="Open multiple rounds of dialogue."),
+                'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="Opening White.", description="Opening White."),
                 'example': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Schema(type=openapi.TYPE_STRING),
-                                          title="示例列表", description="示例列表"),
-                'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="所属用户", description="所属用户"),
+                                          title="Examples List", description="Examples List"),
+                'user_id': openapi.Schema(type=openapi.TYPE_STRING, title="The User", description="The User"),
 
-                'status': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否发布", description='是否发布'),
+                'status': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="is published.", description='is published.'),
 
-                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间", description='创建时间'),
+                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.", description='Creating time.'),
 
-                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间", description='修改时间'),
+                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.", description='Change time.'),
 
                 'dataset_id_list': openapi.Schema(type=openapi.TYPE_ARRAY,
                                                   items=openapi.Schema(type=openapi.TYPE_STRING),
-                                                  title="关联知识库Id列表",
-                                                  description="关联知识库Id列表(查询详情的时候返回)")
+                                                  title="The Knowledge BaseIdList of",
+                                                  description="The Knowledge BaseIdList of(Return when requesting details.)")
             }
         )
 
@@ -74,7 +74,7 @@ class ApplicationApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='应用id')
+                                      description='Applicationsid')
 
                     ]
 
@@ -85,12 +85,12 @@ class ApplicationApi(ApiMixin):
                                           in_=openapi.IN_PATH,
                                           type=openapi.TYPE_STRING,
                                           required=True,
-                                          description='应用id'),
+                                          description='Applicationsid'),
                         openapi.Parameter(name='api_key_id',
                                           in_=openapi.IN_PATH,
                                           type=openapi.TYPE_STRING,
                                           required=True,
-                                          description='应用api_key id')
+                                          description='Applicationsapi_key id')
                         ]
 
             @staticmethod
@@ -99,8 +99,8 @@ class ApplicationApi(ApiMixin):
                     type=openapi.TYPE_OBJECT,
                     required=[],
                     properties={
-                        'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否激活",
-                                                    description="是否激活"),
+                        'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="is activated.",
+                                                    description="is activated."),
 
                     }
                 )
@@ -112,7 +112,7 @@ class ApplicationApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='应用id')
+                                      description='Applicationsid')
 
                     ]
 
@@ -122,18 +122,18 @@ class ApplicationApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=[],
                 properties={
-                    'access_token_reset': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="重置Token",
-                                                         description="重置Token"),
+                    'access_token_reset': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="RepairedToken",
+                                                         description="RepairedToken"),
 
-                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否激活", description="是否激活"),
-                    'access_num': openapi.Schema(type=openapi.TYPE_NUMBER, title="访问次数", description="访问次数"),
-                    'white_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否开启白名单",
-                                                   description="是否开启白名单"),
+                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="is activated.", description="is activated."),
+                    'access_num': openapi.Schema(type=openapi.TYPE_NUMBER, title="Number of Visits", description="Number of Visits"),
+                    'white_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Open the white list.",
+                                                   description="Open the white list."),
                     'white_list': openapi.Schema(type=openapi.TYPE_ARRAY,
-                                                 items=openapi.Schema(type=openapi.TYPE_STRING), title="白名单列表",
-                                                 description="白名单列表"),
-                    'show_source': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否显示知识来源",
-                                                  description="是否显示知识来源"),
+                                                 items=openapi.Schema(type=openapi.TYPE_STRING), title="List of white lists",
+                                                 description="List of white lists"),
+                    'show_source': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Showing a source of knowledge",
+                                                  description="Showing a source of knowledge"),
                 }
             )
 
@@ -144,19 +144,19 @@ class ApplicationApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=[],
                 properties={
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="应用名称", description="应用名称"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="应用描述", description="应用描述"),
-                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="模型id", description="模型id"),
-                    "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否开启多轮对话",
-                                                               description="是否开启多轮对话"),
-                    'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="开场白", description="开场白"),
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Application Name", description="Application Name"),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Application Description", description="Application Description"),
+                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="The modelid", description="The modelid"),
+                    "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Open multiple rounds of dialogue.",
+                                                               description="Open multiple rounds of dialogue."),
+                    'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="Opening White.", description="Opening White."),
                     'dataset_id_list': openapi.Schema(type=openapi.TYPE_ARRAY,
                                                       items=openapi.Schema(type=openapi.TYPE_STRING),
-                                                      title="关联知识库Id列表", description="关联知识库Id列表"),
+                                                      title="The Knowledge BaseIdList of", description="The Knowledge BaseIdList of"),
                     'dataset_setting': ApplicationApi.DatasetSetting.get_request_body_api(),
                     'model_setting': ApplicationApi.ModelSetting.get_request_body_api(),
-                    'problem_optimization': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="问题优化",
-                                                           description="是否开启问题优化", default=True),
+                    'problem_optimization': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Problems optimized",
+                                                           description="Optimization of the problem.", default=True),
                     'icon': openapi.Schema(type=openapi.TYPE_STRING, title="icon",
                                            description="icon", default="/ui/favicon.ico")
 
@@ -170,24 +170,24 @@ class ApplicationApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=[''],
                 properties={
-                    'top_n': openapi.Schema(type=openapi.TYPE_NUMBER, title="引用分段数", description="引用分段数",
+                    'top_n': openapi.Schema(type=openapi.TYPE_NUMBER, title="Reference to the number of points.", description="Reference to the number of points.",
                                             default=5),
-                    'similarity': openapi.Schema(type=openapi.TYPE_NUMBER, title='相似度', description="相似度",
+                    'similarity': openapi.Schema(type=openapi.TYPE_NUMBER, title='similarity', description="similarity",
                                                  default=0.6),
-                    'max_paragraph_char_number': openapi.Schema(type=openapi.TYPE_NUMBER, title='最多引用字符数',
-                                                                description="最多引用字符数", default=3000),
-                    'search_mode': openapi.Schema(type=openapi.TYPE_STRING, title='检索模式',
+                    'max_paragraph_char_number': openapi.Schema(type=openapi.TYPE_NUMBER, title='Maximum number of characters.',
+                                                                description="Maximum number of characters.", default=3000),
+                    'search_mode': openapi.Schema(type=openapi.TYPE_STRING, title='The search model.',
                                                   description="embedding|keywords|blend", default='embedding'),
-                    'no_references_setting': openapi.Schema(type=openapi.TYPE_OBJECT, title='检索模式',
+                    'no_references_setting': openapi.Schema(type=openapi.TYPE_OBJECT, title='The search model.',
                                                             required=['status', 'value'],
                                                             properties={
                                                                 'status': openapi.Schema(type=openapi.TYPE_STRING,
-                                                                                         title="状态",
-                                                                                         description="ai作答:ai_questioning,指定回答:designated_answer",
+                                                                                         title="state of",
+                                                                                         description="aiReply:ai_questioning,Identifying Answer:designated_answer",
                                                                                          default='ai_questioning'),
                                                                 'value': openapi.Schema(type=openapi.TYPE_STRING,
-                                                                                        title="值",
-                                                                                        description="ai作答:就是题词,指定回答:就是指定回答内容",
+                                                                                        title="Value",
+                                                                                        description="aiReply:It is the word.,Identifying Answer:Identify the answer content.",
                                                                                         default='{question}'),
                                                             }),
                 }
@@ -200,17 +200,17 @@ class ApplicationApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=['prompt'],
                 properties={
-                    'prompt': openapi.Schema(type=openapi.TYPE_STRING, title="提示词", description="提示词",
-                                             default=('已知信息：'
+                    'prompt': openapi.Schema(type=openapi.TYPE_STRING, title="Suggestions", description="Suggestions",
+                                             default=('known information：'
                                                       '\n{data}'
-                                                      '\n回答要求：'
-                                                      '\n- 如果你不知道答案或者没有从获取答案，请回答“没有在知识库中查找到相关信息，建议咨询相关技术支持或参考官方文档进行操作”。'
-                                                      '\n- 避免提及你是从<data></data>中获得的知识。'
-                                                      '\n- 请保持答案与<data></data>中描述的一致。'
-                                                      '\n- 请使用markdown 语法优化答案的格式。'
-                                                      '\n- <data></data>中的图片链接、链接地址和脚本语言请完整返回。'
-                                                      '\n- 请使用与问题相同的语言来回答。'
-                                                      '\n问题：'
+                                                      '\nReply to Request：'
+                                                      '\n- If you don’t know the answer or don’t get the answer.，Please answer“No information found in the knowledge base.，Consulting relevant technical support or reference to official documents for operation”。'
+                                                      '\n- Avoid mention that you are from<data></data>Knowledge obtained in。'
+                                                      '\n- Please keep the answer and<data></data>The description is consistent.。'
+                                                      '\n- Please usemarkdown Optimization of Answer Formats。'
+                                                      '\n- <data></data>The image link.、Link address and script language please return.。'
+                                                      '\n- Please use the same language to answer the question.。'
+                                                      '\nThe problem：'
                                                       '\n{question}')),
 
                 }
@@ -224,19 +224,19 @@ class ApplicationApi(ApiMixin):
                 required=['name', 'desc', 'model_id', 'multiple_rounds_dialogue', 'dataset_setting', 'model_setting',
                           'problem_optimization'],
                 properties={
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="应用名称", description="应用名称"),
-                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="应用描述", description="应用描述"),
-                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="模型id", description="模型id"),
-                    "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否开启多轮对话",
-                                                               description="是否开启多轮对话"),
-                    'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="开场白", description="开场白"),
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Application Name", description="Application Name"),
+                    'desc': openapi.Schema(type=openapi.TYPE_STRING, title="Application Description", description="Application Description"),
+                    'model_id': openapi.Schema(type=openapi.TYPE_STRING, title="The modelid", description="The modelid"),
+                    "multiple_rounds_dialogue": openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Open multiple rounds of dialogue.",
+                                                               description="Open multiple rounds of dialogue."),
+                    'prologue': openapi.Schema(type=openapi.TYPE_STRING, title="Opening White.", description="Opening White."),
                     'dataset_id_list': openapi.Schema(type=openapi.TYPE_ARRAY,
                                                       items=openapi.Schema(type=openapi.TYPE_STRING),
-                                                      title="关联知识库Id列表", description="关联知识库Id列表"),
+                                                      title="The Knowledge BaseIdList of", description="The Knowledge BaseIdList of"),
                     'dataset_setting': ApplicationApi.DatasetSetting.get_request_body_api(),
                     'model_setting': ApplicationApi.ModelSetting.get_request_body_api(),
-                    'problem_optimization': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="问题优化",
-                                                           description="是否开启问题优化", default=True)
+                    'problem_optimization': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Problems optimized",
+                                                           description="Optimization of the problem.", default=True)
 
                 }
             )
@@ -248,12 +248,12 @@ class ApplicationApi(ApiMixin):
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=False,
-                                      description='应用名称'),
+                                      description='Application Name'),
                     openapi.Parameter(name='desc',
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=False,
-                                      description='应用描述')
+                                      description='Application Description')
                     ]
 
     class Operate(ApiMixin):
@@ -263,6 +263,6 @@ class ApplicationApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='应用id'),
+                                      description='Applicationsid'),
 
                     ]

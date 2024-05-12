@@ -11,10 +11,10 @@ import type {
 import type { Ref } from 'vue'
 
 /**
- * 登录
- * @param request 登录接口请求表单
- * @param loading 接口加载器
- * @returns 认证数据
+ * Registered
+ * @param request Entry interface request form
+ * @param loading Interface carrier
+ * @returns Certified data
  */
 const login: (request: LoginRequest, loading?: Ref<boolean>) => Promise<Result<string>> = (
   request,
@@ -23,8 +23,8 @@ const login: (request: LoginRequest, loading?: Ref<boolean>) => Promise<Result<s
   return post('/user/login', request, undefined, loading)
 }
 /**
- * 登出
- * @param loading 接口加载器
+ * ascending
+ * @param loading Interface carrier
  * @returns
  */
 const logout: (loading?: Ref<boolean>) => Promise<Result<boolean>> = (loading) => {
@@ -32,9 +32,9 @@ const logout: (loading?: Ref<boolean>) => Promise<Result<boolean>> = (loading) =
 }
 
 /**
- * 注册用户
- * @param request 注册请求对象
- * @param loading 接口加载器
+ * Registered User
+ * @param request Subjects of registration request
+ * @param loading Interface carrier
  * @returns
  */
 const register: (request: RegisterRequest, loading?: Ref<boolean>) => Promise<Result<string>> = (
@@ -45,9 +45,9 @@ const register: (request: RegisterRequest, loading?: Ref<boolean>) => Promise<Re
 }
 
 /**
- * 校验验证码
- * @param request 请求对象
- * @param loading 接口加载器
+ * School verification code.
+ * @param request Requested objects
+ * @param loading Interface carrier
  * @returns
  */
 const checkCode: (request: CheckCodeRequest, loading?: Ref<boolean>) => Promise<Result<boolean>> = (
@@ -58,9 +58,9 @@ const checkCode: (request: CheckCodeRequest, loading?: Ref<boolean>) => Promise<
 }
 
 /**
- * 发送邮件
- * @param email  邮件地址
- * @param loading 接口加载器
+ * sending the mail.
+ * @param email  The mail address
+ * @param loading Interface carrier
  * @returns
  */
 const sendEmit: (
@@ -71,17 +71,17 @@ const sendEmit: (
   return post('/user/send_email', { email, type }, undefined, loading)
 }
 /**
- * 发送邮件到当前用户
- * @param loading  发送验证码到当前用户
+ * Send email to current users.
+ * @param loading  Send the verification code to the current user
  * @returns
  */
 const sendEmailToCurrent: (loading?: Ref<boolean>) => Promise<Result<boolean>> = (loading) => {
   return post('/user/current/send_email', undefined, undefined, loading)
 }
 /**
- * 修改当前用户密码
- * @param request 请求对象
- * @param loading 加载器
+ * Modify the current user password.
+ * @param request Requested objects
+ * @param loading The carrier.
  * @returns
  */
 const resetCurrentUserPassword: (
@@ -91,18 +91,18 @@ const resetCurrentUserPassword: (
   return post('/user/current/reset_password', request, undefined, loading)
 }
 /**
- * 获取用户基本信息
- * @param loading 接口加载器
- * @returns 用户基本信息
+ * Obtaining User Basic Information
+ * @param loading Interface carrier
+ * @returns User Basic Information
  */
 const profile: (loading?: Ref<boolean>) => Promise<Result<User>> = (loading) => {
   return get('/user', undefined, loading)
 }
 
 /**
- * 重置密码
- * @param request 重置密码请求参数
- * @param loading 接口加载器
+ * Repeat the password.
+ * @param request Reset the password request parameters.
+ * @param loading Interface carrier
  * @returns
  */
 const resetPassword: (
@@ -113,8 +113,8 @@ const resetPassword: (
 }
 
 /**
- * 添加团队需要查询用户列表
- * @param loading 接口加载器
+ * Adding teams need to consult the user list
+ * @param loading Interface carrier
  * email_or_username
  */
 const getUserList: (email_or_username: string, loading?: Ref<boolean>) => Promise<Result<any>> = (
@@ -125,7 +125,7 @@ const getUserList: (email_or_username: string, loading?: Ref<boolean>) => Promis
 }
 
 /**
- * 获取version
+ * obtainedversion
  */
 const getVersion: (loading?: Ref<boolean>) => Promise<Result<any>> = (loading) => {
   return get('/profile', undefined, loading)

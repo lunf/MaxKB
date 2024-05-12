@@ -11,7 +11,7 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "node",
-    "skipLibCheck": true, // 跳过node依赖包语法检查
+    "skipLibCheck": true, // by jumpingnodeDepending on the law check.
     "types": [
       "node"
     ]

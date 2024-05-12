@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='embedding',
             name='search_vector',
-            field=django.contrib.postgres.search.SearchVectorField(default='', verbose_name='分词'),
+            field=django.contrib.postgres.search.SearchVectorField(default='', verbose_name='The word'),
         ),
         migrations.RunPython(save_keywords)
     ]

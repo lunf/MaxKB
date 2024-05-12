@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： ts_vecto_util.py
     @date：2024/4/16 15:26
     @desc:
@@ -20,7 +20,7 @@ jieba_word_list_cache = [chr(item) for item in range(38, 84)]
 for jieba_word in jieba_word_list_cache:
     jieba.add_word('#' + jieba_word + '#')
 # r"(?i)\b(?:https?|ftp|tcp|file)://[^\s]+\b",
-# 某些不分词数据
+# Some uninterpreted data.
 # r'"([^"]*)"'
 word_pattern_list = [r"v\d+.\d+.\d+",
                      r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"]
@@ -34,7 +34,7 @@ def get_word_list(text: str):
         word_list = re.findall(pattern, text)
         for child_list in word_list:
             for word in child_list if isinstance(child_list, tuple) else [child_list]:
-                # 不能有: 所以再使用: 进行分割
+                # cannot be: Then use again.: to divide.
                 if word.__contains__(':'):
                     item_list = word.split(":")
                     for w in item_list:
@@ -75,13 +75,13 @@ def get_key_by_word_dict(key, word_dict):
 
 
 def to_ts_vector(text: str):
-    # 获取不分词的数据
+    # Obtaining Uninterrupted Data
     word_list = get_word_list(text)
-    # 获取关键词关系
+    # Obtaining Keyword Relationship
     word_dict = to_word_dict(word_list, text)
-    # 替换字符串
+    # Replace the string.
     text = replace_word(word_dict, text)
-    # 分词
+    # The word
     result = jieba.tokenize(text, mode='search')
     result_ = [{'word': get_key_by_word_dict(item[0], word_dict), 'index': item[1]} for item in result]
     result_group = group_by(result_, lambda r: r['word'])
@@ -92,16 +92,16 @@ def to_ts_vector(text: str):
 
 
 def to_query(text: str):
-    # 获取不分词的数据
+    # Obtaining Uninterrupted Data
     word_list = get_word_list(text)
-    # 获取关键词关系
+    # Obtaining Keyword Relationship
     word_dict = to_word_dict(word_list, text)
-    # 替换字符串
+    # Replace the string.
     text = replace_word(word_dict, text)
     extract_tags = analyse.extract_tags(text, topK=5, withWeight=True, allowPOS=('ns', 'n', 'vn', 'v', 'eng'))
     result = " ".join([get_key_by_word_dict(word, word_dict) for word, score in extract_tags if
                        not remove_chars.__contains__(word)])
-    # 删除词库
+    # Remove the dictionary.
     for word in word_list:
         jieba.del_word(word)
     return result

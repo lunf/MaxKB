@@ -101,7 +101,7 @@ function initChart() {
     series: series
   }
 
-  // 渲染数据
+  // rendering data
   myChart.setOption(option, true)
 }
 

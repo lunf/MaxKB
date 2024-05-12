@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： Team.py
     @date：2023/9/25 17:13
     @desc:
@@ -22,19 +22,19 @@ class TeamMember(APIView):
     authentication_classes = [TokenAuth]
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="获取团队成员列表",
-                         operation_id="获取团员成员列表",
+    @swagger_auto_schema(operation_summary="Get a team member list.",
+                         operation_id="Get a list of members.",
                          responses=result.get_api_response(get_response_body_api()),
-                         tags=["团队"])
+                         tags=["The team"])
     @has_permissions(PermissionConstants.TEAM_READ)
     def get(self, request: Request):
         return result.success(TeamMemberSerializer(data={'team_id': str(request.user.id)}).list_member())
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="添加成员",
-                         operation_id="添加成员",
+    @swagger_auto_schema(operation_summary="Adding Members",
+                         operation_id="Adding Members",
                          request_body=TeamMemberSerializer().get_request_body_api(),
-                         tags=["团队"])
+                         tags=["The team"])
     @has_permissions(PermissionConstants.TEAM_CREATE)
     def post(self, request: Request):
         team = TeamMemberSerializer(data={'team_id': str(request.user.id)})
@@ -44,10 +44,10 @@ class TeamMember(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="批量添加成员",
-                             operation_id="批量添加成员",
+        @swagger_auto_schema(operation_summary="Adding members.",
+                             operation_id="Adding members.",
                              request_body=TeamMemberSerializer.get_bach_request_body_api(),
-                             tags=["团队"])
+                             tags=["The team"])
         @has_permissions(PermissionConstants.TEAM_CREATE)
         def post(self, request: Request):
             return result.success(
@@ -57,21 +57,21 @@ class TeamMember(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取团队成员权限",
-                             operation_id="获取团队成员权限",
+        @swagger_auto_schema(operation_summary="Obtaining membership permits",
+                             operation_id="Obtaining membership permits",
                              manual_parameters=TeamMemberSerializer.Operate.get_request_params_api(),
-                             tags=["团队"])
+                             tags=["The team"])
         @has_permissions(PermissionConstants.TEAM_READ)
         def get(self, request: Request, member_id: str):
             return result.success(TeamMemberSerializer.Operate(
                 data={'member_id': member_id, 'team_id': str(request.user.id)}).list_member_permission())
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="修改团队成员权限",
-                             operation_id="修改团队成员权限",
+        @swagger_auto_schema(operation_summary="Modification of Team Members",
+                             operation_id="Modification of Team Members",
                              request_body=UpdateTeamMemberPermissionSerializer().get_request_body_api(),
                              manual_parameters=TeamMemberSerializer.Operate.get_request_params_api(),
-                             tags=["团队"]
+                             tags=["The team"]
                              )
         @has_permissions(PermissionConstants.TEAM_EDIT)
         def put(self, request: Request, member_id: str):
@@ -79,10 +79,10 @@ class TeamMember(APIView):
                 data={'member_id': member_id, 'team_id': str(request.user.id)}).edit(request.data))
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="移除成员",
-                             operation_id="移除成员",
+        @swagger_auto_schema(operation_summary="Removing Members",
+                             operation_id="Removing Members",
                              manual_parameters=TeamMemberSerializer.Operate.get_request_params_api(),
-                             tags=["团队"]
+                             tags=["The team"]
                              )
         @has_permissions(PermissionConstants.TEAM_DELETE)
         def delete(self, request: Request, member_id: str):

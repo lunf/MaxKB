@@ -95,7 +95,7 @@
                   @click="router.push({ path: '/application/create' })"
                 >
                   <el-button link>
-                    <el-icon class="mr-4"><Plus /></el-icon> 创建应用
+                    <el-icon class="mr-4"><Plus /></el-icon> Creating Applications
                   </el-button>
                 </div>
               </template>
@@ -105,7 +105,7 @@
                   @click="router.push({ path: '/dataset/create' })"
                 >
                   <el-button link>
-                    <el-icon class="mr-4"><Plus /></el-icon> 创建知识库
+                    <el-icon class="mr-4"><Plus /></el-icon> Creating a Knowledge Base
                   </el-button>
                 </div>
               </template>

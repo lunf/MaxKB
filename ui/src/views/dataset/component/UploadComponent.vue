@@ -1,5 +1,5 @@
 <template>
-  <h4 class="title-decoration-1 mb-8">上传文档</h4>
+  <h4 class="title-decoration-1 mb-8">uploaded documents.</h4>
   <el-form
     ref="FormRef"
     :model="form"
@@ -26,13 +26,13 @@
         <img src="@/assets/upload-icon.svg" alt="" />
         <div class="el-upload__text">
           <p>
-            拖拽文件至此上传或
-            <em class="hover" @click.prevent="handlePreview(false)"> 选择文件 </em>
-            <em class="hover" @click.prevent="handlePreview(true)"> 选择文件夹 </em>
+            The file is uploaded or
+            <em class="hover" @click.prevent="handlePreview(false)"> Choose the document. </em>
+            <em class="hover" @click.prevent="handlePreview(true)"> Choose the folder. </em>
           </p>
           <div class="upload__decoration">
-            <p>支持格式：TXT、Markdown、PDF、DOCX，每次最多上传50个文件，每个文件不超过 100MB</p>
-            <p>若使用【高级分段】建议上传前规范文件的分段标识</p>
+            <p>support formats.：TXT、Markdown、PDF、DOCX，Increased every time.50A document.，No more than each document. 100MB</p>
+            <p>If used【The Higher Section】It is recommended to identify the sections of the standard document before upload.</p>
           </div>
         </div>
       </el-upload>
@@ -72,7 +72,7 @@ const form = ref({
 })
 
 const rules = reactive({
-  fileList: [{ required: true, message: '请上传文件', trigger: 'change' }]
+  fileList: [{ required: true, message: 'Please upload the document.', trigger: 'change' }]
 })
 const FormRef = ref()
 
@@ -83,24 +83,24 @@ function deleteFile(index: number) {
   form.value.fileList.splice(index, 1)
 }
 
-// 上传on-change事件
+// uploadedon-changeThe incident
 const fileHandleChange = (file: any, fileList: UploadFiles) => {
-  //1、判断文件大小是否合法，文件限制不能大于10M
+  //1、Deciding whether the file size is legal.，The limitation of documents cannot be greater than10M
   const isLimit = file?.size / 1024 / 1024 < 100
   if (!isLimit) {
-    MsgError('文件大小超过 100MB')
-    fileList.splice(-1, 1) //移除当前超出大小的文件
+    MsgError('The file is greater. 100MB')
+    fileList.splice(-1, 1) //Remove current files beyond size
     return false
   }
   if (!isRightType(file?.name)) {
-    MsgError('文件格式不支持')
+    MsgError('File format is not supported.')
     fileList.splice(-1, 1)
     return false
   }
 }
 
 const onExceed = () => {
-  MsgError('每次最多上传50个文件')
+  MsgError('Increased every time.50A document.')
 }
 
 const handlePreview = (bool: boolean) => {
@@ -114,7 +114,7 @@ const handlePreview = (bool: boolean) => {
 }
 
 /*
-  表单校验
+  Forms of Examination
 */
 function validate() {
   if (!FormRef.value) return

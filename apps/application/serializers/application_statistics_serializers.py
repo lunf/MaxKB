@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： application_statistics_serializers.py
     @date：2024/3/27 10:55
     @desc:
@@ -22,9 +22,9 @@ from smartdoc.conf import PROJECT_DIR
 
 
 class ApplicationStatisticsSerializer(serializers.Serializer):
-    application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("应用id"))
-    start_time = serializers.DateField(format='%Y-%m-%d', error_messages=ErrMessage.date("开始时间"))
-    end_time = serializers.DateField(format='%Y-%m-%d', error_messages=ErrMessage.date("结束时间"))
+    application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("Applicationsid"))
+    start_time = serializers.DateField(format='%Y-%m-%d', error_messages=ErrMessage.date("The Time Begins"))
+    end_time = serializers.DateField(format='%Y-%m-%d', error_messages=ErrMessage.date("The time ends."))
 
     def get_end_time(self):
         return datetime.datetime.combine(

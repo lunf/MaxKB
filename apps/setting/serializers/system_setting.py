@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： system_setting.py
     @date：2024/3/19 16:29
     @desc:
@@ -25,13 +25,13 @@ class SystemSettingSerializer(serializers.Serializer):
             return system_setting.meta
 
         class Create(serializers.Serializer):
-            email_host = serializers.CharField(required=True, error_messages=ErrMessage.char("SMTP 主机"))
-            email_port = serializers.IntegerField(required=True, error_messages=ErrMessage.char("SMTP 端口"))
-            email_host_user = serializers.CharField(required=True, error_messages=ErrMessage.char("发件人邮箱"))
-            email_host_password = serializers.CharField(required=True, error_messages=ErrMessage.char("密码"))
-            email_use_tls = serializers.BooleanField(required=True, error_messages=ErrMessage.char("是否开启TLS"))
-            email_use_ssl = serializers.BooleanField(required=True, error_messages=ErrMessage.char("是否开启SSL"))
-            from_email = serializers.EmailField(required=True, error_messages=ErrMessage.char("发送人邮箱"))
+            email_host = serializers.CharField(required=True, error_messages=ErrMessage.char("SMTP The host"))
+            email_port = serializers.IntegerField(required=True, error_messages=ErrMessage.char("SMTP The port."))
+            email_host_user = serializers.CharField(required=True, error_messages=ErrMessage.char("The mailbox of the sender"))
+            email_host_password = serializers.CharField(required=True, error_messages=ErrMessage.char("The code"))
+            email_use_tls = serializers.BooleanField(required=True, error_messages=ErrMessage.char("is opened.TLS"))
+            email_use_ssl = serializers.BooleanField(required=True, error_messages=ErrMessage.char("is opened.SSL"))
+            from_email = serializers.EmailField(required=True, error_messages=ErrMessage.char("sending the mailbox."))
 
             def is_valid(self, *, raise_exception=False):
                 super().is_valid(raise_exception=True)
@@ -45,7 +45,7 @@ class SystemSettingSerializer(serializers.Serializer):
                                  self.data.get("email_use_ssl")
                                  ).open()
                 except Exception as e:
-                    raise AppApiException(1004, "邮箱校验失败")
+                    raise AppApiException(1004, "The mailbox failure.")
 
             def update_or_save(self):
                 self.is_valid(raise_exception=True)

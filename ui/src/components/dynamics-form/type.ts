@@ -2,36 +2,36 @@ import type { Dict } from '@/api/type/common'
 
 interface ViewCardItem {
   /**
-   * 类型
+   * Type of
    */
   type: 'eval' | 'default'
   /**
-   * 标题
+   * The title
    */
   title: string
   /**
-   * 值 根据类型不一样 取值也不一样 default= row[value_field] eval `${parseFloat(row.number).toLocaleString("zh-CN",{style: "decimal",maximumFractionDigits:1})}%&nbsp;&nbsp;&nbsp;`
+   * Value Different according to type. Value is different. default= row[value_field] eval `${parseFloat(row.number).toLocaleString("zh-CN",{style: "decimal",maximumFractionDigits:1})}%&nbsp;&nbsp;&nbsp;`
    */
   value_field: string
 }
 
 interface TableColumn {
   /**
-   * 字段|组件名称|可计算的模板字符串
+   * Fields|Name of components|Calculable template characters.
    */
   property: string
   /**
-   *表头
+   *The headline
    */
   label: string
   /**
-   * 表数据字段
+   * Table Data Fields
    */
   value_field?: string
 
   attrs?: Attrs
   /**
-   * 类型
+   * Type of
    */
   type: 'eval' | 'component' | 'default'
 
@@ -39,29 +39,29 @@ interface TableColumn {
 }
 interface ColorItem {
   /**
-   * 颜色#f56c6c
+   * The Color#f56c6c
    */
   color: string
   /**
-   * 进度
+   * Progress
    */
   percentage: number
 }
 interface Attrs {
   /**
-   * 提示语
+   * Suggestions
    */
   placeholder?: string
   /**
-   * 标签的长度，例如 '50px'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto。
+   * The length of the label，for example '50px'。 as Form The direct subelement. form-item We will inherit the value.。 can be used auto。
    */
   labelWidth?: string
   /**
-   * 表单域标签的后缀
+   * Posts tagged in the form.
    */
   labelSuffix?: string
   /**
-   * 星号的位置。
+   * Location of the star.。
    */
   requireAsteriskPosition?: 'left' | 'right'
 
@@ -71,37 +71,37 @@ interface Attrs {
 }
 interface PropsInfo {
   /**
-   * 表格选择的card
+   * Choose the table.card
    */
   view_card?: Array<ViewCardItem>
   /**
-   * 表格选择
+   * Selection of Table
    */
   table_columns?: Array<TableColumn>
   /**
-   * 选中 message
+   * selected message
    */
   active_msg?: string
 
   /**
-   * 组件样式
+   * The component style.
    */
   style?: Dict<any>
 
   /**
-   * el-form-item 样式
+   * el-form-item Style
    */
   item_style?: Dict<any>
   /**
-   * 表单校验 这个和element校验一样
+   * Forms of Examination This andelementLike the test.
    */
   rules?: Dict<any>
   /**
-   * 默认 不为空校验提示
+   * presumed No advice for a vacuum school.
    */
   err_msg?: string
   /**
-   *tabs的时候使用
+   *tabswhen used.
    */
   tabs_label?: string
 
@@ -111,59 +111,59 @@ interface PropsInfo {
 interface FormField {
   field: string
   /**
-   * 输入框类型
+   * Type of Input Box
    */
   input_type: string
   /**
-   * 提示
+   * The Tip
    */
   label?: string
   /**
-   * 是否 必填
+   * Is it must fill.
    */
   required?: boolean
   /**
-   * 默认值
+   * The default value
    */
   default_value?: any
   /**
-   *  {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才显示
+   *  {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the show.
    */
   relation_show_field_dict?: Dict<Array<any>>
   /**
-   * {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才 执行函数获取 数据
+   * {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the middle Implementation of functions The data
    */
   relation_trigger_field_dict?: Dict<Array<any>>
   /**
-   * 执行器类型  OPTION_LIST请求Option_list数据 CHILD_FORMS请求子表单
+   * Type of executor  OPTION_LISTrequestedOption_listThe data CHILD_FORMSApplication form
    */
   trigger_type?: 'OPTION_LIST' | 'CHILD_FORMS'
   /**
-   * 前端attr数据
+   * The frontattrThe data
    */
   attrs?: Attrs
   /**
-   * 其他额外信息
+   * Other additional information
    */
   props_info?: PropsInfo
   /**
-   * 下拉选字段field
+   * Selected fields.field
    */
   text_field?: string
   /**
-   * 下拉选 value
+   * Lower Choice value
    */
   value_field?: string
   /**
-   * 下拉选数据
+   * Selected data.
    */
   option_list?: Array<any>
   /**
-   * 供应商
+   * Suppliers
    */
   provider?: string
   /**
-   * 执行函数
+   * Execution of functions.
    */
   method?: string
 

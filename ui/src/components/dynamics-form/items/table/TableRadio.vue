@@ -6,7 +6,7 @@
       <el-input
         v-model="filterText"
         :validate-event="false"
-        placeholder="请输入关键字搜索"
+        placeholder="Please enter the Keyword Search."
         class="input-with-select"
         style="--el-color-danger: #c0c4cc"
         clearable
@@ -72,7 +72,7 @@ const props = defineProps<{
   otherParams: any
   formField: FormField
   view?: boolean
-  // 选中的值
+  // Value of choice.
   modelValue?: any
 }>()
 const rowTemp = ref<any>()
@@ -144,7 +144,7 @@ const tableData = computed(() => {
 })
 
 /**
- * 监听表格数据，设置默认值
+ * Monitoring of Form Data，Set a default value.
  */
 watch(
   () => tableData.value,

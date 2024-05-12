@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： base_vector.py
     @date：2023/10/18 19:16
     @desc:
@@ -25,22 +25,22 @@ class BaseVectorStore(ABC):
     @abstractmethod
     def vector_is_create(self) -> bool:
         """
-        判断向量库是否创建
-        :return: 是否创建向量库
+        To determine whether the quota is created.
+        :return: Create a quantum.
         """
         pass
 
     @abstractmethod
     def vector_create(self):
         """
-        创建 向量库
+        Created to quantum.
         :return:
         """
         pass
 
     def save_pre_handler(self):
         """
-        插入前置处理器 主要是判断向量库是否创建
+        Enter the front processor. Especially to determine whether the quantum library is created.
         :return: True
         """
         if not BaseVectorStore.vector_exists:
@@ -53,15 +53,15 @@ class BaseVectorStore(ABC):
              is_active: bool,
              embedding=None):
         """
-        插入向量数据
-        :param source_id:  资源id
-        :param dataset_id: 知识库id
-        :param text: 文本
-        :param source_type: 资源类型
-        :param document_id: 文档id
-        :param is_active:   是否禁用
-        :param embedding:   向量化处理器
-        :param paragraph_id 段落id
+        Introduction of data
+        :param source_id:  Resourcesid
+        :param dataset_id: The knowledge baseid
+        :param text: The text
+        :param source_type: Type of Resource
+        :param document_id: Documentsid
+        :param is_active:   is prohibited.
+        :param embedding:   The Quantitative Processor
+        :param paragraph_id Paragraphsid
         :return:  bool
         """
 
@@ -71,13 +71,13 @@ class BaseVectorStore(ABC):
         self._save(text, source_type, dataset_id, document_id, paragraph_id, source_id, is_active, embedding)
 
     def batch_save(self, data_list: List[Dict], embedding=None):
-        # 获取锁
+        # Get the lock.
         lock.acquire()
         try:
             """
-            批量插入
-            :param data_list: 数据列表
-            :param embedding: 向量化处理器
+            Mass entrance.
+            :param data_list: List of data
+            :param embedding: The Quantitative Processor
             :return: bool
             """
             if embedding is None:
@@ -87,7 +87,7 @@ class BaseVectorStore(ABC):
             for child_array in result:
                 self._batch_save(child_array, embedding)
         finally:
-            # 释放锁
+            # Release the lock.
             lock.release()
         return True
 

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： provider_serializers.py
     @date：2023/11/2 14:01
     @desc:
@@ -56,16 +56,16 @@ class ModelPullManage:
 
 class ModelSerializer(serializers.Serializer):
     class Query(serializers.Serializer):
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
         name = serializers.CharField(required=False, max_length=20,
-                                     error_messages=ErrMessage.char("模型名称"))
+                                     error_messages=ErrMessage.char("Name of model"))
 
-        model_type = serializers.CharField(required=False, error_messages=ErrMessage.char("模型类型"))
+        model_type = serializers.CharField(required=False, error_messages=ErrMessage.char("Type of Model"))
 
-        model_name = serializers.CharField(required=False, error_messages=ErrMessage.char("基础模型"))
+        model_name = serializers.CharField(required=False, error_messages=ErrMessage.char("The Basic Model"))
 
-        provider = serializers.CharField(required=False, error_messages=ErrMessage.char("供应商"))
+        provider = serializers.CharField(required=False, error_messages=ErrMessage.char("Suppliers"))
 
         def list(self, with_valid):
             if with_valid:
@@ -89,16 +89,16 @@ class ModelSerializer(serializers.Serializer):
                 model_query_set.filter(**query_params).order_by("-create_time")]
 
     class Edit(serializers.Serializer):
-        user_id = serializers.CharField(required=False, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.CharField(required=False, error_messages=ErrMessage.uuid("Usersid"))
 
         name = serializers.CharField(required=False, max_length=20,
-                                     error_messages=ErrMessage.char("模型名称"))
+                                     error_messages=ErrMessage.char("Name of model"))
 
-        model_type = serializers.CharField(required=False, error_messages=ErrMessage.char("模型类型"))
+        model_type = serializers.CharField(required=False, error_messages=ErrMessage.char("Type of Model"))
 
-        model_name = serializers.CharField(required=False, error_messages=ErrMessage.char("模型类型"))
+        model_name = serializers.CharField(required=False, error_messages=ErrMessage.char("Type of Model"))
 
-        credential = serializers.DictField(required=False, error_messages=ErrMessage.dict("认证信息"))
+        credential = serializers.DictField(required=False, error_messages=ErrMessage.dict("Certification Information"))
 
         def is_valid(self, model=None, raise_exception=False):
             super().is_valid(raise_exception=True)
@@ -106,7 +106,7 @@ class ModelSerializer(serializers.Serializer):
             if 'name' in self.data and self.data.get('name') is not None:
                 filter_params['name'] = self.data.get('name')
                 if QuerySet(Model).exclude(id=model.id).filter(**filter_params).exists():
-                    raise AppApiException(500, f'模型名称【{self.data.get("name")}】已存在')
+                    raise AppApiException(500, f'Name of model【{self.data.get("name")}】has existed.')
 
             ModelSerializer.model_to_dict(model)
 
@@ -127,24 +127,24 @@ class ModelSerializer(serializers.Serializer):
             return credential, model_credential
 
     class Create(serializers.Serializer):
-        user_id = serializers.CharField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.CharField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
-        name = serializers.CharField(required=True, max_length=20, error_messages=ErrMessage.char("模型名称"))
+        name = serializers.CharField(required=True, max_length=20, error_messages=ErrMessage.char("Name of model"))
 
-        provider = serializers.CharField(required=True, error_messages=ErrMessage.char("供应商"))
+        provider = serializers.CharField(required=True, error_messages=ErrMessage.char("Suppliers"))
 
-        model_type = serializers.CharField(required=True, error_messages=ErrMessage.char("模型类型"))
+        model_type = serializers.CharField(required=True, error_messages=ErrMessage.char("Type of Model"))
 
-        model_name = serializers.CharField(required=True, error_messages=ErrMessage.char("基础模型"))
+        model_name = serializers.CharField(required=True, error_messages=ErrMessage.char("The Basic Model"))
 
-        credential = serializers.DictField(required=True, error_messages=ErrMessage.dict("认证信息"))
+        credential = serializers.DictField(required=True, error_messages=ErrMessage.dict("Certification Information"))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             if QuerySet(Model).filter(user_id=self.data.get('user_id'),
                                       name=self.data.get('name')).exists():
-                raise AppApiException(500, f'模型名称【{self.data.get("name")}】已存在')
-            # 校验模型认证数据
+                raise AppApiException(500, f'Name of model【{self.data.get("name")}】has existed.')
+            # Test Model Certification Data
             ModelProvideConstants[self.data.get('provider')].value.get_model_credential(self.data.get('model_type'),
                                                                                         self.data.get(
                                                                                             'model_name')).is_valid(
@@ -190,15 +190,15 @@ class ModelSerializer(serializers.Serializer):
                     credential)}
 
     class Operate(serializers.Serializer):
-        id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("模型id"))
+        id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("The modelid"))
 
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             model = QuerySet(Model).filter(id=self.data.get("id"), user_id=self.data.get("user_id")).first()
             if model is None:
-                raise AppApiException(500, '模型不存在')
+                raise AppApiException(500, 'The model does not exist.')
 
         def one(self, with_valid=False):
             if with_valid:
@@ -220,7 +220,7 @@ class ModelSerializer(serializers.Serializer):
                 self.is_valid(raise_exception=True)
             application_list = QuerySet(Application).filter(model_id=self.data.get('id')).all()
             if len(application_list) > 0:
-                raise AppApiException(500, f"该模型关联了{len(application_list)} 个应用，无法删除该模型。")
+                raise AppApiException(500, f"The model is connected.{len(application_list)} one application.，This model cannot be removed.。")
             QuerySet(Model).filter(id=self.data.get('id')).delete()
             return True
 
@@ -230,13 +230,13 @@ class ModelSerializer(serializers.Serializer):
             model = QuerySet(Model).filter(id=self.data.get('id')).first()
 
             if model is None:
-                raise AppApiException(500, '不存在的id')
+                raise AppApiException(500, 'not existing.id')
             else:
                 credential, model_credential = ModelSerializer.Edit(data={**instance, 'user_id': user_id}).is_valid(
                     model=model)
                 try:
                     model.status = Status.SUCCESS
-                    # 校验模型认证数据
+                    # Test Model Certification Data
                     model_credential.is_valid(
                         model.model_type,
                         instance.get("model_name"),
@@ -263,9 +263,9 @@ class ModelSerializer(serializers.Serializer):
 
 
 class ProviderSerializer(serializers.Serializer):
-    provider = serializers.CharField(required=True, error_messages=ErrMessage.char("供应商"))
+    provider = serializers.CharField(required=True, error_messages=ErrMessage.char("Suppliers"))
 
-    method = serializers.CharField(required=True, error_messages=ErrMessage.char("执行函数名称"))
+    method = serializers.CharField(required=True, error_messages=ErrMessage.char("Execution Function Name"))
 
     def exec(self, exec_params: Dict[str, object], with_valid=False):
         if with_valid:

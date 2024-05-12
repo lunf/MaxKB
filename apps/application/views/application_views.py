@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： application_views.py
     @date：2023/10/27 14:56
     @desc:
@@ -33,9 +33,9 @@ class ApplicationStatistics(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=["GET"], detail=False)
-        @swagger_auto_schema(operation_summary="用户统计",
-                             operation_id="用户统计",
-                             tags=["应用/统计"],
+        @swagger_auto_schema(operation_summary="User statistics",
+                             operation_id="User statistics",
+                             tags=["Applications/Statistics"],
                              manual_parameters=ApplicationStatisticsApi.get_request_params_api(),
                              responses=result.get_api_response(
                                  ApplicationStatisticsApi.CustomerCount.get_response_body_api())
@@ -58,9 +58,9 @@ class ApplicationStatistics(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=["GET"], detail=False)
-        @swagger_auto_schema(operation_summary="用户统计趋势",
-                             operation_id="用户统计趋势",
-                             tags=["应用/统计"],
+        @swagger_auto_schema(operation_summary="User statistics",
+                             operation_id="User statistics",
+                             tags=["Applications/Statistics"],
                              manual_parameters=ApplicationStatisticsApi.get_request_params_api(),
                              responses=result.get_api_array_response(
                                  ApplicationStatisticsApi.CustomerCountTrend.get_response_body_api()))
@@ -82,9 +82,9 @@ class ApplicationStatistics(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=["GET"], detail=False)
-        @swagger_auto_schema(operation_summary="对话相关统计",
-                             operation_id="对话相关统计",
-                             tags=["应用/统计"],
+        @swagger_auto_schema(operation_summary="Statistics related to dialogue",
+                             operation_id="Statistics related to dialogue",
+                             tags=["Applications/Statistics"],
                              manual_parameters=ApplicationStatisticsApi.get_request_params_api(),
                              responses=result.get_api_response(
                                  ApplicationStatisticsApi.ChatRecordAggregate.get_response_body_api())
@@ -107,9 +107,9 @@ class ApplicationStatistics(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=["GET"], detail=False)
-        @swagger_auto_schema(operation_summary="对话相关统计趋势",
-                             operation_id="对话相关统计趋势",
-                             tags=["应用/统计"],
+        @swagger_auto_schema(operation_summary="Dialogue related statistical trends",
+                             operation_id="Dialogue related statistical trends",
+                             tags=["Applications/Statistics"],
                              manual_parameters=ApplicationStatisticsApi.get_request_params_api(),
                              responses=result.get_api_array_response(
                                  ApplicationStatisticsApi.ChatRecordAggregate.get_response_body_api())
@@ -137,9 +137,9 @@ class Application(APIView):
         parser_classes = [MultiPartParser]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="修改应用icon",
-                             operation_id="修改应用icon",
-                             tags=['应用'],
+        @swagger_auto_schema(operation_summary="Modification of Applicationicon",
+                             operation_id="Modification of Applicationicon",
+                             tags=['Applications'],
                              manual_parameters=ApplicationApi.EditApplicationIcon.get_request_params_api(),
                              request_body=ApplicationApi.Operate.get_request_body_api())
         @has_permissions(ViewPermission(
@@ -156,9 +156,9 @@ class Application(APIView):
 
     class Embed(APIView):
         @action(methods=["GET"], detail=False)
-        @swagger_auto_schema(operation_summary="获取嵌入js",
-                             operation_id="获取嵌入js",
-                             tags=["应用"],
+        @swagger_auto_schema(operation_summary="Get embedded.js",
+                             operation_id="Get embedded.js",
+                             tags=["Applications"],
                              manual_parameters=ApplicationApi.ApiKey.get_request_params_api())
         def get(self, request: Request):
             return ApplicationSerializer.Embed(
@@ -169,9 +169,9 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=["GET"], detail=False)
-        @swagger_auto_schema(operation_summary="获取模型列表",
-                             operation_id="获取模型列表",
-                             tags=["应用"],
+        @swagger_auto_schema(operation_summary="Get a model list.",
+                             operation_id="Get a model list.",
+                             tags=["Applications"],
                              manual_parameters=ApplicationApi.ApiKey.get_request_params_api())
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
@@ -188,24 +188,24 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取应用相关信息",
-                             operation_id="获取应用相关信息",
-                             tags=["应用/会话"])
+        @swagger_auto_schema(operation_summary="Obtaining Application Information",
+                             operation_id="Obtaining Application Information",
+                             tags=["Applications/Meeting"])
         def get(self, request: Request):
             if 'application_id' in request.auth.keywords:
                 return result.success(ApplicationSerializer.Operate(
                     data={'application_id': request.auth.keywords.get('application_id'),
                           'user_id': request.user.id}).profile())
             else:
-                raise AppAuthenticationFailed(401, "身份异常")
+                raise AppAuthenticationFailed(401, "Unusual identity.")
 
     class ApplicationKey(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="新增ApiKey",
-                             operation_id="新增ApiKey",
-                             tags=['应用/API_KEY'],
+        @swagger_auto_schema(operation_summary="AddedApiKey",
+                             operation_id="AddedApiKey",
+                             tags=['Applications/API_KEY'],
                              manual_parameters=ApplicationApi.ApiKey.get_request_params_api())
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
@@ -218,9 +218,9 @@ class Application(APIView):
                     data={'application_id': application_id, 'user_id': request.user.id}).generate())
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取应用API_KEY列表",
-                             operation_id="获取应用API_KEY列表",
-                             tags=['应用/API_KEY'],
+        @swagger_auto_schema(operation_summary="Obtaining ApplicationAPI_KEYList of",
+                             operation_id="Obtaining ApplicationAPI_KEYList of",
+                             tags=['Applications/API_KEY'],
                              manual_parameters=ApplicationApi.ApiKey.get_request_params_api()
                              )
         @has_permissions(ViewPermission(
@@ -236,9 +236,9 @@ class Application(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['PUT'], detail=False)
-            @swagger_auto_schema(operation_summary="修改应用API_KEY",
-                                 operation_id="修改应用API_KEY",
-                                 tags=['应用/API_KEY'],
+            @swagger_auto_schema(operation_summary="Modification of ApplicationAPI_KEY",
+                                 operation_id="Modification of ApplicationAPI_KEY",
+                                 tags=['Applications/API_KEY'],
                                  manual_parameters=ApplicationApi.ApiKey.Operate.get_request_params_api(),
                                  request_body=ApplicationApi.ApiKey.Operate.get_request_body_api())
             @has_permissions(ViewPermission(
@@ -254,9 +254,9 @@ class Application(APIView):
                               'api_key_id': api_key_id}).edit(request.data))
 
             @action(methods=['DELETE'], detail=False)
-            @swagger_auto_schema(operation_summary="删除应用API_KEY",
-                                 operation_id="删除应用API_KEY",
-                                 tags=['应用/API_KEY'],
+            @swagger_auto_schema(operation_summary="Remove the application.API_KEY",
+                                 operation_id="Remove the application.API_KEY",
+                                 tags=['Applications/API_KEY'],
                                  manual_parameters=ApplicationApi.ApiKey.Operate.get_request_params_api())
             @has_permissions(ViewPermission(
                 [RoleConstants.ADMIN, RoleConstants.USER],
@@ -274,9 +274,9 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="修改 应用AccessToken",
-                             operation_id="修改 应用AccessToken",
-                             tags=['应用/公开访问'],
+        @swagger_auto_schema(operation_summary="Modified ApplicationsAccessToken",
+                             operation_id="Modified ApplicationsAccessToken",
+                             tags=['Applications/Open Visit'],
                              manual_parameters=ApplicationApi.AccessToken.get_request_params_api(),
                              request_body=ApplicationApi.AccessToken.get_request_body_api())
         @has_permissions(ViewPermission(
@@ -289,10 +289,10 @@ class Application(APIView):
                 ApplicationSerializer.AccessTokenSerializer(data={'application_id': application_id}).edit(request.data))
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取应用 AccessToken信息",
-                             operation_id="获取应用 AccessToken信息",
+        @swagger_auto_schema(operation_summary="Obtaining Application AccessTokenInformation",
+                             operation_id="Obtaining Application AccessTokenInformation",
                              manual_parameters=ApplicationApi.AccessToken.get_request_params_api(),
-                             tags=['应用/公开访问'],
+                             tags=['Applications/Open Visit'],
                              )
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
@@ -311,10 +311,10 @@ class Application(APIView):
                                          "Access-Control-Allow-Headers": "Origin,Content-Type,Cookie,Accept,Token"}, )
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="应用认证",
-                             operation_id="应用认证",
+        @swagger_auto_schema(operation_summary="Applied certification",
+                             operation_id="Applied certification",
                              request_body=ApplicationApi.Authentication.get_request_body_api(),
-                             tags=["应用/认证"],
+                             tags=["Applications/Certification"],
                              security=[])
         def post(self, request: Request):
             return result.success(
@@ -326,21 +326,21 @@ class Application(APIView):
             )
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="创建应用",
-                         operation_id="创建应用",
+    @swagger_auto_schema(operation_summary="Creating Applications",
+                         operation_id="Creating Applications",
                          request_body=ApplicationApi.Create.get_request_body_api(),
-                         tags=['应用'])
+                         tags=['Applications'])
     @has_permissions(PermissionConstants.APPLICATION_CREATE, compare=CompareConstants.AND)
     def post(self, request: Request):
         ApplicationSerializer.Create(data={'user_id': request.user.id}).insert(request.data)
         return result.success(True)
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="获取应用列表",
-                         operation_id="获取应用列表",
+    @swagger_auto_schema(operation_summary="Get the application list.",
+                         operation_id="Get the application list.",
                          manual_parameters=ApplicationApi.Query.get_request_params_api(),
                          responses=result.get_api_array_response(ApplicationApi.get_response_body_api()),
-                         tags=['应用'])
+                         tags=['Applications'])
     @has_permissions(PermissionConstants.APPLICATION_READ, compare=CompareConstants.AND)
     def get(self, request: Request):
         return result.success(
@@ -351,10 +351,10 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods="GET", detail=False)
-        @swagger_auto_schema(operation_summary="命中测试列表", operation_id="命中测试列表",
+        @swagger_auto_schema(operation_summary="Test list of fate", operation_id="Test list of fate",
                              manual_parameters=CommonApi.HitTestApi.get_request_params_api(),
                              responses=result.get_api_array_response(CommonApi.HitTestApi.get_response_body_api()),
-                             tags=["应用"])
+                             tags=["Applications"])
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_ACCESS_TOKEN,
              RoleConstants.APPLICATION_KEY],
@@ -374,11 +374,11 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="删除应用",
-                             operation_id="删除应用",
+        @swagger_auto_schema(operation_summary="Remove the application.",
+                             operation_id="Remove the application.",
                              manual_parameters=ApplicationApi.Operate.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=['应用'])
+                             tags=['Applications'])
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
             [lambda r, keywords: Permission(group=Group.APPLICATION, operate=Operate.MANAGE,
@@ -392,12 +392,12 @@ class Application(APIView):
                 with_valid=True))
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="修改应用",
-                             operation_id="修改应用",
+        @swagger_auto_schema(operation_summary="Modification of Application",
+                             operation_id="Modification of Application",
                              manual_parameters=ApplicationApi.Operate.get_request_params_api(),
                              request_body=ApplicationApi.Edit.get_request_body_api(),
                              responses=result.get_api_array_response(ApplicationApi.get_response_body_api()),
-                             tags=['应用'])
+                             tags=['Applications'])
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
             [lambda r, keywords: Permission(group=Group.APPLICATION, operate=Operate.MANAGE,
@@ -409,11 +409,11 @@ class Application(APIView):
                     request.data))
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取应用详情",
-                             operation_id="获取应用详情",
+        @swagger_auto_schema(operation_summary="Obtaining Application Details",
+                             operation_id="Obtaining Application Details",
                              manual_parameters=ApplicationApi.Operate.get_request_params_api(),
                              responses=result.get_api_array_response(ApplicationApi.get_response_body_api()),
-                             tags=['应用'])
+                             tags=['Applications'])
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_ACCESS_TOKEN,
              RoleConstants.APPLICATION_KEY],
@@ -428,11 +428,11 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取当前应用可使用的知识库",
-                             operation_id="获取当前应用可使用的知识库",
+        @swagger_auto_schema(operation_summary="Get the knowledge base available for current applications",
+                             operation_id="Get the knowledge base available for current applications",
                              manual_parameters=ApplicationApi.Operate.get_request_params_api(),
                              responses=result.get_api_array_response(DataSetSerializers.Query.get_response_body_api()),
-                             tags=['应用'])
+                             tags=['Applications'])
         @has_permissions(ViewPermission([RoleConstants.ADMIN, RoleConstants.USER],
                                         [lambda r, keywords: Permission(group=Group.APPLICATION, operate=Operate.USE,
                                                                         dynamic_tag=keywords.get('application_id'))],
@@ -445,12 +445,12 @@ class Application(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="分页获取应用列表",
-                             operation_id="分页获取应用列表",
+        @swagger_auto_schema(operation_summary="Page to obtain application list",
+                             operation_id="Page to obtain application list",
                              manual_parameters=result.get_page_request_params(
                                  ApplicationApi.Query.get_request_params_api()),
                              responses=result.get_page_api_response(ApplicationApi.get_response_body_api()),
-                             tags=['应用'])
+                             tags=['Applications'])
         @has_permissions(PermissionConstants.APPLICATION_READ, compare=CompareConstants.AND)
         def get(self, request: Request, current_page: int, page_size: int):
             return result.success(

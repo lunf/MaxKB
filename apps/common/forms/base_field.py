@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： base_field.py
     @date：2023/10/31 18:07
     @desc:
@@ -11,9 +11,9 @@ from typing import List, Dict
 
 
 class TriggerType(Enum):
-    # 执行函数获取 OptionList数据
+    # Implementation of functions OptionListThe data
     OPTION_LIST = 'OPTION_LIST'
-    # 执行函数获取子表单
+    # Execution function to obtain subforms
     CHILD_FORMS = 'CHILD_FORMS'
 
 
@@ -30,14 +30,14 @@ class BaseField:
                  props_info: Dict[str, object] = None):
         """
 
-        :param input_type: 字段
-        :param label: 提示
-        :param default_value: 默认值
-        :param relation_show_field_dict:        {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才显示
-        :param relation_trigger_field_dict:     {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才 执行函数获取 数据
-        :param trigger_type:                    执行器类型  OPTION_LIST请求Option_list数据 CHILD_FORMS请求子表单
-        :param attrs:                           前端attr数据
-        :param props_info:                      其他额外信息
+        :param input_type: Fields
+        :param label: The Tip
+        :param default_value: The default value
+        :param relation_show_field_dict:        {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the show.
+        :param relation_trigger_field_dict:     {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the middle Implementation of functions The data
+        :param trigger_type:                    Type of executor  OPTION_LISTrequestedOption_listThe data CHILD_FORMSApplication form
+        :param attrs:                           The frontattrThe data
+        :param props_info:                      Other additional information
         """
         if props_info is None:
             props_info = {}
@@ -80,16 +80,16 @@ class BaseDefaultOptionField(BaseField):
                  props_info: Dict[str, object] = None):
         """
 
-        :param input_type:           字段
+        :param input_type:           Fields
         :param label:           label
-        :param text_field:      文本字段
-        :param value_field:     值字段
-        :param option_list:     可选列表
-        :param required:        是否必填
-        :param default_value:   默认值
-        :param relation_show_field_dict:        {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才显示
-        :param attrs:                           前端attr数据
-        :param props_info:                      其他额外信息
+        :param text_field:      Text fields
+        :param value_field:     Value Fields
+        :param option_list:     Optional lists
+        :param required:        must be filled.
+        :param default_value:   The default value
+        :param relation_show_field_dict:        {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the show.
+        :param attrs:                           The frontattrThe data
+        :param props_info:                      Other additional information
         """
         super().__init__(input_type, label, required, default_value, relation_show_field_dict,
                          {}, TriggerType.OPTION_LIST, attrs, props_info)
@@ -119,19 +119,19 @@ class BaseExecField(BaseField):
                  props_info: Dict[str, object] = None):
         """
 
-        :param input_type:  字段
-        :param label:  提示
-        :param text_field:  文本字段
-        :param value_field: 值字段
-        :param provider:    指定供应商
-        :param method:      执行供应商函数 method
-        :param required:    是否必填
-        :param default_value: 默认值
-        :param relation_show_field_dict:        {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才显示
-        :param relation_trigger_field_dict:     {field:field_value_list} 表示在 field有值 ,并且值在field_value_list中才 执行函数获取 数据
-        :param trigger_type:                    执行器类型  OPTION_LIST请求Option_list数据 CHILD_FORMS请求子表单
-        :param attrs:                           前端attr数据
-        :param props_info:                      其他额外信息
+        :param input_type:  Fields
+        :param label:  The Tip
+        :param text_field:  Text fields
+        :param value_field: Value Fields
+        :param provider:    Designated Suppliers
+        :param method:      Implementation of Supplier Functions method
+        :param required:    must be filled.
+        :param default_value: The default value
+        :param relation_show_field_dict:        {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the show.
+        :param relation_trigger_field_dict:     {field:field_value_list} stated in fieldis worth ,and worth it.field_value_listIn the middle Implementation of functions The data
+        :param trigger_type:                    Type of executor  OPTION_LISTrequestedOption_listThe data CHILD_FORMSApplication form
+        :param attrs:                           The frontattrThe data
+        :param props_info:                      Other additional information
         """
         super().__init__(input_type, label, required, default_value, relation_show_field_dict,
                          relation_trigger_field_dict,

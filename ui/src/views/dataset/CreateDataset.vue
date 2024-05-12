@@ -1,5 +1,5 @@
 <template>
-  <LayoutContainer :header="isCreate ? '创建知识库' : '上传文档'" class="create-dataset">
+  <LayoutContainer :header="isCreate ? 'Creating a Knowledge Base' : 'uploaded documents.'" class="create-dataset">
     <template #backButton>
       <back-button @click="back"></back-button>
     </template>
@@ -17,18 +17,18 @@
       </div>
     </div>
     <div class="create-dataset__footer text-right border-t" v-if="active !== 2">
-      <el-button @click="router.go(-1)" :disabled="loading">取消</el-button>
-      <el-button @click="prev" v-if="active === 1" :disabled="loading">上一步</el-button>
+      <el-button @click="router.go(-1)" :disabled="loading">cancelled</el-button>
+      <el-button @click="prev" v-if="active === 1" :disabled="loading">The next step</el-button>
       <el-button
         @click="next"
         type="primary"
         v-if="active === 0"
         :disabled="loading || StepFirstRef?.loading"
       >
-        创建并导入
+        Create and import.
       </el-button>
       <el-button @click="submit" type="primary" v-if="active === 1" :disabled="loading">
-        开始导入
+        Start the import.
       </el-button>
     </div>
   </LayoutContainer>
@@ -53,18 +53,18 @@ const router = useRouter()
 const route = useRoute()
 const {
   params: { type },
-  query: { id } // id为datasetID，有id的是上传文档
+  query: { id } // idfordatasetID，There isidThe upload of documents.
 } = route
 const isCreate = type === 'create'
 // const steps = [
 //   {
 //     ref: 'StepFirstRef',
-//     name: '上传文档',
+//     name: 'uploaded documents.',
 //     component: StepFirst
 //   },
 //   {
 //     ref: 'StepSecondRef',
-//     name: '设置分段规则',
+//     name: 'Set the section rules.',
 //     component: StepSecond
 //   }
 // ]
@@ -105,11 +105,11 @@ function submit() {
   })
   const obj = { ...baseInfo.value, documents } as datasetData
   if (id) {
-    // 上传文档
+    // uploaded documents.
     document
       .asyncPostDocument(id as string, documents)
       .then(() => {
-        MsgSuccess('提交成功')
+        MsgSuccess('Submitted Success')
         clearStore()
         router.push({ path: `/dataset/${id}/document` })
       })
@@ -126,8 +126,8 @@ function submit() {
 }
 function back() {
   if (baseInfo.value || webInfo.value || documentsFiles.value?.length > 0) {
-    MsgConfirm(`提示`, `当前的更改尚未保存，确认退出吗?`, {
-      confirmButtonText: '确认',
+    MsgConfirm(`The Tip`, `The current changes are not preserved.，Confirming the withdrawal??`, {
+      confirmButtonText: 'confirmed',
       type: 'warning'
     })
       .then(() => {

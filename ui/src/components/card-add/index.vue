@@ -11,7 +11,7 @@ defineOptions({ name: 'CardAdd' })
 defineProps({
   title: {
     type: String,
-    default: '标题'
+    default: 'The title'
   }
 })
 </script>

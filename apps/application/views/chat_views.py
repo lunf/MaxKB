@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： chat_views.py
     @date：2023/11/14 9:53
     @desc:
@@ -29,10 +29,10 @@ class ChatView(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="导出对话",
-                             operation_id="导出对话",
+        @swagger_auto_schema(operation_summary="Exporting Dialogue",
+                             operation_id="Exporting Dialogue",
                              manual_parameters=ChatApi.get_request_params_api(),
-                             tags=["应用/对话日志"]
+                             tags=["Applications/Dialogues"]
                              )
         @has_permissions(
             ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY],
@@ -48,10 +48,10 @@ class ChatView(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取会话id,根据应用id",
-                             operation_id="获取会话id,根据应用id",
+        @swagger_auto_schema(operation_summary="Get a meeting.id,According to Applicationid",
+                             operation_id="Get a meeting.id,According to Applicationid",
                              manual_parameters=ChatApi.OpenChat.get_request_params_api(),
-                             tags=["应用/会话"])
+                             tags=["Applications/Meeting"])
         @has_permissions(
             ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_ACCESS_TOKEN,
                             RoleConstants.APPLICATION_KEY],
@@ -67,10 +67,10 @@ class ChatView(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="获取会话id(根据模型id,知识库列表,是否多轮会话)",
-                             operation_id="获取会话id",
+        @swagger_auto_schema(operation_summary="Get a meeting.id(according to the model.id,List of Knowledge Base,There are several sessions.)",
+                             operation_id="Get a meeting.id",
                              request_body=ChatApi.OpenTempChat.get_request_body_api(),
-                             tags=["应用/会话"])
+                             tags=["Applications/Meeting"])
         @has_permissions(RoleConstants.ADMIN, RoleConstants.USER)
         def post(self, request: Request):
             return result.success(ChatSerializers.OpenTempChat(
@@ -80,10 +80,10 @@ class ChatView(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="对话",
-                             operation_id="对话",
+        @swagger_auto_schema(operation_summary="Dialogue",
+                             operation_id="Dialogue",
                              request_body=ChatApi.get_request_body_api(),
-                             tags=["应用/会话"])
+                             tags=["Applications/Meeting"])
         @has_permissions(
             ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY,
                             RoleConstants.APPLICATION_ACCESS_TOKEN],
@@ -102,11 +102,11 @@ class ChatView(APIView):
                                                'client_type': request.auth.client_type}).chat()
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="获取对话列表",
-                         operation_id="获取对话列表",
+    @swagger_auto_schema(operation_summary="Get a dialogue list.",
+                         operation_id="Get a dialogue list.",
                          manual_parameters=ChatApi.get_request_params_api(),
                          responses=result.get_api_array_response(ChatApi.get_response_body_api()),
-                         tags=["应用/对话日志"]
+                         tags=["Applications/Dialogues"]
                          )
     @has_permissions(
         ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY],
@@ -122,9 +122,9 @@ class ChatView(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="删除对话",
-                             operation_id="删除对话",
-                             tags=["应用/对话日志"])
+        @swagger_auto_schema(operation_summary="Delete the dialogue.",
+                             operation_id="Delete the dialogue.",
+                             tags=["Applications/Dialogues"])
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
             [lambda r, keywords: Permission(group=Group.APPLICATION, operate=Operate.MANAGE,
@@ -141,11 +141,11 @@ class ChatView(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="分页获取对话列表",
-                             operation_id="分页获取对话列表",
+        @swagger_auto_schema(operation_summary="Page to Get Dialogue List",
+                             operation_id="Page to Get Dialogue List",
                              manual_parameters=result.get_page_request_params(ChatApi.get_request_params_api()),
                              responses=result.get_page_api_response(ChatApi.get_response_body_api()),
-                             tags=["应用/对话日志"]
+                             tags=["Applications/Dialogues"]
                              )
         @has_permissions(
             ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY],
@@ -165,11 +165,11 @@ class ChatView(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['GET'], detail=False)
-            @swagger_auto_schema(operation_summary="获取对话记录详情",
-                                 operation_id="获取对话记录详情",
+            @swagger_auto_schema(operation_summary="Get the dialogue record details",
+                                 operation_id="Get the dialogue record details",
                                  manual_parameters=ChatRecordApi.get_request_params_api(),
                                  responses=result.get_api_array_response(ChatRecordApi.get_response_body_api()),
-                                 tags=["应用/对话日志"]
+                                 tags=["Applications/Dialogues"]
                                  )
             @has_permissions(
                 ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY,
@@ -184,11 +184,11 @@ class ChatView(APIView):
                           'chat_record_id': chat_record_id}).one(request.auth.current_role))
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取对话记录列表",
-                             operation_id="获取对话记录列表",
+        @swagger_auto_schema(operation_summary="Get a dialogue record list",
+                             operation_id="Get a dialogue record list",
                              manual_parameters=ChatRecordApi.get_request_params_api(),
                              responses=result.get_api_array_response(ChatRecordApi.get_response_body_api()),
-                             tags=["应用/对话日志"]
+                             tags=["Applications/Dialogues"]
                              )
         @has_permissions(
             ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY],
@@ -204,12 +204,12 @@ class ChatView(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['GET'], detail=False)
-            @swagger_auto_schema(operation_summary="获取对话记录列表",
-                                 operation_id="获取对话记录列表",
+            @swagger_auto_schema(operation_summary="Get a dialogue record list",
+                                 operation_id="Get a dialogue record list",
                                  manual_parameters=result.get_page_request_params(
                                      ChatRecordApi.get_request_params_api()),
                                  responses=result.get_page_api_response(ChatRecordApi.get_response_body_api()),
-                                 tags=["应用/对话日志"]
+                                 tags=["Applications/Dialogues"]
                                  )
             @has_permissions(
                 ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY],
@@ -225,12 +225,12 @@ class ChatView(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['PUT'], detail=False)
-            @swagger_auto_schema(operation_summary="点赞,点踩",
-                                 operation_id="点赞,点踩",
+            @swagger_auto_schema(operation_summary="The praise.,step down.",
+                                 operation_id="The praise.,step down.",
                                  manual_parameters=VoteApi.get_request_params_api(),
                                  request_body=VoteApi.get_request_body_api(),
                                  responses=result.get_default_response(),
-                                 tags=["应用/会话"]
+                                 tags=["Applications/Meeting"]
                                  )
             @has_permissions(
                 ViewPermission([RoleConstants.ADMIN, RoleConstants.USER, RoleConstants.APPLICATION_KEY,
@@ -247,11 +247,11 @@ class ChatView(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['GET'], detail=False)
-            @swagger_auto_schema(operation_summary="获取标注段落列表信息",
-                                 operation_id="获取标注段落列表信息",
+            @swagger_auto_schema(operation_summary="Get information on the item list.",
+                                 operation_id="Get information on the item list.",
                                  manual_parameters=ChatRecordImproveApi.get_request_params_api(),
                                  responses=result.get_api_response(ChatRecordImproveApi.get_response_body_api()),
-                                 tags=["应用/对话日志/标注"]
+                                 tags=["Applications/Dialogues/Signed"]
                                  )
             @has_permissions(
                 ViewPermission([RoleConstants.ADMIN, RoleConstants.USER],
@@ -266,12 +266,12 @@ class ChatView(APIView):
             authentication_classes = [TokenAuth]
 
             @action(methods=['PUT'], detail=False)
-            @swagger_auto_schema(operation_summary="标注",
-                                 operation_id="标注",
+            @swagger_auto_schema(operation_summary="Signed",
+                                 operation_id="Signed",
                                  manual_parameters=ImproveApi.get_request_params_api(),
                                  request_body=ImproveApi.get_request_body_api(),
                                  responses=result.get_api_response(ChatRecordApi.get_response_body_api()),
-                                 tags=["应用/对话日志/标注"]
+                                 tags=["Applications/Dialogues/Signed"]
                                  )
             @has_permissions(
                 ViewPermission([RoleConstants.ADMIN, RoleConstants.USER],
@@ -295,11 +295,11 @@ class ChatView(APIView):
                 authentication_classes = [TokenAuth]
 
                 @action(methods=['DELETE'], detail=False)
-                @swagger_auto_schema(operation_summary="标注",
-                                     operation_id="标注",
+                @swagger_auto_schema(operation_summary="Signed",
+                                     operation_id="Signed",
                                      manual_parameters=ImproveApi.get_request_params_api(),
                                      responses=result.get_api_response(ChatRecordApi.get_response_body_api()),
-                                     tags=["应用/对话日志/标注"]
+                                     tags=["Applications/Dialogues/Signed"]
                                      )
                 @has_permissions(
                     ViewPermission([RoleConstants.ADMIN, RoleConstants.USER],

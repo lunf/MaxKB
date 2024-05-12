@@ -76,7 +76,7 @@ const useApplicationStore = defineStore({
     async refreshAccessToken(token: string) {
       this.asyncAppAuthentication(token)
     },
-    // 修改应用
+    // Modification of Application
     async asyncPutApplication(id: string, data: any, loading?: Ref<boolean>) {
       return new Promise((resolve, reject) => {
         applicationApi

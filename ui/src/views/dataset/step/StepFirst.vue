@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar>
     <div class="upload-document p-24">
-      <!-- 基本信息 -->
+      <!-- Basic information -->
       <BaseForm ref="BaseFormRef" v-if="isCreate" />
       <el-form
         v-if="isCreate"
@@ -11,7 +11,7 @@
         label-position="top"
         require-asterisk-position="right"
       >
-        <el-form-item label="知识库类型" required>
+        <el-form-item label="Type of Knowledge Base" required>
           <el-radio-group v-model="form.type" class="card__radio" @change="radioChange">
             <el-row :gutter="20">
               <el-col :span="12">
@@ -22,8 +22,8 @@
                         <img src="@/assets/icon_document.svg" style="width: 58%" alt="" />
                       </AppAvatar>
                       <div>
-                        <p class="mb-4">通用型</p>
-                        <el-text type="info">可以通过上传文件或手动录入方式构建知识库</el-text>
+                        <p class="mb-4">General Types</p>
+                        <el-text type="info">You can build a knowledge base by uploading files or manually enrolling.</el-text>
                       </div>
                     </div>
                   </el-radio>
@@ -37,8 +37,8 @@
                         <img src="@/assets/icon_web.svg" style="width: 58%" alt="" />
                       </AppAvatar>
                       <div>
-                        <p class="mb-4">Web 站点</p>
-                        <el-text type="info">通过网站链接同步方式构建知识库 </el-text>
+                        <p class="mb-4">Web The site</p>
+                        <el-text type="info">Building a knowledge base through a web site link synchronization </el-text>
                       </div>
                     </div>
                   </el-radio>
@@ -47,23 +47,23 @@
             </el-row>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="Web 根地址" prop="source_url" v-if="form.type === '1'">
+        <el-form-item label="Web root address" prop="source_url" v-if="form.type === '1'">
           <el-input
             v-model="form.source_url"
-            placeholder="请输入 Web 根地址"
+            placeholder="Please enter. Web root address"
             @blur="form.source_url = form.source_url.trim()"
           />
         </el-form-item>
-        <el-form-item label="选择器" v-if="form.type === '1'">
+        <el-form-item label="The Selector" v-if="form.type === '1'">
           <el-input
             v-model="form.selector"
-            placeholder="默认为 body，可输入 .classname/#idname/tagname"
+            placeholder="I think body，can enter. .classname/#idname/tagname"
             @blur="form.selector = form.selector.trim()"
           />
         </el-form-item>
       </el-form>
 
-      <!-- 上传文档 -->
+      <!-- uploaded documents. -->
       <UploadComponent ref="UploadComponentRef" v-if="form.type === '0'" />
     </div>
   </el-scrollbar>
@@ -97,7 +97,7 @@ const form = ref<any>({
 })
 
 const rules = reactive({
-  source_url: [{ required: true, message: '请输入 Web 根地址', trigger: 'blur' }]
+  source_url: [{ required: true, message: 'Please enter. Web root address', trigger: 'blur' }]
 })
 
 watch(form.value, (value) => {
@@ -119,11 +119,11 @@ const onSubmit = async () => {
     if (form.value.type === '0') {
       if ((await BaseFormRef.value?.validate()) && (await UploadComponentRef.value.validate())) {
         if (UploadComponentRef.value.form.fileList.length > 50) {
-          MsgError('每次最多上传50个文件！')
+          MsgError('Increased every time.50A document.！')
           return false
         } else {
           /*
-        stores保存数据
+        storesSave the data.
       */
           dataset.saveBaseInfo(BaseFormRef.value.form)
           dataset.saveDocumentsFile(UploadComponentRef.value.form.fileList)
@@ -138,7 +138,7 @@ const onSubmit = async () => {
           if (valid) {
             const obj = { ...BaseFormRef.value.form, ...form.value }
             datasetApi.postWebDataset(obj, loading).then((res) => {
-              MsgSuccess('提交成功')
+              MsgSuccess('Submitted Success')
               dataset.saveBaseInfo(null)
               dataset.saveWebInfo(null)
               router.push({ path: `/dataset/${res.data.id}/document` })
@@ -154,7 +154,7 @@ const onSubmit = async () => {
   } else {
     if (await UploadComponentRef.value.validate()) {
       /*
-        stores保存数据
+        storesSave the data.
       */
       dataset.saveDocumentsFile(UploadComponentRef.value.form.fileList)
       return true

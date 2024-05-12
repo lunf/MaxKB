@@ -1,13 +1,13 @@
 <template>
   <el-drawer v-model="visible" size="60%" @close="closeHandle">
     <template #header>
-      <h4>问题详情</h4>
+      <h4>The question details.</h4>
     </template>
     <div>
       <el-scrollbar>
         <div class="p-8">
           <el-form label-position="top" v-loading="loading" @submit.prevent>
-            <el-form-item label="问题">
+            <el-form-item label="The problem">
               <ReadWrite
                 @change="editName"
                 :data="currentContent"
@@ -15,7 +15,7 @@
                 :maxlength="256"
               />
             </el-form-item>
-            <el-form-item label="关联分段">
+            <el-form-item label="Related Sections">
               <template v-for="(item, index) in paragraphList" :key="index">
                 <CardBox
                   :title="item.title || '-'"
@@ -25,7 +25,7 @@
                 >
                   <div class="active-button">
                     <span class="mr-4">
-                      <el-tooltip effect="dark" content="取消关联" placement="top">
+                      <el-tooltip effect="dark" content="Cancelled connection." placement="top">
                         <el-button type="primary" text @click.stop="disassociation(item)">
                           <AppIcon iconName="app-quxiaoguanlian"></AppIcon>
                         </el-button>
@@ -53,14 +53,14 @@
           </el-form>
         </div>
       </el-scrollbar>
-      <ParagraphDialog ref="ParagraphDialogRef" title="编辑分段" @refresh="refresh" />
+      <ParagraphDialog ref="ParagraphDialogRef" title="Editing Section" @refresh="refresh" />
       <RelateProblemDialog ref="RelateProblemDialogRef" @refresh="refresh" />
     </div>
     <template #footer>
       <div>
-        <el-button @click="relateProblem">关联分段</el-button>
-        <el-button @click="pre" :disabled="pre_disable || loading">上一条</el-button>
-        <el-button @click="next" :disabled="next_disable || loading">下一条</el-button>
+        <el-button @click="relateProblem">Related Sections</el-button>
+        <el-button @click="pre" :disabled="pre_disable || loading">The previous one</el-button>
+        <el-button @click="next" :disabled="next_disable || loading">The next one</el-button>
       </div>
     </template>
   </el-drawer>
@@ -78,16 +78,16 @@ import useStore from '@/stores'
 const props = withDefaults(
   defineProps<{
     /**
-     * 当前的id
+     * Currentlyid
      */
     currentId: string
     currentContent: string
     /**
-     * 下一条
+     * The next one
      */
     next: () => void
     /**
-     * 上一条
+     * The previous one
      */
     pre: () => void
 
@@ -141,10 +141,10 @@ function editName(val: string) {
     }
     problemApi.putProblems(id as string, props.currentId, obj, loading).then(() => {
       emit('update:currentContent', val)
-      MsgSuccess('修改成功')
+      MsgSuccess('Changes are Successful')
     })
   } else {
-    MsgError('问题不能为空！')
+    MsgError('The problem cannot be empty.！')
   }
 }
 

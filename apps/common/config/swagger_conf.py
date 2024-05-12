@@ -1,16 +1,16 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： swagger_conf.py
     @date：2023/9/5 14:01
-    @desc: 用于swagger 分组
+    @desc: usedswagger The group
 """
 
 from drf_yasg.inspectors import SwaggerAutoSchema
 
 tags_dict = {
-    'user': '用户'
+    'user': 'Users'
 }
 
 

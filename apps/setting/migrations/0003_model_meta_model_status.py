@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='model',
             name='meta',
-            field=models.JSONField(default=dict, verbose_name='模型元数据,用于存储下载,或者错误信息'),
+            field=models.JSONField(default=dict, verbose_name='Model of data,Used for storage downloads,or wrong information.'),
         ),
         migrations.AddField(
             model_name='model',
             name='status',
-            field=models.CharField(choices=[('SUCCESS', '成功'), ('ERROR', '失败'), ('DOWNLOAD', '下载中')], default='SUCCESS', max_length=20, verbose_name='设置类型'),
+            field=models.CharField(choices=[('SUCCESS', 'Successful'), ('ERROR', 'Failure'), ('DOWNLOAD', 'Downloads')], default='SUCCESS', max_length=20, verbose_name='Set the type.'),
         ),
     ]

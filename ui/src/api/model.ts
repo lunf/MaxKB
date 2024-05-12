@@ -17,8 +17,8 @@ const prefix = '/model'
 const prefix_provider = '/provider'
 
 /**
- * 获得模型列表
- * @params 参数 name, model_type, model_name
+ * Get a model list.
+ * @params Parameters name, model_type, model_name
  */
 const getModel: (
   request?: ListModelRequest,
@@ -28,14 +28,14 @@ const getModel: (
 }
 
 /**
- * 获得供应商列表
+ * Get a Supplier List
  */
 const getProvider: (loading?: Ref<boolean>) => Promise<Result<Array<Provider>>> = (loading) => {
   return get(`${prefix_provider}`, {}, loading)
 }
 
 /**
- * 获取模型创建表单
+ * Get a model to create a form
  * @param provider
  * @param model_type
  * @param model_name
@@ -52,10 +52,10 @@ const getModelCreateForm: (
 }
 
 /**
- * 获取模型类型列表
- * @param provider 供应商
- * @param loading  加载器
- * @returns 模型类型列表
+ * Get a Model Type List
+ * @param provider Suppliers
+ * @param loading  The carrier.
+ * @returns List of Model Types
  */
 const listModelType: (
   provider: string,
@@ -65,7 +65,7 @@ const listModelType: (
 }
 
 /**
- * 获取基础模型列表
+ * Get a basic model list.
  * @param provider
  * @param model_type
  * @param loading
@@ -80,9 +80,9 @@ const listBaseModel: (
 }
 
 /**
- * 创建模型
- * @param request 请求对象
- * @param loading 加载器
+ * Creating a model.
+ * @param request Requested objects
+ * @param loading The carrier.
  * @returns
  */
 const createModel: (
@@ -93,9 +93,9 @@ const createModel: (
 }
 
 /**
- * 修改模型
- * @param request 請求對象
- * @param loading 加載器
+ * Modifying the model
+ * @param request Requested Objects
+ * @param loading The carrier.
  * @returns
  */
 const updateModel: (
@@ -107,9 +107,9 @@ const updateModel: (
 }
 
 /**
- * 获取模型详情根据模型id 包括认证信息
- * @param model_id 模型id
- * @param loading  加载器
+ * Get the model details according to the modelid Including certification information
+ * @param model_id The modelid
+ * @param loading  The carrier.
  * @returns
  */
 const getModelById: (model_id: string, loading?: Ref<boolean>) => Promise<Result<Model>> = (
@@ -119,9 +119,9 @@ const getModelById: (model_id: string, loading?: Ref<boolean>) => Promise<Result
   return get(`${prefix}/${model_id}`, {}, loading)
 }
 /**
- * 获取模型信息不包括认证信息根据模型id
- * @param model_id 模型id
- * @param loading  加载器
+ * Obtaining model information does not include certification information based on modelid
+ * @param model_id The modelid
+ * @param loading  The carrier.
  * @returns
  */
 const getModelMetaById: (model_id: string, loading?: Ref<boolean>) => Promise<Result<Model>> = (

@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei',
-    '微软雅黑', Arial, sans-serif;
+    'by Microsoft Yahoo', Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -52,18 +52,18 @@ ul {
   padding: 0;
 }
 
-/* 滚动条整体部分 */
+/* Rolling the whole part. */
 ::-webkit-scrollbar {
-  width: 6px; // 纵向滚动条宽度
-  height: 6px; // 横向滚动条高度
+  width: 6px; // The rotating width.
+  height: 6px; // horizontal rotating height.
 }
 
-/* 滑块 */
+/* Slots */
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 
-/* 轨道 */
+/* orbit */
 ::-webkit-scrollbar-track {
   border-radius: 5px;
   background-color: transparent;
@@ -262,7 +262,7 @@ h4 {
 }
 
 /*
-  超出省略号
+  Beyond the missing.
 */
 
 .ellipsis {
@@ -274,7 +274,7 @@ h4 {
 }
 
 /*
-  双行超出省略号，其他行数自定义 -webkit-line-clamp
+  Two lines exceeding the loss.，Other lines are customized -webkit-line-clamp
 */
 .ellipsis-2 {
   display: -webkit-box;
@@ -299,7 +299,7 @@ h4 {
 }
 
 /*
-  内容部分 自适应高度
+  The content part. Adaptation to Height.
 */
 .main-calc-height {
   height: var(--app-main-height);
@@ -307,7 +307,7 @@ h4 {
 }
 
 /*
-  标题前带竖线样式
+  The title front line style.
 */
 .title-decoration-1 {
   position: relative;
@@ -358,7 +358,7 @@ h4 {
 }
 
 /*
-  card 无边框无阴影 灰色背景
+  card No boundaries without shadows. the grey background.
 */
 .card-never {
   background: var(--app-layout-bg-color);
@@ -366,14 +366,14 @@ h4 {
 }
 
 /*
-   图标旋转90度
+   The icon turns.90Degree
 */
 .rotate-90 {
   transform: rotateZ(90deg);
 }
 
 /*
-  表格第一行插入自定义行
+  The first line of the table enters the custom line.
 */
 .table-quick-append {
   background: #ffffff;
@@ -400,7 +400,7 @@ h4 {
   }
 }
 
-// checkbox-group 文字在左 input在右
+// checkbox-group Text on the left. inputin the right
 .app-custom-checkbox-group {
   line-height: normal;
   .el-checkbox__label {
@@ -409,7 +409,7 @@ h4 {
 }
 
 /*
-  头像渐变背景
+  The background changes.
 */
 .avatar-gradient {
   background: var(--app-avatar-gradient-color);
@@ -532,7 +532,7 @@ h4 {
   }
 }
 
-// AI模型选择：添加模型hover样式
+// AIThe Model Choice：Adding the model.hoverStyle
 .select-model {
   .el-select-dropdown__footer {
     &:hover {
@@ -541,7 +541,7 @@ h4 {
   }
 }
 
-// 段落card
+// Paragraphscard
 .paragraph-source-card {
   height: 210px;
   width: 100%;
@@ -552,7 +552,7 @@ h4 {
   }
 }
 
-// 分段 dialog
+// Parts dialog
 .paragraph-dialog {
   padding: 0 !important;
   .el-scrollbar {

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： client_access_num_job.py
     @date：2024/3/14 11:56
     @desc:
@@ -19,9 +19,9 @@ scheduler.add_jobstore(DjangoJobStore(), "default")
 
 
 def client_access_num_reset_job():
-    logging.getLogger("max_kb").info('开始重置access_num')
+    logging.getLogger("max_kb").info('Start the restructuring.access_num')
     QuerySet(ApplicationPublicAccessClient).update(intraday_access_num=0)
-    logging.getLogger("max_kb").info('结束重置access_num')
+    logging.getLogger("max_kb").info('End of repair.access_num')
 
 
 def run():

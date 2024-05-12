@@ -8,36 +8,36 @@
       require-asterisk-position="right"
       @submit.prevent
     >
-      <el-form-item :prop="isEdit ? '' : 'username'" label="用户名">
+      <el-form-item :prop="isEdit ? '' : 'username'" label="User Name">
         <el-input
           v-model="userForm.username"
-          placeholder="请输入用户名"
+          placeholder="Please enter the user name."
           maxlength="20"
           show-word-limit
           :disabled="isEdit"
         >
         </el-input>
       </el-form-item>
-      <el-form-item label="姓名">
+      <el-form-item label="Name of">
         <el-input
           v-model="userForm.nick_name"
-          placeholder="请输入姓名"
+          placeholder="Please enter the name."
           maxlength="64"
           show-word-limit
         >
         </el-input>
       </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input type="email" v-model="userForm.email" placeholder="请输入邮箱"> </el-input>
+      <el-form-item label="The mailbox" prop="email">
+        <el-input type="email" v-model="userForm.email" placeholder="Please enter the mailbox."> </el-input>
       </el-form-item>
-      <el-form-item label="手机号">
-        <el-input type="email" v-model="userForm.phone" placeholder="请输入手机号"> </el-input>
+      <el-form-item label="The phone number.">
+        <el-input type="email" v-model="userForm.phone" placeholder="Please enter the phone number."> </el-input>
       </el-form-item>
-      <el-form-item label="登录密码" prop="password" v-if="!isEdit">
+      <el-form-item label="Sign up the password." prop="password" v-if="!isEdit">
         <el-input
           type="password"
           v-model="userForm.password"
-          placeholder="请输入密码"
+          placeholder="Please enter the password."
           show-password
         >
         </el-input>
@@ -45,8 +45,8 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
-        <el-button type="primary" @click="submit(userFormRef)" :loading="loading"> 保存 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button type="primary" @click="submit(userFormRef)" :loading="loading"> preserved </el-button>
       </span>
     </template>
   </el-dialog>
@@ -74,25 +74,25 @@ const userForm = ref<any>({
 
 const rules = reactive({
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { required: true, message: 'Please enter the user name.', trigger: 'blur' },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     }
   ],
-  email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
+  email: [{ required: true, message: 'Please enter the mailbox.', trigger: 'blur' }],
   password: [
     {
       required: true,
-      message: '请输入密码',
+      message: 'Please enter the password.',
       trigger: 'blur'
     },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     }
   ]
@@ -135,13 +135,13 @@ const submit = async (formEl: FormInstance | undefined) => {
       if (isEdit.value) {
         userApi.putUserManage(userForm.value.id, userForm.value, loading).then((res) => {
           emit('refresh')
-          MsgSuccess('编辑成功')
+          MsgSuccess('Editing Successful')
           dialogVisible.value = false
         })
       } else {
         userApi.postUserManage(userForm.value, loading).then((res) => {
           emit('refresh')
-          MsgSuccess('创建成功')
+          MsgSuccess('Creating Success')
           dialogVisible.value = false
         })
       }

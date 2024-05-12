@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： file_cache.py
     @date：2023/9/11 15:58
-    @desc: 文件缓存
+    @desc: Cache of documents.
 """
 import datetime
 import math
@@ -53,9 +53,9 @@ class FileCache(BaseCache):
 
     def ttl(self, key):
         """
-        获取key的剩余时间
+        obtainedkeyThe remaining time.
         :param key: key
-        :return:  剩余时间
+        :return:  The remaining time.
         """
         value, expire_time = self.cache.get(key, expire_time=True)
         if value is None:

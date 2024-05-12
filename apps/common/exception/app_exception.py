@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： app_exception.py
     @date：2023/9/4 14:04
     @desc:
@@ -11,7 +11,7 @@ from rest_framework import status
 
 class AppApiException(Exception):
     """
-    项目内异常
+    Unusual in the project.
     """
     status_code = status.HTTP_200_OK
 
@@ -22,7 +22,7 @@ class AppApiException(Exception):
 
 class NotFound404(AppApiException):
     """
-       未认证(未登录)异常
+       Uncertified(not registered.)Unusual
        """
     status_code = status.HTTP_404_NOT_FOUND
 
@@ -33,7 +33,7 @@ class NotFound404(AppApiException):
 
 class AppAuthenticationFailed(AppApiException):
     """
-    未认证(未登录)异常
+    Uncertified(not registered.)Unusual
     """
     status_code = status.HTTP_401_UNAUTHORIZED
 
@@ -44,7 +44,7 @@ class AppAuthenticationFailed(AppApiException):
 
 class AppUnauthorizedFailed(AppApiException):
     """
-    未授权(没有权限)异常
+    not authorized.(No authority.)Unusual
     """
     status_code = status.HTTP_403_FORBIDDEN
 
@@ -55,7 +55,7 @@ class AppUnauthorizedFailed(AppApiException):
 
 class AppEmbedIdentityFailed(AppApiException):
     """
-    嵌入cookie异常
+    embeddedcookieUnusual
     """
     status_code = 460
 
@@ -66,7 +66,7 @@ class AppEmbedIdentityFailed(AppApiException):
 
 class AppChatNumOutOfBoundsFailed(AppApiException):
     """
-      访问次数超过今日访问量
+      Number of visits greater than today
     """
     status_code = 461
 

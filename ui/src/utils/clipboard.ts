@@ -1,15 +1,15 @@
 import Clipboard from 'vue-clipboard3'
 import { MsgSuccess, MsgError } from '@/utils/message'
 /*
-  复制粘贴
+  Copy the stick.
 */
 export async function copyClick(info: string) {
   const { toClipboard } = Clipboard()
   try {
     await toClipboard(info)
-    MsgSuccess('复制成功')
+    MsgSuccess('Successful copying')
   } catch (e) {
     console.error(e)
-    MsgError('复制失败')
+    MsgError('Copy failure.')
   }
 }

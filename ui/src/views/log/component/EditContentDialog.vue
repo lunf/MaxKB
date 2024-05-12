@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="修改内容" v-model="dialogVisible" width="600">
+  <el-dialog title="Modification of content" v-model="dialogVisible" width="600">
     <el-form
       ref="formRef"
       :model="form"
@@ -8,13 +8,13 @@
       :rules="rules"
       @submit.prevent
     >
-      <el-form-item label="关联问题">
+      <el-form-item label="Related issues">
         <span>{{ form.problem_text }}</span>
       </el-form-item>
-      <el-form-item label="内容" prop="content">
+      <el-form-item label="The content" prop="content">
         <el-input
           v-model="form.content"
-          placeholder="请输入内容"
+          placeholder="Please enter the content."
           maxlength="4096"
           show-word-limit
           :rows="8"
@@ -22,15 +22,15 @@
         >
         </el-input>
       </el-form-item>
-      <el-form-item label="标题">
-        <el-input v-model="form.title" placeholder="请给当前内容设置一个标题，以便管理查看">
+      <el-form-item label="The title">
+        <el-input v-model="form.title" placeholder="Please set a title for the current content.，To manage checking.">
         </el-input>
       </el-form-item>
-      <el-form-item label="选择知识库" prop="dataset_id">
+      <el-form-item label="Choose a Knowledge Base" prop="dataset_id">
         <el-select
           v-model="form.dataset_id"
           filterable
-          placeholder="请选择知识库"
+          placeholder="Please select the knowledge base."
           :loading="optionLoading"
           @change="changeDataset"
         >
@@ -57,11 +57,11 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="保存至文档" prop="document_id">
+      <el-form-item label="Save to the documentation." prop="document_id">
         <el-select
           v-model="form.document_id"
           filterable
-          placeholder="请选择文档"
+          placeholder="Please select the document."
           :loading="optionLoading"
         >
           <el-option
@@ -77,8 +77,8 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
-        <el-button type="primary" @click="submitForm(formRef)" :loading="loading"> 保存 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button type="primary" @click="submitForm(formRef)" :loading="loading"> preserved </el-button>
       </span>
     </template>
   </el-dialog>
@@ -121,9 +121,9 @@ const form = ref<any>({
 })
 
 const rules = reactive<FormRules>({
-  content: [{ required: true, message: '请输入内容', trigger: 'blur' }],
-  dataset_id: [{ required: true, message: '请选择知识库', trigger: 'change' }],
-  document_id: [{ required: true, message: '请选择文档', trigger: 'change' }]
+  content: [{ required: true, message: 'Please enter the content.', trigger: 'blur' }],
+  dataset_id: [{ required: true, message: 'Please select the knowledge base.', trigger: 'change' }],
+  document_id: [{ required: true, message: 'Please select the document.', trigger: 'change' }]
 })
 
 const datasetList = ref<any[]>([])

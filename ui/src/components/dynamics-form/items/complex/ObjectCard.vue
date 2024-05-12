@@ -44,10 +44,10 @@ const data = computed({
 const other = computed(() => {
   return { ...(props.formfieldList ? props.formfieldList : {}), ...props.otherParams }
 })
-// 校验实例对象
+// Examples of objects.
 const dynamicsFormRef = ref<InstanceType<typeof DynamicsForm>>()
 /**
- * 组件样式
+ * The component style.
  */
 const formStyle = computed(() => {
   return props_info.value.form_style ? props_info.value.form_style : {}
@@ -60,7 +60,7 @@ const style = computed(() => {
   return props_info.value.style ? props_info.value.style : {}
 })
 /**
- * 校验方法
+ * Method of testing.
  */
 function validate() {
   if (dynamicsFormRef.value) {

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： text_split_handle.py
     @date：2024/3/27 18:19
     @desc:
@@ -29,8 +29,8 @@ default_pattern_list = [re.compile('(?<=^)# .*|(?<=\\n)# .*'),
 
 
 def image_to_mode(image, doc: Document, images_list, get_image_id):
-    for img_id in image.xpath('.//a:blip/@r:embed'):  # 获取图片id
-        part = doc.part.related_parts[img_id]  # 根据图片id获取对应的图片
+    for img_id in image.xpath('.//a:blip/@r:embed'):  # Get the picture.id
+        part = doc.part.related_parts[img_id]  # According to the pictureidObtain the corresponding image.
         if isinstance(part, ImagePart):
             image_uuid = get_image_id(img_id)
             if len([i for i in images_list if i.id == image_uuid]) == 0:
@@ -98,7 +98,7 @@ class DocSplitHandle(BaseSplitHandle):
     def table_to_md(table, doc: Document, images_list, get_image_id):
         rows = table.rows
 
-        # 创建 Markdown 格式的表格
+        # Created Markdown Forms of Form
         md_table = '| ' + ' | '.join(
             [get_cell_text(cell, doc, images_list, get_image_id) for cell in rows[0].cells]) + ' |\n'
         md_table += '| ' + ' | '.join(['---' for i in range(len(rows[0].cells))]) + ' |\n'
@@ -111,11 +111,11 @@ class DocSplitHandle(BaseSplitHandle):
         elements = []
         for element in doc.element.body:
             if element.tag.endswith('tbl'):
-                # 处理表格
+                # Processing the table.
                 table = Table(element, doc)
                 elements.append(table)
             elif element.tag.endswith('p'):
-                # 处理段落
+                # Treatment of paragraphs
                 paragraph = Paragraph(element, doc)
                 elements.append(paragraph)
         return "\n".join(

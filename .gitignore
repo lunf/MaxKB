@@ -176,6 +176,8 @@ cython_debug/
 ui/package-lock.json
 ui/node_modules
 ui/dist
+ui/yarn.lock
+hub/
 apps/static
 models/
 data

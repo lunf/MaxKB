@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： application.py
     @date：2023/9/25 14:24
     @desc:
@@ -31,30 +31,30 @@ def get_model_setting_dict():
 
 
 class Application(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
-    name = models.CharField(max_length=128, verbose_name="应用名称")
-    desc = models.CharField(max_length=512, verbose_name="引用描述", default="")
-    prologue = models.CharField(max_length=1024, verbose_name="开场白", default="")
-    dialogue_number = models.IntegerField(default=0, verbose_name="会话数量")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
+    name = models.CharField(max_length=128, verbose_name="Application Name")
+    desc = models.CharField(max_length=512, verbose_name="Citation of description", default="")
+    prologue = models.CharField(max_length=1024, verbose_name="Opening White.", default="")
+    dialogue_number = models.IntegerField(default=0, verbose_name="Number of meetings")
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     model = models.ForeignKey(Model, on_delete=models.SET_NULL, db_constraint=False, blank=True, null=True)
-    dataset_setting = models.JSONField(verbose_name="数据集参数设置", default=get_dataset_setting_dict)
-    model_setting = models.JSONField(verbose_name="模型参数相关设置", default=get_model_setting_dict)
-    problem_optimization = models.BooleanField(verbose_name="问题优化", default=False)
-    icon = models.CharField(max_length=256, verbose_name="应用icon", default="/ui/favicon.ico")
+    dataset_setting = models.JSONField(verbose_name="Set up the data set.", default=get_dataset_setting_dict)
+    model_setting = models.JSONField(verbose_name="Model parameters related settings", default=get_model_setting_dict)
+    problem_optimization = models.BooleanField(verbose_name="Problems optimized", default=False)
+    icon = models.CharField(max_length=256, verbose_name="Applicationsicon", default="/ui/favicon.ico")
 
     @staticmethod
     def get_default_model_prompt():
-        return ('已知信息：'
+        return ('known information：'
                 '\n{data}'
-                '\n回答要求：'
-                '\n- 如果你不知道答案或者没有从获取答案，请回答“没有在知识库中查找到相关信息，建议咨询相关技术支持或参考官方文档进行操作”。'
-                '\n- 避免提及你是从<data></data>中获得的知识。'
-                '\n- 请保持答案与<data></data>中描述的一致。'
-                '\n- 请使用markdown 语法优化答案的格式。'
-                '\n- <data></data>中的图片链接、链接地址和脚本语言请完整返回。'
-                '\n- 请使用与问题相同的语言来回答。'
-                '\n问题：'
+                '\nReply to Request：'
+                '\n- If you don’t know the answer or don’t get the answer.，Please answer“No information found in the knowledge base.，Consulting relevant technical support or reference to official documents for operation”。'
+                '\n- Avoid mention that you are from<data></data>Knowledge obtained in。'
+                '\n- Please keep the answer and<data></data>The description is consistent.。'
+                '\n- Please usemarkdown Optimization of Answer Formats。'
+                '\n- <data></data>The image link.、Link address and script language please return.。'
+                '\n- Please use the same language to answer the question.。'
+                '\nThe problem：'
                 '\n{question}')
 
     class Meta:
@@ -62,7 +62,7 @@ class Application(AppModelMixin):
 
 
 class ApplicationDatasetMapping(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     dataset = models.ForeignKey(DataSet, on_delete=models.CASCADE)
 
@@ -71,41 +71,41 @@ class ApplicationDatasetMapping(AppModelMixin):
 
 
 class Chat(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
-    abstract = models.CharField(max_length=1024, verbose_name="摘要")
-    client_id = models.UUIDField(verbose_name="客户端id", default=None, null=True)
+    abstract = models.CharField(max_length=1024, verbose_name="The summary")
+    client_id = models.UUIDField(verbose_name="The clientid", default=None, null=True)
 
     class Meta:
         db_table = "application_chat"
 
 
 class VoteChoices(models.TextChoices):
-    """订单类型"""
-    UN_VOTE = -1, '未投票'
-    STAR = 0, '赞同'
-    TRAMPLE = 1, '反对'
+    """Type of Order"""
+    UN_VOTE = -1, 'not voted.'
+    STAR = 0, 'agreed'
+    TRAMPLE = 1, 'opposed'
 
 
 class ChatRecord(AppModelMixin):
     """
-    对话日志 详情
+    Dialogues Details
     """
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
-    vote_status = models.CharField(verbose_name='投票', max_length=10, choices=VoteChoices.choices,
+    vote_status = models.CharField(verbose_name='Voting', max_length=10, choices=VoteChoices.choices,
                                    default=VoteChoices.UN_VOTE)
-    problem_text = models.CharField(max_length=1024, verbose_name="问题")
-    answer_text = models.CharField(max_length=40960, verbose_name="答案")
-    message_tokens = models.IntegerField(verbose_name="请求token数量", default=0)
-    answer_tokens = models.IntegerField(verbose_name="响应token数量", default=0)
-    const = models.IntegerField(verbose_name="总费用", default=0)
-    details = models.JSONField(verbose_name="对话详情", default=dict)
-    improve_paragraph_id_list = ArrayField(verbose_name="改进标注列表",
+    problem_text = models.CharField(max_length=1024, verbose_name="The problem")
+    answer_text = models.CharField(max_length=40960, verbose_name="The Answer")
+    message_tokens = models.IntegerField(verbose_name="requestedtokenNumber of", default=0)
+    answer_tokens = models.IntegerField(verbose_name="ReplytokenNumber of", default=0)
+    const = models.IntegerField(verbose_name="Total costs", default=0)
+    details = models.JSONField(verbose_name="Details of Dialogue", default=dict)
+    improve_paragraph_id_list = ArrayField(verbose_name="Improve the list of notes",
                                            base_field=models.UUIDField(max_length=128, blank=True)
                                            , default=list)
-    run_time = models.FloatField(verbose_name="运行时长", default=0)
-    index = models.IntegerField(verbose_name="对话下标")
+    run_time = models.FloatField(verbose_name="Working long.", default=0)
+    index = models.IntegerField(verbose_name="The dialogue.")
 
     def get_human_message(self):
         if 'problem_padding' in self.details:

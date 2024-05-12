@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： problem_api.py
     @date：2024/3/11 10:49
     @desc:
@@ -20,17 +20,17 @@ class ProblemApi(ApiMixin):
             properties={
                 'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                      description="id", default="xx"),
-                'content': openapi.Schema(type=openapi.TYPE_STRING, title="问题内容",
-                                          description="问题内容", default='问题内容'),
-                'hit_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="命中数量", description="命中数量",
+                'content': openapi.Schema(type=openapi.TYPE_STRING, title="The content of the question",
+                                          description="The content of the question", default='The content of the question'),
+                'hit_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of fate", description="The number of fate",
                                           default=1),
-                'dataset_id': openapi.Schema(type=openapi.TYPE_STRING, title="知识库id",
-                                             description="知识库id", default='xxx'),
-                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                              description="修改时间",
+                'dataset_id': openapi.Schema(type=openapi.TYPE_STRING, title="The knowledge baseid",
+                                             description="The knowledge baseid", default='xxx'),
+                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                              description="Change time.",
                                               default="1970-01-01 00:00:00"),
-                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                              description="创建时间",
+                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                              description="Creating time.",
                                               default="1970-01-01 00:00:00"
                                               )
             }
@@ -43,14 +43,14 @@ class ProblemApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='知识库id'),
+                                      description='The knowledge baseid'),
                     ]
 
         @staticmethod
         def get_request_body_api():
             return openapi.Schema(
-                title="问题id列表",
-                description="问题id列表",
+                title="The problemidList of",
+                description="The problemidList of",
                 type=openapi.TYPE_ARRAY,
                 items=openapi.Schema(type=openapi.TYPE_STRING)
             )
@@ -62,12 +62,12 @@ class ProblemApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='知识库id'),
+                                      description='The knowledge baseid'),
                     openapi.Parameter(name='problem_id',
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='问题id')]
+                                      description='The problemid')]
 
         @staticmethod
         def get_request_body_api():
@@ -75,8 +75,8 @@ class ProblemApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=['content'],
                 properties={
-                    'content': openapi.Schema(type=openapi.TYPE_STRING, title="问题内容",
-                                              description="问题内容"),
+                    'content': openapi.Schema(type=openapi.TYPE_STRING, title="The content of the question",
+                                              description="The content of the question"),
 
                 }
             )
@@ -92,17 +92,17 @@ class ProblemApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 required=['content'],
                 properties={
-                    'content': openapi.Schema(type=openapi.TYPE_STRING, max_length=4096, title="分段内容",
-                                              description="分段内容"),
-                    'title': openapi.Schema(type=openapi.TYPE_STRING, max_length=256, title="分段标题",
-                                            description="分段标题"),
-                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否可用", description="是否可用"),
-                    'hit_num': openapi.Schema(type=openapi.TYPE_NUMBER, title="命中次数", description="命中次数"),
-                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                                  description="修改时间",
+                    'content': openapi.Schema(type=openapi.TYPE_STRING, max_length=4096, title="Part of content.",
+                                              description="Part of content."),
+                    'title': openapi.Schema(type=openapi.TYPE_STRING, max_length=256, title="Section title",
+                                            description="Section title"),
+                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is Available", description="Is Available"),
+                    'hit_num': openapi.Schema(type=openapi.TYPE_NUMBER, title="Number of fate.", description="Number of fate."),
+                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                                  description="Change time.",
                                                   default="1970-01-01 00:00:00"),
-                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                                  description="创建时间",
+                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                                  description="Creating time.",
                                                   default="1970-01-01 00:00:00"
                                                   ),
                 }
@@ -115,12 +115,12 @@ class ProblemApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='知识库id'),
+                                      description='The knowledge baseid'),
                     openapi.Parameter(name='content',
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=False,
-                                      description='问题')]
+                                      description='The problem')]
 
     class BatchCreate(ApiMixin):
         @staticmethod
@@ -135,7 +135,7 @@ class ProblemApi(ApiMixin):
     class Create(ApiMixin):
         @staticmethod
         def get_request_body_api():
-            return openapi.Schema(type=openapi.TYPE_STRING, description="问题文本")
+            return openapi.Schema(type=openapi.TYPE_STRING, description="The question text.")
 
         @staticmethod
         def get_request_params_api():
@@ -143,4 +143,4 @@ class ProblemApi(ApiMixin):
                                       in_=openapi.IN_PATH,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='知识库id')]
+                                      description='The knowledge baseid')]

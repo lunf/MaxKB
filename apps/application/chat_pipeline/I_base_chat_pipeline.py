@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： I_base_chat_pipeline.py
     @date：2024/1/9 17:25
     @desc:
@@ -103,7 +103,7 @@ class ParagraphPipelineModel:
 
 class IBaseChatPipelineStep:
     def __init__(self):
-        # 当前步骤上下文,用于存储当前步骤信息
+        # The current step is down.,Storage of current step information
         self.context = {}
 
     @abstractmethod
@@ -119,12 +119,12 @@ class IBaseChatPipelineStep:
     def run(self, manage):
         """
 
-        :param manage:      步骤管理器
-        :return: 执行结果
+        :param manage:      Steps Manager
+        :return: Execution Results
         """
         start_time = time.time()
         self.context['start_time'] = start_time
-        # 校验参数,
+        # The exam parameters.,
         self.valid_args(manage)
         self._run(manage)
         self.context['run_time'] = time.time() - start_time
@@ -137,7 +137,7 @@ class IBaseChatPipelineStep:
 
     def get_details(self, manage, **kwargs):
         """
-        运行详情
-        :return: 步骤详情
+        Operating details.
+        :return: Step details.
         """
         return None

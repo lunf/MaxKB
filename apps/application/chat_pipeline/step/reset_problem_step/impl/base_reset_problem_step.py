@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： base_reset_problem_step.py
     @date：2024/1/10 14:35
     @desc:
@@ -16,7 +16,7 @@ from application.models import ChatRecord
 from common.util.split_model import flat_map
 
 prompt = (
-    '()里面是用户问题,根据上下文回答揣测用户问题({question}) 要求: 输出一个补全问题,并且放在<data></data>标签中')
+    '()There is a user problem.,Responding to User Questions.({question}) Requests: Repeat a problem.,and placed<data></data>in the label.')
 
 
 class BaseResetProblemStep(IResetProblemStep):

@@ -12,10 +12,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SystemSetting',
             fields=[
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='修改时间')),
-                ('type', models.IntegerField(choices=[(0, '邮箱'), (1, '私钥秘钥')], default=0, primary_key=True, serialize=False, verbose_name='设置类型')),
-                ('meta', models.JSONField(default=dict, verbose_name='配置数据')),
+                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='Creating time.')),
+                ('update_time', models.DateTimeField(auto_now=True, verbose_name='Change time.')),
+                ('type', models.IntegerField(choices=[(0, 'The mailbox'), (1, 'Private key.')], default=0, primary_key=True, serialize=False, verbose_name='Set the type.')),
+                ('meta', models.JSONField(default=dict, verbose_name='Configuration of data')),
             ],
             options={
                 'db_table': 'system_setting',

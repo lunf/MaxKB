@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： listener_manage.py
     @date：2023/10/20 14:01
     @desc:
@@ -83,11 +83,11 @@ class ListenerManagement:
     @embedding_poxy
     def embedding_by_paragraph(paragraph_id):
         """
-        向量化段落 根据段落id
-        :param paragraph_id: 段落id
+        Quantitative Paragraphs According to paragraphid
+        :param paragraph_id: Paragraphsid
         :return: None
         """
-        max_kb.info(f"开始--->向量化段落:{paragraph_id}")
+        max_kb.info(f"Started--->Quantitative Paragraphs:{paragraph_id}")
         status = Status.success
         try:
             data_list = native_search(
@@ -96,26 +96,26 @@ class ListenerManagement:
                     'paragraph': QuerySet(Paragraph).filter(id=paragraph_id)},
                 select_string=get_file_content(
                     os.path.join(PROJECT_DIR, "apps", "common", 'sql', 'list_embedding_text.sql')))
-            # 删除段落
+            # Delete the paragraph.
             VectorStore.get_embedding_vector().delete_by_paragraph_id(paragraph_id)
-            # 批量向量化
+            # Mass to quantity.
             VectorStore.get_embedding_vector().batch_save(data_list)
         except Exception as e:
-            max_kb_error.error(f'向量化段落:{paragraph_id}出现错误{str(e)}{traceback.format_exc()}')
+            max_kb_error.error(f'Quantitative Paragraphs:{paragraph_id}There are errors.{str(e)}{traceback.format_exc()}')
             status = Status.error
         finally:
             QuerySet(Paragraph).filter(id=paragraph_id).update(**{'status': status})
-            max_kb.info(f'结束--->向量化段落:{paragraph_id}')
+            max_kb.info(f'ended--->Quantitative Paragraphs:{paragraph_id}')
 
     @staticmethod
     @embedding_poxy
     def embedding_by_document(document_id):
         """
-        向量化文档
-        :param document_id: 文档id
+        Quantitative Documents
+        :param document_id: Documentsid
         :return: None
         """
-        max_kb.info(f"开始--->向量化文档:{document_id}")
+        max_kb.info(f"Started--->Quantitative Documents:{document_id}")
         status = Status.success
         try:
             data_list = native_search(
@@ -125,37 +125,37 @@ class ListenerManagement:
                     'paragraph': QuerySet(Paragraph).filter(document_id=document_id)},
                 select_string=get_file_content(
                     os.path.join(PROJECT_DIR, "apps", "common", 'sql', 'list_embedding_text.sql')))
-            # 删除文档向量数据
+            # Delete the document data.
             VectorStore.get_embedding_vector().delete_by_document_id(document_id)
-            # 批量向量化
+            # Mass to quantity.
             VectorStore.get_embedding_vector().batch_save(data_list)
         except Exception as e:
-            max_kb_error.error(f'向量化文档:{document_id}出现错误{str(e)}{traceback.format_exc()}')
+            max_kb_error.error(f'Quantitative Documents:{document_id}There are errors.{str(e)}{traceback.format_exc()}')
             status = Status.error
         finally:
-            # 修改状态
+            # Modified state
             QuerySet(Document).filter(id=document_id).update(**{'status': status})
             QuerySet(Paragraph).filter(document_id=document_id).update(**{'status': status})
-            max_kb.info(f"结束--->向量化文档:{document_id}")
+            max_kb.info(f"ended--->Quantitative Documents:{document_id}")
 
     @staticmethod
     @embedding_poxy
     def embedding_by_dataset(dataset_id):
         """
-        向量化知识库
-        :param dataset_id: 知识库id
+        Quantitative Knowledge Base
+        :param dataset_id: The knowledge baseid
         :return: None
         """
-        max_kb.info(f"开始--->向量化数据集:{dataset_id}")
+        max_kb.info(f"Started--->to quantitative data.:{dataset_id}")
         try:
             document_list = QuerySet(Document).filter(dataset_id=dataset_id)
-            max_kb.info(f"数据集文档:{[d.name for d in document_list]}")
+            max_kb.info(f"Data collection documents:{[d.name for d in document_list]}")
             for document in document_list:
                 ListenerManagement.embedding_by_document(document.id)
         except Exception as e:
-            max_kb_error.error(f'向量化数据集:{dataset_id}出现错误{str(e)}{traceback.format_exc()}')
+            max_kb_error.error(f'to quantitative data.:{dataset_id}There are errors.{str(e)}{traceback.format_exc()}')
         finally:
-            max_kb.info(f"结束--->向量化数据集:{dataset_id}")
+            max_kb.info(f"ended--->to quantitative data.:{dataset_id}")
 
     @staticmethod
     def delete_embedding_by_document(document_id):
@@ -230,38 +230,38 @@ class ListenerManagement:
         EmbeddingModel.get_embedding_model()
 
     def run(self):
-        #  添加向量 根据问题id
+        #  Added quantity. according to the question.id
         ListenerManagement.embedding_by_problem_signal.connect(self.embedding_by_problem)
-        #  添加向量 根据段落id
+        #  Added quantity. According to paragraphid
         ListenerManagement.embedding_by_paragraph_signal.connect(self.embedding_by_paragraph)
-        #  添加向量 根据知识库id
+        #  Added quantity. According to the Knowledge Baseid
         ListenerManagement.embedding_by_dataset_signal.connect(
             self.embedding_by_dataset)
-        #  添加向量 根据文档id
+        #  Added quantity. According to the documentationid
         ListenerManagement.embedding_by_document_signal.connect(
             self.embedding_by_document)
-        # 删除 向量 根据文档
+        # removed The quantity According to the documentation
         ListenerManagement.delete_embedding_by_document_signal.connect(self.delete_embedding_by_document)
-        # 删除 向量 根据文档id列表
+        # removed The quantity According to the documentationidList of
         ListenerManagement.delete_embedding_by_document_list_signal.connect(self.delete_embedding_by_document_list)
-        # 删除 向量 根据知识库id
+        # removed The quantity According to the Knowledge Baseid
         ListenerManagement.delete_embedding_by_dataset_signal.connect(self.delete_embedding_by_dataset)
-        # 删除向量 根据段落id
+        # Remove the quantity. According to paragraphid
         ListenerManagement.delete_embedding_by_paragraph_signal.connect(
             self.delete_embedding_by_paragraph)
-        # 删除向量 根据资源id
+        # Remove the quantity. According to resourcesid
         ListenerManagement.delete_embedding_by_source_signal.connect(self.delete_embedding_by_source)
-        # 禁用段落
+        # Prohibited paragraphs
         ListenerManagement.disable_embedding_by_paragraph_signal.connect(self.disable_embedding_by_paragraph)
-        # 启动段落向量
+        # Start the section.
         ListenerManagement.enable_embedding_by_paragraph_signal.connect(self.enable_embedding_by_paragraph)
-        # 初始化向量化模型
+        # Initialization to Quantitative Models
         ListenerManagement.init_embedding_model_signal.connect(self.init_embedding_model)
-        # 同步web站点知识库
+        # synchronizedwebSite Knowledge Base
         ListenerManagement.sync_web_dataset_signal.connect(self.sync_web_dataset)
-        # 同步web站点 文档
+        # synchronizedwebThe site Documents
         ListenerManagement.sync_web_document_signal.connect(self.sync_web_document)
-        # 更新问题向量
+        # Update the problem.
         ListenerManagement.update_problem_signal.connect(self.update_problem)
         ListenerManagement.delete_embedding_by_source_ids_signal.connect(self.delete_embedding_by_source_ids)
         ListenerManagement.delete_embedding_by_dataset_id_list_signal.connect(self.delete_embedding_by_dataset_id_list)

@@ -1,7 +1,7 @@
 <template>
   <login-layout>
-    <LoginContainer subTitle="欢迎使用 MaxKB 智能知识库">
-      <h2 class="mb-24">忘记密码</h2>
+    <LoginContainer subTitle="Welcome to Use MaxKB Intelligent Knowledge Base">
+      <h2 class="mb-24">Forget the password.</h2>
       <el-form
         class="register-form"
         ref="resetPasswordFormRef"
@@ -14,7 +14,7 @@
               size="large"
               class="input-item"
               v-model="CheckEmailForm.email"
-              placeholder="请输入邮箱"
+              placeholder="Please enter the mailbox."
             >
             </el-input>
           </el-form-item>
@@ -26,7 +26,7 @@
                 size="large"
                 class="code-input"
                 v-model="CheckEmailForm.code"
-                placeholder="请输入验证码"
+                placeholder="Please enter the verification code."
               >
               </el-input>
 
@@ -37,13 +37,13 @@
                 @click="sendEmail"
                 :loading="loading"
               >
-                {{ isDisabled ? `重新发送（${time}s）` : '获取验证码' }}</el-button
+                {{ isDisabled ? `re-send（${time}s）` : 'Get the verification code.' }}</el-button
               >
             </div>
           </el-form-item>
         </div>
       </el-form>
-      <el-button size="large" type="primary" class="w-full" @click="checkCode">立即验证</el-button>
+      <el-button size="large" type="primary" class="w-full" @click="checkCode">Verify immediately.</el-button>
       <div class="operate-container mt-12">
         <el-button
           class="register"
@@ -52,7 +52,7 @@
           type="primary"
           icon="ArrowLeft"
         >
-          返回登录
+          Return to Registration.
         </el-button>
       </div>
     </LoginContainer>
@@ -76,12 +76,12 @@ const CheckEmailForm = ref<CheckCodeRequest>({
 const resetPasswordFormRef = ref<FormInstance>()
 const rules = ref<FormRules<CheckCodeRequest>>({
   email: [
-    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    { required: true, message: 'Please enter the mailbox.', trigger: 'blur' },
     {
       validator: (rule, value, callback) => {
         const emailRegExp = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
         if (!emailRegExp.test(value) && value != '') {
-          callback(new Error('请输入有效邮箱格式！'))
+          callback(new Error('Please enter the valid mailbox format.！'))
         } else {
           callback()
         }
@@ -89,7 +89,7 @@ const rules = ref<FormRules<CheckCodeRequest>>({
       trigger: 'blur'
     }
   ],
-  code: [{ required: true, message: '请输入验证码' }]
+  code: [{ required: true, message: 'Please enter the verification code.' }]
 })
 const loading = ref<boolean>(false)
 const isDisabled = ref<boolean>(false)
@@ -102,13 +102,13 @@ const checkCode = () => {
     .then(() => router.push({ name: 'reset_password', params: CheckEmailForm.value }))
 }
 /**
- * 发送验证码
+ * Send the verification code.
  */
 const sendEmail = () => {
   resetPasswordFormRef.value?.validateField('email', (v: boolean) => {
     if (v) {
       UserApi.sendEmit(CheckEmailForm.value.email, 'reset_password', loading).then(() => {
-        MsgSuccess('发送验证码成功')
+        MsgSuccess('Sending verification code successfully.')
         isDisabled.value = true
         handleTimeChange()
       })

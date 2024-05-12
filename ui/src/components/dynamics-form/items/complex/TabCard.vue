@@ -51,7 +51,7 @@ const render_data = () => {
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-// 校验实例对象
+// Examples of objects.
 const dynamicsFormRef = ref<Array<InstanceType<typeof DynamicsForm>>>([])
 
 const _data = computed<Array<any>>({
@@ -76,7 +76,7 @@ const tabs_label = computed(() => {
   return props_info.value.tabs_label ? props_info.value.tabs_label : 'label'
 })
 /**
- * 组件样式
+ * The component style.
  */
 const formStyle = computed(() => {
   return props_info.value.form_style ? props_info.value.form_style : {}
@@ -91,7 +91,7 @@ const attr = computed(() => {
 const activeTab = ref(0)
 
 /**
- * 校验方法
+ * Method of testing.
  */
 function validate() {
   return Promise.all(dynamicsFormRef.value.map((item) => item.validate()))

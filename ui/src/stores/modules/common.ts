@@ -10,7 +10,7 @@ const useCommonStore = defineStore({
   id: 'common',
   state: (): commonTypes => ({
     breadcrumb: null,
-    // 搜索和分页缓存
+    // Search and page cache
     paginationConfig: {},
     search: {}
   }),

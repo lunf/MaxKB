@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： common.py
     @date：2023/10/16 16:42
     @desc:
@@ -33,10 +33,10 @@ def query_params_to_single_dict(query_params: Dict):
 
 def get_exec_method(clazz_: str, method_: str):
     """
-    根据 class 和method函数 获取执行函数
-    :param clazz_:   class 字符串
-    :param method_:  执行函数
-    :return: 执行函数
+    based on class andmethodfunctions Obtaining Execution Functions
+    :param clazz_:   class The characters.
+    :param method_:  Execution of functions.
+    :return: Execution of functions.
     """
     clazz_split = clazz_.split('.')
     clazz_name = clazz_split[-1]

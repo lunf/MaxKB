@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 """
-配置分类：
-1. Django使用的配置文件，写到settings中
-2. 程序需要, 用户不需要更改的写到settings中
-3. 程序需要, 用户需要更改的写到本config中
+Configuration of classification：
+1. DjangoProfiles used，Written bysettingsin
+2. The program needs, Users do not need any changes to write.settingsin
+3. The program needs, Users need to change the text.configin
 """
 import errno
 import logging
@@ -37,7 +37,7 @@ def import_string(dotted_path):
 
 
 def is_absolute_uri(uri):
-    """ 判断一个uri是否是绝对地址 """
+    """ Judge one.uriIs it an absolute address? """
     if not isinstance(uri, str):
         return False
 
@@ -49,7 +49,7 @@ def is_absolute_uri(uri):
 
 
 def build_absolute_uri(base, uri):
-    """ 构建绝对uri地址 """
+    """ Building AbsoluteuriAddressed """
     if uri is None:
         return base
 
@@ -74,13 +74,14 @@ class DoesNotExist(Exception):
 
 class Config(dict):
     defaults = {
-        # 数据库相关配置
-        "DB_HOST": "",
-        "DB_PORT": "",
-        "DB_USER": "",
-        "DB_PASSWORD": "",
-        "DB_ENGINE": "django.db.backends.postgresql_psycopg2",
-        # 邮件相关配置
+        # Configuration of the database
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+        "NAME": "maxkb",
+        "USER": "root",
+        "PASSWORD": "testpwd",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        # Post Related Configuration
         "EMAIL_ADDRESS": "",
         "EMAIL_USE_TLS": False,
         "EMAIL_USE_SSL": True,
@@ -88,11 +89,11 @@ class Config(dict):
         "EMAIL_PORT": 465,
         "EMAIL_HOST_USER": "",
         "EMAIL_HOST_PASSWORD": "",
-        # 向量模型
-        "EMBEDDING_MODEL_NAME": "shibing624/text2vec-base-chinese",
+        # Models of Veto
+        "EMBEDDING_MODEL_NAME": "sentence-transformers/all-MiniLM-L6-v2",
         "EMBEDDING_DEVICE": "cpu",
         "EMBEDDING_MODEL_PATH": os.path.join(PROJECT_DIR, 'models'),
-        # 向量库配置
+        # Configuration to the quantum.
         "VECTOR_STORE_NAME": 'pg_vector'
 
     }

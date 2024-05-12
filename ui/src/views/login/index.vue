@@ -1,7 +1,7 @@
 <template>
   <login-layout v-loading="loading">
-    <LoginContainer subTitle="欢迎使用 MaxKB 智能知识库">
-      <h2 class="mb-24">普通登录</h2>
+    <LoginContainer subTitle="Welcome to Use MaxKB Intelligent Knowledge Base">
+      <h2 class="mb-24">Regular registration.</h2>
       <el-form
         class="login-form"
         :rules="rules"
@@ -15,7 +15,7 @@
               size="large"
               class="input-item"
               v-model="loginForm.username"
-              placeholder="请输入用户名"
+              placeholder="Please enter the user name."
             >
             </el-input>
           </el-form-item>
@@ -27,17 +27,17 @@
               size="large"
               class="input-item"
               v-model="loginForm.password"
-              placeholder="请输入密码"
+              placeholder="Please enter the password."
               show-password
             >
             </el-input>
           </el-form-item>
         </div>
       </el-form>
-      <el-button size="large" type="primary" class="w-full" @click="login">登录</el-button>
+      <el-button size="large" type="primary" class="w-full" @click="login">Registered</el-button>
       <div class="operate-container flex-between mt-12">
         <!-- <el-button class="register" @click="router.push('/register')" link type="primary">
-          注册
+          Registered
         </el-button> -->
         <el-button
           class="forgot-password"
@@ -45,7 +45,7 @@
           link
           type="primary"
         >
-          忘记密码?
+          Forget the password.?
         </el-button>
       </div>
     </LoginContainer>
@@ -70,14 +70,14 @@ const rules = ref<FormRules<LoginRequest>>({
   username: [
     {
       required: true,
-      message: '请输入用户名',
+      message: 'Please enter the user name.',
       trigger: 'blur'
     }
   ],
   password: [
     {
       required: true,
-      message: '请输入密码',
+      message: 'Please enter the password.',
       trigger: 'blur'
     }
   ]

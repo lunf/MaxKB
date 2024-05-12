@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： single_select_field.py
     @date：2023/10/31 18:00
     @desc:
@@ -13,7 +13,7 @@ from common.forms.base_field import TriggerType, BaseExecField
 
 class SingleSelect(BaseExecField):
     """
-    下拉单选
+    Lower Choice
     """
 
     def __init__(self,

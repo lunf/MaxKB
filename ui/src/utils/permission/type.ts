@@ -1,5 +1,5 @@
 /**
- * 角色对象
+ * The role objects
  */
 export class Role {
   role: string
@@ -9,7 +9,7 @@ export class Role {
   }
 }
 /**
- * 权限对象
+ * Authority Objects
  */
 export class Permission {
   permission: string
@@ -19,7 +19,7 @@ export class Permission {
   }
 }
 /**
- * 复杂权限对象
+ * Complex authority objects
  */
 export class ComplexPermission {
   roleList: Array<string>

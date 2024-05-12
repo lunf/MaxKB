@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： tokenizer_manage_config.py
     @date：2024/4/28 10:17
     @desc:

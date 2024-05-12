@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： text_split_handle.py
     @date：2024/3/27 18:19
     @desc:

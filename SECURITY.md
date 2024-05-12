@@ -1,11 +1,11 @@
-# 安全说明
+# Safety Explanation
 
-如果您发现安全问题，请直接联系我们：
+If you find a security problem.，Please contact us directly.：
 
 - support@fit2cloud.com
 - 400-052-0755
 
-感谢您的支持！
+Thank you for your support.！
 
 # Security Policy
 

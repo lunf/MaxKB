@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： dataset.py
     @date：2023/9/21 15:52
     @desc:
@@ -28,11 +28,11 @@ class Dataset(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="同步Web站点知识库",
-                             operation_id="同步Web站点知识库",
+        @swagger_auto_schema(operation_summary="synchronizedWebSite Knowledge Base",
+                             operation_id="synchronizedWebSite Knowledge Base",
                              manual_parameters=DataSetSerializers.SyncWeb.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库"])
+                             tags=["The knowledge base"])
         @has_permissions(ViewPermission(
             [RoleConstants.ADMIN, RoleConstants.USER],
             [lambda r, keywords: Permission(group=Group.DATASET, operate=Operate.MANAGE,
@@ -48,12 +48,12 @@ class Dataset(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="创建web站点知识库",
-                             operation_id="创建web站点知识库",
+        @swagger_auto_schema(operation_summary="CreatedwebSite Knowledge Base",
+                             operation_id="CreatedwebSite Knowledge Base",
                              request_body=DataSetSerializers.Create.CreateWebSerializers.get_request_body_api(),
                              responses=get_api_response(
                                  DataSetSerializers.Create.CreateWebSerializers.get_response_body_api()),
-                             tags=["知识库"]
+                             tags=["The knowledge base"]
                              )
         @has_permissions(PermissionConstants.DATASET_CREATE, compare=CompareConstants.AND)
         def post(self, request: Request):
@@ -63,22 +63,22 @@ class Dataset(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取知识库可用应用列表",
-                             operation_id="获取知识库可用应用列表",
+        @swagger_auto_schema(operation_summary="Available Information Base Applications List",
+                             operation_id="Available Information Base Applications List",
                              manual_parameters=DataSetSerializers.Application.get_request_params_api(),
                              responses=result.get_api_array_response(
                                  DataSetSerializers.Application.get_response_body_api()),
-                             tags=["知识库"])
+                             tags=["The knowledge base"])
         def get(self, request: Request, dataset_id: str):
             return result.success(DataSetSerializers.Operate(
                 data={'id': dataset_id, 'user_id': str(request.user.id)}).list_application())
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="获取知识库列表",
-                         operation_id="获取知识库列表",
+    @swagger_auto_schema(operation_summary="Get a Knowledge Base List",
+                         operation_id="Get a Knowledge Base List",
                          manual_parameters=DataSetSerializers.Query.get_request_params_api(),
                          responses=result.get_api_array_response(DataSetSerializers.Query.get_response_body_api()),
-                         tags=["知识库"])
+                         tags=["The knowledge base"])
     @has_permissions(PermissionConstants.DATASET_READ, compare=CompareConstants.AND)
     def get(self, request: Request):
         d = DataSetSerializers.Query(data={**request.query_params, 'user_id': str(request.user.id)})
@@ -86,11 +86,11 @@ class Dataset(APIView):
         return result.success(d.list())
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="创建知识库",
-                         operation_id="创建知识库",
+    @swagger_auto_schema(operation_summary="Creating a Knowledge Base",
+                         operation_id="Creating a Knowledge Base",
                          request_body=DataSetSerializers.Create.get_request_body_api(),
                          responses=get_api_response(DataSetSerializers.Create.get_response_body_api()),
-                         tags=["知识库"]
+                         tags=["The knowledge base"]
                          )
     @has_permissions(PermissionConstants.DATASET_CREATE, compare=CompareConstants.AND)
     def post(self, request: Request):
@@ -100,10 +100,10 @@ class Dataset(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods="GET", detail=False)
-        @swagger_auto_schema(operation_summary="命中测试列表", operation_id="命中测试列表",
+        @swagger_auto_schema(operation_summary="Test list of fate", operation_id="Test list of fate",
                              manual_parameters=CommonApi.HitTestApi.get_request_params_api(),
                              responses=result.get_api_array_response(CommonApi.HitTestApi.get_response_body_api()),
-                             tags=["知识库"])
+                             tags=["The knowledge base"])
         @has_permissions(lambda r, keywords: Permission(group=Group.DATASET, operate=Operate.USE,
                                                         dynamic_tag=keywords.get('dataset_id')))
         def get(self, request: Request, dataset_id: str):
@@ -119,10 +119,10 @@ class Dataset(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods="DELETE", detail=False)
-        @swagger_auto_schema(operation_summary="删除知识库", operation_id="删除知识库",
+        @swagger_auto_schema(operation_summary="Remove the Knowledge Base", operation_id="Remove the Knowledge Base",
                              manual_parameters=DataSetSerializers.Operate.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库"])
+                             tags=["The knowledge base"])
         @has_permissions(lambda r, keywords: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                                         dynamic_tag=keywords.get('dataset_id')),
                          lambda r, k: Permission(group=Group.DATASET, operate=Operate.DELETE,
@@ -132,10 +132,10 @@ class Dataset(APIView):
             return result.success(operate.delete())
 
         @action(methods="GET", detail=False)
-        @swagger_auto_schema(operation_summary="查询知识库详情根据知识库id", operation_id="查询知识库详情根据知识库id",
+        @swagger_auto_schema(operation_summary="Information based on the knowledge base.id", operation_id="Information based on the knowledge base.id",
                              manual_parameters=DataSetSerializers.Operate.get_request_params_api(),
                              responses=get_api_response(DataSetSerializers.Operate.get_response_body_api()),
-                             tags=["知识库"])
+                             tags=["The knowledge base"])
         @has_permissions(lambda r, keywords: Permission(group=Group.DATASET, operate=Operate.USE,
                                                         dynamic_tag=keywords.get('dataset_id')))
         def get(self, request: Request, dataset_id: str):
@@ -143,11 +143,11 @@ class Dataset(APIView):
                 user_id=request.user.id))
 
         @action(methods="PUT", detail=False)
-        @swagger_auto_schema(operation_summary="修改知识库信息", operation_id="修改知识库信息",
+        @swagger_auto_schema(operation_summary="Modification of Knowledge Base Information", operation_id="Modification of Knowledge Base Information",
                              manual_parameters=DataSetSerializers.Operate.get_request_params_api(),
                              request_body=DataSetSerializers.Operate.get_request_body_api(),
                              responses=get_api_response(DataSetSerializers.Operate.get_response_body_api()),
-                             tags=["知识库"]
+                             tags=["The knowledge base"]
                              )
         @has_permissions(lambda r, keywords: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                                         dynamic_tag=keywords.get('dataset_id')))
@@ -160,12 +160,12 @@ class Dataset(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取知识库分页列表",
-                             operation_id="获取知识库分页列表",
+        @swagger_auto_schema(operation_summary="Get the Knowledge Base Page List",
+                             operation_id="Get the Knowledge Base Page List",
                              manual_parameters=get_page_request_params(
                                  DataSetSerializers.Query.get_request_params_api()),
                              responses=get_page_api_response(DataSetSerializers.Query.get_response_body_api()),
-                             tags=["知识库"]
+                             tags=["The knowledge base"]
                              )
         @has_permissions(PermissionConstants.DATASET_READ, compare=CompareConstants.AND)
         def get(self, request: Request, current_page, page_size):

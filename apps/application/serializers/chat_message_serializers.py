@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： chat_message_serializers.py
     @date：2023/11/14 13:51
     @desc:
@@ -44,11 +44,11 @@ class ChatInfo:
                  exclude_document_id_list: list[str],
                  application: Application):
         """
-        :param chat_id:                     对话id
-        :param chat_model:                  对话模型
-        :param dataset_id_list:             数据集列表
-        :param exclude_document_id_list:    排除的文档
-        :param application:                 应用信息
+        :param chat_id:                     Dialogueid
+        :param chat_model:                  The Dialogue Model
+        :param dataset_id_list:             List of data sets
+        :param exclude_document_id_list:    Excluded documents
+        :param application:                 Application of information
         """
         self.chat_id = chat_id
         self.application = application
@@ -94,14 +94,14 @@ class ChatInfo:
                 'client_type': client_type}
 
     def append_chat_record(self, chat_record: ChatRecord, client_id=None):
-        # 存入缓存中
+        # Inserted in cache.
         self.chat_record_list.append(chat_record)
         if self.application.id is not None:
-            # 插入数据库
+            # Insert the database.
             if not QuerySet(Chat).filter(id=self.chat_id).exists():
                 Chat(id=self.chat_id, application_id=self.application.id, abstract=chat_record.problem_text,
                      client_id=client_id).save()
-            # 插入会话记录
+            # Enter the meeting record.
             chat_record.save()
 
 
@@ -129,7 +129,7 @@ def get_post_handler(chat_info: ChatInfo):
                                      run_time=manage.context['run_time'],
                                      index=len(chat_info.chat_record_list) + 1)
             chat_info.append_chat_record(chat_record, client_id)
-            # 重新设置缓存
+            # Reset the cache.
             chat_cache.set(chat_id,
                            chat_info, timeout=60 * 30)
 
@@ -137,13 +137,13 @@ def get_post_handler(chat_info: ChatInfo):
 
 
 class ChatMessageSerializer(serializers.Serializer):
-    chat_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("对话id"))
-    message = serializers.CharField(required=True, error_messages=ErrMessage.char("用户问题"), max_length=1024)
-    stream = serializers.BooleanField(required=True, error_messages=ErrMessage.char("是否流式回答"))
-    re_chat = serializers.BooleanField(required=True, error_messages=ErrMessage.char("是否重新回答"))
-    application_id = serializers.UUIDField(required=False, allow_null=True, error_messages=ErrMessage.uuid("应用id"))
-    client_id = serializers.CharField(required=True, error_messages=ErrMessage.char("客户端id"))
-    client_type = serializers.CharField(required=True, error_messages=ErrMessage.char("客户端类型"))
+    chat_id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("Dialogueid"))
+    message = serializers.CharField(required=True, error_messages=ErrMessage.char("User Problems"), max_length=1024)
+    stream = serializers.BooleanField(required=True, error_messages=ErrMessage.char("Are the fluid answers?"))
+    re_chat = serializers.BooleanField(required=True, error_messages=ErrMessage.char("Reacting again."))
+    application_id = serializers.UUIDField(required=False, allow_null=True, error_messages=ErrMessage.uuid("Applicationsid"))
+    client_id = serializers.CharField(required=True, error_messages=ErrMessage.char("The clientid"))
+    client_type = serializers.CharField(required=True, error_messages=ErrMessage.char("Type of client"))
 
     def is_valid(self, *, raise_exception=False):
         super().is_valid(raise_exception=True)
@@ -159,7 +159,7 @@ class ChatMessageSerializer(serializers.Serializer):
             application_access_token = QuerySet(ApplicationAccessToken).filter(
                 application_id=self.data.get('application_id')).first()
             if application_access_token.access_num <= access_client.intraday_access_num:
-                raise AppChatNumOutOfBoundsFailed(1002, "访问次数超过今日访问量")
+                raise AppChatNumOutOfBoundsFailed(1002, "Number of visits greater than today")
         chat_id = self.data.get('chat_id')
         chat_info: ChatInfo = chat_cache.get(chat_id)
         if chat_info is None:
@@ -173,9 +173,9 @@ class ChatMessageSerializer(serializers.Serializer):
         if model is None:
             return chat_info
         if model.status == Status.ERROR:
-            raise AppApiException(500, "当前模型不可用")
+            raise AppApiException(500, "Current models are not available.")
         if model.status == Status.DOWNLOAD:
-            raise AppApiException(500, "模型正在下载中,请稍后再发起对话")
+            raise AppApiException(500, "The model is being downloaded.,Please start the conversation later.")
         return chat_info
 
     def chat(self):
@@ -187,16 +187,16 @@ class ChatMessageSerializer(serializers.Serializer):
         client_type = self.data.get('client_type')
         chat_info = self.is_valid(raise_exception=True)
         pipeline_manage_builder = PipelineManage.builder()
-        # 如果开启了问题优化,则添加上问题优化步骤
+        # If the problem is optimized.,Add the problem optimization steps.
         if chat_info.application.problem_optimization:
             pipeline_manage_builder.append_step(BaseResetProblemStep)
-        # 构建流水线管理器
+        # Building a water flow manager.
         pipeline_message = (pipeline_manage_builder.append_step(BaseSearchDatasetStep)
                             .append_step(BaseGenerateHumanMessageStep)
                             .append_step(BaseChatStep)
                             .build())
         exclude_paragraph_id_list = []
-        # 相同问题是否需要排除已经查询到的段落
+        # The same question is whether it is necessary to exclude the paragraphs that have been questioned.
         if re_chat:
             paragraph_id_list = flat_map(
                 [[paragraph.get('id') for paragraph in chat_record.details['search_step']['paragraph_list']] for
@@ -204,10 +204,10 @@ class ChatMessageSerializer(serializers.Serializer):
                  chat_record.problem_text == message and 'search_step' in chat_record.details and 'paragraph_list' in
                  chat_record.details['search_step']])
             exclude_paragraph_id_list = list(set(paragraph_id_list))
-        # 构建运行参数
+        # Construction of operating parameters
         params = chat_info.to_pipeline_manage_params(message, get_post_handler(chat_info), exclude_paragraph_id_list,
                                                      client_id, client_type, stream)
-        # 运行流水线作业
+        # Operating the flow of water.
         pipeline_message.run(params)
         return pipeline_message.context['chat_result']
 
@@ -215,24 +215,24 @@ class ChatMessageSerializer(serializers.Serializer):
     def re_open_chat(chat_id: str):
         chat = QuerySet(Chat).filter(id=chat_id).first()
         if chat is None:
-            raise AppApiException(500, "会话不存在")
+            raise AppApiException(500, "There is no meeting.")
         application = QuerySet(Application).filter(id=chat.application_id).first()
         if application is None:
-            raise AppApiException(500, "应用不存在")
+            raise AppApiException(500, "Applications do not exist.")
         model = QuerySet(Model).filter(id=application.model_id).first()
         chat_model = None
         if model is not None:
-            # 对话模型
+            # The Dialogue Model
             chat_model = ModelProvideConstants[model.provider].value.get_model(model.model_type, model.model_name,
                                                                                json.loads(
                                                                                    rsa_long_decrypt(model.credential)),
                                                                                streaming=True)
-        # 数据集id列表
+        # The data collectionidList of
         dataset_id_list = [str(row.dataset_id) for row in
                            QuerySet(ApplicationDatasetMapping).filter(
                                application_id=application.id)]
 
-        # 需要排除的文档
+        # Documents required to be removed.
         exclude_document_id_list = [str(document.id) for document in
                                     QuerySet(Document).filter(
                                         dataset_id__in=dataset_id_list,

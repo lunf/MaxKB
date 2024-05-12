@@ -1,7 +1,7 @@
 <template>
   <login-layout>
-    <LoginContainer subTitle="欢迎使用 MaxKB 智能知识库">
-      <h2 class="mb-24">修改密码</h2>
+    <LoginContainer subTitle="Welcome to Use MaxKB Intelligent Knowledge Base">
+      <h2 class="mb-24">Modify the password.</h2>
       <el-form
         class="reset-password-form"
         ref="resetPasswordFormRef"
@@ -15,7 +15,7 @@
               size="large"
               class="input-item"
               v-model="resetPasswordForm.password"
-              placeholder="请输入密码"
+              placeholder="Please enter the password."
               show-password
             >
             </el-input>
@@ -28,7 +28,7 @@
               size="large"
               class="input-item"
               v-model="resetPasswordForm.re_password"
-              placeholder="请输入确认密码"
+              placeholder="Please enter the confirmation password."
               show-password
             >
             </el-input>
@@ -36,7 +36,7 @@
         </div>
       </el-form>
       <el-button size="large" type="primary" class="w-full" @click="resetPassword"
-        >确认修改</el-button
+        >Confirm the modification.</el-button
       >
       <div class="operate-container mt-12">
         <el-button
@@ -47,7 +47,7 @@
           type="primary"
           icon="ArrowLeft"
         >
-          返回登录
+          Return to Registration.
         </el-button>
       </div>
     </LoginContainer>
@@ -85,32 +85,32 @@ const rules = ref<FormRules<ResetPasswordRequest>>({
   password: [
     {
       required: true,
-      message: '请输入密码',
+      message: 'Please enter the password.',
       trigger: 'blur'
     },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     }
   ],
   re_password: [
     {
       required: true,
-      message: '请输入确认密码',
+      message: 'Please enter the confirmation password.',
       trigger: 'blur'
     },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     },
     {
       validator: (rule, value, callback) => {
         if (resetPasswordForm.value.password != resetPasswordForm.value.re_password) {
-          callback(new Error('密码不一致'))
+          callback(new Error('The code is incompatible.'))
         } else {
           callback()
         }
@@ -126,7 +126,7 @@ const resetPassword = () => {
     ?.validate()
     .then(() => UserApi.resetPassword(resetPasswordForm.value, loading))
     .then(() => {
-      MsgSuccess('修改密码成功')
+      MsgSuccess('Successfully modified the password.')
       router.push({ name: 'login' })
     })
 }

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： users.py
     @date：2023/9/4 10:09
     @desc:
@@ -23,23 +23,23 @@ __all__ = ["User", "password_encrypt", 'get_user_dynamics_permission']
 
 def password_encrypt(raw_password):
     """
-    密码 md5加密
-    :param raw_password: 密码
-    :return:  加密后密码
+    The code md5Cryptocurrency
+    :param raw_password: The code
+    :return:  Password after encryption.
     """
-    md5 = hashlib.md5()  # 2，实例化md5() 方法
-    md5.update(raw_password.encode())  # 3，对字符串的字节类型加密
-    result = md5.hexdigest()  # 4，加密
+    md5 = hashlib.md5()  # 2，Examplesmd5() Method
+    md5.update(raw_password.encode())  # 3，Type of byte encryption of the string.
+    result = md5.hexdigest()  # 4，Cryptocurrency
     return result
 
 
 def to_dynamics_permission(group_type: str, operate: list[str], dynamic_tag: str):
     """
-    转换为权限对象
-    :param group_type:  分组类型
-    :param operate:     操作
-    :param dynamic_tag: 标记
-    :return: 权限列表
+    Conversion to Authority Objects
+    :param group_type:  Type of grouping
+    :param operate:     Operations
+    :param dynamic_tag: Signed
+    :return: List of permissions
     """
     return [Permission(group=Group[group_type], operate=Operate[o], dynamic_tag=dynamic_tag)
             for o in operate]
@@ -47,9 +47,9 @@ def to_dynamics_permission(group_type: str, operate: list[str], dynamic_tag: str
 
 def get_user_dynamics_permission(user_id: str):
     """
-    获取 应用和数据集权限
-    :param user_id: 用户id
-    :return: 用户 应用和数据集权限
+    obtained Applications and data set permissions
+    :param user_id: Usersid
+    :return: Users Applications and data set permissions
     """
     member_permission_list = select_list(
         get_file_content(os.path.join(PROJECT_DIR, "apps", "setting", 'sql', 'get_user_permission.sql')),
@@ -62,16 +62,16 @@ def get_user_dynamics_permission(user_id: str):
 
 
 class User(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
-    email = models.EmailField(unique=True, verbose_name="邮箱")
-    phone = models.CharField(max_length=20, verbose_name="电话", default="")
-    nick_name = models.CharField(max_length=150, verbose_name="昵称", default="")
-    username = models.CharField(max_length=150, unique=True, verbose_name="用户名")
-    password = models.CharField(max_length=150, verbose_name="密码")
-    role = models.CharField(max_length=150, verbose_name="角色")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
+    email = models.EmailField(unique=True, verbose_name="The mailbox")
+    phone = models.CharField(max_length=20, verbose_name="The phone", default="")
+    nick_name = models.CharField(max_length=150, verbose_name="The name", default="")
+    username = models.CharField(max_length=150, unique=True, verbose_name="User Name")
+    password = models.CharField(max_length=150, verbose_name="The code")
+    role = models.CharField(max_length=150, verbose_name="The role")
     is_active = models.BooleanField(default=True)
-    create_time = models.DateTimeField(verbose_name="创建时间", auto_now_add=True, null=True)
-    update_time = models.DateTimeField(verbose_name="修改时间", auto_now=True, null=True)
+    create_time = models.DateTimeField(verbose_name="Creating time.", auto_now_add=True, null=True)
+    update_time = models.DateTimeField(verbose_name="Change time.", auto_now=True, null=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []

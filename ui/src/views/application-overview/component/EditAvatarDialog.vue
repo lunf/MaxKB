@@ -1,9 +1,9 @@
 <template>
-  <el-dialog title="设置 Logo" v-model="dialogVisible">
+  <el-dialog title="set up Logo" v-model="dialogVisible">
     <el-radio-group v-model="radioType" class="radio-block mb-16">
       <div>
         <el-radio value="default">
-          <p>默认 Logo</p>
+          <p>presumed Logo</p>
           <AppAvatar
             v-if="detail?.name"
             :name="detail?.name"
@@ -16,7 +16,7 @@
       </div>
       <div class="mt-8">
         <el-radio value="custom">
-          <p>自定义上传</p>
+          <p>Customized upload</p>
           <div class="flex mt-8">
             <AppAvatar
               v-if="fileURL"
@@ -35,19 +35,19 @@
               accept="image/*"
               :on-change="onChange"
             >
-              <el-button icon="Upload" :disabled="radioType !== 'custom'">上传</el-button>
+              <el-button icon="Upload" :disabled="radioType !== 'custom'">uploaded</el-button>
             </el-upload>
           </div>
           <div class="el-upload__tip info mt-16">
-            建议尺寸 32*32，支持 ico、png , 大小不超过200KB
+            recommended size. 32*32，supported ico、png , The size does not exceed200KB
           </div>
         </el-radio>
       </div>
     </el-radio-group>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
-        <el-button type="primary" @click="submit" :loading="loading"> 保存 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button type="primary" @click="submit" :loading="loading"> preserved </el-button>
       </span>
     </template>
   </el-dialog>
@@ -65,7 +65,7 @@ const { application } = useStore()
 
 const route = useRoute()
 const {
-  params: { id } //应用id
+  params: { id } //Applicationsid
 } = route
 
 const emit = defineEmits(['refresh'])
@@ -93,10 +93,10 @@ const open = (data: any) => {
 }
 
 const onChange = (file: any) => {
-  //1、判断文件大小是否合法，文件限制不能大于 200KB
+  //1、Deciding whether the file size is legal.，The limitation of documents cannot be greater than 200KB
   const isLimit = file?.size / 1024 < 200
   if (!isLimit) {
-    MsgError('文件大小超过 200KB')
+    MsgError('The file is greater. 200KB')
     return false
   }
   iconFile.value = file
@@ -107,7 +107,7 @@ function submit() {
   if (radioType.value === 'default') {
     application.asyncPutApplication(id as string, { icon: defaultIcon }, loading).then((res) => {
       emit('refresh')
-      MsgSuccess('设置成功')
+      MsgSuccess('Setup Success')
       dialogVisible.value = false
     })
   } else if (radioType.value === 'custom' && iconFile.value) {
@@ -115,11 +115,11 @@ function submit() {
     fd.append('file', iconFile.value.raw)
     overviewApi.putAppIcon(id as string, fd, loading).then((res: any) => {
       emit('refresh')
-      MsgSuccess('设置成功')
+      MsgSuccess('Setup Success')
       dialogVisible.value = false
     })
   } else {
-    MsgError('请上传一张图片')
+    MsgError('Please upload a picture.')
   }
 }
 

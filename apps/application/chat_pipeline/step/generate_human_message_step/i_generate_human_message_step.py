@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： i_generate_human_message_step.py
     @date：2024/1/9 18:15
-    @desc: 生成对话模板
+    @desc: Create a dialogue template.
 """
 from abc import abstractmethod
 from typing import Type, List
@@ -22,25 +22,25 @@ from common.util.field_message import ErrMessage
 
 class IGenerateHumanMessageStep(IBaseChatPipelineStep):
     class InstanceSerializer(serializers.Serializer):
-        # 问题
-        problem_text = serializers.CharField(required=True, error_messages=ErrMessage.char("问题"))
-        # 段落列表
+        # The problem
+        problem_text = serializers.CharField(required=True, error_messages=ErrMessage.char("The problem"))
+        # List of paragraphs
         paragraph_list = serializers.ListField(child=InstanceField(model_type=ParagraphPipelineModel, required=True),
-                                               error_messages=ErrMessage.list("段落列表"))
-        # 历史对答
+                                               error_messages=ErrMessage.list("List of paragraphs"))
+        # History Answer
         history_chat_record = serializers.ListField(child=InstanceField(model_type=ChatRecord, required=True),
-                                                    error_messages=ErrMessage.list("历史对答"))
-        # 多轮对话数量
-        dialogue_number = serializers.IntegerField(required=True, error_messages=ErrMessage.integer("多轮对话数量"))
-        # 最大携带知识库段落长度
+                                                    error_messages=ErrMessage.list("History Answer"))
+        # The number of conversations.
+        dialogue_number = serializers.IntegerField(required=True, error_messages=ErrMessage.integer("The number of conversations."))
+        # Maximum carrying knowledge base paragraph length
         max_paragraph_char_number = serializers.IntegerField(required=True, error_messages=ErrMessage.integer(
-            "最大携带知识库段落长度"))
-        # 模板
-        prompt = serializers.CharField(required=True, error_messages=ErrMessage.char("提示词"))
-        # 补齐问题
-        padding_problem_text = serializers.CharField(required=False, error_messages=ErrMessage.char("补齐问题"))
-        # 未查询到引用分段
-        no_references_setting = NoReferencesSetting(required=True, error_messages=ErrMessage.base("无引用分段设置"))
+            "Maximum carrying knowledge base paragraph length"))
+        # The template
+        prompt = serializers.CharField(required=True, error_messages=ErrMessage.char("Suggestions"))
+        # Complete the problem.
+        padding_problem_text = serializers.CharField(required=False, error_messages=ErrMessage.char("Complete the problem."))
+        # No queries for reference.
+        no_references_setting = NoReferencesSetting(required=True, error_messages=ErrMessage.base("No reference to setup."))
 
     def get_step_serializer(self, manage: PipelineManage) -> Type[serializers.Serializer]:
         return self.InstanceSerializer
@@ -62,15 +62,15 @@ class IGenerateHumanMessageStep(IBaseChatPipelineStep):
                 **kwargs) -> List[BaseMessage]:
         """
 
-        :param problem_text:               原始问题文本
-        :param paragraph_list:             段落列表
-        :param history_chat_record:        历史对话记录
-        :param dialogue_number:            多轮对话数量
-        :param max_paragraph_char_number:  最大段落长度
-        :param prompt:                     模板
-        :param padding_problem_text        用户修改文本
-        :param kwargs:                     其他参数
-        :param no_references_setting:     无引用分段设置
+        :param problem_text:               Original question text.
+        :param paragraph_list:             List of paragraphs
+        :param history_chat_record:        History of Dialogue
+        :param dialogue_number:            The number of conversations.
+        :param max_paragraph_char_number:  The maximum length.
+        :param prompt:                     The template
+        :param padding_problem_text        Users modify text
+        :param kwargs:                     Other parameters
+        :param no_references_setting:     No reference to setup.
         :return:
         """
         pass

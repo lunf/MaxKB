@@ -8,8 +8,8 @@
     class="member-dialog"
   >
     <template #header="{ titleId, titleClass }">
-      <h4 :id="titleId" :class="titleClass">添加成员</h4>
-      <div class="dialog-sub-title">成员登录后可以访问到您授权的数据。</div>
+      <h4 :id="titleId" :class="titleClass">Adding Members</h4>
+      <div class="dialog-sub-title">Members can access the data authorized by you after logging in.。</div>
     </template>
 
     <el-form
@@ -20,8 +20,8 @@
       require-asterisk-position="right"
       @submit.prevent
     >
-      <el-form-item label="用户名/邮箱" prop="users">
-        <tags-input v-model:tags="memberForm.users" placeholder="请输入成员的用户名或邮箱" />
+      <el-form-item label="User Name/The mailbox" prop="users">
+        <tags-input v-model:tags="memberForm.users" placeholder="Please enter the member’s username or mailbox." />
         <!-- <el-select
           ref="SelectRemoteRef"
           class="custom-select-multiple"
@@ -30,8 +30,8 @@
           filterable
           remote
           reserve-keyword
-          placeholder="请输入成员的用户名或邮箱"
-          no-data-text="用户不存在"
+          placeholder="Please enter the member’s username or mailbox."
+          no-data-text="User does not exist."
           :remote-method="remoteMethod"
           :loading="loading"
           @change="changeSelectHandle"
@@ -47,9 +47,9 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
         <el-button type="primary" @click="submitMember(addMemberFormRef)" :loading="loading">
-          添加
+          Added
         </el-button>
       </span>
     </template>
@@ -81,7 +81,7 @@ const rules = ref<FormRules>({
     {
       type: 'array',
       required: true,
-      message: '请输入用户名/邮箱',
+      message: 'Please enter the user name./The mailbox',
       trigger: 'change'
     }
   ]
@@ -121,7 +121,7 @@ const submitMember = async (formEl: FormInstance | undefined) => {
       loading.value = true
       let idsArray = memberForm.value.users.map((obj: any) => obj.id)
       TeamApi.postCreatTeamMember(idsArray).then((res) => {
-        MsgSuccess('提交成功')
+        MsgSuccess('Submitted Success')
         emit('refresh', idsArray)
         dialogVisible.value = false
         loading.value = false

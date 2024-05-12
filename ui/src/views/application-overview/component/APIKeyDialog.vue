@@ -1,6 +1,6 @@
 <template>
   <el-dialog title="API Key" v-model="dialogVisible" width="800">
-    <el-button type="primary" class="mb-16" @click="createApiKey"> 创建 </el-button>
+    <el-button type="primary" class="mb-16" @click="createApiKey"> Created </el-button>
     <el-table :data="apiKey" class="mb-16" :loading="loading">
       <el-table-column prop="secret_key" label="API Key">
         <template #default="{ row }">
@@ -12,21 +12,21 @@
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="状态" width="60">
+      <el-table-column label="state of" width="60">
         <template #default="{ row }">
           <div @click.stop>
             <el-switch size="small" v-model="row.is_active" @change="changeState($event, row)" />
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="name" label="创建日期" width="170">
+      <el-table-column prop="name" label="Date of Creation" width="170">
         <template #default="{ row }">
           {{ datetimeFormat(row.create_time) }}
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="left" width="80">
+      <el-table-column label="Operations" align="left" width="80">
         <template #default="{ row }">
-          <el-tooltip effect="dark" content="删除" placement="top">
+          <el-tooltip effect="dark" content="removed" placement="top">
             <el-button type="primary" text @click="deleteApiKey(row)">
               <el-icon><Delete /></el-icon>
             </el-button>
@@ -64,16 +64,16 @@ watch(dialogVisible, (bool) => {
 
 function deleteApiKey(row: any) {
   MsgConfirm(
-    `是否删除API Key：${row.secret_key} ?`,
-    `删除后无法使用该 API Key 调用接口，请谨慎操作`,
+    `is removed.API Key：${row.secret_key} ?`,
+    `It cannot be used after deletion. API Key Calling the interface.，Please be careful.`,
     {
-      confirmButtonText: '删除',
+      confirmButtonText: 'removed',
       confirmButtonClass: 'danger'
     }
   )
     .then(() => {
       overviewApi.delAPIKey(id as string, row.id, loading).then(() => {
-        MsgSuccess('删除成功')
+        MsgSuccess('Remove Success')
         getApiKeyList()
       })
     })
@@ -84,7 +84,7 @@ function changeState(bool: Boolean, row: any) {
   const obj = {
     is_active: bool
   }
-  const str = bool ? '启用成功' : '禁用成功'
+  const str = bool ? 'Activate Success' : 'Prohibited success.'
   overviewApi.putAPIKey(id as string, row.id, obj, loading).then((res) => {
     MsgSuccess(str)
     getApiKeyList()

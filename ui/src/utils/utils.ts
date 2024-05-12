@@ -20,14 +20,14 @@ export function filesize(size: number) {
 }
 
 /*
-  随机id
+  randomlyid
 */
 export const randomId = function () {
   return Math.floor(Math.random() * 10000) + ''
 }
 
 /*
-  获取文件后缀
+  Obtaining the documents.
 */
 export function fileType(name: string) {
   const suffix = name.split('.')
@@ -35,34 +35,34 @@ export function fileType(name: string) {
 }
 
 /*
-  获得文件对应图片
+  Obtaining documents matching images
 */
 export function getImgUrl(name: string) {
   const type = isRightType(name) ? fileType(name) : 'unknow'
   return new URL(`../assets/${type}-icon.svg`, import.meta.url).href
 }
-// 是否是白名单后缀
+// Is it a white list?
 export function isRightType(name: string) {
   const typeList = ['txt', 'pdf', 'docx', 'csv', 'md']
   return typeList.includes(fileType(name))
 }
 
 /*
-  从指定数组中过滤出对应的对象
+  Filter the corresponding object from the specified number group.
 */
 export function relatedObject(list: any, val: any, attr: string) {
   const filterData: any = list.filter((item: any) => item[attr] === val)?.[0]
   return filterData || null
 }
 
-// 排序
+// ordered
 export function arraySort(list: Array<string>, property: any, desc?: boolean) {
   return list.sort((a: any, b: any) => {
     return desc ? b[property] - a[property] : a[property] - b[property]
   })
 }
 
-// 判断对象里所有属性全部为空
+// All properties in the object are empty.
 export function isAllPropertiesEmpty(obj: object) {
   return Object.values(obj).every(
     (value) =>
@@ -70,14 +70,14 @@ export function isAllPropertiesEmpty(obj: object) {
   )
 }
 
-// 数组对象中某一属性值的集合
+// A collection of character values in a group of objects.
 export function getAttrsArray(array: Array<any>, attr: string) {
   return array.map((item) => {
     return item[attr]
   })
 }
 
-// 求和
+// Please and
 export function getSum(array: Array<any>) {
   return array.reduce((total, item) => total + item, 0)
 }

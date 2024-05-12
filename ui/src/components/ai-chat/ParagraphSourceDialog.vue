@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     class="paragraph-source"
-    title="知识库引用"
+    title="The Knowledge Base"
     v-model="dialogVisible"
     destroy-on-close
     append-to-body
@@ -11,13 +11,13 @@
       <el-scrollbar>
         <div class="p-16">
           <el-form label-position="top">
-            <el-form-item label="用户问题">
+            <el-form-item label="User Problems">
               <el-input v-model="detail.problem_text" disabled />
             </el-form-item>
-            <el-form-item label="优化后问题">
+            <el-form-item label="Problems after optimization">
               <el-input v-model="detail.padding_problem_text" disabled />
             </el-form-item>
-            <el-form-item label="引用分段">
+            <el-form-item label="Reference to Section">
               <template v-for="(item, index) in detail.paragraph_list" :key="index">
                 <CardBox
                   shadow="never"

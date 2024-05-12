@@ -2,7 +2,7 @@ import { useLocalStorage, usePreferredLanguages } from '@vueuse/core';
 import { computed } from 'vue';
 import { createI18n } from 'vue-i18n';
 
-// 导入语言文件
+// Importation of language documents
 const langModules = import.meta.glob('./lang/*/index.ts', { eager: true }) as Record<string, () => Promise<{ default: Object }>>;
 
 const langModuleMap = new Map<string, Object>();
@@ -11,10 +11,10 @@ export const langCode: Array<string> = [];
 
 export const localeConfigKey = 'MaxKB-locale';
 
-// 获取浏览器默认语言环境
+// Access to the browser's default language environment
 const languages = usePreferredLanguages();
 
-// 生成语言模块列表
+// Create a language module list
 const generateLangModuleMap = () => {
     const fullPaths = Object.keys(langModules);
     fullPaths.forEach((fullPath) => {
@@ -27,7 +27,7 @@ const generateLangModuleMap = () => {
     });
 };
 
-// 导出 Message
+// Exported Message
 const importMessages = computed(() => {
     generateLangModuleMap();
 

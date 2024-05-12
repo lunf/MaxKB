@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： base_model_provider.py
     @date：2023/10/31 16:19
     @desc:
@@ -73,7 +73,7 @@ class IModelProvider(ABC):
         pass
 
     def down_model(self, model_type: str, model_name, model_credential: Dict[str, object]) -> Iterator[DownModelChunk]:
-        raise AppApiException(500, "当前平台不支持下载模型")
+        raise AppApiException(500, "The current platform does not support the download model.")
 
 
 class BaseModelCredential(ABC):
@@ -85,15 +85,15 @@ class BaseModelCredential(ABC):
     @abstractmethod
     def encryption_dict(self, model_info: Dict[str, object]):
         """
-        :param model_info: 模型数据
-        :return: 加密后数据
+        :param model_info: Model data
+        :return: Data after encryption
         """
         pass
 
     @staticmethod
     def encryption(message: str):
         """
-            加密敏感字段数据  加密方式是 如果密码是 1234567890  那么给前端则是 123******890
+            Encryption sensitive field data  The method of encryption is If the password is 1234567890  And the front is 123******890
         :param message:
         :return:
         """
@@ -112,7 +112,7 @@ class BaseModelCredential(ABC):
 
 
 class ModelTypeConst(Enum):
-    LLM = {'code': 'LLM', 'message': '大语言模型'}
+    LLM = {'code': 'LLM', 'message': 'The big language model.'}
 
 
 class ModelInfo:
@@ -128,15 +128,15 @@ class ModelInfo:
 
     def get_name(self):
         """
-        获取模型名称
-        :return: 模型名称
+        Get the model name.
+        :return: Name of model
         """
         return self.name
 
     def get_desc(self):
         """
-        获取模型描述
-        :return: 模型描述
+        Obtain a model description.
+        :return: Model Description
         """
         return self.desc
 

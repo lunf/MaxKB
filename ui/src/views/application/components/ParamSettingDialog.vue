@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     align-center
-    title="参数设置"
+    title="The parameter set."
     class="param-dialog"
     v-model="dialogVisible"
     style="width: 550px"
@@ -10,7 +10,7 @@
       <el-scrollbar always>
         <div class="p-16">
           <el-form label-position="top" ref="paramFormRef" :model="form">
-            <el-form-item label="检索模式">
+            <el-form-item label="The search model.">
               <el-radio-group v-model="form.search_mode" class="card__radio" @change="changeHandle">
                 <el-card
                   shadow="never"
@@ -18,8 +18,8 @@
                   :class="form.search_mode === 'embedding' ? 'active' : ''"
                 >
                   <el-radio value="embedding" size="large">
-                    <p class="mb-4">向量检索</p>
-                    <el-text type="info">通过向量距离计算与用户问题最相似的文本分段</el-text>
+                    <p class="mb-4">Quantity Recovery</p>
+                    <el-text type="info">By calculating the vector distance the most similar text sections to the user's problem</el-text>
                   </el-radio>
                 </el-card>
                 <el-card
@@ -28,15 +28,15 @@
                   :class="form.search_mode === 'keywords' ? 'active' : ''"
                 >
                   <el-radio value="keywords" size="large">
-                    <p class="mb-4">全文检索</p>
-                    <el-text type="info">通过关键词检索，返回包含关键词最多的文本分段</el-text>
+                    <p class="mb-4">The complete search.</p>
+                    <el-text type="info">Search through Keywords.，Return to the text section containing the most keywords</el-text>
                   </el-radio>
                 </el-card>
                 <el-card shadow="never" :class="form.search_mode === 'blend' ? 'active' : ''">
                   <el-radio value="blend" size="large">
-                    <p class="mb-4">混合检索</p>
+                    <p class="mb-4">Mixed search</p>
                     <el-text type="info"
-                      >同时执行全文检索和向量检索，再进行重排序，从两类查询结果中选择匹配用户问题的最佳结果</el-text
+                      >At the same time, the full-length recovery and vector recovery.，Again a heavy order.，Select the best results from two categories of query results that match the user problem.</el-text
                     >
                   </el-radio>
                 </el-card>
@@ -47,8 +47,8 @@
                 <el-form-item>
                   <template #label>
                     <div class="flex align-center">
-                      <span class="mr-4">相似度高于</span>
-                      <el-tooltip effect="dark" content="相似度越高相关性越强。" placement="right">
+                      <span class="mr-4">Similarity is higher than</span>
+                      <el-tooltip effect="dark" content="The higher the similarity, the stronger the relevance.。" placement="right">
                         <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
                       </el-tooltip>
                     </div>
@@ -65,7 +65,7 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="引用分段数 TOP">
+                <el-form-item label="Reference to the number of points. TOP">
                   <el-input-number
                     v-model="form.top_n"
                     :min="1"
@@ -77,7 +77,7 @@
               </el-col>
             </el-row>
 
-            <el-form-item label="最多引用字符数">
+            <el-form-item label="Maximum number of characters.">
               <el-slider
                 v-model="form.max_paragraph_char_number"
                 show-input
@@ -87,7 +87,7 @@
                 class="custom-slider"
               />
             </el-form-item>
-            <el-form-item label="无引用知识库分段时">
+            <el-form-item label="No reference to the knowledge base section.">
               <el-form
                 label-position="top"
                 ref="noReferencesformRef"
@@ -102,10 +102,10 @@
                 >
                   <div>
                     <el-radio value="ai_questioning">
-                      <p>继续向 AI 模型提问</p>
+                      <p>Continue to AI Model Questions</p>
                       <el-form-item
                         v-if="form.no_references_setting.status === 'ai_questioning'"
-                        label="提示词"
+                        label="Suggestions"
                         prop="ai_questioning"
                       >
                         <el-input
@@ -120,7 +120,7 @@
                   </div>
                   <div class="mt-8">
                     <el-radio value="designated_answer">
-                      <p>指定回答内容</p>
+                      <p>Identify the answer content.</p>
                       <el-form-item
                         v-if="form.no_references_setting.status === 'designated_answer'"
                         prop="designated_answer"
@@ -144,9 +144,9 @@
     </div>
     <template #footer>
       <span class="dialog-footer p-16">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
         <el-button type="primary" @click="submit(noReferencesformRef)" :loading="loading">
-          保存
+          preserved
         </el-button>
       </span>
     </template>
@@ -165,7 +165,7 @@ const noReferencesformRef = ref()
 const defaultValue = {
   ai_questioning: '{question}',
   designated_answer:
-    '你好，我是 MaxKB 小助手，我的知识库只包含了 MaxKB 产品相关知识，请重新描述您的问题。'
+    'Hello Hello，I am MaxKB The Little Assistant，My knowledge base is included. MaxKB Product Related Knowledge，Please resume your question.。'
 }
 
 const form = ref<any>({
@@ -185,8 +185,8 @@ const noReferencesform = ref<any>({
 })
 
 const noReferencesRules = reactive<FormRules<any>>({
-  ai_questioning: [{ required: true, message: '请输入提示词', trigger: 'blur' }],
-  designated_answer: [{ required: true, message: '请输入内容', trigger: 'blur' }]
+  ai_questioning: [{ required: true, message: 'Please enter the instructions.', trigger: 'blur' }],
+  designated_answer: [{ required: true, message: 'Please enter the content.', trigger: 'blur' }]
 })
 
 const dialogVisible = ref<boolean>(false)

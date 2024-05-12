@@ -2,7 +2,7 @@ import Layout from '@/layout/main-layout/index.vue'
 const applicationRouter = {
   path: '/application',
   name: 'application',
-  meta: { title: '应用', permission: 'APPLICATION:READ' },
+  meta: { title: 'Applications', permission: 'APPLICATION:READ' },
   redirect: '/application',
   children: [
     {
@@ -20,7 +20,7 @@ const applicationRouter = {
     {
       path: '/application/:id',
       name: 'ApplicationDetail',
-      meta: { title: '应用详情', activeMenu: '/application' },
+      meta: { title: 'Application Details', activeMenu: '/application' },
       component: Layout,
       hidden: true,
       children: [
@@ -30,7 +30,7 @@ const applicationRouter = {
           meta: {
             icon: 'app-all-menu',
             iconActive: 'app-all-menu-active',
-            title: '概览',
+            title: 'Overview',
             active: 'overview',
             parentPath: '/application/:id',
             parentName: 'ApplicationDetail'
@@ -43,7 +43,7 @@ const applicationRouter = {
           meta: {
             icon: 'app-setting',
             iconActive: 'app-setting-active',
-            title: '设置',
+            title: 'set up',
             active: 'setting',
             parentPath: '/application/:id',
             parentName: 'ApplicationDetail'
@@ -55,7 +55,7 @@ const applicationRouter = {
           name: 'AppHitTest',
           meta: {
             icon: 'app-hit-test',
-            title: '命中测试',
+            title: 'Test of fate.',
             active: 'hit-test',
             parentPath: '/application/:id',
             parentName: 'ApplicationDetail'
@@ -68,7 +68,7 @@ const applicationRouter = {
           meta: {
             icon: 'app-document',
             iconActive: 'app-document-active',
-            title: '对话日志',
+            title: 'Dialogues',
             active: 'log',
             parentPath: '/application/:id',
             parentName: 'ApplicationDetail'

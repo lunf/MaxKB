@@ -1,14 +1,14 @@
 <template>
   <el-input
     v-model="filterText"
-    placeholder="搜索"
+    placeholder="Searching"
     prefix-icon="Search"
     class="p-24 pt-0 pb-0 mb-16 mt-4"
     clearable
   />
   <div class="p-24 pt-0">
     <el-table :data="filterData" :max-height="tableHeight">
-      <el-table-column prop="name" :label="isApplication ? '应用名称' : '知识库名称'">
+      <el-table-column prop="name" :label="isApplication ? 'Application Name' : 'Name of Knowledge Base'">
         <template #default="{ row }">
           <div class="flex align-center">
             <AppAvatar
@@ -35,11 +35,11 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="管理" align="center" width="60">
+      <el-table-column label="management" align="center" width="60">
         <!-- <template #header>
         <el-checkbox
           v-model="allChecked[MANAGE]"
-          label="管理"
+          label="management"
           @change="handleCheckAllChange($event, MANAGE)"
         />
       </template> -->
@@ -51,11 +51,11 @@
           />
         </template>
       </el-table-column>
-      <el-table-column label="使用" align="center" width="60">
+      <el-table-column label="Use of" align="center" width="60">
         <!-- <template #header>
         <el-checkbox
           v-model="allChecked[USE]"
-          label="使用"
+          label="Use of"
           @change="handleCheckAllChange($event, USE)"
         />
       </template> -->

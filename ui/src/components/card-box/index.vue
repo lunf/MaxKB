@@ -36,19 +36,19 @@ defineOptions({ name: 'CardBox' })
 const props = withDefaults(
   defineProps<{
     /**
-     * 标题
+     * The title
      */
     title?: string
     /**
-     * 描述
+     * described
      */
     description?: string
     /**
-     * 是否展示icon
+     * Should showicon
      */
     showIcon?: boolean
   }>(),
-  { title: '标题', description: '', showIcon: true, border: true }
+  { title: 'The title', description: '', showIcon: true, border: true }
 )
 
 const show = ref(false)

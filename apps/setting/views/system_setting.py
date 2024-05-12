@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： system_setting.py
     @date：2024/3/19 16:01
     @desc:
@@ -24,9 +24,9 @@ class SystemSetting(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="创建或者修改邮箱设置",
-                             operation_id="创建或者修改邮箱设置",
-                             request_body=SystemSettingEmailApi.get_request_body_api(), tags=["邮箱设置"],
+        @swagger_auto_schema(operation_summary="Create or modify mailbox settings",
+                             operation_id="Create or modify mailbox settings",
+                             request_body=SystemSettingEmailApi.get_request_body_api(), tags=["Postbox setup."],
                              responses=result.get_api_response(SystemSettingEmailApi.get_response_body_api()))
         @has_permissions(RoleConstants.ADMIN)
         def put(self, request: Request):
@@ -35,11 +35,11 @@ class SystemSetting(APIView):
                     data=request.data).update_or_save())
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="测试邮箱设置",
-                             operation_id="测试邮箱设置",
+        @swagger_auto_schema(operation_summary="Testing the mailbox.",
+                             operation_id="Testing the mailbox.",
                              request_body=SystemSettingEmailApi.get_request_body_api(),
                              responses=result.get_default_response(),
-                             tags=["邮箱设置"])
+                             tags=["Postbox setup."])
         @has_permissions(RoleConstants.ADMIN)
         def post(self, request: Request):
             return result.success(
@@ -47,10 +47,10 @@ class SystemSetting(APIView):
                     data=request.data).is_valid())
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取邮箱设置",
-                             operation_id="获取邮箱设置",
+        @swagger_auto_schema(operation_summary="Get the mailbox setting.",
+                             operation_id="Get the mailbox setting.",
                              responses=result.get_api_response(SystemSettingEmailApi.get_response_body_api()),
-                             tags=["邮箱设置"])
+                             tags=["Postbox setup."])
         @has_permissions(RoleConstants.ADMIN)
         def get(self, request: Request):
             return result.success(

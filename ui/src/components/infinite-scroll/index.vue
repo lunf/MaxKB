@@ -4,10 +4,10 @@
   </div>
   <div style="padding: 16px 10px">
     <el-divider v-if="size > 0 && loading">
-      <el-text type="info"> 加载中...</el-text>
+      <el-text type="info"> in charge....</el-text>
     </el-divider>
     <el-divider v-if="noMore">
-      <el-text type="info"> 到底啦！</el-text>
+      <el-text type="info"> Finally is.！</el-text>
     </el-divider>
   </div>
 </template>
@@ -17,21 +17,21 @@ import { ref, computed } from 'vue'
 defineOptions({ name: 'InfiniteScroll' })
 const props = defineProps({
   /**
-   * 对象数量
+   * Number of objects
    */
   size: {
     type: Number,
     default: 0
   },
   /**
-   * 总数
+   * The total number
    */
   total: {
     type: Number,
     default: 0
   },
   /**
-   * 总数
+   * The total number
    */
   page_size: {
     type: Number,

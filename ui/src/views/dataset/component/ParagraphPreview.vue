@@ -10,7 +10,7 @@
         </template>
         <el-scrollbar>
           <div class="mb-16">
-            <el-text type="info">{{ item.content.length }} 段落</el-text>
+            <el-text type="info">{{ item.content.length }} Paragraphs</el-text>
           </div>
 
           <div class="paragraph-list">
@@ -23,11 +23,11 @@
               <div class="flex-between">
                 <span>{{ child.title || '-' }}</span>
                 <div>
-                  <!-- 编辑分段按钮 -->
+                  <!-- Edit the section button. -->
                   <el-button link @click="editHandle(child, index, cIndex)">
                     <el-icon><EditPen /></el-icon>
                   </el-button>
-                  <!-- 删除分段按钮  -->
+                  <!-- Remove the section button.  -->
                   <el-button link @click="deleteHandle(child, index, cIndex)">
                     <el-icon><Delete /></el-icon>
                   </el-button>
@@ -37,7 +37,7 @@
                 {{ child.content }}
               </div>
               <div class="lighter mt-12">
-                <el-text type="info"> {{ child.content.length }} 个字符 </el-text>
+                <el-text type="info"> {{ child.content.length }} A character. </el-text>
               </div>
             </el-card>
           </div>
@@ -89,8 +89,8 @@ function editHandle(item: any, index: number, cIndex: number) {
 }
 
 function deleteHandle(item: any, index: number, cIndex: number) {
-  MsgConfirm(`是否删除分段：${item.title || '-'} ?`, `删除后将不会存入知识库，对本地文档无影响。`, {
-    confirmButtonText: '删除',
+  MsgConfirm(`Remove the section.：${item.title || '-'} ?`, `It will not be stored in the database after deletion.，No influence on local documents.。`, {
+    confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })
     .then(() => {

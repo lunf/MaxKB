@@ -7,7 +7,7 @@ import { i18n, langCode, localeConfigKey } from '@/locales/index';
 export function useLocale() {
     const { locale } = useI18n({ useScope: 'global' });
     function changeLocale(lang: string) {
-        // 如果切换的语言不在对应语言文件里则默认为简体中文
+        // If the language switched is not in the corresponding language document, the default is simple Chinese.
         if (!langCode.includes(lang)) {
             lang = 'zh_CN';
         }

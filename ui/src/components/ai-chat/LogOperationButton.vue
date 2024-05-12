@@ -5,7 +5,7 @@
     </el-text>
   </div>
   <div>
-    <el-tooltip effect="dark" content="复制" placement="top">
+    <el-tooltip effect="dark" content="Reproduction" placement="top">
       <el-button text @click="copyClick(data?.answer_text)">
         <AppIcon iconName="app-copy"></AppIcon>
       </el-button>
@@ -14,7 +14,7 @@
     <el-tooltip
       v-if="data.improve_paragraph_id_list.length === 0"
       effect="dark"
-      content="修改内容"
+      content="Modification of content"
       placement="top"
     >
       <el-button text @click="editContent(data)">
@@ -22,7 +22,7 @@
       </el-button>
     </el-tooltip>
 
-    <el-tooltip v-else effect="dark" content="修改标注" placement="top">
+    <el-tooltip v-else effect="dark" content="Modification of Signs" placement="top">
       <el-button text @click="editMark(data)">
         <AppIcon iconName="app-document-active" class="primary"></AppIcon>
       </el-button>

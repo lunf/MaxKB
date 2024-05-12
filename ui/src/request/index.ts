@@ -17,7 +17,7 @@ const axiosConfig = {
 
 const instance = axios.create(axiosConfig)
 
-/* 设置请求拦截器 */
+/* Set the request block. */
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (config.headers === undefined) {
@@ -35,7 +35,7 @@ instance.interceptors.request.use(
   }
 )
 
-//设置响应拦截器
+//Set up the response block.
 instance.interceptors.response.use(
   (response: any) => {
     if (response.data) {
@@ -67,7 +67,7 @@ instance.interceptors.response.use(
 
     if (err.response?.status === 403 && !err.response.config.url.includes('chat/open')) {
       MsgError(
-        err.response.data && err.response.data.message ? err.response.data.message : '没有权限访问'
+        err.response.data && err.response.data.message ? err.response.data.message : 'No access permission.'
       )
     }
     return Promise.reject(err)
@@ -76,7 +76,7 @@ instance.interceptors.response.use(
 
 export const request = instance
 
-/* 简化请求方法，统一处理返回结果，并增加loading处理，这里以{success,data,message}格式的返回值为例，具体项目根据实际需求修改 */
+/* Simplified Application Method，Unified processing of return results，and increaseloadingProcessed，here to{success,data,message}The return value of the format is an example.，Modified projects according to actual needs */
 const promise: (
   request: Promise<any>,
   loading?: NProgress | Ref<boolean> | WritableComputedRef<boolean>
@@ -89,7 +89,7 @@ const promise: (
     }
     request
       .then((response) => {
-        // blob类型的返回状态是response.status
+        // blobThe type of return isresponse.status
         if (response.status === 200) {
           resolve(response?.data || response)
         } else {
@@ -110,11 +110,11 @@ const promise: (
 }
 
 /**
- * 发送get请求   一般用来请求资源
- * @param url    资源url
- * @param params 参数
+ * Sendinggetrequested   Generally used to request resources.
+ * @param url    Resourcesurl
+ * @param params Parameters
  * @param loading loading
- * @returns 异步promise对象
+ * @returns The ExoduspromiseObjects
  */
 export const get: (
   url: string,
@@ -131,12 +131,12 @@ export const get: (
 }
 
 /**
- * faso post请求 一般用来添加资源
- * @param url    资源url
- * @param params 参数
- * @param data   添加数据
+ * faso postrequested Generally used to add resources.
+ * @param url    Resourcesurl
+ * @param params Parameters
+ * @param data   Adding data
  * @param loading loading
- * @returns 异步promise对象
+ * @returns The ExoduspromiseObjects
  */
 export const post: (
   url: string,
@@ -149,11 +149,11 @@ export const post: (
 }
 
 /**|
- * 发送put请求 用于修改服务器资源
- * @param url     资源地址
- * @param params  params参数地址
- * @param data    需要修改的数据
- * @param loading 进度条
+ * Sendingputrequested Modification of server resources.
+ * @param url     Resource Address
+ * @param params  paramsAddress of Parameters
+ * @param data    Data needed to be modified.
+ * @param loading The Progress
  * @returns
  */
 export const put: (
@@ -167,10 +167,10 @@ export const put: (
 }
 
 /**
- * 删除
- * @param url     删除url
- * @param params  params参数
- * @param loading 进度条
+ * removed
+ * @param url     removedurl
+ * @param params  paramsParameters
+ * @param loading The Progress
  * @returns
  */
 export const del: (
@@ -184,9 +184,9 @@ export const del: (
 }
 
 /**
- * 流处理
- * @param url  url地址
- * @param data 请求body
+ * flow processing
+ * @param url  urlAddressed
+ * @param data requestedbody
  * @returns
  */
 export const postStream: (url: string, data?: unknown) => Promise<Result<any> | any> = (
@@ -222,7 +222,7 @@ export const exportExcel: (
         link.href = window.URL.createObjectURL(blob)
         link.download = fileName
         link.click()
-        //释放内存
+        //Release the memory.
         window.URL.revokeObjectURL(link.href)
       }
     })
@@ -230,9 +230,9 @@ export const exportExcel: (
 }
 
 /**
- * 与服务器建立ws链接
- * @param url websocket路径
- * @returns  返回一个websocket实例
+ * Created with the server.wslinked
+ * @param url websocketThe path
+ * @returns  Return to one.websocketExamples
  */
 export const socket = (url: string) => {
   let protocol = 'ws://'

@@ -1,8 +1,8 @@
 <template>
-  <LayoutContainer header="概览">
+  <LayoutContainer header="Overview">
     <el-scrollbar>
       <div class="main-calc-height p-24">
-        <h4 class="title-decoration-1 mb-16">应用信息</h4>
+        <h4 class="title-decoration-1 mb-16">Application of information</h4>
         <el-card shadow="never" class="overview-card" v-loading="loading">
           <div class="title flex align-center">
             <div
@@ -42,14 +42,14 @@
           <el-row :gutter="12">
             <el-col :span="12" class="mt-16">
               <div class="flex">
-                <el-text type="info">公开访问链接</el-text>
+                <el-text type="info">Open access link</el-text>
                 <el-switch
                   v-model="accessToken.is_active"
                   class="ml-8"
                   size="small"
                   inline-prompt
-                  active-text="开"
-                  inactive-text="关"
+                  active-text="opened"
+                  inactive-text="Closed"
                   @change="changeState($event)"
                 />
               </div>
@@ -68,18 +68,18 @@
               </div>
               <div>
                 <el-button :disabled="!accessToken?.is_active" type="primary">
-                  <a v-if="accessToken?.is_active" :href="shareUrl" target="_blank"> 演示 </a>
-                  <span v-else>演示</span>
+                  <a v-if="accessToken?.is_active" :href="shareUrl" target="_blank"> Presentation </a>
+                  <span v-else>Presentation</span>
                 </el-button>
                 <el-button :disabled="!accessToken?.is_active" @click="openDialog">
-                  嵌入第三方
+                  Incorporated by third parties.
                 </el-button>
-                <el-button @click="openLimitDialog"> 访问限制 </el-button>
+                <el-button @click="openLimitDialog"> Limitation of access </el-button>
               </div>
             </el-col>
             <el-col :span="12" class="mt-16">
               <div class="flex">
-                <el-text type="info">API访问凭据</el-text>
+                <el-text type="info">APIAccess to Certificate</el-text>
               </div>
               <div class="mt-4 mb-16 url-height">
                 <span class="vertical-middle lighter break-all">
@@ -96,7 +96,7 @@
             </el-col>
           </el-row>
         </el-card>
-        <h4 class="title-decoration-1 mt-16 mb-16">监控统计</h4>
+        <h4 class="title-decoration-1 mt-16 mb-16">Monitoring statistics</h4>
         <div class="mb-16">
           <el-select v-model="history_day" class="mr-12 w-120" @change="changeDayHandle">
             <el-option
@@ -110,8 +110,8 @@
             v-if="history_day === 'other'"
             v-model="daterangeValue"
             type="daterange"
-            start-placeholder="开始时间"
-            end-placeholder="结束时间"
+            start-placeholder="The Time Begins"
+            end-placeholder="The time ends."
             format="YYYY-MM-DD"
             value-format="YYYY-MM-DD"
             @change="changeDayRangeHandle"
@@ -166,32 +166,32 @@ const shareUrl = computed(() => application.location + accessToken.value.access_
 const dayOptions = [
   {
     value: 7,
-    label: '过去7天'
+    label: 'past7The God'
   },
   {
     value: 30,
-    label: '过去30天'
+    label: 'past30The God'
   },
   {
     value: 90,
-    label: '过去90天'
+    label: 'past90The God'
   },
   {
     value: 183,
-    label: '过去半年'
+    label: 'last six months.'
   },
   {
     value: 'other',
-    label: '自定义'
+    label: 'customized'
   }
 ]
 
 const history_day = ref<number | string>(7)
 
-// 日期组件时间
+// Date of component time
 const daterangeValue = ref('')
 
-// 提交日期时间
+// Date of submission
 const daterange = ref({
   start_time: '',
   end_time: ''
@@ -228,17 +228,17 @@ function getAppStatistics() {
 
 function refreshAccessToken() {
   MsgConfirm(
-    `是否重新生成公开访问链接?`,
-    `重新生成公开访问链接会影响嵌入第三方脚本变更，需要将新脚本重新嵌入第三方，请谨慎操作！`,
+    `Re-create public access links?`,
+    `Re-generating public access links will affect the embedded third-party script changes，You need to reinsert the new script into third parties.，Please be careful.！`,
     {
-      confirmButtonText: '确认'
+      confirmButtonText: 'confirmed'
     }
   )
     .then(() => {
       const obj = {
         access_token_reset: true
       }
-      const str = '刷新成功'
+      const str = 'Updated success.'
       updateAccessToken(obj, str)
     })
     .catch(() => {})
@@ -247,7 +247,7 @@ function changeState(bool: Boolean) {
   const obj = {
     is_active: bool
   }
-  const str = bool ? '启用成功' : '禁用成功'
+  const str = bool ? 'Activate Success' : 'Prohibited success.'
   updateAccessToken(obj, str)
 }
 

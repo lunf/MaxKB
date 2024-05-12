@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： problem_serializers.py
     @date：2023/10/23 13:55
     @desc:
@@ -32,9 +32,9 @@ class ProblemSerializer(serializers.ModelSerializer):
 
 
 class ProblemInstanceSerializer(ApiMixin, serializers.Serializer):
-    id = serializers.CharField(required=False, error_messages=ErrMessage.char("问题id"))
+    id = serializers.CharField(required=False, error_messages=ErrMessage.char("The problemid"))
 
-    content = serializers.CharField(required=True, max_length=256, error_messages=ErrMessage.char("问题内容"))
+    content = serializers.CharField(required=True, max_length=256, error_messages=ErrMessage.char("The content of the question"))
 
     @staticmethod
     def get_request_body_api():
@@ -43,18 +43,18 @@ class ProblemInstanceSerializer(ApiMixin, serializers.Serializer):
                               properties={
                                   'id': openapi.Schema(
                                       type=openapi.TYPE_STRING,
-                                      title="问题id,修改的时候传递,创建的时候不传"),
+                                      title="The problemid,Transmitted during modification.,No time for creation."),
                                   'content': openapi.Schema(
-                                      type=openapi.TYPE_STRING, title="内容")
+                                      type=openapi.TYPE_STRING, title="The content")
                               })
 
 
 class ProblemSerializers(ApiMixin, serializers.Serializer):
     class Create(serializers.Serializer):
-        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("知识库id"))
-        problem_list = serializers.ListField(required=True, error_messages=ErrMessage.list("问题列表"),
+        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("The knowledge baseid"))
+        problem_list = serializers.ListField(required=True, error_messages=ErrMessage.list("List of Questions"),
                                              child=serializers.CharField(required=True,
-                                                                         error_messages=ErrMessage.char("问题")))
+                                                                         error_messages=ErrMessage.char("The problem")))
 
         def batch(self, with_valid=True):
             if with_valid:
@@ -75,8 +75,8 @@ class ProblemSerializers(ApiMixin, serializers.Serializer):
             return [ProblemSerializer(problem_instance).data for problem_instance in problem_instance_list]
 
     class Query(serializers.Serializer):
-        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("知识库id"))
-        content = serializers.CharField(required=False, error_messages=ErrMessage.char("问题"))
+        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("The knowledge baseid"))
+        content = serializers.CharField(required=False, error_messages=ErrMessage.char("The problem"))
 
         def get_query_set(self):
             query_set = QuerySet(model=Problem)
@@ -98,7 +98,7 @@ class ProblemSerializers(ApiMixin, serializers.Serializer):
                 os.path.join(PROJECT_DIR, "apps", "dataset", 'sql', 'list_problem.sql')))
 
     class BatchOperate(serializers.Serializer):
-        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("知识库id"))
+        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("The knowledge baseid"))
 
         def delete(self, problem_id_list: List, with_valid=True):
             if with_valid:
@@ -114,9 +114,9 @@ class ProblemSerializers(ApiMixin, serializers.Serializer):
             return True
 
     class Operate(serializers.Serializer):
-        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("知识库id"))
+        dataset_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("The knowledge baseid"))
 
-        problem_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("问题id"))
+        problem_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("The problemid"))
 
         def list_paragraph(self, with_valid=True):
             if with_valid:

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： qwen_chat_model.py
     @date：2024/4/28 11:44
     @desc:

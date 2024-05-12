@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： radio_field.py
     @date：2023/10/31 17:59
     @desc:
@@ -13,7 +13,7 @@ from common.forms.base_field import BaseExecField, TriggerType
 
 class Radio(BaseExecField):
     """
-    下拉单选
+    Lower Choice
     """
 
     def __init__(self,

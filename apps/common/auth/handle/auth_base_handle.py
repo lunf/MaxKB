@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： authenticate.py
     @date：2024/3/14 03:02
-    @desc:  认证处理器
+    @desc:  Certified Processor
 """
 from abc import ABC, abstractmethod
 

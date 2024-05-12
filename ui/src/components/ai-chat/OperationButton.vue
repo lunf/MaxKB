@@ -1,12 +1,12 @@
 <template>
   <div>
-    <el-tooltip effect="dark" content="重新生成" placement="top">
+    <el-tooltip effect="dark" content="Re-created" placement="top">
       <el-button text @click="regeneration">
         <AppIcon iconName="VideoPlay"></AppIcon>
       </el-button>
     </el-tooltip>
     <el-divider direction="vertical" />
-    <el-tooltip effect="dark" content="复制" placement="top">
+    <el-tooltip effect="dark" content="Reproduction" placement="top">
       <el-button text @click="copyClick(data?.answer_text)">
         <AppIcon iconName="app-copy"></AppIcon>
       </el-button>
@@ -14,7 +14,7 @@
     <el-divider direction="vertical" />
     <el-tooltip
       effect="dark"
-      content="赞同"
+      content="agreed"
       placement="top"
       v-if="buttonData?.vote_status === '-1'"
     >
@@ -24,7 +24,7 @@
     </el-tooltip>
     <el-tooltip
       effect="dark"
-      content="取消赞同"
+      content="Cancel the consent."
       placement="top"
       v-if="buttonData?.vote_status === '0'"
     >
@@ -35,7 +35,7 @@
     <el-divider direction="vertical" v-if="buttonData?.vote_status === '-1'" />
     <el-tooltip
       effect="dark"
-      content="反对"
+      content="opposed"
       placement="top"
       v-if="buttonData?.vote_status === '-1'"
     >
@@ -45,7 +45,7 @@
     </el-tooltip>
     <el-tooltip
       effect="dark"
-      content="取消反对"
+      content="Cancelled Opposition"
       placement="top"
       v-if="buttonData?.vote_status === '1'"
     >

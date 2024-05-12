@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： application_serializers.py
     @date：2023/11/7 10:02
     @desc:
@@ -46,13 +46,13 @@ chat_cache = cache.caches['chat_cache']
 
 
 class ModelDatasetAssociation(serializers.Serializer):
-    user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+    user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
     model_id = serializers.CharField(required=False, allow_null=True, allow_blank=True,
-                                     error_messages=ErrMessage.char("模型id"))
+                                     error_messages=ErrMessage.char("The modelid"))
     dataset_id_list = serializers.ListSerializer(required=False, child=serializers.UUIDField(required=True,
                                                                                              error_messages=ErrMessage.uuid(
-                                                                                                 "知识库id")),
-                                                 error_messages=ErrMessage.list("知识库列表"))
+                                                                                                 "The knowledge baseid")),
+                                                 error_messages=ErrMessage.list("List of Knowledge Base"))
 
     def is_valid(self, *, raise_exception=True):
         super().is_valid(raise_exception=True)
@@ -60,13 +60,13 @@ class ModelDatasetAssociation(serializers.Serializer):
         user_id = self.data.get('user_id')
         if model_id is not None and len(model_id) > 0:
             if not QuerySet(Model).filter(id=model_id).exists():
-                raise AppApiException(500, f'模型不存在【{model_id}】')
+                raise AppApiException(500, f'The model does not exist.【{model_id}】')
         dataset_id_list = list(set(self.data.get('dataset_id_list')))
         exist_dataset_id_list = [str(dataset.id) for dataset in
                                  QuerySet(DataSet).filter(id__in=dataset_id_list, user_id=user_id)]
         for dataset_id in dataset_id_list:
             if not exist_dataset_id_list.__contains__(dataset_id):
-                raise AppApiException(500, f'知识库id不存在【{dataset_id}】')
+                raise AppApiException(500, f'The knowledge baseidThere is no【{dataset_id}】')
 
 
 class ApplicationSerializerModel(serializers.ModelSerializer):
@@ -76,54 +76,54 @@ class ApplicationSerializerModel(serializers.ModelSerializer):
 
 
 class NoReferencesChoices(models.TextChoices):
-    """订单类型"""
-    ai_questioning = 'ai_questioning', 'ai回答'
-    designated_answer = 'designated_answer', '指定回答'
+    """Type of Order"""
+    ai_questioning = 'ai_questioning', 'aiReply'
+    designated_answer = 'designated_answer', 'Identifying Answer'
 
 
 class NoReferencesSetting(serializers.Serializer):
     status = serializers.ChoiceField(required=True, choices=NoReferencesChoices.choices,
-                                     error_messages=ErrMessage.char("无引用状态"))
-    value = serializers.CharField(required=True, error_messages=ErrMessage.char("提示词"))
+                                     error_messages=ErrMessage.char("No citation status."))
+    value = serializers.CharField(required=True, error_messages=ErrMessage.char("Suggestions"))
 
 
 class DatasetSettingSerializer(serializers.Serializer):
     top_n = serializers.FloatField(required=True, max_value=100, min_value=1,
-                                   error_messages=ErrMessage.float("引用分段数"))
+                                   error_messages=ErrMessage.float("Reference to the number of points."))
     similarity = serializers.FloatField(required=True, max_value=1, min_value=0,
-                                        error_messages=ErrMessage.float("相识度"))
+                                        error_messages=ErrMessage.float("The knowledge"))
     max_paragraph_char_number = serializers.IntegerField(required=True, min_value=500, max_value=10000,
-                                                         error_messages=ErrMessage.integer("最多引用字符数"))
+                                                         error_messages=ErrMessage.integer("Maximum number of characters."))
     search_mode = serializers.CharField(required=True, validators=[
         validators.RegexValidator(regex=re.compile("^embedding|keywords|blend$"),
-                                  message="类型只支持register|reset_password", code=500)
-    ], error_messages=ErrMessage.char("检索模式"))
+                                  message="Type only supports.register|reset_password", code=500)
+    ], error_messages=ErrMessage.char("The search model."))
 
-    no_references_setting = NoReferencesSetting(required=True, error_messages=ErrMessage.base("未引用分段设置"))
+    no_references_setting = NoReferencesSetting(required=True, error_messages=ErrMessage.base("Not referred to section setting."))
 
 
 class ModelSettingSerializer(serializers.Serializer):
-    prompt = serializers.CharField(required=True, max_length=2048, error_messages=ErrMessage.char("提示词"))
+    prompt = serializers.CharField(required=True, max_length=2048, error_messages=ErrMessage.char("Suggestions"))
 
 
 class ApplicationSerializer(serializers.Serializer):
-    name = serializers.CharField(required=True, max_length=64, min_length=1, error_messages=ErrMessage.char("应用名称"))
+    name = serializers.CharField(required=True, max_length=64, min_length=1, error_messages=ErrMessage.char("Application Name"))
     desc = serializers.CharField(required=False, allow_null=True, allow_blank=True,
                                  max_length=256, min_length=1,
-                                 error_messages=ErrMessage.char("应用描述"))
+                                 error_messages=ErrMessage.char("Application Description"))
     model_id = serializers.CharField(required=False, allow_null=True, allow_blank=True,
-                                     error_messages=ErrMessage.char("模型"))
-    multiple_rounds_dialogue = serializers.BooleanField(required=True, error_messages=ErrMessage.char("多轮对话"))
+                                     error_messages=ErrMessage.char("The model"))
+    multiple_rounds_dialogue = serializers.BooleanField(required=True, error_messages=ErrMessage.char("multiple rounds of dialogue."))
     prologue = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=1024,
-                                     error_messages=ErrMessage.char("开场白"))
+                                     error_messages=ErrMessage.char("Opening White."))
     dataset_id_list = serializers.ListSerializer(required=False, child=serializers.UUIDField(required=True),
-                                                 allow_null=True, error_messages=ErrMessage.list("关联知识库"))
-    # 数据集相关设置
+                                                 allow_null=True, error_messages=ErrMessage.list("The Knowledge Base"))
+    # Data setup related settings
     dataset_setting = DatasetSettingSerializer(required=True)
-    # 模型相关设置
+    # Models related settings
     model_setting = ModelSettingSerializer(required=True)
-    # 问题补全
-    problem_optimization = serializers.BooleanField(required=True, error_messages=ErrMessage.boolean("问题补全"))
+    # Complete the problem.
+    problem_optimization = serializers.BooleanField(required=True, error_messages=ErrMessage.boolean("Complete the problem."))
 
     def is_valid(self, *, user_id=None, raise_exception=False):
         super().is_valid(raise_exception=True)
@@ -131,8 +131,8 @@ class ApplicationSerializer(serializers.Serializer):
                                       'dataset_id_list': self.data.get('dataset_id_list')}).is_valid()
 
     class Embed(serializers.Serializer):
-        host = serializers.CharField(required=True, error_messages=ErrMessage.char("主机"))
-        protocol = serializers.CharField(required=True, error_messages=ErrMessage.char("协议"))
+        host = serializers.CharField(required=True, error_messages=ErrMessage.char("The host"))
+        protocol = serializers.CharField(required=True, error_messages=ErrMessage.char("The Agreement"))
         token = serializers.CharField(required=True, error_messages=ErrMessage.char("token"))
 
         def get_embed(self, with_valid=True):
@@ -160,22 +160,22 @@ class ApplicationSerializer(serializers.Serializer):
             return response
 
     class AccessTokenSerializer(serializers.Serializer):
-        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.boolean("应用id"))
+        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.boolean("Applicationsid"))
 
         class AccessTokenEditSerializer(serializers.Serializer):
             access_token_reset = serializers.BooleanField(required=False,
-                                                          error_messages=ErrMessage.boolean("重置Token"))
-            is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean("是否开启"))
+                                                          error_messages=ErrMessage.boolean("RepairedToken"))
+            is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean("is opened."))
             access_num = serializers.IntegerField(required=False, max_value=10000,
                                                   min_value=0,
-                                                  error_messages=ErrMessage.integer("访问次数"))
-            white_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean("是否开启白名单"))
+                                                  error_messages=ErrMessage.integer("Number of Visits"))
+            white_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean("Open the white list."))
             white_list = serializers.ListSerializer(required=False, child=serializers.CharField(required=True,
                                                                                                 error_messages=ErrMessage.char(
-                                                                                                    "白名单")),
-                                                    error_messages=ErrMessage.list("白名单列表")),
+                                                                                                    "The White List")),
+                                                    error_messages=ErrMessage.list("List of white lists")),
             show_source = serializers.BooleanField(required=False,
-                                                   error_messages=ErrMessage.boolean("是否显示知识来源"))
+                                                   error_messages=ErrMessage.boolean("Showing a source of knowledge"))
 
         def edit(self, instance: Dict, with_valid=True):
             if with_valid:
@@ -228,7 +228,7 @@ class ApplicationSerializer(serializers.Serializer):
             token = request.META.get('HTTP_AUTHORIZATION')
             token_details = None
             try:
-                # 校验token
+                # Examinationtoken
                 if token is not None:
                     token_details = signing.loads(token)
             except Exception as e:
@@ -250,35 +250,35 @@ class ApplicationSerializer(serializers.Serializer):
                                        'client_id': client_id})
                 return token
             else:
-                raise NotFound404(404, "无效的access_token")
+                raise NotFound404(404, "ineffectiveaccess_token")
 
     class Edit(serializers.Serializer):
         name = serializers.CharField(required=False, max_length=64, min_length=1,
-                                     error_messages=ErrMessage.char("应用名称"))
+                                     error_messages=ErrMessage.char("Application Name"))
         desc = serializers.CharField(required=False, max_length=256, min_length=1, allow_null=True, allow_blank=True,
-                                     error_messages=ErrMessage.char("应用描述"))
+                                     error_messages=ErrMessage.char("Application Description"))
         model_id = serializers.CharField(required=False, allow_blank=True, allow_null=True,
-                                         error_messages=ErrMessage.char("模型"))
+                                         error_messages=ErrMessage.char("The model"))
         multiple_rounds_dialogue = serializers.BooleanField(required=False,
-                                                            error_messages=ErrMessage.boolean("多轮会话"))
+                                                            error_messages=ErrMessage.boolean("Many Rounds of Meetings"))
         prologue = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=1024,
-                                         error_messages=ErrMessage.char("开场白"))
+                                         error_messages=ErrMessage.char("Opening White."))
         dataset_id_list = serializers.ListSerializer(required=False, child=serializers.UUIDField(required=True),
-                                                     error_messages=ErrMessage.list("关联知识库")
+                                                     error_messages=ErrMessage.list("The Knowledge Base")
                                                      )
-        # 数据集相关设置
+        # Data setup related settings
         dataset_setting = DatasetSettingSerializer(required=False, allow_null=True,
-                                                   error_messages=ErrMessage.json("数据集设置"))
-        # 模型相关设置
+                                                   error_messages=ErrMessage.json("Setup of data"))
+        # Models related settings
         model_setting = ModelSettingSerializer(required=False, allow_null=True,
-                                               error_messages=ErrMessage.json("模型设置"))
-        # 问题补全
+                                               error_messages=ErrMessage.json("Models set up"))
+        # Complete the problem.
         problem_optimization = serializers.BooleanField(required=False, allow_null=True,
-                                                        error_messages=ErrMessage.boolean("问题补全"))
-        icon = serializers.CharField(required=False, allow_null=True, error_messages=ErrMessage.char("icon图标"))
+                                                        error_messages=ErrMessage.boolean("Complete the problem."))
+        icon = serializers.CharField(required=False, allow_null=True, error_messages=ErrMessage.char("iconThe Symbol"))
 
     class Create(serializers.Serializer):
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
         @transaction.atomic
         def insert(self, application: Dict):
@@ -290,12 +290,12 @@ class ApplicationSerializer(serializers.Serializer):
             application_dataset_mapping_model_list = [
                 ApplicationSerializer.Create.to_application_dataset_mapping(application_model.id, dataset_id) for
                 dataset_id in dataset_id_list]
-            # 插入应用
+            # Enter the application.
             application_model.save()
-            # 插入认证信息
+            # Insert the certification information.
             ApplicationAccessToken(application_id=application_model.id,
                                    access_token=hashlib.md5(str(uuid.uuid1()).encode()).hexdigest()[8:24]).save()
-            # 插入关联数据
+            # Enter the related data.
             QuerySet(ApplicationDatasetMapping).bulk_create(application_dataset_mapping_model_list)
             return True
 
@@ -315,22 +315,22 @@ class ApplicationSerializer(serializers.Serializer):
             return ApplicationDatasetMapping(id=uuid.uuid1(), application_id=application_id, dataset_id=dataset_id)
 
     class HitTest(serializers.Serializer):
-        id = serializers.CharField(required=True, error_messages=ErrMessage.uuid("应用id"))
-        user_id = serializers.UUIDField(required=False, error_messages=ErrMessage.uuid("用户id"))
-        query_text = serializers.CharField(required=True, error_messages=ErrMessage.char("查询文本"))
+        id = serializers.CharField(required=True, error_messages=ErrMessage.uuid("Applicationsid"))
+        user_id = serializers.UUIDField(required=False, error_messages=ErrMessage.uuid("Usersid"))
+        query_text = serializers.CharField(required=True, error_messages=ErrMessage.char("Question of text."))
         top_number = serializers.IntegerField(required=True, max_value=10, min_value=1,
                                               error_messages=ErrMessage.integer("topN"))
         similarity = serializers.FloatField(required=True, max_value=1, min_value=0,
-                                            error_messages=ErrMessage.float("相关度"))
+                                            error_messages=ErrMessage.float("Related"))
         search_mode = serializers.CharField(required=True, validators=[
             validators.RegexValidator(regex=re.compile("^embedding|keywords|blend$"),
-                                      message="类型只支持register|reset_password", code=500)
-        ], error_messages=ErrMessage.char("检索模式"))
+                                      message="Type only supports.register|reset_password", code=500)
+        ], error_messages=ErrMessage.char("The search model."))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             if not QuerySet(Application).filter(id=self.data.get('id')).exists():
-                raise AppApiException(500, '不存在的应用id')
+                raise AppApiException(500, 'No Applicationsid')
 
         def hit_test(self):
             self.is_valid()
@@ -343,7 +343,7 @@ class ApplicationSerializer(serializers.Serializer):
                                         QuerySet(Document).filter(
                                             dataset_id__in=dataset_id_list,
                                             is_active=False)]
-            # 向量库检索
+            # Recovered to Quantum.
             hit_list = vector.hit_test(self.data.get('query_text'), dataset_id_list, exclude_document_id_list,
                                        self.data.get('top_number'),
                                        self.data.get('similarity'),
@@ -355,11 +355,11 @@ class ApplicationSerializer(serializers.Serializer):
                      'comprehensive_score': hit_dict.get(p.get('id')).get('comprehensive_score')} for p in p_list]
 
     class Query(serializers.Serializer):
-        name = serializers.CharField(required=False, error_messages=ErrMessage.char("应用名称"))
+        name = serializers.CharField(required=False, error_messages=ErrMessage.char("Application Name"))
 
-        desc = serializers.CharField(required=False, error_messages=ErrMessage.char("应用描述"))
+        desc = serializers.CharField(required=False, error_messages=ErrMessage.char("Application Description"))
 
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
         def get_query_set(self):
             user_id = self.data.get("user_id")
@@ -383,7 +383,7 @@ class ApplicationSerializer(serializers.Serializer):
             query_set_dict['team_member_permission_custom_sql'] = QuerySet(model=get_dynamics_model(
                 {'user_id': models.CharField(),
                  'team_member_permission.auth_target_type': models.CharField(),
-                 'team_member_permission.operate': ArrayField(verbose_name="权限操作列表",
+                 'team_member_permission.operate': ArrayField(verbose_name="Authorization operating list",
                                                               base_field=models.CharField(max_length=256,
                                                                                           blank=True,
                                                                                           choices=AuthOperate.choices,
@@ -424,16 +424,16 @@ class ApplicationSerializer(serializers.Serializer):
             fields = ['id', 'name', 'desc', 'prologue', 'dialogue_number', 'icon']
 
     class IconOperate(serializers.Serializer):
-        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("应用id"))
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
-        image = UploadedImageField(required=True, error_messages=ErrMessage.image("图片"))
+        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Applicationsid"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
+        image = UploadedImageField(required=True, error_messages=ErrMessage.image("The picture"))
 
         def edit(self, with_valid=True):
             if with_valid:
                 self.is_valid(raise_exception=True)
             application = QuerySet(Application).filter(id=self.data.get('application_id')).first()
             if application is None:
-                raise AppApiException(500, '不存在的应用id')
+                raise AppApiException(500, 'No Applicationsid')
             image_id = uuid.uuid1()
             image = Image(id=image_id, image=self.data.get('image').read(), image_name=self.data.get('image').name)
             image.save()
@@ -442,13 +442,13 @@ class ApplicationSerializer(serializers.Serializer):
             return {**ApplicationSerializer.Query.reset_application(ApplicationSerializerModel(application).data)}
 
     class Operate(serializers.Serializer):
-        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("应用id"))
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Applicationsid"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             if not QuerySet(Application).filter(id=self.data.get('application_id')).exists():
-                raise AppApiException(500, '不存在的应用id')
+                raise AppApiException(500, 'No Applicationsid')
 
         def list_model(self, with_valid=True):
             if with_valid:
@@ -485,7 +485,7 @@ class ApplicationSerializer(serializers.Serializer):
             application = QuerySet(Application).get(id=application_id)
             application_access_token = QuerySet(ApplicationAccessToken).filter(application_id=application.id).first()
             if application_access_token is None:
-                raise AppUnauthorizedFailed(500, "非法用户")
+                raise AppUnauthorizedFailed(500, "illegal users")
             return ApplicationSerializer.Query.reset_application(
                 {**ApplicationSerializer.ApplicationModel(application).data,
                  'show_source': application_access_token.show_source})
@@ -505,7 +505,7 @@ class ApplicationSerializer(serializers.Serializer):
                     id=instance.get('model_id'),
                     user_id=application.user_id).first()
                 if model is None:
-                    raise AppApiException(500, "模型不存在")
+                    raise AppApiException(500, "The model does not exist.")
             update_keys = ['name', 'desc', 'model_id', 'multiple_rounds_dialogue', 'prologue', 'status',
                            'dataset_setting', 'model_setting', 'problem_optimization',
                            'api_key_is_active', 'icon']
@@ -519,17 +519,17 @@ class ApplicationSerializer(serializers.Serializer):
 
             if 'dataset_id_list' in instance:
                 dataset_id_list = instance.get('dataset_id_list')
-                # 当前用户可修改关联的知识库列表
+                # Current users can modify the list of related knowledge bases
                 application_dataset_id_list = [str(dataset_dict.get('id')) for dataset_dict in
                                                self.list_dataset(with_valid=False)]
                 for dataset_id in dataset_id_list:
                     if not application_dataset_id_list.__contains__(dataset_id):
-                        raise AppApiException(500, f"未知的知识库id${dataset_id},无法关联")
+                        raise AppApiException(500, f"The Unknown Knowledge Baseid${dataset_id},not connected.")
 
-                # 删除已经关联的id
+                # Removing already connected.id
                 QuerySet(ApplicationDatasetMapping).filter(dataset_id__in=application_dataset_id_list,
                                                            application_id=application_id).delete()
-                # 插入
+                # Inserted
                 QuerySet(ApplicationDatasetMapping).bulk_create(
                     [ApplicationDatasetMapping(application_id=application_id, dataset_id=dataset_id) for dataset_id in
                      dataset_id_list]) if len(dataset_id_list) > 0 else None
@@ -550,16 +550,16 @@ class ApplicationSerializer(serializers.Serializer):
             fields = "__all__"
 
     class ApplicationKeySerializer(serializers.Serializer):
-        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("用户id"))
+        user_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Usersid"))
 
-        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("应用id"))
+        application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Applicationsid"))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             application_id = self.data.get("application_id")
             application = QuerySet(Application).filter(id=application_id).first()
             if application is None:
-                raise AppApiException(1001, "应用不存在")
+                raise AppApiException(1001, "Applications do not exist.")
 
         def generate(self, with_valid=True):
             if with_valid:
@@ -581,10 +581,10 @@ class ApplicationSerializer(serializers.Serializer):
                     QuerySet(ApplicationApiKey).filter(application_id=application_id)]
 
         class Edit(serializers.Serializer):
-            is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean("是否可用"))
+            is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean("Is Available"))
 
         class Operate(serializers.Serializer):
-            application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("应用id"))
+            application_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Applicationsid"))
 
             api_key_id = serializers.CharField(required=True, error_messages=ErrMessage.char("ApiKeyid"))
 
@@ -607,7 +607,7 @@ class ApplicationSerializer(serializers.Serializer):
                     application_api_key = QuerySet(ApplicationApiKey).filter(id=api_key_id,
                                                                              application_id=application_id).first()
                     if application_api_key is None:
-                        raise AppApiException(500, '不存在')
+                        raise AppApiException(500, 'There is no')
 
                     application_api_key.is_active = instance.get('is_active')
                     application_api_key.save()

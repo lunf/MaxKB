@@ -9,7 +9,7 @@ export class Result<T> {
   }
 
   static success(data: any) {
-    return new Result("请求成功", 200, data);
+    return new Result("Request for Success", 200, data);
   }
   static error(message: string, code: number) {
     return new Result(message, code, null);
@@ -18,23 +18,23 @@ export class Result<T> {
 
 interface Page<T> {
   /**
-   *分页数据
+   *Separate page data
    */
   records: Array<T>;
   /**
-   *当前页
+   *Current page
    */
   current: number;
   /**
-   * 每页展示size
+   * Showing each page.size
    */
   size: number;
   /**
-   *总数
+   *The total number
    */
   total: number;
   /**
-   *是否有下一页
+   *Is there a next page?
    */
   hasNext: boolean;
 }

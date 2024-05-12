@@ -5,8 +5,8 @@ import { type Ref } from 'vue'
 
 const prefix = '/application'
 /**
- * 对话日志
- * @param 参数
+ * Dialogues
+ * @param Parameters
  * application_id, history_day
  * page  {
               "current_page": "string",
@@ -40,8 +40,8 @@ const exportChatLog: (
 }
 
 /**
- * 删除日志
- * @param 参数 application_id, chat_id,
+ * Remove the log.
+ * @param Parameters application_id, chat_id,
  */
 const delChatLog: (
   application_id: string,
@@ -52,8 +52,8 @@ const delChatLog: (
 }
 
 /**
- * 日志记录
- * @param 参数
+ * The journal record.
+ * @param Parameters
  * application_id, chart_id
  * page {
           "current_page": "string",
@@ -74,8 +74,8 @@ const getChatRecordLog: (
 }
 
 /**
- * 修改日志内容
- * @param 参数
+ * Modifying the log content.
+ * @param Parameters
  * application_id, chart_id,  chart_record_id, dataset_id, document_id
  * data {
           "title": "string",
@@ -108,8 +108,8 @@ const putChatRecordLog: (
 }
 
 /**
- * 获取标注段落列表信息
- * @param 参数
+ * Get information on the item list.
+ * @param Parameters
  * application_id, chart_id,  chart_record_id
  */
 const getMarkRecord: (
@@ -126,8 +126,8 @@ const getMarkRecord: (
 }
 
 /**
- * 删除标注
- * @param 参数
+ * Remove the label.
+ * @param Parameters
  * application_id, chart_id,  chart_record_id, dataset_id, document_id,paragraph_id
  */
 const delMarkRecord: (
@@ -156,8 +156,8 @@ const delMarkRecord: (
 }
 
 /**
- * 获取对话记录详情
- * @param 参数
+ * Get the dialogue record details
+ * @param Parameters
  * application_id, chart_id,  chart_record_id
  */
 const getRecordDetail: (

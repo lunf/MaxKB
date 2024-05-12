@@ -1,10 +1,10 @@
 <template>
-  <el-dialog title="访问限制" v-model="dialogVisible">
+  <el-dialog title="Limitation of access" v-model="dialogVisible">
     <el-form label-position="top" ref="limitFormRef" :model="form">
-      <el-form-item label="显示知识来源" @click.prevent>
+      <el-form-item label="Showing the source of knowledge" @click.prevent>
         <el-switch size="small" v-model="form.show_source"></el-switch>
       </el-form-item>
-      <el-form-item label="客户端提问限制">
+      <el-form-item label="Customer Questions Limitation">
         <el-input-number
           v-model="form.access_num"
           :min="0"
@@ -12,15 +12,15 @@
           controls-position="right"
           step-strictly
         />
-        <span class="ml-4">次 / 天</span>
+        <span class="ml-4">The next / The God</span>
       </el-form-item>
-      <el-form-item label="白名单" @click.prevent>
+      <el-form-item label="The White List" @click.prevent>
         <el-switch size="small" v-model="form.white_active"></el-switch>
       </el-form-item>
       <el-form-item>
         <el-input
           v-model="form.white_list"
-          placeholder="请输入允许嵌入第三方的源地址，一行一个，如：
+          placeholder="Please enter the source address that allows the third party to embedded.，One line one.，as：
 http://127.0.0.1:5678
 https://dataease.io"
           :rows="10"
@@ -30,9 +30,9 @@ https://dataease.io"
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
         <el-button type="primary" @click="submit(limitFormRef)" :loading="loading">
-          保存
+          preserved
         </el-button>
       </span>
     </template>
@@ -94,7 +94,7 @@ const submit = async (formEl: FormInstance | undefined) => {
       }
       applicationApi.putAccessToken(id as string, obj, loading).then((res) => {
         emit('refresh')
-        MsgSuccess('设置成功')
+        MsgSuccess('Setup Success')
         dialogVisible.value = false
       })
     }

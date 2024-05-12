@@ -4,7 +4,7 @@ import { Role } from '@/utils/permission/type'
 const settingRouter = {
   path: '/setting',
   name: 'setting',
-  meta: { icon: 'Setting', title: '系统设置', permission: 'SETTING:READ' },
+  meta: { icon: 'Setting', title: 'System settings', permission: 'SETTING:READ' },
   redirect: (to: any) => {
     if (hasPermission(new Role('ADMIN'), 'AND')) {
       return '/user'
@@ -19,7 +19,7 @@ const settingRouter = {
       meta: {
         icon: 'User',
         iconActive: 'UserFilled',
-        title: '用户管理',
+        title: 'User Management',
         activeMenu: '/setting',
         parentPath: '/setting',
         parentName: 'setting',
@@ -33,7 +33,7 @@ const settingRouter = {
       meta: {
         icon: 'app-team',
         iconActive: 'app-team-active',
-        title: '团队成员',
+        title: 'Members of Team',
         activeMenu: '/setting',
         parentPath: '/setting',
         parentName: 'setting'
@@ -46,7 +46,7 @@ const settingRouter = {
       meta: {
         icon: 'app-template',
         iconActive: 'app-template-active',
-        title: '模型设置',
+        title: 'Models set up',
         activeMenu: '/setting',
         parentPath: '/setting',
         parentName: 'setting'
@@ -58,7 +58,7 @@ const settingRouter = {
       name: 'email',
       meta: {
         icon: 'Message',
-        title: '邮箱设置',
+        title: 'Postbox setup.',
         activeMenu: '/setting',
         parentPath: '/setting',
         parentName: 'setting',

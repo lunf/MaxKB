@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='document',
             name='hit_handling_method',
-            field=models.CharField(choices=[('optimization', '模型优化'), ('directly_return', '直接返回')], default='optimization', max_length=20, verbose_name='命中处理方式'),
+            field=models.CharField(choices=[('optimization', 'Models optimized'), ('directly_return', 'Return directly.')], default='optimization', max_length=20, verbose_name='Method of Treatment'),
         ),
     ]

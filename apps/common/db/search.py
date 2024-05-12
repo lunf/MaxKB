@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： search.py
     @date：2023/10/7 18:20
     @desc:
@@ -18,10 +18,10 @@ from common.response.result import Page
 
 def get_dynamics_model(attr: dict, table_name='dynamics'):
     """
-    获取一个动态的django模型
-    :param attr:       模型字段
-    :param table_name: 表名
-    :return: django 模型
+    Get a dynamic.djangoThe model
+    :param attr:       Model Fields
+    :param table_name: Name of
+    :return: django The model
     """
     attributes = {
         "__module__": "dataset.models",
@@ -34,12 +34,12 @@ def get_dynamics_model(attr: dict, table_name='dynamics'):
 def generate_sql_by_query_dict(queryset_dict: Dict[str, QuerySet], select_string: str,
                                field_replace_dict: None | Dict[str, Dict[str, str]] = None, with_table_name=False):
     """
-    生成 查询sql
+    produced The querysql
     :param with_table_name:
-    :param queryset_dict: 多条件 查询条件
-    :param select_string: 查询sql
-    :param field_replace_dict:  需要替换的查询字段,一般不需要传入如果有特殊的需要传入
-    :return: sql:需要查询的sql params: sql 参数
+    :param queryset_dict: Multiple conditions Conditions of Question
+    :param select_string: The querysql
+    :param field_replace_dict:  Requirements to replace polls.,There is no need to enter if there is a special need to enter.
+    :return: sql:Required inquiry.sql params: sql Parameters
     """
 
     params_dict: Dict[int, Any] = {}
@@ -59,11 +59,11 @@ def generate_sql_by_query_dict(queryset_dict: Dict[str, QuerySet], select_string
 def generate_sql_by_query(queryset: QuerySet, select_string: str,
                           field_replace_dict: None | Dict[str, str] = None, with_table_name=False):
     """
-    生成 查询sql
-    :param queryset:            查询条件
-    :param select_string:       原始sql
-    :param field_replace_dict:  需要替换的查询字段,一般不需要传入如果有特殊的需要传入
-    :return:  sql:需要查询的sql params: sql 参数
+    produced The querysql
+    :param queryset:            Conditions of Question
+    :param select_string:       Primarysql
+    :param field_replace_dict:  Requirements to replace polls.,There is no need to enter if there is a special need to enter.
+    :return:  sql:Required inquiry.sql params: sql Parameters
     """
     sql, params = compiler_queryset(queryset, field_replace_dict, with_table_name)
     return select_string + " " + sql, params
@@ -71,11 +71,11 @@ def generate_sql_by_query(queryset: QuerySet, select_string: str,
 
 def compiler_queryset(queryset: QuerySet, field_replace_dict: None | Dict[str, str] = None, with_table_name=False):
     """
-    解析 queryset查询对象
+    Analysis querysetQuestion of objects.
     :param with_table_name:
-    :param queryset:            查询对象
-    :param field_replace_dict:  需要替换的查询字段,一般不需要传入如果有特殊的需要传入
-    :return: sql:需要查询的sql params: sql 参数
+    :param queryset:            Question of objects.
+    :param field_replace_dict:  Requirements to replace polls.,There is no need to enter if there is a special need to enter.
+    :return: sql:Required inquiry.sql params: sql Parameters
     """
     q = queryset.query
     compiler = q.get_compiler(DEFAULT_DB_ALIAS)
@@ -91,13 +91,13 @@ def native_search(queryset: QuerySet | Dict[str, QuerySet], select_string: str,
                   field_replace_dict: None | Dict[str, Dict[str, str]] | Dict[str, str] = None,
                   with_search_one=False, with_table_name=False):
     """
-    复杂查询
-    :param with_table_name:     生成sql是否包含表名
-    :param queryset:            查询条件构造器
-    :param select_string:       查询前缀 不包括 where limit 等信息
-    :param field_replace_dict:  需要替换的字段
-    :param with_search_one:     查询
-    :return: 查询结果
+    Complex inquiries
+    :param with_table_name:     producedsqlIncludes the name.
+    :param queryset:            Conducting Conditions Constructor
+    :param select_string:       Inquiry in advance Not included where limit Wait for information
+    :param field_replace_dict:  Fields needed to be replaced.
+    :param with_search_one:     The query
+    :return: Search Results
     """
     if isinstance(queryset, Dict):
         exec_sql, exec_params = generate_sql_by_query_dict(queryset, select_string, field_replace_dict, with_table_name)
@@ -111,12 +111,12 @@ def native_search(queryset: QuerySet | Dict[str, QuerySet], select_string: str,
 
 def page_search(current_page: int, page_size: int, queryset: QuerySet, post_records_handler):
     """
-    分页查询
-    :param current_page:         当前页
-    :param page_size:            每页大小
-    :param queryset:             查询条件
-    :param post_records_handler: 数据处理器
-    :return:  分页结果
+    Page search.
+    :param current_page:         Current page
+    :param page_size:            Size of each page.
+    :param queryset:             Conditions of Question
+    :param post_records_handler: Data Processor
+    :return:  Page Results
     """
     total = QuerySet(query=queryset.query.clone(), model=queryset.model).count()
     result = queryset.all()[((current_page - 1) * page_size):(current_page * page_size)]
@@ -128,15 +128,15 @@ def native_page_search(current_page: int, page_size: int, queryset: QuerySet | D
                        post_records_handler=lambda r: r,
                        with_table_name=False):
     """
-    复杂分页查询
+    Complex page queries.
     :param with_table_name:
-    :param current_page:          当前页
-    :param page_size:             每页大小
-    :param queryset:              查询条件
-    :param select_string:         查询
-    :param field_replace_dict:    特殊字段替换
-    :param post_records_handler:  数据row处理器
-    :return: 分页结果
+    :param current_page:          Current page
+    :param page_size:             Size of each page.
+    :param queryset:              Conditions of Question
+    :param select_string:         The query
+    :param field_replace_dict:    Special field replacement.
+    :param post_records_handler:  The datarowProcessor
+    :return: Page Results
     """
     if isinstance(queryset, Dict):
         exec_sql, exec_params = generate_sql_by_query_dict(queryset, select_string, field_replace_dict, with_table_name)
@@ -154,9 +154,9 @@ def native_page_search(current_page: int, page_size: int, queryset: QuerySet | D
 
 def get_field_replace_dict(queryset: QuerySet):
     """
-    获取需要替换的字段 默认 “xxx.xxx”需要被替换成 “xxx”."xxx"
-    :param queryset: 查询对象
-    :return: 需要替换的字典
+    Find the fields needed to be replaced. presumed “xxx.xxx”Need to be replaced. “xxx”."xxx"
+    :param queryset: Question of objects.
+    :return: The dictionary needs to be replaced.
     """
     result = {}
     for field in queryset.model._meta.local_fields:
@@ -168,9 +168,9 @@ def get_field_replace_dict(queryset: QuerySet):
 
 def to_replace_field(field: str):
     """
-    将field 转换为 需要替换的field  “xxx.xxx”需要被替换成 “xxx”."xxx" 只替换 field包含.的字段
-    :param field: django field字段
-    :return: 替换字段
+    willfield Convert to Need to be replaced.field  “xxx.xxx”Need to be replaced. “xxx”."xxx" Just replaced. fieldIncluded.The field.
+    :param field: django fieldFields
+    :return: Replace the field.
     """
     split_field = field.split(".")
     return ".".join(list(map(lambda sf: '"' + sf + '"', split_field)))

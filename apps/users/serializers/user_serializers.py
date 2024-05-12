@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：虎
+    @Author：The Tiger
     @file： team_serializers.py
     @date：2023/9/5 16:32
     @desc:
@@ -51,22 +51,22 @@ class SystemSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_OBJECT,
             required=[],
             properties={
-                'version': openapi.Schema(type=openapi.TYPE_STRING, title="系统版本号", description="系统版本号"),
+                'version': openapi.Schema(type=openapi.TYPE_STRING, title="The system version number.", description="The system version number."),
             }
         )
 
 
 class LoginSerializer(ApiMixin, serializers.Serializer):
     username = serializers.CharField(required=True,
-                                     error_messages=ErrMessage.char("用户名"))
+                                     error_messages=ErrMessage.char("User Name"))
 
-    password = serializers.CharField(required=True, error_messages=ErrMessage.char("密码"))
+    password = serializers.CharField(required=True, error_messages=ErrMessage.char("The code"))
 
     def is_valid(self, *, raise_exception=False):
         """
-        校验参数
-        :param raise_exception: 是否抛出异常 只能是True
-        :return: 用户信息
+        The exam parameters.
+        :param raise_exception: Remove the abnormal. Only isTrue
+        :return: User Information
         """
         super().is_valid(raise_exception=True)
         username = self.data.get("username")
@@ -77,13 +77,13 @@ class LoginSerializer(ApiMixin, serializers.Serializer):
         if user is None:
             raise ExceptionCodeConstants.INCORRECT_USERNAME_AND_PASSWORD.value.to_app_api_exception()
         if not user.is_active:
-            raise AppApiException(1005, "用户已被禁用,请联系管理员!")
+            raise AppApiException(1005, "Users are banned.,Please contact the manager.!")
         return user
 
     def get_user_token(self):
         """
-        获取用户Token
-        :return: 用户Token(认证信息)
+        Obtaining UsersToken
+        :return: UsersToken(Certification Information)
         """
         user = self.is_valid()
         token = signing.dumps({'username': user.username, 'id': str(user.id), 'email': user.email,
@@ -99,8 +99,8 @@ class LoginSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_OBJECT,
             required=['username', 'password'],
             properties={
-                'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                'password': openapi.Schema(type=openapi.TYPE_STRING, title="密码", description="密码")
+                'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, title="The code", description="The code")
             }
         )
 
@@ -109,42 +109,42 @@ class LoginSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_STRING,
             title="token",
             default="xxxx",
-            description="认证token"
+            description="Certificationtoken"
         ))
 
 
 class RegisterSerializer(ApiMixin, serializers.Serializer):
     """
-    注册请求对象
+    Subjects of registration request
     """
     email = serializers.EmailField(
         required=True,
-        error_messages=ErrMessage.char("邮箱"),
+        error_messages=ErrMessage.char("The mailbox"),
         validators=[validators.EmailValidator(message=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.message,
                                               code=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.code)])
 
     username = serializers.CharField(required=True,
-                                     error_messages=ErrMessage.char("用户名"),
+                                     error_messages=ErrMessage.char("User Name"),
                                      max_length=20,
                                      min_length=6,
                                      validators=[
                                          validators.RegexValidator(regex=re.compile("^[a-zA-Z][a-zA-Z1-9_]{5,20}$"),
-                                                                   message="用户名字符数为 6-20 个字符，必须以字母开头，可使用字母、数字、下划线等")
+                                                                   message="Number of User Names 6-20 A character.，It must start with letters.，Use of letters.、The numbers、The line down.")
                                      ])
-    password = serializers.CharField(required=True, error_messages=ErrMessage.char("密码"),
+    password = serializers.CharField(required=True, error_messages=ErrMessage.char("The code"),
                                      validators=[validators.RegexValidator(regex=re.compile(
                                          "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                          "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                         , message="密码长度6-20个字符，必须字母、数字、特殊字符组合")])
+                                         , message="Password Length6-20A character.，Must have letters.、The numbers、Special character combination.")])
 
     re_password = serializers.CharField(required=True,
-                                        error_messages=ErrMessage.char("确认密码"),
+                                        error_messages=ErrMessage.char("Confirm the password."),
                                         validators=[validators.RegexValidator(regex=re.compile(
                                             "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                             "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                            , message="确认密码长度6-20个字符，必须字母、数字、特殊字符组合")])
+                                            , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")])
 
-    code = serializers.CharField(required=True, error_messages=ErrMessage.char("验证码"))
+    code = serializers.CharField(required=True, error_messages=ErrMessage.char("verification code"))
 
     class Meta:
         model = User
@@ -180,13 +180,13 @@ class RegisterSerializer(ApiMixin, serializers.Serializer):
             **{'id': uuid.uuid1(), 'email': self.data.get("email"), 'username': self.data.get("username"),
                'role': RoleConstants.USER.name})
         m.set_password(self.data.get("password"))
-        # 插入用户
+        # Insert the user.
         m.save()
-        # 初始化用户团队
-        Team(**{'user': m, 'name': m.username + '的团队'}).save()
+        # The initial user team.
+        Team(**{'user': m, 'name': m.username + 'The team.'}).save()
         email = self.data.get("email")
         code_cache_key = email + ":register"
-        # 删除验证码缓存
+        # Remove the verification code.
         user_cache.delete(code_cache_key)
 
     @staticmethod
@@ -195,31 +195,31 @@ class RegisterSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_OBJECT,
             required=['username', 'email', 'password', 're_password', 'code'],
             properties={
-                'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'password': openapi.Schema(type=openapi.TYPE_STRING, title="密码", description="密码"),
-                're_password': openapi.Schema(type=openapi.TYPE_STRING, title="确认密码", description="确认密码"),
-                'code': openapi.Schema(type=openapi.TYPE_STRING, title="验证码", description="验证码")
+                'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, title="The code", description="The code"),
+                're_password': openapi.Schema(type=openapi.TYPE_STRING, title="Confirm the password.", description="Confirm the password."),
+                'code': openapi.Schema(type=openapi.TYPE_STRING, title="verification code", description="verification code")
             }
         )
 
 
 class CheckCodeSerializer(ApiMixin, serializers.Serializer):
     """
-     校验验证码
+     School verification code.
     """
     email = serializers.EmailField(
         required=True,
-        error_messages=ErrMessage.char("邮箱"),
+        error_messages=ErrMessage.char("The mailbox"),
         validators=[validators.EmailValidator(message=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.message,
                                               code=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.code)])
-    code = serializers.CharField(required=True, error_messages=ErrMessage.char("验证码"))
+    code = serializers.CharField(required=True, error_messages=ErrMessage.char("verification code"))
 
     type = serializers.CharField(required=True,
-                                 error_messages=ErrMessage.char("类型"),
+                                 error_messages=ErrMessage.char("Type of"),
                                  validators=[
                                      validators.RegexValidator(regex=re.compile("^register|reset_password$"),
-                                                               message="类型只支持register|reset_password", code=500)
+                                                               message="Type only supports.register|reset_password", code=500)
                                  ])
 
     def is_valid(self, *, raise_exception=False):
@@ -238,40 +238,40 @@ class CheckCodeSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_OBJECT,
             required=['email', 'code', 'type'],
             properties={
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'code': openapi.Schema(type=openapi.TYPE_STRING, title="验证码", description="验证码"),
-                'type': openapi.Schema(type=openapi.TYPE_STRING, title="类型", description="register|reset_password")
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'code': openapi.Schema(type=openapi.TYPE_STRING, title="verification code", description="verification code"),
+                'type': openapi.Schema(type=openapi.TYPE_STRING, title="Type of", description="register|reset_password")
             }
         )
 
     def get_response_body_api(self):
         return get_api_response(openapi.Schema(
             type=openapi.TYPE_BOOLEAN,
-            title="是否成功",
+            title="is successful.",
             default=True,
-            description="错误提示"))
+            description="The wrong advice."))
 
 
 class RePasswordSerializer(ApiMixin, serializers.Serializer):
     email = serializers.EmailField(
         required=True,
-        error_messages=ErrMessage.char("邮箱"),
+        error_messages=ErrMessage.char("The mailbox"),
         validators=[validators.EmailValidator(message=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.message,
                                               code=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.code)])
 
-    code = serializers.CharField(required=True, error_messages=ErrMessage.char("验证码"))
+    code = serializers.CharField(required=True, error_messages=ErrMessage.char("verification code"))
 
-    password = serializers.CharField(required=True, error_messages=ErrMessage.char("密码"),
+    password = serializers.CharField(required=True, error_messages=ErrMessage.char("The code"),
                                      validators=[validators.RegexValidator(regex=re.compile(
                                          "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                          "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                         , message="确认密码长度6-20个字符，必须字母、数字、特殊字符组合")])
+                                         , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")])
 
-    re_password = serializers.CharField(required=True, error_messages=ErrMessage.char("确认密码"),
+    re_password = serializers.CharField(required=True, error_messages=ErrMessage.char("Confirm the password."),
                                         validators=[validators.RegexValidator(regex=re.compile(
                                             "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                             "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                            , message="确认密码长度6-20个字符，必须字母、数字、特殊字符组合")]
+                                            , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")]
                                         )
 
     class Meta:
@@ -292,15 +292,15 @@ class RePasswordSerializer(ApiMixin, serializers.Serializer):
 
     def reset_password(self):
         """
-        修改密码
-        :return: 是否成功
+        Modify the password.
+        :return: is successful.
         """
         if self.is_valid():
             email = self.data.get("email")
             QuerySet(User).filter(email=email).update(
                 password=password_encrypt(self.data.get('password')))
             code_cache_key = email + ":reset_password"
-            # 删除验证码缓存
+            # Remove the verification code.
             user_cache.delete(code_cache_key)
             return True
 
@@ -309,10 +309,10 @@ class RePasswordSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_OBJECT,
             required=['email', 'code', "password", 're_password'],
             properties={
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'code': openapi.Schema(type=openapi.TYPE_STRING, title="验证码", description="验证码"),
-                'password': openapi.Schema(type=openapi.TYPE_STRING, title="密码", description="密码"),
-                're_password': openapi.Schema(type=openapi.TYPE_STRING, title="确认密码", description="确认密码")
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'code': openapi.Schema(type=openapi.TYPE_STRING, title="verification code", description="verification code"),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, title="The code", description="The code"),
+                're_password': openapi.Schema(type=openapi.TYPE_STRING, title="Confirm the password.", description="Confirm the password.")
             }
         )
 
@@ -320,13 +320,13 @@ class RePasswordSerializer(ApiMixin, serializers.Serializer):
 class SendEmailSerializer(ApiMixin, serializers.Serializer):
     email = serializers.EmailField(
         required=True
-        , error_messages=ErrMessage.char("邮箱"),
+        , error_messages=ErrMessage.char("The mailbox"),
         validators=[validators.EmailValidator(message=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.message,
                                               code=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.code)])
 
-    type = serializers.CharField(required=True, error_messages=ErrMessage.char("类型"), validators=[
+    type = serializers.CharField(required=True, error_messages=ErrMessage.char("Type of"), validators=[
         validators.RegexValidator(regex=re.compile("^register|reset_password$"),
-                                  message="类型只支持register|reset_password", code=500)
+                                  message="Type only supports.register|reset_password", code=500)
     ])
 
     class Meta:
@@ -344,33 +344,33 @@ class SendEmailSerializer(ApiMixin, serializers.Serializer):
         code_cache_key_lock = code_cache_key + "_lock"
         ttl = user_cache.ttl(code_cache_key_lock)
         if ttl is not None:
-            raise AppApiException(500, f"{ttl.total_seconds()}秒内请勿重复发送邮件")
+            raise AppApiException(500, f"{ttl.total_seconds()}Do not send emails again in a second.")
         return True
 
     def send(self):
         """
-        发送邮件
-        :return:   是否发送成功
-        :exception 发送失败异常
+        sending the mail.
+        :return:   sending success.
+        :exception Unusual failure.
         """
         email = self.data.get("email")
         state = self.data.get("type")
-        # 生成随机验证码
+        # Create a random verification code.
         code = "".join(list(map(lambda i: random.choice(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
                                                          ]), range(6))))
-        # 获取邮件模板
+        # Get a mail template.
         file = open(os.path.join(PROJECT_DIR, "apps", "common", 'template', 'email_template.html'), "r",
                     encoding='utf-8')
         content = file.read()
         file.close()
         code_cache_key = email + ":" + state
         code_cache_key_lock = code_cache_key + "_lock"
-        # 设置缓存
+        # Set up cache.
         user_cache.set(code_cache_key_lock, code, timeout=datetime.timedelta(minutes=1))
         system_setting = QuerySet(SystemSetting).filter(type=SettingType.EMAIL.value).first()
         if system_setting is None:
             user_cache.delete(code_cache_key_lock)
-            raise AppApiException(1004, "邮箱未设置,请联系管理员设置")
+            raise AppApiException(1004, "The mailbox is not set.,Please contact the administrator.")
         try:
             connection = EmailBackend(system_setting.meta.get("email_host"),
                                       system_setting.meta.get('email_port'),
@@ -380,15 +380,15 @@ class SendEmailSerializer(ApiMixin, serializers.Serializer):
                                       False,
                                       system_setting.meta.get('email_use_ssl')
                                       )
-            # 发送邮件
-            send_mail(f'【MaxKB 智能知识库-{"用户注册" if state == "register" else "修改密码"}】',
+            # sending the mail.
+            send_mail(f'【MaxKB Intelligent Knowledge Base-{"User Registration" if state == "register" else "Modify the password."}】',
                       '',
                       html_message=f'{content.replace("${code}", code)}',
                       from_email=system_setting.meta.get('from_email'),
                       recipient_list=[email], fail_silently=False, connection=connection)
         except Exception as e:
             user_cache.delete(code_cache_key_lock)
-            raise AppApiException(500, f"{str(e)}邮件发送失败")
+            raise AppApiException(500, f"{str(e)}Email sent failed.")
         user_cache.set(code_cache_key, code, timeout=datetime.timedelta(minutes=30))
         return True
 
@@ -397,8 +397,8 @@ class SendEmailSerializer(ApiMixin, serializers.Serializer):
             type=openapi.TYPE_OBJECT,
             required=['email', 'type'],
             properties={
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'type': openapi.Schema(type=openapi.TYPE_STRING, title="类型", description="register|reset_password")
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'type': openapi.Schema(type=openapi.TYPE_STRING, title="Type of", description="register|reset_password")
             }
         )
 
@@ -411,8 +411,8 @@ class UserProfile(ApiMixin):
     @staticmethod
     def get_user_profile(user: User):
         """
-        获取用户详情
-        :param user: 用户对象
+        Obtaining User Details
+        :param user: User Objects
         :return:
         """
         permission_list = get_user_dynamics_permission(str(user.id))
@@ -427,12 +427,12 @@ class UserProfile(ApiMixin):
             type=openapi.TYPE_OBJECT,
             required=['id', 'username', 'email', 'role', 'is_active'],
             properties={
-                'id': openapi.Schema(type=openapi.TYPE_STRING, title="用户id", description="用户id"),
-                'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'role': openapi.Schema(type=openapi.TYPE_STRING, title="角色", description="角色"),
-                'is_active': openapi.Schema(type=openapi.TYPE_STRING, title="是否可用", description="是否可用"),
-                "permissions": openapi.Schema(type=openapi.TYPE_ARRAY, title="权限列表", description="权限列表",
+                'id': openapi.Schema(type=openapi.TYPE_STRING, title="Usersid", description="Usersid"),
+                'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'role': openapi.Schema(type=openapi.TYPE_STRING, title="The role", description="The role"),
+                'is_active': openapi.Schema(type=openapi.TYPE_STRING, title="Is Available", description="Is Available"),
+                "permissions": openapi.Schema(type=openapi.TYPE_ARRAY, title="List of permissions", description="List of permissions",
                                               items=openapi.Schema(type=openapi.TYPE_STRING))
             }
         )
@@ -449,11 +449,11 @@ class UserSerializer(ApiMixin, serializers.ModelSerializer):
             type=openapi.TYPE_OBJECT,
             required=['id', 'username', 'email', 'role', 'is_active'],
             properties={
-                'id': openapi.Schema(type=openapi.TYPE_STRING, title="用户id", description="用户id"),
-                'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'role': openapi.Schema(type=openapi.TYPE_STRING, title="角色", description="角色"),
-                'is_active': openapi.Schema(type=openapi.TYPE_STRING, title="是否可用", description="是否可用")
+                'id': openapi.Schema(type=openapi.TYPE_STRING, title="Usersid", description="Usersid"),
+                'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'role': openapi.Schema(type=openapi.TYPE_STRING, title="The role", description="The role"),
+                'is_active': openapi.Schema(type=openapi.TYPE_STRING, title="Is Available", description="Is Available")
             }
         )
 
@@ -466,7 +466,7 @@ class UserSerializer(ApiMixin, serializers.ModelSerializer):
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='邮箱或者用户名')]
+                                      description='Mailbox or User Name')]
 
         @staticmethod
         def get_response_body_api():
@@ -474,9 +474,9 @@ class UserSerializer(ApiMixin, serializers.ModelSerializer):
                 type=openapi.TYPE_OBJECT,
                 required=['username', 'email', 'id'],
                 properties={
-                    'id': openapi.Schema(type=openapi.TYPE_STRING, title='用户主键id', description="用户主键id"),
-                    'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址")
+                    'id': openapi.Schema(type=openapi.TYPE_STRING, title='User keyid', description="User keyid"),
+                    'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address.")
                 }
             )
 
@@ -500,15 +500,15 @@ class UserInstanceSerializer(ApiMixin, serializers.ModelSerializer):
             required=['id', 'username', 'email', 'phone', 'is_active', 'role', 'nick_name', 'create_time',
                       'update_time'],
             properties={
-                'id': openapi.Schema(type=openapi.TYPE_STRING, title="用户id", description="用户id"),
-                'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                'phone': openapi.Schema(type=openapi.TYPE_STRING, title="手机号", description="手机号"),
-                'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否激活", description="是否激活"),
-                'role': openapi.Schema(type=openapi.TYPE_STRING, title="角色", description="角色"),
-                'nick_name': openapi.Schema(type=openapi.TYPE_STRING, title="姓名", description="姓名"),
-                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间", description="修改时间"),
-                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间", description="修改时间")
+                'id': openapi.Schema(type=openapi.TYPE_STRING, title="Usersid", description="Usersid"),
+                'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                'phone': openapi.Schema(type=openapi.TYPE_STRING, title="The phone number.", description="The phone number."),
+                'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="is activated.", description="is activated."),
+                'role': openapi.Schema(type=openapi.TYPE_STRING, title="The role", description="The role"),
+                'nick_name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of", description="Name of"),
+                'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.", description="Change time."),
+                'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.", description="Change time.")
             }
         )
 
@@ -518,7 +518,7 @@ class UserInstanceSerializer(ApiMixin, serializers.ModelSerializer):
                                   in_=openapi.IN_PATH,
                                   type=openapi.TYPE_STRING,
                                   required=True,
-                                  description='用户名id')
+                                  description='User Nameid')
 
                 ]
 
@@ -526,7 +526,7 @@ class UserInstanceSerializer(ApiMixin, serializers.ModelSerializer):
 class UserManageSerializer(serializers.Serializer):
     class Query(ApiMixin, serializers.Serializer):
         email_or_username = serializers.CharField(required=False, allow_null=True,
-                                                  error_messages=ErrMessage.char("邮箱或者用户名"))
+                                                  error_messages=ErrMessage.char("Mailbox or User Name"))
 
         @staticmethod
         def get_request_params_api():
@@ -534,7 +534,7 @@ class UserManageSerializer(serializers.Serializer):
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=False,
-                                      description='邮箱或者用户名')]
+                                      description='Mailbox or User Name')]
 
         @staticmethod
         def get_response_body_api():
@@ -542,9 +542,9 @@ class UserManageSerializer(serializers.Serializer):
                 type=openapi.TYPE_OBJECT,
                 required=['username', 'email', 'id'],
                 properties={
-                    'id': openapi.Schema(type=openapi.TYPE_STRING, title='用户主键id', description="用户主键id"),
-                    'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址")
+                    'id': openapi.Schema(type=openapi.TYPE_STRING, title='User keyid', description="User keyid"),
+                    'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address.")
                 }
             )
 
@@ -573,27 +573,27 @@ class UserManageSerializer(serializers.Serializer):
     class UserInstance(ApiMixin, serializers.Serializer):
         email = serializers.EmailField(
             required=True,
-            error_messages=ErrMessage.char("邮箱"),
+            error_messages=ErrMessage.char("The mailbox"),
             validators=[validators.EmailValidator(message=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.message,
                                                   code=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.code)])
 
         username = serializers.CharField(required=True,
-                                         error_messages=ErrMessage.char("用户名"),
+                                         error_messages=ErrMessage.char("User Name"),
                                          max_length=20,
                                          min_length=6,
                                          validators=[
                                              validators.RegexValidator(regex=re.compile("^[a-zA-Z][a-zA-Z1-9_]{5,20}$"),
-                                                                       message="用户名字符数为 6-20 个字符，必须以字母开头，可使用字母、数字、下划线等")
+                                                                       message="Number of User Names 6-20 A character.，It must start with letters.，Use of letters.、The numbers、The line down.")
                                          ])
-        password = serializers.CharField(required=True, error_messages=ErrMessage.char("密码"),
+        password = serializers.CharField(required=True, error_messages=ErrMessage.char("The code"),
                                          validators=[validators.RegexValidator(regex=re.compile(
                                              "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                              "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                             , message="密码长度6-20个字符，必须字母、数字、特殊字符组合")])
+                                             , message="Password Length6-20A character.，Must have letters.、The numbers、Special character combination.")])
 
-        nick_name = serializers.CharField(required=False, error_messages=ErrMessage.char("姓名"), max_length=64,
+        nick_name = serializers.CharField(required=False, error_messages=ErrMessage.char("Name of"), max_length=64,
                                           allow_null=True, allow_blank=True)
-        phone = serializers.CharField(required=False, error_messages=ErrMessage.char("手机号"), max_length=20,
+        phone = serializers.CharField(required=False, error_messages=ErrMessage.char("The phone number."), max_length=20,
                                       allow_null=True, allow_blank=True)
 
         def is_valid(self, *, raise_exception=True):
@@ -613,55 +613,55 @@ class UserManageSerializer(serializers.Serializer):
                 type=openapi.TYPE_OBJECT,
                 required=['username', 'email', 'password'],
                 properties={
-                    'username': openapi.Schema(type=openapi.TYPE_STRING, title="用户名", description="用户名"),
-                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱地址"),
-                    'password': openapi.Schema(type=openapi.TYPE_STRING, title="密码", description="密码"),
-                    'phone': openapi.Schema(type=openapi.TYPE_STRING, title="手机号", description="手机号"),
-                    'nick_name': openapi.Schema(type=openapi.TYPE_STRING, title="姓名", description="姓名")
+                    'username': openapi.Schema(type=openapi.TYPE_STRING, title="User Name", description="User Name"),
+                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox address."),
+                    'password': openapi.Schema(type=openapi.TYPE_STRING, title="The code", description="The code"),
+                    'phone': openapi.Schema(type=openapi.TYPE_STRING, title="The phone number.", description="The phone number."),
+                    'nick_name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of", description="Name of")
                 }
             )
 
     class UserEditInstance(ApiMixin, serializers.Serializer):
         email = serializers.EmailField(
             required=False,
-            error_messages=ErrMessage.char("邮箱"),
+            error_messages=ErrMessage.char("The mailbox"),
             validators=[validators.EmailValidator(message=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.message,
                                                   code=ExceptionCodeConstants.EMAIL_FORMAT_ERROR.value.code)])
 
-        nick_name = serializers.CharField(required=False, error_messages=ErrMessage.char("姓名"), max_length=64,
+        nick_name = serializers.CharField(required=False, error_messages=ErrMessage.char("Name of"), max_length=64,
                                           allow_null=True, allow_blank=True)
-        phone = serializers.CharField(required=False, error_messages=ErrMessage.char("手机号"), max_length=20,
+        phone = serializers.CharField(required=False, error_messages=ErrMessage.char("The phone number."), max_length=20,
                                       allow_null=True, allow_blank=True)
-        is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.char("是否可用"))
+        is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.char("Is Available"))
 
         def is_valid(self, *, user_id=None, raise_exception=False):
             super().is_valid(raise_exception=True)
             if QuerySet(User).filter(email=self.data.get('email')).exclude(id=user_id).exists():
-                raise AppApiException(1004, "邮箱已经被使用")
+                raise AppApiException(1004, "The mailbox has been used.")
 
         @staticmethod
         def get_request_body_api():
             return openapi.Schema(
                 type=openapi.TYPE_OBJECT,
                 properties={
-                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="邮箱", description="邮箱"),
-                    'nick_name': openapi.Schema(type=openapi.TYPE_STRING, title="姓名", description="姓名"),
-                    'phone': openapi.Schema(type=openapi.TYPE_STRING, title="手机号", description="手机号"),
-                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否可用", description="是否可用"),
+                    'email': openapi.Schema(type=openapi.TYPE_STRING, title="The mailbox", description="The mailbox"),
+                    'nick_name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of", description="Name of"),
+                    'phone': openapi.Schema(type=openapi.TYPE_STRING, title="The phone number.", description="The phone number."),
+                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is Available", description="Is Available"),
                 }
             )
 
     class RePasswordInstance(ApiMixin, serializers.Serializer):
-        password = serializers.CharField(required=True, error_messages=ErrMessage.char("密码"),
+        password = serializers.CharField(required=True, error_messages=ErrMessage.char("The code"),
                                          validators=[validators.RegexValidator(regex=re.compile(
                                              "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                              "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                             , message="密码长度6-20个字符，必须字母、数字、特殊字符组合")])
-        re_password = serializers.CharField(required=True, error_messages=ErrMessage.char("确认密码"),
+                                             , message="Password Length6-20A character.，Must have letters.、The numbers、Special character combination.")])
+        re_password = serializers.CharField(required=True, error_messages=ErrMessage.char("Confirm the password."),
                                             validators=[validators.RegexValidator(regex=re.compile(
                                                 "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                                 "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                                , message="确认密码长度6-20个字符，必须字母、数字、特殊字符组合")]
+                                                , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")]
                                             )
 
         @staticmethod
@@ -670,9 +670,9 @@ class UserManageSerializer(serializers.Serializer):
                 type=openapi.TYPE_OBJECT,
                 required=['password', 're_password'],
                 properties={
-                    'password': openapi.Schema(type=openapi.TYPE_STRING, title="密码", description="密码"),
-                    're_password': openapi.Schema(type=openapi.TYPE_STRING, title="确认密码",
-                                                  description="确认密码"),
+                    'password': openapi.Schema(type=openapi.TYPE_STRING, title="The code", description="The code"),
+                    're_password': openapi.Schema(type=openapi.TYPE_STRING, title="Confirm the password.",
+                                                  description="Confirm the password."),
                 }
             )
 
@@ -693,17 +693,17 @@ class UserManageSerializer(serializers.Serializer):
                     role=RoleConstants.USER.name,
                     is_active=True)
         user.save()
-        # 初始化用户团队
-        Team(**{'user': user, 'name': user.username + '的团队'}).save()
+        # The initial user team.
+        Team(**{'user': user, 'name': user.username + 'The team.'}).save()
         return UserInstanceSerializer(user).data
 
     class Operate(serializers.Serializer):
-        id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("用户id"))
+        id = serializers.UUIDField(required=True, error_messages=ErrMessage.char("Usersid"))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             if not QuerySet(User).filter(id=self.data.get('id')).exists():
-                raise AppApiException(1004, "用户不存在")
+                raise AppApiException(1004, "User does not exist.")
 
         @transaction.atomic
         def delete(self, with_valid=True):
@@ -711,18 +711,18 @@ class UserManageSerializer(serializers.Serializer):
                 self.is_valid(raise_exception=True)
                 user = QuerySet(User).filter(id=self.data.get('id')).first()
                 if user.role == RoleConstants.ADMIN.name:
-                    raise AppApiException(1004, "无法删除管理员")
+                    raise AppApiException(1004, "Managers cannot be removed.")
             user_id = self.data.get('id')
 
             team_member_list = QuerySet(TeamMember).filter(Q(user_id=user_id) | Q(team_id=user_id))
-            # 删除团队成员权限
+            # Delete membership rights.
             QuerySet(TeamMemberPermission).filter(
                 member_id__in=[team_member.id for team_member in team_member_list]).delete()
-            # 删除团队成员
+            # Remove Team Members
             team_member_list.delete()
-            # 删除应用相关 因为应用相关都是级联删除所以不需要手动删除
+            # Remove app related. Because the application is connected to the extension, there is no need to manually remove it.
             QuerySet(Application).filter(user_id=self.data.get('id')).delete()
-            # 删除数据集相关
+            # Delete the data set.
             dataset_list = QuerySet(DataSet).filter(user_id=self.data.get('id'))
             dataset_id_list = [str(dataset.id) for dataset in dataset_list]
             QuerySet(Document).filter(dataset_id__in=dataset_id_list).delete()
@@ -731,11 +731,11 @@ class UserManageSerializer(serializers.Serializer):
             QuerySet(Problem).filter(dataset_id__in=dataset_id_list).delete()
             ListenerManagement.delete_embedding_by_dataset_id_list_signal.send(dataset_id_list)
             dataset_list.delete()
-            # 删除团队
+            # Remove the team.
             QuerySet(Team).filter(user_id=self.data.get('id')).delete()
-            # 删除模型
+            # Remove the model.
             QuerySet(Model).filter(user_id=self.data.get('id')).delete()
-            # 删除用户
+            # Remove Users
             QuerySet(User).filter(id=self.data.get('id')).delete()
             return True
 
@@ -748,7 +748,7 @@ class UserManageSerializer(serializers.Serializer):
             user = QuerySet(User).filter(id=self.data.get('id')).first()
             if user.role == RoleConstants.ADMIN.name and 'is_active' in instance and instance.get(
                     'is_active') is not None:
-                raise AppApiException(1004, "不能修改管理员状态")
+                raise AppApiException(1004, "Can't change the status of the manager.")
             update_keys = ['email', 'nick_name', 'phone', 'is_active']
             for update_key in update_keys:
                 if update_key in instance and instance.get(update_key) is not None:

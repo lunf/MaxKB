@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='applicationaccesstoken',
             name='show_source',
-            field=models.BooleanField(default=False, verbose_name='是否显示知识来源'),
+            field=models.BooleanField(default=False, verbose_name='Showing a source of knowledge'),
         ),
     ]

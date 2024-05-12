@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="设置"
+    title="set up"
     v-model="dialogVisible"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
@@ -17,10 +17,10 @@
       <el-form-item>
         <template #label>
           <div class="flex align-center">
-            <span class="mr-4">命中处理方式</span>
+            <span class="mr-4">Method of Treatment</span>
             <el-tooltip
               effect="dark"
-              content="用户提问时，命中文档下的分段时按照设置的方式进行处理。"
+              content="When User Questions，Parts under the life Chinese file are processed according to the way set.。"
               placement="right"
             >
               <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
@@ -36,8 +36,8 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
-        <el-button type="primary" @click="submit(webFormRef)" :loading="loading"> 确定 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button type="primary" @click="submit(webFormRef)" :loading="loading"> Certainly </el-button>
       </span>
     </template>
   </el-dialog>
@@ -64,7 +64,7 @@ const form = ref<any>({
 })
 
 const rules = reactive({
-  source_url: [{ required: true, message: '请输入文档地址', trigger: 'blur' }]
+  source_url: [{ required: true, message: 'Please enter the document address.', trigger: 'blur' }]
 })
 
 const dialogVisible = ref<boolean>(false)
@@ -83,7 +83,7 @@ const submit = async (formEl: FormInstance | undefined) => {
         id_list: documentList.value
       }
       documentApi.batchEditHitHandling(id, obj, loading).then((res: any) => {
-        MsgSuccess('设置成功')
+        MsgSuccess('Setup Success')
         emit('refresh')
         dialogVisible.value = false
       })

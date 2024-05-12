@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： image_api.py
     @date：2024/4/23 11:23
     @desc:
@@ -18,5 +18,5 @@ class ImageApi(ApiMixin):
                                   in_=openapi.IN_FORM,
                                   type=openapi.TYPE_FILE,
                                   required=True,
-                                  description='上传图片文件')
+                                  description='upload photo file.')
                 ]

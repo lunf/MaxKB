@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： base_chat_step.py
     @date：2024/1/9 18:25
-    @desc: 对话step Base实现
+    @desc: Dialoguestep Baserealized
 """
 import json
 import logging
@@ -57,7 +57,7 @@ def event_content(response,
             yield 'data: ' + json.dumps({'chat_id': str(chat_id), 'id': str(chat_record_id), 'operate': True,
                                          'content': chunk.content, 'is_end': False}) + "\n\n"
 
-        # 获取token
+        # obtainedtoken
         if is_ai_chat:
             try:
                 request_token = chat_model.get_num_tokens_from_messages(message_list)
@@ -84,7 +84,7 @@ def event_content(response,
     except Exception as e:
         logging.getLogger("max_kb_error").error(f'{str(e)}:{traceback.format_exc()}')
         yield 'data: ' + json.dumps({'chat_id': str(chat_id), 'id': str(chat_record_id), 'operate': True,
-                                     'content': '异常' + str(e), 'is_end': True}) + "\n\n"
+                                     'content': 'Unusual' + str(e), 'is_end': True}) + "\n\n"
 
 
 class BaseChatStep(IChatStep):
@@ -146,7 +146,7 @@ class BaseChatStep(IChatStep):
                 'status') == 'designated_answer':
             return iter([AIMessageChunk(content=no_references_setting.get('value'))]), False
         if chat_model is None:
-            return iter([AIMessageChunk('抱歉，没有配置 AI 模型，无法优化引用分段，请先去应用中设置 AI 模型。')]), False
+            return iter([AIMessageChunk('Sorry to，No configuration. AI The model，It is impossible to optimize the reference section.，Please set up in the application. AI The model。')]), False
         else:
             return chat_model.stream(message_list), True
 
@@ -189,7 +189,7 @@ class BaseChatStep(IChatStep):
                 'status') == 'designated_answer':
             return AIMessage(no_references_setting.get('value')), False
         if chat_model is None:
-            return AIMessage('抱歉，没有配置 AI 模型，无法优化引用分段，请先去应用中设置 AI 模型。'), False
+            return AIMessage('Sorry to，No configuration. AI The model，It is impossible to optimize the reference section.，Please set up in the application. AI The model。'), False
         else:
             return chat_model.invoke(message_list), True
 
@@ -202,7 +202,7 @@ class BaseChatStep(IChatStep):
                       manage: PipelineManage = None,
                       padding_problem_text: str = None,
                       client_id=None, client_type=None, no_references_setting=None):
-        # 调用模型
+        # Calling Models
         chat_result, is_ai_chat = self.get_block_result(message_list, chat_model, paragraph_list, no_references_setting)
         chat_record_id = uuid.uuid1()
         if is_ai_chat:

@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="关联分段"
+    title="Related Sections"
     v-model="dialogVisible"
     width="80%"
     class="paragraph-dialog"
@@ -9,11 +9,11 @@
     <el-row v-loading="loading">
       <el-col :span="6">
         <el-scrollbar height="500" wrap-class="paragraph-scrollbar">
-          <div class="bold title align-center p-24 pb-0">选择文档</div>
+          <div class="bold title align-center p-24 pb-0">Choose the document.</div>
           <div class="p-8" style="padding-bottom: 8px">
             <el-input
               v-model="filterDoc"
-              placeholder="按 文档名称 搜索"
+              placeholder="by Name of documentation Searching"
               prefix-icon="Search"
               clearable
             />
@@ -45,25 +45,25 @@
           <div class="p-24" style="padding-bottom: 8px; padding-top: 16px">
             <div class="flex-between mb-16">
               <div class="bold title align-center">
-                选择分段
-                <el-text> （已选分段：{{ associationCount(currentDocument) }} 个） </el-text>
+                Choose the section.
+                <el-text> （Selected section.：{{ associationCount(currentDocument) }} one） </el-text>
               </div>
               <el-input
                 v-model="search"
-                placeholder="搜索"
+                placeholder="Searching"
                 class="input-with-select"
                 style="width: 260px"
                 @change="searchHandle"
               >
                 <template #prepend>
                   <el-select v-model="searchType" placeholder="Select" style="width: 80px">
-                    <el-option label="标题" value="title" />
-                    <el-option label="内容" value="content" />
+                    <el-option label="The title" value="title" />
+                    <el-option label="The content" value="content" />
                   </el-select>
                 </template>
               </el-input>
             </div>
-            <el-empty v-if="paragraphList.length == 0" description="暂无数据" />
+            <el-empty v-if="paragraphList.length == 0" description="No data" />
 
             <InfiniteScroll
               v-else
@@ -117,7 +117,7 @@ const cloneDocumentList = ref<any[]>([])
 const paragraphList = ref<any[]>([])
 const currentProblemId = ref<String>('')
 
-// 回显
+// Reviews
 const associationParagraph = ref<any[]>([])
 
 const currentDocument = ref<String>('')
@@ -196,7 +196,7 @@ function getParagraphList(documentId: String) {
     })
 }
 
-// 已关联分段
+// Related sections.
 function getRecord(problemId: String) {
   problemApi.getDetailProblems(id as string, problemId as string, loading).then((res) => {
     associationParagraph.value = res.data

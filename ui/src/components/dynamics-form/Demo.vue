@@ -2,11 +2,11 @@
   <div style="width: 1024px">
     <DynamicsForm v-model="form_data" :render_data="damo_data" ref="dynamicsFormRef">
       <template #default="scope">
-        <el-form-item label="其他字段">
+        <el-form-item label="Other fields">
           <el-input v-model="scope.form_value['zha']" /> </el-form-item
       ></template>
     </DynamicsForm>
-    <el-button @click="click">点我校验</el-button>
+    <el-button @click="click">Let me test.</el-button>
   </div>
 </template>
 <script setup lang="ts">
@@ -15,63 +15,63 @@ import DynamicsForm from '@/components/dynamics-form/index.vue'
 import { ref } from 'vue'
 import type { Dict } from '@/api/type/common'
 const damo_data: Array<FormField> = [
-  { field: 'name', input_type: 'PasswordInput', label: '用戶名', required: false },
+  { field: 'name', input_type: 'PasswordInput', label: 'User Name', required: false },
   {
     field: 'array_object_card_field',
     input_type: 'ArrayObjectCard',
-    label: '測試',
+    label: 'Testing',
     trigger_type: 'CHILD_FORMS',
     attrs: { 'label-width': '120px', 'label-suffix': ':ssss', 'label-position': 'top' },
     required: false,
     children: [
-      { field: 'name1', input_type: 'TextInput', label: '用戶名1' },
-      { field: 'name2', input_type: 'TextInput', label: '用戶名2' },
-      { field: 'name3', input_type: 'TextInput', label: '用戶名3' }
+      { field: 'name1', input_type: 'TextInput', label: 'User Name1' },
+      { field: 'name2', input_type: 'TextInput', label: 'User Name2' },
+      { field: 'name3', input_type: 'TextInput', label: 'User Name3' }
     ]
   },
   {
     field: 'object_card_field',
     input_type: 'ObjectCard',
-    label: '測試',
+    label: 'Testing',
     trigger_type: 'CHILD_FORMS',
     attrs: { 'label-width': '120px', 'label-suffix': ':ssss', 'label-position': 'left' },
     required: false,
     children: [
-      { field: 'name1', input_type: 'TextInput', label: '用戶名1' },
-      { field: 'name2', input_type: 'TextInput', label: '用戶名2' },
-      { field: 'name3', input_type: 'TextInput', label: '用戶名3' }
+      { field: 'name1', input_type: 'TextInput', label: 'User Name1' },
+      { field: 'name2', input_type: 'TextInput', label: 'User Name2' },
+      { field: 'name3', input_type: 'TextInput', label: 'User Name3' }
     ]
   },
   {
     field: 'tab_card_field',
     input_type: 'TabCard',
-    label: '測試',
+    label: 'Testing',
     trigger_type: 'CHILD_FORMS',
     attrs: { 'label-width': '120px', 'label-suffix': ':ssss', 'label-position': 'left' },
     required: false,
     relation_trigger_field_dict: {
       'array_object_card_field.0.name1': ['111']
     },
-    props_info: { tabs_label: '用户' },
+    props_info: { tabs_label: 'Users' },
     children: [
-      { field: 'name1', input_type: 'TextInput', label: '用戶名1' },
-      { field: 'name2', input_type: 'TextInput', label: '用戶名2' },
-      { field: 'name3', input_type: 'TextInput', label: '用戶名3' }
+      { field: 'name1', input_type: 'TextInput', label: 'User Name1' },
+      { field: 'name2', input_type: 'TextInput', label: 'User Name2' },
+      { field: 'name3', input_type: 'TextInput', label: 'User Name3' }
     ]
   },
   {
     field: 'single_select_field',
     input_type: 'SingleSelect',
-    label: '测试单选',
+    label: 'Testing of Selection',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test'
       },
       {
-        key: '测试1',
+        key: 'Tested1',
         value: 'test1'
       }
     ]
@@ -83,16 +83,16 @@ const damo_data: Array<FormField> = [
     relation_show_field_dict: {
       'object_card_field.name1': []
     },
-    label: '测试多选下拉',
+    label: 'Testing a lot.',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test'
       },
       {
-        key: '测试1',
+        key: 'Tested1',
         value: 'test1'
       }
     ]
@@ -100,16 +100,16 @@ const damo_data: Array<FormField> = [
   {
     field: 'radio_field',
     input_type: 'Radio',
-    label: '测试单选',
+    label: 'Testing of Selection',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test'
       },
       {
-        key: '测试1',
+        key: 'Tested1',
         value: 'test1'
       }
     ]
@@ -117,16 +117,16 @@ const damo_data: Array<FormField> = [
   {
     field: 'radio_button_field',
     input_type: 'RadioButton',
-    label: '测试单选',
+    label: 'Testing of Selection',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test'
       },
       {
-        key: '测试1',
+        key: 'Tested1',
         value: 'test1'
       }
     ]
@@ -134,16 +134,16 @@ const damo_data: Array<FormField> = [
   {
     field: 'radio_card_field',
     input_type: 'RadioCard',
-    label: '测试单选1',
+    label: 'Testing of Selection1',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test'
       },
       {
-        key: '测试111111',
+        key: 'Tested111111',
         value: 'test1'
       }
     ]
@@ -151,20 +151,20 @@ const damo_data: Array<FormField> = [
   {
     field: 'table_radio_field',
     input_type: 'TableRadio',
-    label: '表格单选',
+    label: 'Selected forms',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     props_info: {
-      active_msg: '当前选中',
+      active_msg: 'Currently elected',
       table_columns: [
         {
           property: '`${row.key}${row.number}`',
-          label: '名称',
+          label: 'The name',
           type: 'eval'
         },
         {
           property: 'ProgressTableItem',
-          label: '数值',
+          label: 'Number of values',
           type: 'component',
           value_field: 'number',
           attrs: {
@@ -180,13 +180,13 @@ const damo_data: Array<FormField> = [
             view_card: [
               {
                 type: 'eval',
-                title: '测试',
+                title: 'Tested',
                 value_field:
                   '`${parseFloat(row.number).toLocaleString("zh-CN",{style: "decimal",maximumFractionDigits:1})}%&nbsp;&nbsp;&nbsp;`'
               },
               {
                 type: 'eval',
-                title: '名称',
+                title: 'The name',
                 value_field: '`${row.key}&nbsp;&nbsp;&nbsp;`'
               }
             ]
@@ -197,12 +197,12 @@ const damo_data: Array<FormField> = [
     },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test',
         number: 10
       },
       {
-        key: '测试111111',
+        key: 'Tested111111',
         value: 'test1',
         number: 100
       }
@@ -211,20 +211,20 @@ const damo_data: Array<FormField> = [
   {
     field: 'table_checkbox_field',
     input_type: 'TableCheckbox',
-    label: '表格多选',
+    label: 'Number of selected',
     required: true,
-    attrs: { placeholder: '请选择' },
+    attrs: { placeholder: 'Please choose' },
     props_info: {
-      active_msg: '当前选中',
+      active_msg: 'Currently elected',
       table_columns: [
         {
           property: '`${row.key}${row.number}`',
-          label: '名称',
+          label: 'The name',
           type: 'eval'
         },
         {
           property: 'ProgressTableItem',
-          label: '数值',
+          label: 'Number of values',
           type: 'component',
           value_field: 'number',
           attrs: {
@@ -240,13 +240,13 @@ const damo_data: Array<FormField> = [
             view_card: [
               {
                 type: 'eval',
-                title: '测试',
+                title: 'Tested',
                 value_field:
                   '`${parseFloat(row.number).toLocaleString("zh-CN",{style: "decimal",maximumFractionDigits:1})}%&nbsp;&nbsp;&nbsp;`'
               },
               {
                 type: 'eval',
-                title: '名称',
+                title: 'The name',
                 value_field: '`${row.key}&nbsp;&nbsp;&nbsp;`'
               }
             ]
@@ -257,12 +257,12 @@ const damo_data: Array<FormField> = [
     },
     option_list: [
       {
-        key: '测试',
+        key: 'Tested',
         value: 'test',
         number: 10
       },
       {
-        key: '测试111111',
+        key: 'Tested111111',
         value: 'test1',
         number: 100
       }

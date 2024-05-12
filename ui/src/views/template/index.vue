@@ -1,8 +1,8 @@
 <template>
-  <LayoutContainer header="模型设置">
+  <LayoutContainer header="Models set up">
     <div class="template-manage flex main-calc-height">
       <div class="template-manage__left p-8 border-r">
-        <h4 class="p-16" style="padding-bottom: 8px">供应商</h4>
+        <h4 class="p-16" style="padding-bottom: 8px">Suppliers</h4>
         <common-list :data="provider_list" v-loading="loading" @click="clickListHandle">
           <template #default="{ row, index }">
             <div class="flex" v-if="index === 0">
@@ -11,7 +11,7 @@
                 style="height: 20px; width: 20px"
                 :iconName="active_provider === row ? 'app-all-menu-active' : 'app-all-menu'"
               ></AppIcon>
-              <span>全部模型</span>
+              <span>All models.</span>
             </div>
             <div class="flex" v-else>
               <span :innerHTML="row.icon" alt="" style="height: 20px; width: 20px" class="mr-8" />
@@ -24,11 +24,11 @@
         <div class="p-24 pb-0">
           <h4>{{ active_provider?.name }}</h4>
           <div class="flex-between mt-16 mb-16">
-            <el-button type="primary" @click="openCreateModel(active_provider)">添加模型</el-button>
+            <el-button type="primary" @click="openCreateModel(active_provider)">Adding the model.</el-button>
             <el-input
               v-model="model_search_form.name"
               @change="list_model"
-              placeholder="按名称搜索"
+              placeholder="Search by name."
               prefix-icon="Search"
               style="max-width: 240px"
               clearable
@@ -60,7 +60,7 @@
                   </el-col>
                 </template>
               </el-row>
-              <el-empty description="暂无数据" v-else />
+              <el-empty description="No data" v-else />
             </div>
           </el-scrollbar>
         </div>
@@ -93,7 +93,7 @@ import SelectProviderDialog from '@/views/template/component/SelectProviderDialo
 const allObj = {
   icon: '',
   provider: '',
-  name: '全部模型'
+  name: 'All models.'
 }
 
 const loading = ref<boolean>(false)

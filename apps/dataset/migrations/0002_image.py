@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Image',
             fields=[
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='修改时间')),
-                ('id', models.UUIDField(default=uuid.uuid1, editable=False, primary_key=True, serialize=False, verbose_name='主键id')),
-                ('image', models.BinaryField(verbose_name='图片数据')),
-                ('image_name', models.CharField(default='', max_length=256, verbose_name='图片名称')),
+                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='Creating time.')),
+                ('update_time', models.DateTimeField(auto_now=True, verbose_name='Change time.')),
+                ('id', models.UUIDField(default=uuid.uuid1, editable=False, primary_key=True, serialize=False, verbose_name='The key.id')),
+                ('image', models.BinaryField(verbose_name='Image data')),
+                ('image_name', models.CharField(default='', max_length=256, verbose_name='Name of image')),
             ],
             options={
                 'db_table': 'image',

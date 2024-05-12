@@ -31,22 +31,22 @@ import FormItemLabel from './FormItemLabel.vue'
 import type { Dict } from '@/api/type/common'
 import bus from '@/bus'
 const props = defineProps<{
-  // 双向绑定的值
+  // Double linked value.
   modelValue: any
 
-  // 表单Item
+  // FormsItem
   formfield: FormField
-  // 是否只读
+  // Only to read.
   view: boolean
-  // 调用接口所需要的其他参数
+  // Other parameters required for the call interface
   otherParams: any
-  // 获取Options
+  // obtainedOptions
   trigger: (formItem: FormField, loading: Ref<boolean>) => Promise<any>
-  // 初始化默认数据
+  // Initialization of data
   initDefaultData: (formItem: FormField) => void
-  // 默认每个宽度
+  // Each width.
   defaultItemWidth: string
-  // 表单收集数据
+  // Forms collect data
   formValue: Dict<any>
 
   formfieldList: Array<FormField>
@@ -77,21 +77,21 @@ const props_info = computed(() => {
   return props.formfield.props_info ? props.formfield.props_info : {}
 })
 /**
- * 表单 item style
+ * Forms item style
  */
 const formItemStyle = computed(() => {
   return props_info.value.item_style ? props_info.value.item_style : {}
 })
 
 /**
- * 表单错误Msg
+ * Forms errors.Msg
  */
 const errMsg = computed(() => {
-  return props_info.value.err_msg ? props_info.value.err_msg : props.formfield.label + '不能为空'
+  return props_info.value.err_msg ? props_info.value.err_msg : props.formfield.label + 'cannot be empty.'
 })
 
 /**
- * 校验
+ * Examination
  */
 const rules = computed(() => {
   return props_info.value.rules
@@ -104,14 +104,14 @@ const rules = computed(() => {
 })
 
 /**
- * 组件样式
+ * The component style.
  */
 const componentStyle = computed(() => {
   return props_info.value.style ? props_info.value.style : {}
 })
 
 /**
- * 组件attrs
+ * The componentattrs
  */
 const attrs = computed(() => {
   return props.formfield.attrs ? props.formfield.attrs : {}
@@ -122,13 +122,13 @@ onMounted(() => {
   if (props.formfield.provider && props.formfield.method) {
     props.trigger(props.formfield, loading)
   }
-  // 监听字段变化
+  // Listen to field changes.
   const trigger_field_dict = props.formfield.relation_trigger_field_dict
   if (trigger_field_dict) {
     const keys = Object.keys(trigger_field_dict)
     keys.forEach((key) => {
       const value = trigger_field_dict[key]
-      // 添加关系
+      // Added Relationship
       bus.on(key, (v: any) => {
         if (value && value.length > 0) {
           if (value.includes(v)) {

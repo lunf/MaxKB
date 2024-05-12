@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="导入文档"
+    title="Introduction of documents"
     v-model="dialogVisible"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
@@ -13,30 +13,30 @@
       :model="form"
       require-asterisk-position="right"
     >
-      <el-form-item label="文档地址" prop="source_url" v-if="isImport">
+      <el-form-item label="The document address." prop="source_url" v-if="isImport">
         <el-input
           v-model="form.source_url"
-          placeholder="请输入文档地址，一行一个，地址不正确文档会导入失败。"
+          placeholder="Please enter the document address.，One line one.，The incorrect address document will fail.。"
           :rows="10"
           type="textarea"
         />
       </el-form-item>
-      <el-form-item v-else-if="documentType === '1'" label="文档地址" prop="source_url">
-        <el-input v-model="form.source_url" placeholder="请输入文档地址" />
+      <el-form-item v-else-if="documentType === '1'" label="The document address." prop="source_url">
+        <el-input v-model="form.source_url" placeholder="Please enter the document address." />
       </el-form-item>
-      <el-form-item label="选择器" v-if="documentType === '1'">
+      <el-form-item label="The Selector" v-if="documentType === '1'">
         <el-input
           v-model="form.selector"
-          placeholder="默认为 body，可输入 .classname/#idname/tagname"
+          placeholder="I think body，can enter. .classname/#idname/tagname"
         />
       </el-form-item>
       <el-form-item v-if="!isImport">
         <template #label>
           <div class="flex align-center">
-            <span class="mr-4">命中处理方式</span>
+            <span class="mr-4">Method of Treatment</span>
             <el-tooltip
               effect="dark"
-              content="用户提问时，命中文档下的分段时按照设置的方式进行处理。"
+              content="When User Questions，Parts under the life Chinese file are processed according to the way set.。"
               placement="right"
             >
               <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
@@ -52,8 +52,8 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
-        <el-button type="primary" @click="submit(webFormRef)" :loading="loading"> 确定 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button type="primary" @click="submit(webFormRef)" :loading="loading"> Certainly </el-button>
       </span>
     </template>
   </el-dialog>
@@ -81,10 +81,10 @@ const form = ref<any>({
   hit_handling_method: ''
 })
 const documentId = ref('')
-const documentType = ref<string | number>('') //文档类型：1: web文档；0:普通文档
+const documentType = ref<string | number>('') //Type of Documentation：1: webDocuments；0:Ordinary Documents
 
 const rules = reactive({
-  source_url: [{ required: true, message: '请输入文档地址', trigger: 'blur' }]
+  source_url: [{ required: true, message: 'Please enter the document address.', trigger: 'blur' }]
 })
 
 const dialogVisible = ref<boolean>(false)
@@ -123,7 +123,7 @@ const submit = async (formEl: FormInstance | undefined) => {
           selector: form.value.selector
         }
         documentApi.postWebDocument(id, obj, loading).then((res: any) => {
-          MsgSuccess('导入成功')
+          MsgSuccess('Introduction to Success')
           emit('refresh')
           dialogVisible.value = false
         })
@@ -136,7 +136,7 @@ const submit = async (formEl: FormInstance | undefined) => {
           }
         }
         documentApi.putDocument(id, documentId.value, obj, loading).then((res) => {
-          MsgSuccess('设置成功')
+          MsgSuccess('Setup Success')
           emit('refresh')
           dialogVisible.value = false
         })

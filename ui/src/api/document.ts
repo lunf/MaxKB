@@ -6,17 +6,17 @@ import type { pageRequest } from '@/api/type/common'
 const prefix = '/dataset'
 
 /**
- * 分段预览（上传文档）
- * @param 参数  file:file,limit:number,patterns:array,with_filter:boolean
+ * Section Preview（uploaded documents.）
+ * @param Parameters  file:file,limit:number,patterns:array,with_filter:boolean
  */
 const postSplitDocument: (data: any) => Promise<Result<any>> = (data) => {
   return post(`${prefix}/document/split`, data, undefined, undefined, 1000 * 60 * 60)
 }
 
 /**
- * 分段标识列表
- * @param loading 加载器
- * @returns 分段标识列表
+ * Part Identification List
+ * @param loading The carrier.
+ * @returns Part Identification List
  */
 const listSplitPattern: (
   loading?: Ref<boolean>
@@ -25,8 +25,8 @@ const listSplitPattern: (
 }
 
 /**
- * 文档分页列表
- * @param 参数  dataset_id,   
+ * List of Documents
+ * @param Parameters  dataset_id,   
  * page {
               "current_page": "string",
               "page_size": "string",
@@ -57,8 +57,8 @@ const getAllDocument: (dataset_id: string, loading?: Ref<boolean>) => Promise<Re
 }
 
 /**
- * 创建批量文档
- * @param 参数 
+ * Create a mass documentation.
+ * @param Parameters 
  * {
   "name": "string",
   "paragraphs": [
@@ -84,8 +84,8 @@ const postDocument: (
 }
 
 /**
- * 修改文档
- * @param 参数 
+ * Modifying the document.
+ * @param Parameters 
  * dataset_id, document_id, 
  * {
       "name": "string",
@@ -103,8 +103,8 @@ const putDocument: (
 }
 
 /**
- * 删除文档
- * @param 参数 dataset_id, document_id,
+ * Delete the document.
+ * @param Parameters dataset_id, document_id,
  */
 const delDocument: (
   dataset_id: string,
@@ -114,8 +114,8 @@ const delDocument: (
   return del(`${prefix}/${dataset_id}/document/${document_id}`, loading)
 }
 /**
- * 批量删除文档
- * @param 参数 dataset_id,
+ * Remove the document.
+ * @param Parameters dataset_id,
  */
 const delMulDocument: (
   dataset_id: string,
@@ -125,8 +125,8 @@ const delMulDocument: (
   return del(`${prefix}/${dataset_id}/document/_bach`, undefined, { id_list: data }, loading)
 }
 /**
- * 文档详情
- * @param 参数 dataset_id
+ * Document Details
+ * @param Parameters dataset_id
  */
 const getDocumentDetail: (dataset_id: string, document_id: string) => Promise<Result<any>> = (
   dataset_id,
@@ -136,8 +136,8 @@ const getDocumentDetail: (dataset_id: string, document_id: string) => Promise<Re
 }
 
 /**
- * 刷新文档向量库
- * @param 参数 
+ * Update the document to the quantum library.
+ * @param Parameters 
  * dataset_id, document_id, 
  * {
       "name": "string",
@@ -158,8 +158,8 @@ const putDocumentRefresh: (
 }
 
 /**
- * 批量同步文档
- * @param 参数 dataset_id,
+ * Multiple synchronous documents
+ * @param Parameters dataset_id,
  */
 const delMulSyncDocument: (
   dataset_id: string,
@@ -170,8 +170,8 @@ const delMulSyncDocument: (
 }
 
 /**
- * 创建Web站点文档
- * @param 参数 
+ * CreatedWebSite Documents
+ * @param Parameters 
  * {
     "source_url_list": [
     "string"
@@ -189,8 +189,8 @@ const postWebDocument: (
 }
 
 /**
- * 批量迁移文档
- * @param 参数 dataset_id,target_dataset_id,
+ * Mass Migration Documents
+ * @param Parameters dataset_id,target_dataset_id,
  */
 const putMigrateMulDocument: (
   dataset_id: string,
@@ -207,8 +207,8 @@ const putMigrateMulDocument: (
 }
 
 /**
- * 批量修改命中方式
- * @param dataset_id 知识库id
+ * Modifying the way of life.
+ * @param dataset_id The knowledge baseid
  * @param data       {id_list:[],hit_handling_method:'directly_return|optimization'}
  * @param loading
  * @returns

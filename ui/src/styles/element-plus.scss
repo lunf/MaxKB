@@ -296,12 +296,12 @@
   left: auto;
 }
 
-// 自动补全增加暂无数据
+// Automatic add-on without data.
 .platform-auto-complete {
   .el-autocomplete-suggestion__wrap {
     padding: 5px 0;
     ul li {
-      pointer-events: none; // 阻止可点击事件
+      pointer-events: none; // Stop the clickable event.
       .default {
         text-align: center;
         color: #999;
@@ -334,7 +334,7 @@
   padding-right: 12px !important;
 }
 
-// select下拉框
+// selectThe lower box.
 .select-popper {
   max-width: 300px;
   .el-select-dropdown__wrap {
@@ -346,7 +346,7 @@
   max-width: 500px;
 }
 
-// radio 一行一个样式
+// radio One line of style.
 .radio-block {
   width: 100%;
   display: block;

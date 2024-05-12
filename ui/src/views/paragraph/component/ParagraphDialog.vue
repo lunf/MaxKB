@@ -11,7 +11,7 @@
         <el-scrollbar height="500" wrap-class="paragraph-scrollbar">
           <div class="p-24" style="padding-bottom: 8px">
             <div class="flex-between mb-16">
-              <div class="bold title align-center">分段内容</div>
+              <div class="bold title align-center">Part of content.</div>
               <el-button text @click="isEdit = true" v-if="problemId && !isEdit">
                 <el-icon><EditPen /></el-icon>
               </el-button>
@@ -21,14 +21,14 @@
           </div>
         </el-scrollbar>
         <div class="text-right p-24 pt-0" v-if="problemId && isEdit">
-          <el-button @click.prevent="cancelEdit"> 取消 </el-button>
+          <el-button @click.prevent="cancelEdit"> cancelled </el-button>
           <el-button type="primary" :disabled="loading" @click="handleDebounceClick">
-            保存
+            preserved
           </el-button>
         </div>
       </el-col>
       <el-col :span="6" class="border-l" style="width: 300px;">
-        <!-- 关联问题 -->
+        <!-- Related issues -->
         <ProblemComponent
           :problemId="problemId"
           :docId="document_id"
@@ -39,9 +39,9 @@
     </el-row>
     <template #footer v-if="!problemId">
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> 取消 </el-button>
+        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
         <el-button :disabled="loading" type="primary" @click="handleDebounceClick">
-          提交
+          submitted
         </el-button>
       </span>
     </template>

@@ -1,109 +1,109 @@
 interface User {
   /**
-   * 用户id
+   * Usersid
    */
   id: string
   /**
-   * 用户名
+   * User Name
    */
   username: string
   /**
-   * 邮箱
+   * The mailbox
    */
   email: string
   /**
-   * 用户角色
+   * User role
    */
   role: string
   /**
-   * 用户权限
+   * User permits
    */
   permissions: Array<string>
   /**
-   * 是否需要修改密码
+   * Is it necessary to modify the password?
    */
   is_edit_password?: boolean
 }
 
 interface LoginRequest {
   /**
-   * 用户名
+   * User Name
    */
   username: string
   /**
-   * 密码
+   * The code
    */
   password: string
 }
 
 interface RegisterRequest {
   /**
-   * 用户名
+   * User Name
    */
   username: string
   /**
-   * 密码
+   * The code
    */
   password: string
   /**
-   * 确定密码
+   * Identify the password.
    */
   re_password: string
   /**
-   * 邮箱
+   * The mailbox
    */
   email: string
   /**
-   * 验证码
+   * verification code
    */
   code: string
 }
 
 interface CheckCodeRequest {
   /**
-   * 邮箱
+   * The mailbox
    */
   email: string
   /**
-   *验证码
+   *verification code
    */
   code: string
   /**
-   * 类型
+   * Type of
    */
   type: 'register' | 'reset_password'
 }
 
 interface ResetCurrentUserPasswordRequest {
   /**
-   * 验证码
+   * verification code
    */
   code: string
   /**
-   *密码
+   *The code
    */
   password: string
   /**
-   * 确认密码
+   * Confirm the password.
    */
   re_password: string
 }
 
 interface ResetPasswordRequest {
   /**
-   * 邮箱
+   * The mailbox
    */
   email?: string
   /**
-   * 验证码
+   * verification code
    */
   code?: string
   /**
-   * 密码
+   * The code
    */
   password: string
   /**
-   * 确认密码
+   * Confirm the password.
    */
   re_password: string
 }

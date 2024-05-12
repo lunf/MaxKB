@@ -11,7 +11,7 @@
       <el-breadcrumb separator=">">
         <el-breadcrumb-item
           ><span class="active-breadcrumb">{{
-            `编辑 ${providerValue?.name}`
+            `The Editor ${providerValue?.name}`
           }}</span></el-breadcrumb-item
         >
       </el-breadcrumb>
@@ -31,11 +31,11 @@
           <template #label>
             <div class="flex align-center" style="display: inline-flex">
               <div class="flex-between mr-4">
-                <span>模型名称 </span>
+                <span>Name of model </span>
               </div>
               <el-tooltip effect="dark" placement="right">
                 <template #content>
-                  <p>MaxKB 中自定义的模型名称</p>
+                  <p>MaxKB Customized Model Name</p>
                 </template>
                 <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
               </el-tooltip>
@@ -45,19 +45,19 @@
             v-model="base_form_data.name"
             maxlength="20"
             show-word-limit
-            placeholder="请给基础模型设置一个名称"
+            placeholder="Please set a name for the basic model."
           />
         </el-form-item>
         <el-form-item prop="model_type" :rules="base_form_data_rule.model_type">
           <template #label>
-            <span>模型类型</span>
+            <span>Type of Model</span>
           </template>
           <el-select
             v-loading="model_type_loading"
             @change="list_base_model($event)"
             v-model="base_form_data.model_type"
             class="w-full m-2"
-            placeholder="请选择模型类型"
+            placeholder="Please select the model type."
           >
             <el-option
               v-for="item in model_type_list"
@@ -71,12 +71,12 @@
           <template #label>
             <div class="flex align-center" style="display: inline-flex">
               <div class="flex-between mr-4">
-                <span>基础模型 </span>
+                <span>The Basic Model </span>
               </div>
               <el-tooltip effect="dark" placement="right">
                 <template #content>
-                  <p>若下拉选项没有列出想要添加的LLM模型，自定义输入模型名称后回车即可</p>
-                  <p>注意，基础模型需要与供应商的模型名称一致</p>
+                  <p>If the download option does not list what you want to add.LLMThe model，Customize the input model name after returning to the car.</p>
+                  <p>Attention，The basic model needs to match the model name of the supplier.</p>
                 </template>
                 <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
               </el-tooltip>
@@ -87,7 +87,7 @@
             v-loading="base_model_loading"
             v-model="base_form_data.model_name"
             class="w-full m-2"
-            placeholder="请选择基础模型"
+            placeholder="Please select the basic model."
             filterable
             allow-create
             default-first-option
@@ -113,8 +113,8 @@
     </DynamicsForm>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="close">取消</el-button>
-        <el-button type="primary" @click="submit" :loading="loading"> 修改 </el-button>
+        <el-button @click="close">cancelled</el-button>
+        <el-button type="primary" @click="submit" :loading="loading"> Modified </el-button>
       </span>
     </template>
   </el-dialog>
@@ -145,9 +145,9 @@ const model_form_field = ref<Array<FormField>>([])
 const dialogVisible = ref<boolean>(false)
 
 const base_form_data_rule = ref<FormRules>({
-  name: { required: true, trigger: 'blur', message: '模型名不能为空' },
-  model_type: { required: true, trigger: 'change', message: '模型类型不能为空' },
-  model_name: { required: true, trigger: 'change', message: '基础模型不能为空' }
+  name: { required: true, trigger: 'blur', message: 'The name cannot be empty.' },
+  model_type: { required: true, trigger: 'change', message: 'Models cannot be empty.' },
+  model_name: { required: true, trigger: 'change', message: 'The basic model cannot be empty.' }
 })
 
 const base_form_data = ref<{
@@ -178,7 +178,7 @@ const getModelForm = (model_name: string) => {
     ).then((ok) => {
       model_form_field.value = ok.data
       if (modelValue.value) {
-        // 渲染动态表单
+        // Rendering dynamic forms
         dynamicsFormRef.value?.render(model_form_field.value, modelValue.value.credential)
       }
     })
@@ -232,7 +232,7 @@ const submit = () => {
         },
         loading
       ).then((ok) => {
-        MsgSuccess('修改模型成功')
+        MsgSuccess('Modeling is successful.')
         close()
         emit('submit')
       })

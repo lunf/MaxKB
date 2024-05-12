@@ -5,8 +5,8 @@ import type { Ref } from 'vue'
 const prefix = '/dataset'
 
 /**
- * 段落列表
- * @param 参数 dataset_id document_id
+ * List of paragraphs
+ * @param Parameters dataset_id document_id
  * page {
               "current_page": "string",
               "page_size": "string",
@@ -31,8 +31,8 @@ const getParagraph: (
 }
 
 /**
- * 删除段落
- * @param 参数 dataset_id, document_id, paragraph_id
+ * Delete the paragraph.
+ * @param Parameters dataset_id, document_id, paragraph_id
  */
 const delParagraph: (
   dataset_id: string,
@@ -49,8 +49,8 @@ const delParagraph: (
 }
 
 /**
- * 创建段落
- * @param 参数 
+ * Creating paragraphs
+ * @param Parameters 
  * dataset_id, document_id
  * {
   "content": "string",
@@ -74,8 +74,8 @@ const postParagraph: (
 }
 
 /**
- * 修改段落
- * @param 参数 
+ * Modification of paragraphs
+ * @param Parameters 
  * dataset_id, document_id, paragraph_id
  * {
   "content": "string",
@@ -105,8 +105,8 @@ const putParagraph: (
 }
 
 /**
- * 问题列表
- * @param 参数 dataset_id，document_id，paragraph_id
+ * List of Questions
+ * @param Parameters dataset_id，document_id，paragraph_id
  */
 const getProblem: (
   dataset_id: string,
@@ -117,8 +117,8 @@ const getProblem: (
 }
 
 /**
- * 创建问题
- * @param 参数 
+ * Creating problems.
+ * @param Parameters 
  * dataset_id, document_id, paragraph_id
  * {
       "id": "string",
@@ -141,11 +141,11 @@ const postProblem: (
 }
 /**
  *
- * @param dataset_id 数据集id
- * @param document_id 文档id
- * @param paragraph_id 段落id
- * @param problem_id 问题id
- * @param loading 加载器
+ * @param dataset_id The data collectionid
+ * @param document_id Documentsid
+ * @param paragraph_id Paragraphsid
+ * @param problem_id The problemid
+ * @param loading The carrier.
  * @returns
  */
 const associationProblem: (
@@ -163,8 +163,8 @@ const associationProblem: (
   )
 }
 /**
- * 解除关联问题
- * @param 参数 dataset_id, document_id, paragraph_id,problem_id
+ * Removing Relationship Problems
+ * @param Parameters dataset_id, document_id, paragraph_id,problem_id
  */
 const disassociationProblem: (
   dataset_id: string,

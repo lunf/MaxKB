@@ -13,9 +13,9 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-	// 添加组件命名忽略规则
+	// Add component names Ignore rules
     "vue/multi-word-component-names": ["error",{
-       "ignores": ["index","main"]//需要忽略的组件名
+       "ignores": ["index","main"]//The component name to be ignored.
     }]
   }
 }

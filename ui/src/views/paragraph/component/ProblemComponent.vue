@@ -1,7 +1,7 @@
 <template>
   <p class="bold title p-24" style="padding-bottom: 0">
     <span class="flex align-center">
-      <span>关联问题</span>
+      <span>Related issues</span>
       <el-divider direction="vertical" class="mr-4" />
       <el-button text @click="addProblem">
         <el-icon><Plus /></el-icon>
@@ -18,7 +18,7 @@
           allow-create
           default-first-option
           :reserve-keyword="false"
-          placeholder="请选择问题"
+          placeholder="Please choose the question."
           remote
           :remote-method="remoteMethod"
           :loading="optionLoading"
@@ -66,7 +66,7 @@ const props = defineProps({
 
 const route = useRoute()
 const {
-  params: { id, documentId } // id为datasetId
+  params: { id, documentId } // idfordatasetId
 } = route as any
 
 const { problem } = useStore()

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： pipeline_manage.py
     @date：2024/1/9 17:40
     @desc:
@@ -15,9 +15,9 @@ from application.chat_pipeline.I_base_chat_pipeline import IBaseChatPipelineStep
 
 class PipelineManage:
     def __init__(self, step_list: List[Type[IBaseChatPipelineStep]]):
-        # 步骤执行器
+        # step execution.
         self.step_list = [step() for step in step_list]
-        # 上下文
+        # The above.
         self.context = {'message_tokens': 0, 'answer_tokens': 0}
 
     def run(self, context: Dict = None):

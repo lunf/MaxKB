@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='application',
             name='icon',
-            field=models.CharField(default='/ui/favicon.ico', max_length=256, verbose_name='应用icon'),
+            field=models.CharField(default='/ui/favicon.ico', max_length=256, verbose_name='Applicationsicon'),
         ),
     ]

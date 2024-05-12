@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： openai_chat_model.py
     @date：2024/4/18 15:28
     @desc:

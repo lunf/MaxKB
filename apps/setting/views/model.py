@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： model.py
     @date：2023/11/2 13:55
     @desc:
@@ -24,10 +24,10 @@ class Model(APIView):
     authentication_classes = [TokenAuth]
 
     @action(methods=['POST'], detail=False)
-    @swagger_auto_schema(operation_summary="创建模型",
-                         operation_id="创建模型",
+    @swagger_auto_schema(operation_summary="Creating a model.",
+                         operation_id="Creating a model.",
                          request_body=ModelCreateApi.get_request_body_api()
-        , tags=["模型"])
+        , tags=["The model"])
     @has_permissions(PermissionConstants.MODEL_CREATE)
     def post(self, request: Request):
         return result.success(
@@ -35,10 +35,10 @@ class Model(APIView):
                                                                                                   with_valid=True))
 
     @action(methods=['PUT'], detail=False)
-    @swagger_auto_schema(operation_summary="下载模型,只试用与Ollama平台",
-                         operation_id="下载模型,只试用与Ollama平台",
+    @swagger_auto_schema(operation_summary="Download the model.,Try only withOllamaPlatform",
+                         operation_id="Download the model.,Try only withOllamaPlatform",
                          request_body=ModelCreateApi.get_request_body_api()
-        , tags=["模型"])
+        , tags=["The model"])
     @has_permissions(PermissionConstants.MODEL_CREATE)
     def put(self, request: Request):
         return result.success(
@@ -46,10 +46,10 @@ class Model(APIView):
                                                                                                   with_valid=True))
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="获取模型列表",
-                         operation_id="获取模型列表",
+    @swagger_auto_schema(operation_summary="Get a model list.",
+                         operation_id="Get a model list.",
                          manual_parameters=ModelQueryApi.get_request_params_api()
-        , tags=["模型"])
+        , tags=["The model"])
     @has_permissions(PermissionConstants.MODEL_READ)
     def get(self, request: Request):
         return result.success(
@@ -61,9 +61,9 @@ class Model(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="查询模型meta信息,该接口不携带认证信息",
-                             operation_id="查询模型meta信息,该接口不携带认证信息",
-                             tags=["模型"])
+        @swagger_auto_schema(operation_summary="The model of query.metaInformation,The interface does not carry certification information.",
+                             operation_id="The model of query.metaInformation,The interface does not carry certification information.",
+                             tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_READ)
         def get(self, request: Request, model_id: str):
             return result.success(
@@ -73,10 +73,10 @@ class Model(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="修改模型",
-                             operation_id="修改模型",
+        @swagger_auto_schema(operation_summary="Modifying the model",
+                             operation_id="Modifying the model",
                              request_body=ModelEditApi.get_request_body_api()
-            , tags=["模型"])
+            , tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_CREATE)
         def put(self, request: Request, model_id: str):
             return result.success(
@@ -84,19 +84,19 @@ class Model(APIView):
                                                                                                 str(request.user.id)))
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="删除模型",
-                             operation_id="删除模型",
+        @swagger_auto_schema(operation_summary="Remove the model.",
+                             operation_id="Remove the model.",
                              responses=result.get_default_response()
-            , tags=["模型"])
+            , tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_DELETE)
         def delete(self, request: Request, model_id: str):
             return result.success(
                 ModelSerializer.Operate(data={'id': model_id, 'user_id': request.user.id}).delete())
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="查询模型详细信息",
-                             operation_id="查询模型详细信息",
-                             tags=["模型"])
+        @swagger_auto_schema(operation_summary="Detailed Model Information",
+                             operation_id="Detailed Model Information",
+                             tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_READ)
         def get(self, request: Request, model_id: str):
             return result.success(
@@ -110,20 +110,20 @@ class Provide(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['POST'], detail=False)
-        @swagger_auto_schema(operation_summary="调用供应商函数,获取表单数据",
-                             operation_id="调用供应商函数,获取表单数据",
+        @swagger_auto_schema(operation_summary="Calling the Supplier Function,Obtaining Form Data",
+                             operation_id="Calling the Supplier Function,Obtaining Form Data",
                              manual_parameters=ProvideApi.get_request_params_api(),
                              request_body=ProvideApi.get_request_body_api()
-            , tags=["模型"])
+            , tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_READ)
         def post(self, request: Request, provider: str, method: str):
             return result.success(
                 ProviderSerializer(data={'provider': provider, 'method': method}).exec(request.data, with_valid=True))
 
     @action(methods=['GET'], detail=False)
-    @swagger_auto_schema(operation_summary="获取模型供应商数据",
-                         operation_id="获取模型供应商列表"
-        , tags=["模型"])
+    @swagger_auto_schema(operation_summary="Obtaining Model Supplier Data",
+                         operation_id="Get a Model Supplier List"
+        , tags=["The model"])
     @has_permissions(PermissionConstants.MODEL_READ)
     def get(self, request: Request):
         return result.success(
@@ -134,11 +134,11 @@ class Provide(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取模型类型列表",
-                             operation_id="获取模型类型类型列表",
+        @swagger_auto_schema(operation_summary="Get a Model Type List",
+                             operation_id="Get a Model Type List",
                              manual_parameters=ProvideApi.ModelTypeList.get_request_params_api(),
                              responses=result.get_api_array_response(ProvideApi.ModelTypeList.get_response_body_api())
-            , tags=["模型"])
+            , tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_READ)
         def get(self, request: Request):
             provider = request.query_params.get('provider')
@@ -148,11 +148,11 @@ class Provide(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取模型列表",
-                             operation_id="获取模型创建表单",
+        @swagger_auto_schema(operation_summary="Get a model list.",
+                             operation_id="Get a model to create a form",
                              manual_parameters=ProvideApi.ModelList.get_request_params_api(),
                              responses=result.get_api_array_response(ProvideApi.ModelList.get_response_body_api())
-            , tags=["模型"]
+            , tags=["The model"]
                              )
         @has_permissions(PermissionConstants.MODEL_READ)
         def get(self, request: Request):
@@ -167,10 +167,10 @@ class Provide(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['GET'], detail=False)
-        @swagger_auto_schema(operation_summary="获取模型创建表单",
-                             operation_id="获取模型创建表单",
+        @swagger_auto_schema(operation_summary="Get a model to create a form",
+                             operation_id="Get a model to create a form",
                              manual_parameters=ProvideApi.ModelForm.get_request_params_api(),
-                             tags=["模型"])
+                             tags=["The model"])
         @has_permissions(PermissionConstants.MODEL_READ)
         def get(self, request: Request):
             provider = request.query_params.get('provider')

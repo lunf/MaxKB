@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： common.py
     @date：2023/12/25 16:17
     @desc:
@@ -20,7 +20,7 @@ class CommonApi:
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       required=True,
-                                      description='问题文本'),
+                                      description='The question text.'),
                     openapi.Parameter(name='top_number',
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_NUMBER,
@@ -32,13 +32,13 @@ class CommonApi:
                                       type=openapi.TYPE_NUMBER,
                                       default=0.6,
                                       required=True,
-                                      description='相关性'),
+                                      description='Related'),
                     openapi.Parameter(name='search_mode',
                                       in_=openapi.IN_QUERY,
                                       type=openapi.TYPE_STRING,
                                       default="embedding",
                                       required=True,
-                                      description='检索模式embedding|keywords|blend'
+                                      description='The search model.embedding|keywords|blend'
                                       )
                     ]
 
@@ -53,31 +53,31 @@ class CommonApi:
                 properties={
                     'id': openapi.Schema(type=openapi.TYPE_STRING, title="id",
                                          description="id", default="xx"),
-                    'content': openapi.Schema(type=openapi.TYPE_STRING, title="段落内容",
-                                              description="段落内容", default='段落内容'),
-                    'title': openapi.Schema(type=openapi.TYPE_STRING, title="标题",
-                                            description="标题", default="xxx的描述"),
-                    'hit_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="命中数量", description="命中数量",
+                    'content': openapi.Schema(type=openapi.TYPE_STRING, title="Contents of paragraph",
+                                              description="Contents of paragraph", default='Contents of paragraph'),
+                    'title': openapi.Schema(type=openapi.TYPE_STRING, title="The title",
+                                            description="The title", default="xxxThe description"),
+                    'hit_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of fate", description="The number of fate",
                                               default=1),
-                    'star_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="点赞数量",
-                                               description="点赞数量", default=1),
-                    'trample_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="点踩数量",
-                                                  description="点踩数", default=1),
-                    'dataset_id': openapi.Schema(type=openapi.TYPE_STRING, title="知识库id",
-                                                 description="知识库id", default='xxx'),
-                    'document_id': openapi.Schema(type=openapi.TYPE_STRING, title="文档id",
-                                                  description="文档id", default='xxx'),
-                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="是否可用",
-                                                description="是否可用", default=True),
-                    'similarity': openapi.Schema(type=openapi.TYPE_NUMBER, title="相关性得分",
-                                                 description="相关性得分", default=True),
-                    'comprehensive_score': openapi.Schema(type=openapi.TYPE_NUMBER, title="综合得分,用于排序",
-                                                          description="综合得分,用于排序", default=True),
-                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="修改时间",
-                                                  description="修改时间",
+                    'star_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of praise.",
+                                               description="The number of praise.", default=1),
+                    'trample_num': openapi.Schema(type=openapi.TYPE_INTEGER, title="The number of steps.",
+                                                  description="The number of steps.", default=1),
+                    'dataset_id': openapi.Schema(type=openapi.TYPE_STRING, title="The knowledge baseid",
+                                                 description="The knowledge baseid", default='xxx'),
+                    'document_id': openapi.Schema(type=openapi.TYPE_STRING, title="Documentsid",
+                                                  description="Documentsid", default='xxx'),
+                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is Available",
+                                                description="Is Available", default=True),
+                    'similarity': openapi.Schema(type=openapi.TYPE_NUMBER, title="Relevantity score.",
+                                                 description="Relevantity score.", default=True),
+                    'comprehensive_score': openapi.Schema(type=openapi.TYPE_NUMBER, title="Comprehensive score.,Used for ordering",
+                                                          description="Comprehensive score.,Used for ordering", default=True),
+                    'update_time': openapi.Schema(type=openapi.TYPE_STRING, title="Change time.",
+                                                  description="Change time.",
                                                   default="1970-01-01 00:00:00"),
-                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="创建时间",
-                                                  description="创建时间",
+                    'create_time': openapi.Schema(type=openapi.TYPE_STRING, title="Creating time.",
+                                                  description="Creating time.",
                                                   default="1970-01-01 00:00:00"
                                                   ),
 

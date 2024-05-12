@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： common.py
     @date：2024/1/11 18:44
     @desc:
@@ -16,7 +16,7 @@ class InstanceField(serializers.Field):
 
     def to_internal_value(self, data):
         if not isinstance(data, self.model_type):
-            self.fail('message类型错误', value=data)
+            self.fail('messageType of error', value=data)
         return data
 
     def to_representation(self, value):
@@ -27,7 +27,7 @@ class FunctionField(serializers.Field):
 
     def to_internal_value(self, data):
         if not callable(data):
-            self.fail('不是一个函數', value=data)
+            self.fail('Not a function.', value=data)
         return data
 
     def to_representation(self, value):

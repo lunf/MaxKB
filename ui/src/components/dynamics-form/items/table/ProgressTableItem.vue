@@ -17,11 +17,11 @@
 import { computed, ref } from 'vue'
 const props = defineProps<{
   /**
-   *表单渲染Item column
+   *Form of rendering.Item column
    */
   column: any
   /**
-   * 这一行数据
+   * This line of data.
    */
   row: any
 }>()

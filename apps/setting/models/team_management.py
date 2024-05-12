@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： team_management.py
     @date：2023/9/25 15:04
     @desc:
@@ -17,52 +17,52 @@ from users.models import User
 
 
 class AuthTargetType(models.TextChoices):
-    """授权目标"""
-    DATASET = Group.DATASET.value, '数据集'
-    APPLICATION = Group.APPLICATION.value, '应用'
+    """Authorized objectives"""
+    DATASET = Group.DATASET.value, 'The data collection'
+    APPLICATION = Group.APPLICATION.value, 'Applications'
 
 
 class AuthOperate(models.TextChoices):
-    """授权权限"""
-    MANAGE = Operate.MANAGE.value, '管理'
+    """authorized authority"""
+    MANAGE = Operate.MANAGE.value, 'management'
 
-    USE = Operate.USE.value, "使用"
+    USE = Operate.USE.value, "Use of"
 
 
 class Team(AppModelMixin):
     """
-    团队表
+    The Team Table
     """
-    user = models.OneToOneField(User, primary_key=True, on_delete=models.DO_NOTHING, verbose_name="团队所有者")
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.DO_NOTHING, verbose_name="The team owners.")
 
-    name = models.CharField(max_length=128, verbose_name="团队名称")
+    name = models.CharField(max_length=128, verbose_name="The Team Name")
 
     class Meta:
         db_table = "team"
 
 
 class TeamMember(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
-    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, verbose_name="团队id")
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="成员用户id")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, verbose_name="The teamid")
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Member Usersid")
 
     class Meta:
         db_table = "team_member"
 
 
 class TeamMemberPermission(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="主键id")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
     """
-    团队成员权限
+    Members of the team.
     """
-    member = models.ForeignKey(TeamMember, on_delete=models.DO_NOTHING, verbose_name="团队成员")
+    member = models.ForeignKey(TeamMember, on_delete=models.DO_NOTHING, verbose_name="Members of Team")
 
-    auth_target_type = models.CharField(verbose_name='授权目标', max_length=128, choices=AuthTargetType.choices,
+    auth_target_type = models.CharField(verbose_name='Authorized objectives', max_length=128, choices=AuthTargetType.choices,
                                         default=AuthTargetType.DATASET)
 
-    target = models.UUIDField(max_length=128, verbose_name="数据集/应用id")
+    target = models.UUIDField(max_length=128, verbose_name="The data collection/Applicationsid")
 
-    operate = ArrayField(verbose_name="权限操作列表",
+    operate = ArrayField(verbose_name="Authorization operating list",
                          base_field=models.CharField(max_length=256,
                                                      blank=True,
                                                      choices=AuthOperate.choices,

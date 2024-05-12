@@ -2,13 +2,13 @@
   <LayoutContainer :header="documentDetail?.name" back-to="-1" class="document-detail">
     <template #header>
       <el-text type="info" v-if="documentDetail?.type === '1'"
-        >（文档地址：<el-link :href="documentDetail?.meta?.source_url" target="_blank">{{
+        >（The document address.：<el-link :href="documentDetail?.meta?.source_url" target="_blank">{{
           documentDetail?.meta?.source_url
         }}</el-link
         >）</el-text
       >
       <div class="document-detail__header">
-        <el-button @click="addParagraph" type="primary" :disabled="loading"> 添加分段 </el-button>
+        <el-button @click="addParagraph" type="primary" :disabled="loading"> Adding sections. </el-button>
       </div>
     </template>
     <div
@@ -16,10 +16,10 @@
       v-loading="(paginationConfig.current_page === 1 && loading) || changeStateloading"
     >
       <div class="flex-between p-8">
-        <span>{{ paginationConfig.total }} 段落</span>
+        <span>{{ paginationConfig.total }} Paragraphs</span>
         <el-input
           v-model="search"
-          placeholder="搜索"
+          placeholder="Searching"
           class="input-with-select"
           style="width: 260px"
           @change="searchHandle"
@@ -27,15 +27,15 @@
         >
           <template #prepend>
             <el-select v-model="searchType" placeholder="Select" style="width: 80px">
-              <el-option label="标题" value="title" />
-              <el-option label="内容" value="content" />
+              <el-option label="The title" value="title" />
+              <el-option label="The content" value="content" />
             </el-select>
           </template>
         </el-input>
       </div>
       <el-scrollbar>
         <div class="document-detail-height">
-          <el-empty v-if="paragraphDetail.length == 0" description="暂无数据" />
+          <el-empty v-if="paragraphDetail.length == 0" description="No data" />
 
           <InfiniteScroll
             v-else
@@ -76,8 +76,8 @@
 
                   <template #footer>
                     <div class="footer-content flex-between">
-                      <span> {{ numberFormat(item?.content.length) || 0 }} 个 字符 </span>
-                      <el-tooltip effect="dark" content="删除" placement="top">
+                      <span> {{ numberFormat(item?.content.length) || 0 }} one The characters </span>
+                      <el-tooltip effect="dark" content="removed" placement="top">
                         <el-button text @click.stop="deleteParagraph(item)" class="delete-button">
                           <el-icon><Delete /></el-icon>
                         </el-button>
@@ -138,26 +138,26 @@ function changeState(bool: Boolean, row: any) {
 }
 
 function deleteParagraph(row: any) {
-  MsgConfirm(`是否删除段落：${row.title || '-'} ?`, `删除后无法恢复，请谨慎操作。`, {
-    confirmButtonText: '删除',
+  MsgConfirm(`Remove the paragraph.：${row.title || '-'} ?`, `It cannot be restored after deletion.，Please be careful.。`, {
+    confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })
     .then(() => {
       paragraph.asyncDelParagraph(id, documentId, row.id, loading).then(() => {
         const index = paragraphDetail.value.findIndex((v) => v.id === row.id)
         paragraphDetail.value.splice(index, 1)
-        MsgSuccess('删除成功')
+        MsgSuccess('Remove Success')
       })
     })
     .catch(() => {})
 }
 
 function addParagraph() {
-  title.value = '添加分段'
+  title.value = 'Adding sections.'
   ParagraphDialogRef.value.open()
 }
 function editParagraph(row: any) {
-  title.value = '分段详情'
+  title.value = 'Section Details'
   ParagraphDialogRef.value.open(row)
 }
 

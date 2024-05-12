@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='chat',
             name='abstract',
-            field=models.CharField(max_length=1024, verbose_name='摘要'),
+            field=models.CharField(max_length=1024, verbose_name='The summary'),
         ),
         migrations.AlterField(
             model_name='chatrecord',
             name='answer_text',
-            field=models.CharField(max_length=40960, verbose_name='答案'),
+            field=models.CharField(max_length=40960, verbose_name='The Answer'),
         ),
     ]

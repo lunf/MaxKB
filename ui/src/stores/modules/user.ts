@@ -3,7 +3,7 @@ import type { User } from '@/api/type/user'
 import UserApi from '@/api/user'
 
 export interface userStateTypes {
-  userType: number // 1 系统操作者 2 对话用户
+  userType: number // 1 System Operator 2 User Dialogue
   userInfo: User | null
   token: any
   version?: string

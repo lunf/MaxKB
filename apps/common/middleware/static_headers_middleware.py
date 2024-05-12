@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： static_headers_middleware.py
     @date：2024/3/13 18:26
     @desc:
@@ -19,7 +19,7 @@ class StaticHeadersMiddleware(MiddlewareMixin):
             application_access_token = QuerySet(ApplicationAccessToken).filter(access_token=access_token).first()
             if application_access_token is not None:
                 if application_access_token.white_active:
-                    # 添加自定义的响应头
+                    # Add a custom response head.
                     response[
                         'Content-Security-Policy'] = f'frame-ancestors {" ".join(application_access_token.white_list)}'
                 response.content = (response.content.decode('utf-8').replace(

@@ -4,7 +4,7 @@ interface TeamMember {
   email: string
   team_id: string
   /**
-   * 类型：type：manage 所有者；
+   * Type of：type：manage owners；
    */
   type: string
   user_id: string

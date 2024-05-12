@@ -7,15 +7,15 @@
     :rules="rules"
     @submit.prevent
   >
-    <el-form-item label="分段标题">
-      <el-input v-if="isEdit" v-model="form.title" placeholder="请输入分段标题"> </el-input>
+    <el-form-item label="Section title">
+      <el-input v-if="isEdit" v-model="form.title" placeholder="Please enter the section title."> </el-input>
       <span class="lighter" v-else>{{ form.title || '-' }}</span>
     </el-form-item>
-    <el-form-item label="分段内容" prop="content">
+    <el-form-item label="Part of content." prop="content">
       <!-- <el-input
         v-if="isEdit"
         v-model="form.content"
-        placeholder="请输入分段内容"
+        placeholder="Please enter the section."
         maxlength="4096"
         show-word-limit
         :rows="8"
@@ -25,7 +25,7 @@
       <MarkdownEditor
         v-if="isEdit"
         v-model="form.content"
-        placeholder="请输入分段内容"
+        placeholder="Please enter the section."
         :maxLength="4096"
         :preview="false"
         :toolbars="toolbars"
@@ -96,8 +96,8 @@ const form = ref<any>({
 
 const rules = reactive<FormRules>({
   content: [
-    { required: true, message: '请输入分段内容', trigger: 'blur' },
-    { max: 4096, message: '内容最多不超过 4096 个字', trigger: 'blur' }
+    { required: true, message: 'Please enter the section.', trigger: 'blur' },
+    { max: 4096, message: 'Not more than the content. 4096 One word.', trigger: 'blur' }
   ]
 })
 
@@ -128,7 +128,7 @@ watch(
 )
 
 /*
-  表单校验
+  Forms of Examination
 */
 function validate() {
   if (!paragraphFormRef.value) return

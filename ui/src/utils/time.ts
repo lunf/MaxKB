@@ -1,9 +1,9 @@
 import moment from 'moment'
 
-// 当天日期 YYYY-MM-DD
+// The date of that day YYYY-MM-DD
 export const nowDate = moment().format('YYYY-MM-DD')
 
-// 当前时间的前n天
+// Before the present time.nThe God
 export function beforeDay(n: number | string) {
   return moment().subtract(n, 'days').format('YYYY-MM-DD')
 }

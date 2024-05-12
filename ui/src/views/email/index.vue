@@ -1,5 +1,5 @@
 <template>
-  <LayoutContainer header="邮箱设置">
+  <LayoutContainer header="Postbox setup.">
     <div class="email-setting main-calc-height">
       <el-scrollbar>
         <div class="p-24" v-loading="loading">
@@ -10,43 +10,43 @@
             label-position="top"
             require-asterisk-position="right"
           >
-            <el-form-item label="SMTP 主机" prop="email_host">
-              <el-input v-model="form.email_host" placeholder="请输入 SMTP 主机" />
+            <el-form-item label="SMTP The host" prop="email_host">
+              <el-input v-model="form.email_host" placeholder="Please enter. SMTP The host" />
             </el-form-item>
-            <el-form-item label="SMTP 端口" prop="email_port">
-              <el-input v-model="form.email_port" placeholder="请输入 SMTP 端口" />
+            <el-form-item label="SMTP The port." prop="email_port">
+              <el-input v-model="form.email_port" placeholder="Please enter. SMTP The port." />
             </el-form-item>
-            <el-form-item label="SMTP 账户" prop="email_host_user">
-              <el-input v-model="form.email_host_user" placeholder="请输入 SMTP 账户" />
+            <el-form-item label="SMTP The account" prop="email_host_user">
+              <el-input v-model="form.email_host_user" placeholder="Please enter. SMTP The account" />
             </el-form-item>
-            <el-form-item label="发件人邮箱" prop="from_email">
-              <el-input v-model="form.from_email" placeholder="请输入发件人邮箱" />
+            <el-form-item label="The mailbox of the sender" prop="from_email">
+              <el-input v-model="form.from_email" placeholder="Please enter the sender’s mailbox." />
             </el-form-item>
-            <el-form-item label="密码" prop="email_host_password">
+            <el-form-item label="The code" prop="email_host_password">
               <el-input
                 v-model="form.email_host_password"
-                placeholder="请输入发件人密码"
+                placeholder="Please enter the sender’s password."
                 show-password
               />
             </el-form-item>
             <el-form-item>
               <el-checkbox v-model="form.email_use_ssl"
-                >开启SSL(如果SMTP端口是465，通常需要启用SSL)
+                >openedSSL(IfSMTPThe port is465，It usually needs to be activated.SSL)
               </el-checkbox>
             </el-form-item>
             <el-form-item>
               <el-checkbox v-model="form.email_use_tls"
-                >开启TLS(如果SMTP端口是587，通常需要启用TLS)</el-checkbox
+                >openedTLS(IfSMTPThe port is587，It usually needs to be activated.TLS)</el-checkbox
               >
             </el-form-item>
             <el-button @click="submit(emailFormRef, 'test')" :disabled="loading">
-              测试连接
+              Testing connection.
             </el-button>
           </el-form>
 
           <div class="text-right">
             <el-button @click="submit(emailFormRef)" type="primary" :disabled="loading">
-              保存
+              preserved
             </el-button>
           </div>
         </div>
@@ -75,11 +75,11 @@ const emailFormRef = ref()
 const loading = ref(false)
 
 const rules = reactive<FormRules<any>>({
-  email_host: [{ required: true, message: '请输入 SMTP 主机', trigger: 'blur' }],
-  email_port: [{ required: true, message: '请输入 SMTP 端口', trigger: 'blur' }],
-  email_host_user: [{ required: true, message: '请输入 SMTP 账户', trigger: 'blur' }],
-  email_host_password: [{ required: true, message: '请输入发件人邮箱密码', trigger: 'blur' }],
-  from_email: [{ required: true, message: '请输入发件人邮箱', trigger: 'blur' }]
+  email_host: [{ required: true, message: 'Please enter. SMTP The host', trigger: 'blur' }],
+  email_port: [{ required: true, message: 'Please enter. SMTP The port.', trigger: 'blur' }],
+  email_host_user: [{ required: true, message: 'Please enter. SMTP The account', trigger: 'blur' }],
+  email_host_password: [{ required: true, message: 'Please enter the mailbox password.', trigger: 'blur' }],
+  from_email: [{ required: true, message: 'Please enter the sender’s mailbox.', trigger: 'blur' }]
 })
 
 const submit = async (formEl: FormInstance | undefined, test?: string) => {
@@ -88,11 +88,11 @@ const submit = async (formEl: FormInstance | undefined, test?: string) => {
     if (valid) {
       if (test) {
         emailApi.postTestEmail(form.value, loading).then((res) => {
-          MsgSuccess('测试连接成功')
+          MsgSuccess('Test connectivity success.')
         })
       } else {
         emailApi.putEmailSetting(form.value, loading).then((res) => {
-          MsgSuccess('设置成功')
+          MsgSuccess('Setup Success')
         })
       }
     }

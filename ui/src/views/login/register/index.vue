@@ -1,7 +1,7 @@
 <template>
   <login-layout>
-    <LoginContainer subTitle="欢迎使用 MaxKB 智能知识库">
-      <h2 class="mb-24">用户注册</h2>
+    <LoginContainer subTitle="Welcome to Use MaxKB Intelligent Knowledge Base">
+      <h2 class="mb-24">User Registration</h2>
       <el-form class="register-form" :model="registerForm" :rules="rules" ref="registerFormRef">
         <div class="mb-24">
           <el-form-item prop="username">
@@ -9,7 +9,7 @@
               size="large"
               class="input-item"
               v-model="registerForm.username"
-              placeholder="请输入用户名"
+              placeholder="Please enter the user name."
             >
             </el-input>
           </el-form-item>
@@ -21,7 +21,7 @@
               size="large"
               class="input-item"
               v-model="registerForm.password"
-              placeholder="请输入密码"
+              placeholder="Please enter the password."
               show-password
             >
             </el-input>
@@ -34,7 +34,7 @@
               size="large"
               class="input-item"
               v-model="registerForm.re_password"
-              placeholder="请输入确认密码"
+              placeholder="Please enter the confirmation password."
               show-password
             >
             </el-input>
@@ -46,7 +46,7 @@
               size="large"
               class="input-item"
               v-model="registerForm.email"
-              placeholder="请输入邮箱"
+              placeholder="Please enter the mailbox."
             >
             </el-input>
           </el-form-item>
@@ -58,7 +58,7 @@
                 size="large"
                 class="code-input"
                 v-model="registerForm.code"
-                placeholder="请输入验证码"
+                placeholder="Please enter the verification code."
               >
               </el-input>
               <el-button
@@ -68,13 +68,13 @@
                 @click="sendEmail"
                 :loading="sendEmailLoading"
               >
-                {{ isDisabled ? `重新发送（${time}s）` : '获取验证码' }}</el-button
+                {{ isDisabled ? `re-send（${time}s）` : 'Get the verification code.' }}</el-button
               >
             </div>
           </el-form-item>
         </div>
       </el-form>
-      <el-button size="large" type="primary" class="w-full" @click="register">注册</el-button>
+      <el-button size="large" type="primary" class="w-full" @click="register">Registered</el-button>
       <div class="operate-container mt-12">
         <el-button
           class="register"
@@ -83,7 +83,7 @@
           type="primary"
           icon="ArrowLeft"
         >
-          返回登录
+          Return to Registration.
         </el-button>
       </div>
     </LoginContainer>
@@ -110,45 +110,45 @@ const rules = ref<FormRules<RegisterRequest>>({
   username: [
     {
       required: true,
-      message: '请输入用户名',
+      message: 'Please enter the user name.',
       trigger: 'blur'
     },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     }
   ],
   password: [
     {
       required: true,
-      message: '请输入密码',
+      message: 'Please enter the password.',
       trigger: 'blur'
     },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     }
   ],
   re_password: [
     {
       required: true,
-      message: '请输入确认密码',
+      message: 'Please enter the confirmation password.',
       trigger: 'blur'
     },
     {
       min: 6,
       max: 20,
-      message: '长度在 6 到 20 个字符',
+      message: 'The length is 6 to 20 A character.',
       trigger: 'blur'
     },
     {
       validator: (rule, value, callback) => {
         if (registerForm.value.password != registerForm.value.re_password) {
-          callback(new Error('密码不一致'))
+          callback(new Error('The code is incompatible.'))
         } else {
           callback()
         }
@@ -157,12 +157,12 @@ const rules = ref<FormRules<RegisterRequest>>({
     }
   ],
   email: [
-    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    { required: true, message: 'Please enter the mailbox.', trigger: 'blur' },
     {
       validator: (rule, value, callback) => {
         const emailRegExp = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
         if (!emailRegExp.test(value) && value != '') {
-          callback(new Error('请输入有效邮箱格式！'))
+          callback(new Error('Please enter the valid mailbox format.！'))
         } else {
           callback()
         }
@@ -170,7 +170,7 @@ const rules = ref<FormRules<RegisterRequest>>({
       trigger: 'blur'
     }
   ],
-  code: [{ required: true, message: '请输入验证码' }]
+  code: [{ required: true, message: 'Please enter the verification code.' }]
 })
 
 const registerFormRef = ref<FormInstance>()
@@ -188,13 +188,13 @@ const sendEmailLoading = ref<boolean>(false)
 const isDisabled = ref<boolean>(false)
 const time = ref<number>(60)
 /**
- * 发送验证码
+ * Send the verification code.
  */
 const sendEmail = () => {
   registerFormRef.value?.validateField('email', (v: boolean) => {
     if (v) {
       UserApi.sendEmit(registerForm.value.email, 'register', sendEmailLoading).then(() => {
-        MsgSuccess('发送验证码成功')
+        MsgSuccess('Sending verification code successfully.')
         isDisabled.value = true
         handleTimeChange()
       })

@@ -1,7 +1,7 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： image_serializers.py
     @date：2024/4/22 16:36
     @desc:
@@ -19,7 +19,7 @@ from dataset.models import Image
 
 
 class ImageSerializer(serializers.Serializer):
-    image = UploadedImageField(required=True, error_messages=ErrMessage.image("图片"))
+    image = UploadedImageField(required=True, error_messages=ErrMessage.image("The picture"))
 
     def upload(self, with_valid=True):
         if with_valid:
@@ -38,5 +38,5 @@ class ImageSerializer(serializers.Serializer):
             image_id = self.data.get('id')
             image = QuerySet(Image).filter(id=image_id).first()
             if image is None:
-                raise NotFound404(404, "不存在的图片")
+                raise NotFound404(404, "No existing images.")
             return HttpResponse(image.image, status=200, headers={'Content-Type': 'image/png'})

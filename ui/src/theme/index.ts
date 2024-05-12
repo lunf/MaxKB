@@ -6,11 +6,11 @@ import type {
   UpdateKeyValueData
 } from './type'
 import { TinyColor } from '@ctrl/tinycolor'
-// 引入默认推断数据
+// Introduction of default assumption data
 import inferData from './defaultInferData'
-// 引入默认keyValue数据
+// Introduction of defaultkeyValueThe data
 import keyValueData from './defaultKeyValueData'
-// 引入设置对象
+// Introduction of objects.
 import setting from './setting'
 import type { App } from 'vue'
 declare global {
@@ -20,27 +20,27 @@ declare global {
 }
 class Theme {
   /**
-   * 主题设置
+   * Subject settings
    */
   themeSetting: ThemeSetting
   /**
-   * 键值数据
+   * Key value data
    */
   keyValue: KeyValueData
   /**
-   * 外推数据
+   * External data
    */
   inferData: Array<InferData>
   /**
-   *是否是第一次初始化
+   *Is it the first initiation?
    */
   isFirstWriteStyle: boolean
   /**
-   * 混色白
+   * mixed white.
    */
   colorWhite: string
   /**
-   * 混色黑
+   * mixed black.
    */
   colorBlack: string
 
@@ -55,10 +55,10 @@ class Theme {
   }
 
   /**
-   * 拼接
-   * @param setting 主题设置
-   * @param names   需要拼接的所有值
-   * @returns       拼接后的数据
+   * Connected
+   * @param setting Subject settings
+   * @param names   All the values needed.
+   * @returns       Data after compilation.
    */
   getVarName = (setting: ThemeSetting, ...names: Array<string>) => {
     return (
@@ -67,9 +67,9 @@ class Theme {
   }
 
   /**
-   * 转换外推数据
-   * @param setting      主题设置对象
-   * @param inferData    外推数据
+   * Convert external data.
+   * @param setting      Subject setting.
+   * @param inferData    External data
    * @returns
    */
   mapInferMainStyle = (setting: ThemeSetting, inferData: InferData) => {
@@ -84,9 +84,9 @@ class Theme {
     }
   }
   /**
-   * 转换外推数据
-   * @param setting    设置
-   * @param inferData 外推数据
+   * Convert external data.
+   * @param setting    set up
+   * @param inferData External data
    */
   mapInferData = (setting: ThemeSetting, inferData: Array<InferData>) => {
     return inferData
@@ -98,9 +98,9 @@ class Theme {
       }, {})
   }
   /**
-   * 转换外推数据
-   * @param setting      主题设置对象
-   * @param inferData    外推数据
+   * Convert external data.
+   * @param setting      Subject setting.
+   * @param inferData    External data
    * @returns
    */
   mapInferDataStyle = (setting: ThemeSetting, inferData: InferData) => {
@@ -139,9 +139,9 @@ class Theme {
 
   /**
    *
-   * @param themeSetting 主题设置
-   * @param keyValueData 键值数据
-   * @returns            映射后的键值数据
+   * @param themeSetting Subject settings
+   * @param keyValueData Key value data
+   * @returns            Key value data after screening
    */
   mapKeyValue = (themeSetting: ThemeSetting, keyValueData: KeyValueData) => {
     return Object.keys(keyValueData)
@@ -155,9 +155,9 @@ class Theme {
       }, {})
   }
   /**
-   * 根据配置文件修改Key
+   * Modified according to the file.Key
    * @param key          key
-   * @param themeSetting 主题设置
+   * @param themeSetting Subject settings
    * @returns
    */
   updateKeyBySetting = (key: string, themeSetting: ThemeSetting) => {
@@ -171,10 +171,10 @@ class Theme {
   }
   /**
    *
-   * @param setting    主题设置
-   * @param keyValue   主题键值对数据
-   * @param inferData 外推数据
-   * @returns 合并后的键值对数据
+   * @param setting    Subject settings
+   * @param keyValue   Topic Key Value for Data
+   * @param inferData External data
+   * @returns Key values after the data
    */
   tokeyValueStyle = () => {
     return {
@@ -184,7 +184,7 @@ class Theme {
   }
 
   /**
-   * 将keyValue对象转换为S
+   * willkeyValueThe object is converted toS
    * @param keyValue
    * @returns
    */
@@ -199,7 +199,7 @@ class Theme {
 
   /**
    *
-   * @param elNewStyle 新的变量样式
+   * @param elNewStyle New variable style.
    */
   writeNewStyle = (elNewStyle: string) => {
     if (this.isFirstWriteStyle) {
@@ -215,9 +215,9 @@ class Theme {
   }
 
   /**
-   * 修改数据并且写入dom
-   * @param updateInferData   平滑数据修改
-   * @param updateKeyvalueData keyValue数据修改
+   * Modify the data and write.dom
+   * @param updateInferData   Smooth Data Modification
+   * @param updateKeyvalueData keyValueData Modification
    */
   updateWrite = (updateInferData?: UpdateInferData, updateKeyvalueData?: UpdateKeyValueData) => {
     this.update(updateInferData, updateKeyvalueData)
@@ -227,7 +227,7 @@ class Theme {
   }
 
   /**
-   * 修改数据
+   * Modification of data
    * @param inferData
    * @param keyvalueData
    */
@@ -241,7 +241,7 @@ class Theme {
   }
 
   /**
-   * 修改外推数据 外推数据只能修改,不能新增
+   * Modifying external data Data can only be modified.,cannot be added.
    * @param inferData
    */
   updateInferData = (updateInferData: UpdateInferData) => {
@@ -258,14 +258,14 @@ class Theme {
   }
 
   /**
-   * 初始化默认主题
+   * Initial Theme
    */
   initDefaultTheme = () => {
     this.updateWrite()
   }
   /**
-   * 修改KeyValue数据
-   * @param keyvalueData keyValue数据
+   * ModifiedKeyValueThe data
+   * @param keyvalueData keyValueThe data
    */
   updateOrCreateKeyValueData = (updateKeyvalueData: UpdateKeyValueData) => {
     Object.keys(updateKeyvalueData).forEach((key) => {

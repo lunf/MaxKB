@@ -12,7 +12,7 @@ const slots = useSlots()
 const tooltipContent = slots.default?.()?.[0].children || ''
 </script>
 <style lang="scss" scoped>
-/* tag超出省略号 */
+/* tagBeyond the missing. */
 .tag-ellipsis {
   border: 1px solid var(--el-border-color);
   color: var(--app-text-color);

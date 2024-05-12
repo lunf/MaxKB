@@ -1,10 +1,10 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：虎
+    @Author：The Tiger
     @file： i_chat_step.py
     @date：2024/1/9 18:17
-    @desc: 对话
+    @desc: Dialogue
 """
 from abc import abstractmethod
 from typing import Type, List
@@ -23,7 +23,7 @@ from common.util.field_message import ErrMessage
 class ModelField(serializers.Field):
     def to_internal_value(self, data):
         if not isinstance(data, BaseChatModel):
-            self.fail('模型类型错误', value=data)
+            self.fail('Model type errors', value=data)
         return data
 
     def to_representation(self, value):
@@ -33,7 +33,7 @@ class ModelField(serializers.Field):
 class MessageField(serializers.Field):
     def to_internal_value(self, data):
         if not isinstance(data, BaseMessage):
-            self.fail('message类型错误', value=data)
+            self.fail('messageType of error', value=data)
         return data
 
     def to_representation(self, value):
@@ -50,35 +50,35 @@ class PostResponseHandler:
 
 class IChatStep(IBaseChatPipelineStep):
     class InstanceSerializer(serializers.Serializer):
-        # 对话列表
+        # List of Dialogue
         message_list = serializers.ListField(required=True, child=MessageField(required=True),
-                                             error_messages=ErrMessage.list("对话列表"))
-        # 大语言模型
-        chat_model = ModelField(required=False, allow_null=True, error_messages=ErrMessage.list("大语言模型"))
-        # 段落列表
-        paragraph_list = serializers.ListField(error_messages=ErrMessage.list("段落列表"))
-        # 对话id
-        chat_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("对话id"))
-        # 用户问题
-        problem_text = serializers.CharField(required=True, error_messages=ErrMessage.uuid("用户问题"))
-        # 后置处理器
+                                             error_messages=ErrMessage.list("List of Dialogue"))
+        # The big language model.
+        chat_model = ModelField(required=False, allow_null=True, error_messages=ErrMessage.list("The big language model."))
+        # List of paragraphs
+        paragraph_list = serializers.ListField(error_messages=ErrMessage.list("List of paragraphs"))
+        # Dialogueid
+        chat_id = serializers.UUIDField(required=True, error_messages=ErrMessage.uuid("Dialogueid"))
+        # User Problems
+        problem_text = serializers.CharField(required=True, error_messages=ErrMessage.uuid("User Problems"))
+        # The back processor.
         post_response_handler = InstanceField(model_type=PostResponseHandler,
-                                              error_messages=ErrMessage.base("用户问题"))
-        # 补全问题
-        padding_problem_text = serializers.CharField(required=False, error_messages=ErrMessage.base("补全问题"))
-        # 是否使用流的形式输出
-        stream = serializers.BooleanField(required=False, error_messages=ErrMessage.base("流式输出"))
-        client_id = serializers.CharField(required=True, error_messages=ErrMessage.char("客户端id"))
-        client_type = serializers.CharField(required=True, error_messages=ErrMessage.char("客户端类型"))
-        # 未查询到引用分段
-        no_references_setting = NoReferencesSetting(required=True, error_messages=ErrMessage.base("无引用分段设置"))
+                                              error_messages=ErrMessage.base("User Problems"))
+        # Complete the problem.
+        padding_problem_text = serializers.CharField(required=False, error_messages=ErrMessage.base("Complete the problem."))
+        # Use the flow form of output
+        stream = serializers.BooleanField(required=False, error_messages=ErrMessage.base("flow output."))
+        client_id = serializers.CharField(required=True, error_messages=ErrMessage.char("The clientid"))
+        client_type = serializers.CharField(required=True, error_messages=ErrMessage.char("Type of client"))
+        # No queries for reference.
+        no_references_setting = NoReferencesSetting(required=True, error_messages=ErrMessage.base("No reference to setup."))
 
         def is_valid(self, *, raise_exception=False):
             super().is_valid(raise_exception=True)
             message_list: List = self.initial_data.get('message_list')
             for message in message_list:
                 if not isinstance(message, BaseMessage):
-                    raise Exception("message 类型错误")
+                    raise Exception("message Type of error")
 
     def get_step_serializer(self, manage: PipelineManage) -> Type[serializers.Serializer]:
         return self.InstanceSerializer

@@ -39,15 +39,15 @@ export const MsgError = (message: string) => {
 }
 
 /**
- * 删除知识库
- * @param 参数 message: {title, description,type}
+ * Remove the Knowledge Base
+ * @param Parameters message: {title, description,type}
  */
 
 export const MsgConfirm = (title: string, description: string, options?: any) => {
   const defaultOptions: Object = {
     showCancelButton: true,
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+    confirmButtonText: 'Certainly',
+    cancelButtonText: 'cancelled',
     ...options
   }
   return ElMessageBox.confirm(description, title, defaultOptions)
@@ -64,8 +64,8 @@ export const MsgConfirm = (title: string, description: string, options?: any) =>
 
 //   const defaultOptions: Object = {
 //     showCancelButton: true,
-//     confirmButtonText: '确定',
-//     cancelButtonText: '取消',
+//     confirmButtonText: 'Certainly',
+//     cancelButtonText: 'cancelled',
 //     ...options
 //   }
 //   return ElMessageBox({ message, ...defaultOptions })

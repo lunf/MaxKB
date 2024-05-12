@@ -7,8 +7,8 @@ import { type Ref } from 'vue'
 const prefix = '/dataset'
 
 /**
- * 获取分页知识库
- * @param 参数  
+ * Get a page of knowledge.
+ * @param Parameters  
  * page {
           "current_page": "string",
           "page_size": "string",
@@ -26,16 +26,16 @@ const getDataset: (
 }
 
 /**
- * 获取全部知识库
- * @param 参数
+ * Get all knowledge.
+ * @param Parameters
  */
 const getAllDataset: (loading?: Ref<boolean>) => Promise<Result<any[]>> = (loading) => {
   return get(`${prefix}`, undefined, loading)
 }
 
 /**
- * 删除知识库
- * @param 参数 dataset_id
+ * Remove the Knowledge Base
+ * @param Parameters dataset_id
  */
 const delDataset: (dataset_id: String, loading?: Ref<boolean>) => Promise<Result<boolean>> = (
   dataset_id,
@@ -45,8 +45,8 @@ const delDataset: (dataset_id: String, loading?: Ref<boolean>) => Promise<Result
 }
 
 /**
- * 创建知识库
- * @param 参数 
+ * Creating a Knowledge Base
+ * @param Parameters 
  * {
   "name": "string",
   "desc": "string",
@@ -77,8 +77,8 @@ const postDataset: (data: datasetData, loading?: Ref<boolean>) => Promise<Result
 }
 
 /**
- * 创建Web知识库
- * @param 参数 
+ * CreatedWebThe knowledge base
+ * @param Parameters 
  * {
   "name": "string",
   "desc": "string",
@@ -94,8 +94,8 @@ const postWebDataset: (data: any, loading?: Ref<boolean>) => Promise<Result<any>
 }
 
 /**
- * 知识库详情
- * @param 参数 dataset_id
+ * Information Base Details
+ * @param Parameters dataset_id
  */
 const getDatasetDetail: (dataset_id: string, loading?: Ref<boolean>) => Promise<Result<any>> = (
   dataset_id,
@@ -105,8 +105,8 @@ const getDatasetDetail: (dataset_id: string, loading?: Ref<boolean>) => Promise<
 }
 
 /**
- * 修改知识库信息
- * @param 参数 
+ * Modification of Knowledge Base Information
+ * @param Parameters 
  * dataset_id
  * {
       "name": "string",
@@ -120,7 +120,7 @@ const putDataset: (dataset_id: string, data: any) => Promise<Result<any>> = (
   return put(`${prefix}/${dataset_id}`, data)
 }
 /**
- * 获取知识库 可关联的应用列表
+ * Acquire a Knowledge Base List of related applications
  * @param dataset_id
  * @param loading
  * @returns
@@ -133,7 +133,7 @@ const listUsableApplication: (
 }
 
 /**
- * 命中测试列表
+ * Test list of fate
  * @param dataset_id
  * @param loading
  * @query  { query_text: string, top_number: number, similarity: number }
@@ -148,9 +148,9 @@ const getDatasetHitTest: (
 }
 
 /**
- * 同步知识库
- * @param 参数 dataset_id
- * @query 参数 sync_type // 同步类型->replace:替换同步,complete:完整同步
+ * synchronizing knowledge.
+ * @param Parameters dataset_id
+ * @query Parameters sync_type // Types of Sync->replace:Replacement of Sync.,complete:Complete synchronization
  */
 const putSyncWebDataset: (
   dataset_id: string,
