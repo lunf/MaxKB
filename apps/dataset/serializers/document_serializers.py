@@ -50,8 +50,14 @@ class DocumentEditInstanceSerializer(ApiMixin, serializers.Serializer):
                                   code=500)
     ], error_messages=ErrMessage.char("Method of Treatment"))
 
-    is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.char(
-        "Documents are available."))
+    directly_return_similarity = serializers.FloatField(required=False,
+                                                        max_value=2,
+                                                        min_value=0,
+                                                        error_messages=ErrMessage.float(
+                                                            "Return score directly"))
+
+    is_active = serializers.BooleanField(required=False, error_messages=ErrMessage.boolean(
+        "Is documentation available?"))
 
     @staticmethod
     def get_meta_valid_map():
@@ -166,10 +172,12 @@ class DocumentSerializers(ApiMixin, serializers.Serializer):
                                      meta={})
             else:
                 document_list.update(dataset_id=target_dataset_id)
-            paragraph_list.update(dataset_id=target_dataset_id)
+            # 修改向量信息
             ListenerManagement.update_embedding_dataset_id(UpdateEmbeddingDatasetIdArgs(
-                [problem_paragraph_mapping.id for problem_paragraph_mapping in problem_paragraph_mapping_list],
+                [paragraph.id for paragraph in paragraph_list],
                 target_dataset_id))
+            # 修改段落信息
+            paragraph_list.update(dataset_id=target_dataset_id)
 
         @staticmethod
         def get_target_dataset_problem(target_dataset_id: str,
@@ -369,7 +377,7 @@ class DocumentSerializers(ApiMixin, serializers.Serializer):
             _document = QuerySet(Document).get(id=self.data.get("document_id"))
             if with_valid:
                 DocumentEditInstanceSerializer(data=instance).is_valid(document=_document)
-            update_keys = ['name', 'is_active', 'hit_handling_method', 'meta']
+            update_keys = ['name', 'is_active', 'hit_handling_method', 'directly_return_similarity', 'meta']
             for update_key in update_keys:
                 if update_key in instance and instance.get(update_key) is not None:
                     _document.__setattr__(update_key, instance.get(update_key))
@@ -387,6 +395,9 @@ class DocumentSerializers(ApiMixin, serializers.Serializer):
                                         {})
 
             else:
+                if document.status != Status.embedding.value:
+                    document.status = Status.embedding
+                    document.save()
                 ListenerManagement.embedding_by_document_signal.send(document_id)
             return True
 
@@ -435,12 +446,14 @@ class DocumentSerializers(ApiMixin, serializers.Serializer):
             return openapi.Schema(
                 type=openapi.TYPE_OBJECT,
                 properties={
-                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Name of documentation", description="Name of documentation"),
-                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is Available", description="Is Available"),
-                    'hit_handling_method': openapi.Schema(type=openapi.TYPE_STRING, title="Method of Treatment",
-                                                          description="aioptimized:optimization,Return directly.:directly_return"),
-                    'meta': openapi.Schema(type=openapi.TYPE_OBJECT, title="Documentary data",
-                                           description="Documentary data->web:{source_url:xxx,selector:'xxx'},base:{}"),
+                    'name': openapi.Schema(type=openapi.TYPE_STRING, title="Document Name", description="Document Name"),
+                    'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is it available", description="Is it available"),
+                    'hit_handling_method': openapi.Schema(type=openapi.TYPE_STRING, title="hit handling method",
+                                                        description="ai optimization: optimization, direct return: directly_return"),
+                    'directly_return_similarity': openapi.Schema(type=openapi.TYPE_NUMBER, title="Return the score directly",
+                                                                default=0.9),
+                    'meta': openapi.Schema(type=openapi.TYPE_OBJECT, title="Document metadata",
+                                        description="Document metadata->web:{source_url:xxx,selector:'xxx'},base:{}"),
                 }
             )
 
@@ -726,7 +739,11 @@ class DocumentSerializers(ApiMixin, serializers.Serializer):
                 self.is_valid(raise_exception=True)
             document_id_list = instance.get("id_list")
             hit_handling_method = instance.get('hit_handling_method')
-            QuerySet(Document).filter(id__in=document_id_list).update(hit_handling_method=hit_handling_method)
+            directly_return_similarity = instance.get('directly_return_similarity')
+            update_dict = {'hit_handling_method': hit_handling_method}
+            if directly_return_similarity is not None:
+                update_dict['directly_return_similarity'] = directly_return_similarity
+            QuerySet(Document).filter(id__in=document_id_list).update(**update_dict)
 
 
 class FileBufferHandle:

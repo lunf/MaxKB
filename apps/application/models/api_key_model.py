@@ -17,11 +17,15 @@ from users.models import User
 
 
 class ApplicationApiKey(AppModelMixin):
-    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="The key.id")
-    secret_key = models.CharField(max_length=1024, verbose_name="The Secret Key", unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usersid")
-    application = models.ForeignKey(Application, on_delete=models.CASCADE, verbose_name="Applicationsid")
-    is_active = models.BooleanField(default=True, verbose_name="is opened.")
+    id = models.UUIDField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False, verbose_name="PrimaryId")
+    secret_key = models.CharField(max_length=1024, verbose_name="Secret Key", unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User Id")
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, verbose_name="Application Id")
+    is_active = models.BooleanField(default=True, verbose_name="Is Active")
+    allow_cross_domain = models.BooleanField(default=False, verbose_name="Whether cross-domain is allowed")
+    cross_domain_list = ArrayField(verbose_name="Cross-domain list",
+                                base_field=models.CharField(max_length=128, blank=True)
+                                , default=list)
 
     class Meta:
         db_table = "application_api_key"
@@ -31,7 +35,7 @@ class ApplicationAccessToken(AppModelMixin):
     """
     Applied certificationtoken
     """
-    application = models.OneToOneField(Application, primary_key=True, on_delete=models.CASCADE, verbose_name="Applicationsid")
+    application = models.OneToOneField(Application, primary_key=True, on_delete=models.CASCADE, verbose_name="Application Id")
     access_token = models.CharField(max_length=128, verbose_name="User Open Access Certificationtoken", unique=True)
     is_active = models.BooleanField(default=True, verbose_name="Opening public access.")
     access_num = models.IntegerField(default=100, verbose_name="Number of Visits")
@@ -47,7 +51,7 @@ class ApplicationAccessToken(AppModelMixin):
 
 class ApplicationPublicAccessClient(AppModelMixin):
     id = models.UUIDField(max_length=128, primary_key=True, verbose_name="Public access link clientid")
-    application = models.ForeignKey(Application, on_delete=models.CASCADE, verbose_name="Applicationsid")
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, verbose_name="Application Id")
     access_num = models.IntegerField(default=0, verbose_name="Number of visits.")
     intraday_access_num = models.IntegerField(default=0, verbose_name="Number of visits on that day.")
 

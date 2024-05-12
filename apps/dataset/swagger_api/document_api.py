@@ -19,9 +19,10 @@ class DocumentApi(ApiMixin):
                 type=openapi.TYPE_OBJECT,
                 properties={
                     'id_list': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Schema(type=openapi.TYPE_STRING),
-                                              title="The key.idList of",
-                                              description="The key.idList of"),
-                    'hit_handling_method': openapi.Schema(type=openapi.TYPE_STRING, title="Method of Treatment",
-                                                          description="directly_return|optimization")
+                                               title="primary key id list",
+                                               description="primary key id list"),
+                    'hit_handling_method': openapi.Schema(type=openapi.TYPE_STRING, title="hit handling method",
+                                                        description="directly_return|optimization"),
+                    'directly_return_similarity': openapi.Schema(type=openapi.TYPE_NUMBER, title="Directly return similarity")
                 }
             )

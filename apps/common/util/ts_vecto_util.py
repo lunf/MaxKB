@@ -11,6 +11,7 @@ import uuid
 from typing import List
 
 import jieba
+import jieba.posseg
 from jieba import analyse
 
 from common.util.split_model import group_by
@@ -25,7 +26,9 @@ for jieba_word in jieba_word_list_cache:
 word_pattern_list = [r"v\d+.\d+.\d+",
                      r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"]
 
-remove_chars = '\n , :\'<>！@#￥%……&*（）!@#$%^&*()： ；，/"./-'
+remove_chars = '\n , :\'<>！@#￥%……&*（）!@#$%^&*()： ；，/"./'
+
+jieba_remove_flag_list = ['x', 'w']
 
 
 def get_word_list(text: str):
@@ -81,9 +84,13 @@ def to_ts_vector(text: str):
     word_dict = to_word_dict(word_list, text)
     # Replace the string.
     text = replace_word(word_dict, text)
-    # The word
-    result = jieba.tokenize(text, mode='search')
-    result_ = [{'word': get_key_by_word_dict(item[0], word_dict), 'index': item[1]} for item in result]
+    # Participle
+    filter_word = jieba.analyse.extract_tags(text, topK=100)
+    result = jieba.lcut(text, HMM=True, use_paddle=True)
+    # Filter punctuation
+    result = [item for item in result if filter_word.__contains__(item) and len(item) < 10]
+    result_ = [{'word': get_key_by_word_dict(result[index], word_dict), 'index': index} for index in
+               range(len(result))]
     result_group = group_by(result_, lambda r: r['word'])
     return " ".join(
         [f"{key.lower()}:{','.join([str(item['index'] + 1) for item in result_group[key]][:20])}" for key in

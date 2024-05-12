@@ -20,15 +20,15 @@
               v-if="datasetDetail.type === '1'"
               >synchronizing documents.</el-button
             >
-            <el-button @click="openDatasetDialog()" :disabled="multipleSelection.length === 0"
-              >Migration</el-button
-            >
-            <el-button @click="openBatchEditDocument" :disabled="multipleSelection.length === 0"
-              >set up</el-button
-            >
-            <el-button @click="deleteMulDocument" :disabled="multipleSelection.length === 0"
-              >removed</el-button
-            >
+            <el-button @click="openDatasetDialog()" :disabled="multipleSelection.length === 0">
+              Migration
+            </el-button>
+            <el-button @click="openBatchEditDocument" :disabled="multipleSelection.length === 0">
+              Setup
+            </el-button>
+            <el-button @click="deleteMulDocument" :disabled="multipleSelection.length === 0">
+              Delete
+            </el-button>
           </div>
 
           <el-input
@@ -215,11 +215,7 @@
       </div>
       <ImportDocumentDialog ref="ImportDocumentDialogRef" :title="title" @refresh="refresh" />
       <SyncWebDialog ref="SyncWebDialogRef" @refresh="refresh" />
-      <BatchEditDocumentDialog
-        ref="batchEditDocumentDialogRef"
-        @refresh="refresh"
-      ></BatchEditDocumentDialog>
-      <!-- Choose a Knowledge Base -->
+      <!-- Select knowledge base -->
       <SelectDatasetDialog ref="SelectDatasetDialogRef" @refresh="refresh" />
     </div>
   </LayoutContainer>
@@ -232,7 +228,6 @@ import documentApi from '@/api/document'
 import ImportDocumentDialog from './component/ImportDocumentDialog.vue'
 import SyncWebDialog from '@/views/dataset/component/SyncWebDialog.vue'
 import SelectDatasetDialog from './component/SelectDatasetDialog.vue'
-import BatchEditDocumentDialog from './component/BatchEditDocumentDialog.vue'
 import { numberFormat } from '@/utils/utils'
 import { datetimeFormat } from '@/utils/time'
 import { hitHandlingMethod } from './utils'
@@ -265,7 +260,7 @@ onBeforeRouteLeave((to: any, from: any) => {
 })
 const beforePagination = computed(() => common.paginationConfig[storeKey])
 const beforeSearch = computed(() => common.search[storeKey])
-const batchEditDocumentDialogRef = ref<InstanceType<typeof BatchEditDocumentDialog>>()
+
 const SyncWebDialogRef = ref()
 const loading = ref(false)
 let interval: any
@@ -326,10 +321,9 @@ const handleSelectionChange = (val: any[]) => {
 }
 
 function openBatchEditDocument() {
+  title.value = '设置'
   const arr: string[] = multipleSelection.value.map((v) => v.id)
-  if (batchEditDocumentDialogRef) {
-    batchEditDocumentDialogRef?.value?.open(arr)
-  }
+  ImportDocumentDialogRef.value.open(null, arr)
 }
 
 /**

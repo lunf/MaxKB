@@ -49,8 +49,26 @@ const delParagraph: (
 }
 
 /**
- * Creating paragraphs
- * @param Parameters 
+ * Delete paragraphs in batches
+ * @param parameter dataset_id, document_id
+ */
+const delMulParagraph: (
+  dataset_id: string,
+  document_id: string,
+  data: any,
+  loading?: Ref<boolean>
+) => Promise<Result<boolean>> = (dataset_id, document_id, data, loading) => {
+  return del(
+    `${prefix}/${dataset_id}/document/${document_id}/paragraph/_batch`,
+    undefined,
+    { id_list: data },
+    loading
+  )
+}
+
+/**
+ * Create paragraph
+ * @param parameter 
  * dataset_id, document_id
  * {
   "content": "string",
@@ -98,6 +116,33 @@ const putParagraph: (
 ) => Promise<Result<any>> = (dataset_id, document_id, paragraph_id, data, loading) => {
   return put(
     `${prefix}/${dataset_id}/document/${document_id}/paragraph/${paragraph_id}`,
+    data,
+    undefined,
+    loading
+  )
+}
+
+/**
+ * Migrate paragraphs in batches
+ * @param Parameters dataset_id,target_dataset_id,
+ */
+const putMigrateMulParagraph: (
+  dataset_id: string,
+  document_id: string,
+  target_dataset_id: string,
+  target_document_id: string,
+  data: any,
+  loading?: Ref<boolean>
+) => Promise<Result<boolean>> = (
+  dataset_id,
+  document_id,
+  target_dataset_id,
+  target_document_id,
+  data,
+  loading
+) => {
+  return put(
+    `${prefix}/${dataset_id}/document/${document_id}/paragraph/migrate/dataset/${target_dataset_id}/document/${target_document_id}`,
     data,
     undefined,
     loading
@@ -189,5 +234,7 @@ export default {
   getProblem,
   postProblem,
   disassociationProblem,
-  associationProblem
+  associationProblem,
+  delMulParagraph,
+  putMigrateMulParagraph
 }

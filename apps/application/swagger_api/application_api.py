@@ -99,9 +99,12 @@ class ApplicationApi(ApiMixin):
                     type=openapi.TYPE_OBJECT,
                     required=[],
                     properties={
-                        'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="is activated.",
-                                                    description="is activated."),
-
+                        'is_active': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Is Active",
+                                                     description="whether to activate"),
+                        'allow_cross_domain': openapi.Schema(type=openapi.TYPE_BOOLEAN, title="Whether cross-domain is allowed",
+                                                            description="Whether cross-domain is allowed"),
+                        'cross_domain_list': openapi.Schema(type=openapi.TYPE_ARRAY, title='Cross-domain list',
+                                                            items=openapi.Schema(type=openapi.TYPE_STRING))
                     }
                 )
 
