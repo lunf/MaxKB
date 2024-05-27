@@ -91,8 +91,8 @@ Start main application (python:3.11.x)
 
 You might need to change the following paths
 ```
-main.py --> HF_HOME 
-apps/smartdoc/const.py --> CONFIG
+main.py --> looking for HF_HOME --> change it to the source code folder 
+apps/smartdoc/const.py --> CONFIG --> abspath('./') --> change it to the source code folder
 
 # config file
 EMBEDDING_MODEL_PATH: ./models
@@ -120,31 +120,16 @@ Inital credentials
 # The code: MaxKB@123..
 ```
 
-## Additional
-
-You can also pass. [1Panel Applied store](https://apps.fit2cloud.com/1panel) Fast implementation. MaxKB + Ollama + Llama 2，30 In a minute you can get online based on a local big model knowledge base questioning system.，Incorporated into a third-party business system.。
-
-You can also experience online.：[DataEase The Little Assistant](https://dataease.io/docs/v2/)，It is based on MaxKB Building an Intelligent Question System，has been embedded. DataEase Products and online documents.。
-
-If you have more problems.，You can view the manual.，Contact us through the forum.。
-
--   [Use of Manual](https://github.com/1Panel-dev/MaxKB/wiki/1-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2)
--   [Showing video](https://www.bilibili.com/video/BV1BE421M7YM/)
--   [Forum for assistance](https://bbs.fit2cloud.com/c/mk/11)
--   Technical Communications Group     
-      <image height="150px" width="150px" src="https://github.com/1Panel-dev/MaxKB/assets/52996290/a4f6303d-9667-4be0-bc2d-0110af782f67"/>
-
 
 ## UI Showing
 
 <table style="border-collapse: collapse; border: 1px solid black;">
   <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/1Panel-dev/MaxKB/assets/80892890/2b893a25-ae46-48da-b6a1-61d23015565e" alt="MaxKB Demo1"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/1Panel-dev/MaxKB/assets/80892890/3e50e7ff-cdc4-4a37-b430-d84975f11d4e" alt="MaxKB Demo2"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "assets/Screens_01.png" alt="MaxKB Demo1"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "assets/Screens_02.png" alt="MaxKB Demo2"   /></td>
   </tr>
   <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/1Panel-dev/MaxKB/assets/80892890/dfdcc03f-ef36-4f75-bb82-797c0f9da1ad" alt="MaxKB Demo3"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/1Panel-dev/MaxKB/assets/52996290/f8e36cad-b6d5-44bb-a9ab-8fa8e289377a" alt="MaxKB Demo4"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "assets/Screens_03.png" alt="MaxKB Demo3"   /></td>
   </tr>
 </table>
 
