@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： app_exception.py
-    @date：2023/9/4 14:04
+    @Author:The Tiger
+    @file: app_exception.py
+    @date:2023/9/4 14:04
     @desc:
 """
 from rest_framework import status

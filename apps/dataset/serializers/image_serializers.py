@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： image_serializers.py
-    @date：2024/4/22 16:36
+    @Author:The Tiger
+    @file: image_serializers.py
+    @date:2024/4/22 16:36
     @desc:
 """
 import uuid

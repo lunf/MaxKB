@@ -20,23 +20,23 @@
               <el-input v-model="form.email_host_user" placeholder="Please enter. SMTP The account" />
             </el-form-item>
             <el-form-item label="The mailbox of the sender" prop="from_email">
-              <el-input v-model="form.from_email" placeholder="Please enter the sender’s mailbox." />
+              <el-input v-model="form.from_email" placeholder="Please enter the sender's mailbox." />
             </el-form-item>
             <el-form-item label="The code" prop="email_host_password">
               <el-input
                 v-model="form.email_host_password"
-                placeholder="Please enter the sender’s password."
+                placeholder="Please enter the sender's password."
                 show-password
               />
             </el-form-item>
             <el-form-item>
               <el-checkbox v-model="form.email_use_ssl"
-                >openedSSL(IfSMTPThe port is465，It usually needs to be activated.SSL)
+                >openedSSL(IfSMTPThe port is465, It usually needs to be activated.SSL)
               </el-checkbox>
             </el-form-item>
             <el-form-item>
               <el-checkbox v-model="form.email_use_tls"
-                >openedTLS(IfSMTPThe port is587，It usually needs to be activated.TLS)</el-checkbox
+                >openedTLS(IfSMTPThe port is587, It usually needs to be activated.TLS)</el-checkbox
               >
             </el-form-item>
             <el-button @click="submit(emailFormRef, 'test')" :disabled="loading">
@@ -79,7 +79,7 @@ const rules = reactive<FormRules<any>>({
   email_port: [{ required: true, message: 'Please enter. SMTP The port.', trigger: 'blur' }],
   email_host_user: [{ required: true, message: 'Please enter. SMTP The account', trigger: 'blur' }],
   email_host_password: [{ required: true, message: 'Please enter the mailbox password.', trigger: 'blur' }],
-  from_email: [{ required: true, message: 'Please enter the sender’s mailbox.', trigger: 'blur' }]
+  from_email: [{ required: true, message: `Please enter the sender's mailbox.`, trigger: 'blur' }]
 })
 
 const submit = async (formEl: FormInstance | undefined, test?: string) => {

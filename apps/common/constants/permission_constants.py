@@ -1,8 +1,8 @@
 """
     @project: qabot
-    @Author：The Tiger
-    @file： permission_constants.py
-    @date：2023/9/13 18:23
+    @Author:The Tiger
+    @file: permission_constants.py
+    @date:2023/9/13 18:23
     @desc: Authority,The role Permanent
 """
 from enum import Enum

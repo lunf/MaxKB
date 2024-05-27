@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： swagger_conf.py
-    @date：2023/9/5 14:01
+    @Author:The Tiger
+    @file: swagger_conf.py
+    @date:2023/9/5 14:01
     @desc: usedswagger The group
 """
 

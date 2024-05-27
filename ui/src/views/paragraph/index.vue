@@ -254,7 +254,7 @@ function changeState(bool: Boolean, row: any) {
 }
 
 function deleteParagraph(row: any) {
-  MsgConfirm(`Remove the paragraph.：${row.title || '-'} ?`, `It cannot be restored after deletion.，Please be careful.。`, {
+  MsgConfirm(`Remove the paragraph. ${row.title || '-'} ?`, `It cannot be restored after deletion. Please be careful. `, {
     confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })

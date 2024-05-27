@@ -31,7 +31,7 @@
             <em class="hover" @click.prevent="handlePreview(true)"> Choose the folder. </em>
           </p>
           <div class="upload__decoration">
-            <p>support formats.：TXT、Markdown、PDF、DOCX，Increased every time.50A document.，No more than each document. 100MB</p>
+            <p>support formats. TXT、Markdown、PDF、DOCX, Increased every time.50A document. No more than each document. 100MB</p>
             <p>If used【The Higher Section】It is recommended to identify the sections of the standard document before upload.</p>
           </div>
         </div>
@@ -85,7 +85,7 @@ function deleteFile(index: number) {
 
 // uploadedon-changeThe incident
 const fileHandleChange = (file: any, fileList: UploadFiles) => {
-  //1、Deciding whether the file size is legal.，The limitation of documents cannot be greater than10M
+  //1、Deciding whether the file size is legal. The limitation of documents cannot be greater than10M
   const isLimit = file?.size / 1024 / 1024 < 100
   if (!isLimit) {
     MsgError('The file is greater. 100MB')

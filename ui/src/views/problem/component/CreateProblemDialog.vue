@@ -16,7 +16,7 @@
       <el-form-item label="The problem" prop="data">
         <el-input
           v-model="form.data"
-          placeholder="Please enter the question.，Support for multiple entries.，One line one.。"
+          placeholder="Please enter the question. Support for multiple entries. One line one. "
           :rows="10"
           type="textarea"
         />

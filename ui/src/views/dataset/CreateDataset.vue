@@ -53,7 +53,7 @@ const router = useRouter()
 const route = useRoute()
 const {
   params: { type },
-  query: { id } // idfordatasetID，There isidThe upload of documents.
+  query: { id } // idfordatasetID, There isidThe upload of documents.
 } = route
 const isCreate = type === 'create'
 // const steps = [

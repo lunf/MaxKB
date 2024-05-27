@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： qwen_chat_model.py
-    @date：2024/4/28 11:44
+    @Author:The Tiger
+    @file: qwen_chat_model.py
+    @date:2024/4/28 11:44
     @desc:
 """
 from typing import List

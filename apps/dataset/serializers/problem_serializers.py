@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： problem_serializers.py
-    @date：2023/10/23 13:55
+    @Author:The Tiger
+    @file: problem_serializers.py
+    @date:2023/10/23 13:55
     @desc:
 """
 import os

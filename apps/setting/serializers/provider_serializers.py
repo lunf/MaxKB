@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： provider_serializers.py
-    @date：2023/11/2 14:01
+    @Author:The Tiger
+    @file: provider_serializers.py
+    @date:2023/11/2 14:01
     @desc:
 """
 import json
@@ -220,7 +220,7 @@ class ModelSerializer(serializers.Serializer):
                 self.is_valid(raise_exception=True)
             application_list = QuerySet(Application).filter(model_id=self.data.get('id')).all()
             if len(application_list) > 0:
-                raise AppApiException(500, f"The model is connected.{len(application_list)} one application.，This model cannot be removed.。")
+                raise AppApiException(500, f"The model is connected.{len(application_list)} one application. This model cannot be removed. ")
             QuerySet(Model).filter(id=self.data.get('id')).delete()
             return True
 

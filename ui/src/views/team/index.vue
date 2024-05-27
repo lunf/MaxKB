@@ -162,7 +162,7 @@ function MemberPermissions(id: String) {
 
 function deleteMember(row: TeamMember) {
   MsgConfirm(
-    `Removing members.：${row.username}?`,
+    `Removing members. ${row.username}?`,
     `After deletion, the member's knowledge base and application permits will be deleted.`,
 
     {

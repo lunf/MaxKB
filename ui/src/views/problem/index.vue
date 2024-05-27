@@ -201,8 +201,8 @@ function deleteMulDocument() {
 
 function deleteProblem(row: any) {
   MsgConfirm(
-    `Remove the problem.：${row.content} ?`,
-    `Delete the problem related. ${row.paragraph_count} A section will be cancelled.，Please be careful.。`,
+    `Remove the problem. ${row.content} ?`,
+    `Delete the problem related. ${row.paragraph_count} A section will be cancelled. Please be careful. `,
     {
       confirmButtonText: 'removed',
       confirmButtonClass: 'danger'

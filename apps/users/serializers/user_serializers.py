@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： team_serializers.py
-    @date：2023/9/5 16:32
+    @Author:The Tiger
+    @file: team_serializers.py
+    @date:2023/9/5 16:32
     @desc:
 """
 import datetime
@@ -135,14 +135,14 @@ class RegisterSerializer(ApiMixin, serializers.Serializer):
                                      validators=[validators.RegexValidator(regex=re.compile(
                                          "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                          "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                         , message="Password Length6-20A character. Must have letters.、The numbers、Special character combination.")])
+                                         , message="Password Length6-20A character. Must have letters. The numbers、Special character combination.")])
 
     re_password = serializers.CharField(required=True,
                                         error_messages=ErrMessage.char("Confirm the password."),
                                         validators=[validators.RegexValidator(regex=re.compile(
                                             "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                             "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                            , message="Confirm the password length.6-20A character. Must have letters.、The numbers、Special character combination.")])
+                                            , message="Confirm the password length.6-20A character. Must have letters. The numbers、Special character combination.")])
 
     code = serializers.CharField(required=True, error_messages=ErrMessage.char("verification code"))
 
@@ -265,13 +265,13 @@ class RePasswordSerializer(ApiMixin, serializers.Serializer):
                                      validators=[validators.RegexValidator(regex=re.compile(
                                          "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                          "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                         , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")])
+                                         , message="Confirm the password length.6-20A character. Must have letters. The numbers、Special character combination.")])
 
     re_password = serializers.CharField(required=True, error_messages=ErrMessage.char("Confirm the password."),
                                         validators=[validators.RegexValidator(regex=re.compile(
                                             "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                             "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                            , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")]
+                                            , message="Confirm the password length.6-20A character. Must have letters. The numbers、Special character combination.")]
                                         )
 
     class Meta:
@@ -589,7 +589,7 @@ class UserManageSerializer(serializers.Serializer):
                                          validators=[validators.RegexValidator(regex=re.compile(
                                              "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                              "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                             , message="Password Length6-20A character. Must have letters.、The numbers、Special character combination.")])
+                                             , message="Password Length6-20A character. Must have letters. The numbers、Special character combination.")])
 
         nick_name = serializers.CharField(required=False, error_messages=ErrMessage.char("Name of"), max_length=64,
                                           allow_null=True, allow_blank=True)
@@ -656,12 +656,12 @@ class UserManageSerializer(serializers.Serializer):
                                          validators=[validators.RegexValidator(regex=re.compile(
                                              "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                              "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                             , message="Password Length6-20A character.，Must have letters.、The numbers、Special character combination.")])
+                                             , message="Password Length6-20A character. Must have letters. The numbers、Special character combination.")])
         re_password = serializers.CharField(required=True, error_messages=ErrMessage.char("Confirm the password."),
                                             validators=[validators.RegexValidator(regex=re.compile(
                                                 "^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z_!@#$%^&*`~.()-+=]+$)(?![a-z0-9]+$)(?![a-z_!@#$%^&*`~()-+=]+$)"
                                                 "(?![0-9_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9_!@#$%^&*`~.()-+=]{6,20}$")
-                                                , message="Confirm the password length.6-20A character.，Must have letters.、The numbers、Special character combination.")]
+                                                , message="Confirm the password length.6-20A character. Must have letters. The numbers、Special character combination.")]
                                             )
 
         @staticmethod

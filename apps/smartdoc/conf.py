@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 #
 """
-Configuration of classification：
-1. DjangoProfiles used，Written bysettingsin
+Configuration of classification:
+1. DjangoProfiles used, Written bysettingsin
 2. The program needs, Users do not need any changes to write.settingsin
 3. The program needs, Users need to change the text.configin
 """

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： listener_manage.py
-    @date：2023/10/20 14:01
+    @Author:The Tiger
+    @file: listener_manage.py
+    @date:2023/10/20 14:01
     @desc:
 """
 import logging
@@ -153,16 +153,16 @@ class ListenerManagement:
         :param dataset_id: The knowledge baseid
         :return: None
         """
-        max_kb.info(f"Started--->to quantitative data.:{dataset_id}")
+        max_kb.info(f"Started--->to quantitative data. {dataset_id}")
         try:
             document_list = QuerySet(Document).filter(dataset_id=dataset_id)
             max_kb.info(f"Data collection documents:{[d.name for d in document_list]}")
             for document in document_list:
                 ListenerManagement.embedding_by_document(document.id)
         except Exception as e:
-            max_kb_error.error(f'to quantitative data.:{dataset_id}There are errors.{str(e)}{traceback.format_exc()}')
+            max_kb_error.error(f'to quantitative data. {dataset_id}There are errors.{str(e)}{traceback.format_exc()}')
         finally:
-            max_kb.info(f"ended--->to quantitative data.:{dataset_id}")
+            max_kb.info(f"ended--->to quantitative data. {dataset_id}")
 
     @staticmethod
     def delete_embedding_by_document(document_id):

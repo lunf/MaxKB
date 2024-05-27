@@ -229,7 +229,7 @@ function getAppStatistics() {
 function refreshAccessToken() {
   MsgConfirm(
     `Re-create public access links?`,
-    `Re-generating public access links will affect the embedded third-party script changes，You need to reinsert the new script into third parties.，Please be careful.！`,
+    `Re-generating public access links will affect the embedded third-party script changes, You need to reinsert the new script into third parties. Please be careful.！`,
     {
       confirmButtonText: 'confirmed'
     }

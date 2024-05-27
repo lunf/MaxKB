@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： pipeline_manage.py
-    @date：2024/1/9 17:40
+    @Author:The Tiger
+    @file: pipeline_manage.py
+    @date:2024/1/9 17:40
     @desc:
 """
 import time

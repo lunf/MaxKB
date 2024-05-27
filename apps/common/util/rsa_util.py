@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： rsa_util.py
-    @date：2023/11/3 11:13
+    @Author:The Tiger
+    @file: rsa_util.py
+    @date:2023/11/3 11:13
     @desc:
 """
 import base64
@@ -96,7 +96,7 @@ def rsa_long_encrypt(message, public_key: str | None = None, length=200):
 
     :param message:         Requires a encrypted string.
     :param public_key   The Public Key
-    :param length:      1024bitThe certificate.100， 2048bitThe certificate. 200
+    :param length:      1024bitThe certificate.100,  2048bitThe certificate. 200
     :return: Data after encryption
     """
     # Read the public key.
@@ -104,16 +104,16 @@ def rsa_long_encrypt(message, public_key: str | None = None, length=200):
         public_key = get_key_pair().get('key')
     cipher = PKCS1_cipher.new(RSA.importKey(extern_key=public_key,
                                             passphrase=secret_code))
-    # Processed：Plaintext is too long. Section of encryption
+    # Processed:Plaintext is too long. Section of encryption
     if len(message) <= length:
-        # Encryption of coded data.，and passedbase64to code.
+        # Encryption of coded data. and passedbase64to code.
         result = base64.b64encode(cipher.encrypt(message.encode('utf-8')))
     else:
         rsa_text = []
-        # Cut the data after coding.，Causes：The encryption length cannot be too long.
+        # Cut the data after coding. Causes:The encryption length cannot be too long.
         for i in range(0, len(message), length):
             cont = message[i:i + length]
-            # Encryption of data after cutting.，and newly addedtextbehind.
+            # Encryption of data after cutting. and newly addedtextbehind.
             rsa_text.append(cipher.encrypt(cont.encode('utf-8')))
         # Encryption is complete.
         cipher_text = b''.join(rsa_text)
@@ -124,10 +124,10 @@ def rsa_long_encrypt(message, public_key: str | None = None, length=200):
 
 def rsa_long_decrypt(message, pri_key: str | None = None, length=256):
     """
-    Extremely long text.，Not encrypted.
+    Extremely long text. Not encrypted.
     :param  message:    Required data disclosure
     :param  pri_key:    The Secret Key
-    :param  length :     1024bitThe certificate.128，2048bitThe certificate256The place
+    :param  length :     1024bitThe certificate.128, 2048bitThe certificate256The place
     :return: Data after disclosure
     """
     if pri_key is None:

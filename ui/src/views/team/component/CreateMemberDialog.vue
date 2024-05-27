@@ -9,7 +9,7 @@
   >
     <template #header="{ titleId, titleClass }">
       <h4 :id="titleId" :class="titleClass">Adding Members</h4>
-      <div class="dialog-sub-title">Members can access the data authorized by you after logging in.。</div>
+      <div class="dialog-sub-title">Members can access the data authorized by you after logging in. </div>
     </template>
 
     <el-form
@@ -21,7 +21,7 @@
       @submit.prevent
     >
       <el-form-item label="User Name/The mailbox" prop="users">
-        <tags-input v-model:tags="memberForm.users" placeholder="Please enter the member’s username or mailbox." />
+        <tags-input v-model:tags="memberForm.users" placeholder="Please enter the member's username or mailbox." />
         <!-- <el-select
           ref="SelectRemoteRef"
           class="custom-select-multiple"
@@ -30,7 +30,7 @@
           filterable
           remote
           reserve-keyword
-          placeholder="Please enter the member’s username or mailbox."
+          placeholder="Please enter the member's username or mailbox."
           no-data-text="User does not exist."
           :remote-method="remoteMethod"
           :loading="loading"

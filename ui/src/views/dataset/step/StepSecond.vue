@@ -10,14 +10,14 @@
                 <el-card shadow="never" class="mb-16" :class="radio === '1' ? 'active' : ''">
                   <el-radio value="1" size="large">
                     <p class="mb-4">Intelligent section.（Recommended)</p>
-                    <el-text type="info">I don’t know how to set sections rules recommend using smart sections.</el-text>
+                    <el-text type="info">I don't know how to set sections rules recommend using smart sections.</el-text>
                   </el-radio>
                 </el-card>
                 <el-card shadow="never" class="mb-16" :class="radio === '2' ? 'active' : ''">
                   <el-radio value="2" size="large">
                     <p class="mb-4">The Higher Section</p>
                     <el-text type="info"
-                      >Users can set sections identifier themselves according to the document standards.、The length and the cleaning rules.
+                      >Users can set sections identifier themselves according to the document standards. The length and the cleaning rules.
                     </el-text>
                   </el-radio>
 
@@ -33,7 +33,7 @@
                           <span style="margin-right: 4px">Parts of identification.</span>
                           <el-tooltip
                             effect="dark"
-                            content="Divide according to the selected symbol.，The result of the division exceeding the length of the section will be cut to the length of the section.。"
+                            content="Divide according to the selected symbol. The result of the division exceeding the length of the section will be cut to the length of the section. "
                             placement="right"
                           >
                             <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
@@ -72,7 +72,7 @@
                         <div class="title mb-8">Automatic cleaning.</div>
                         <el-switch size="small" v-model="form.with_filter" />
                         <div style="margin-top: 4px">
-                          <el-text type="info">Remove repeated excess symbol space.、The empty、The Tabel</el-text>
+                          <el-text type="info">Remove repeated excess symbol space. The empty、The Tabel</el-text>
                         </div>
                       </div>
                     </div>

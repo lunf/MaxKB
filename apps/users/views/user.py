@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： user.py
-    @date：2023/9/4 10:57
+    @Author:The Tiger
+    @file: user.py
+    @date:2023/9/4 10:57
     @desc:
 """
 from django.core import cache

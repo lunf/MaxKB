@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： application_key.py
-    @date：2023/11/7 10:50
+    @Author:The Tiger
+    @file: application_key.py
+    @date:2023/11/7 10:50
     @desc:
 """
 from drf_yasg import openapi
@@ -204,16 +204,16 @@ class ApplicationApi(ApiMixin):
                 required=['prompt'],
                 properties={
                     'prompt': openapi.Schema(type=openapi.TYPE_STRING, title="Suggestions", description="Suggestions",
-                                             default=('known information：'
+                                             default=('known information:'
                                                       '\n{data}'
-                                                      '\nReply to Request：'
-                                                      '\n- If you don’t know the answer or don’t get the answer.，Please answer“No information found in the knowledge base.，Consulting relevant technical support or reference to official documents for operation”。'
-                                                      '\n- Avoid mention that you are from<data></data>Knowledge obtained in。'
-                                                      '\n- Please keep the answer and<data></data>The description is consistent.。'
-                                                      '\n- Please usemarkdown Optimization of Answer Formats。'
-                                                      '\n- <data></data>The image link.、Link address and script language please return.。'
-                                                      '\n- Please use the same language to answer the question.。'
-                                                      '\nThe problem：'
+                                                      '\nReply to Request:'
+                                                      '\n- If you do not know the answer or do not get the answer. Please answer“No information found in the knowledge base. Consulting relevant technical support or reference to official documents for operation”. '
+                                                      '\n- Avoid mention that you are from<data></data>Knowledge obtained in. '
+                                                      '\n- Please keep the answer and<data></data>The description is consistent. '
+                                                      '\n- Please usemarkdown Optimization of Answer Formats. '
+                                                      '\n- <data></data>The image link. Link address and script language please return. '
+                                                      '\n- Please use the same language to answer the question. '
+                                                      '\nThe problem:'
                                                       '\n{question}')),
 
                 }

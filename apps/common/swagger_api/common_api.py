@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： common.py
-    @date：2023/12/25 16:17
+    @Author:The Tiger
+    @file: common.py
+    @date:2023/12/25 16:17
     @desc:
 """
 from drf_yasg import openapi

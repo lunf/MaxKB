@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： common_serializers.py
-    @date：2023/11/17 11:00
+    @Author:The Tiger
+    @file: common_serializers.py
+    @date:2023/11/17 11:00
     @desc:
 """
 import os
@@ -67,7 +67,7 @@ class BatchSerializer(ApiMixin, serializers.Serializer):
             if len(model_list) != len(id_list):
                 model_id_list = [str(m.id) for m in model_list]
                 error_id_list = list(filter(lambda row_id: not model_id_list.__contains__(row_id), id_list))
-                raise AppApiException(500, f"idwrongly.:{error_id_list}")
+                raise AppApiException(500, f"idwrongly. {error_id_list}")
 
     @staticmethod
     def get_request_body_api():

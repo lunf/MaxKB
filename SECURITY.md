@@ -1,6 +1,6 @@
 # Safety Explanation
 
-If you find a security problem.，Please contact us directly.：
+If you find a security problem. Please contact us directly. 
 
 - support@fit2cloud.com
 - 400-052-0755

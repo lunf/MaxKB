@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： application_serializers.py
-    @date：2023/11/7 10:02
+    @Author:The Tiger
+    @file: application_serializers.py
+    @date:2023/11/7 10:02
     @desc:
 """
 import hashlib

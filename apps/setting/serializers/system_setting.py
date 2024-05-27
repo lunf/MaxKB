@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： system_setting.py
-    @date：2024/3/19 16:29
+    @Author:The Tiger
+    @file: system_setting.py
+    @date:2024/3/19 16:29
     @desc:
 """
 from django.core.mail.backends.smtp import EmailBackend

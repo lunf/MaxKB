@@ -126,7 +126,7 @@ function getAccessToken(id: string) {
 }
 
 function deleteApplication(row: any) {
-  MsgConfirm(`Remove the application.：${row.name} ?`, `After deletion, the app will no longer provide services.，Please be careful.。`, {
+  MsgConfirm(`Remove the application. ${row.name} ?`, `After deletion, the app will no longer provide services. Please be careful. `, {
     confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })

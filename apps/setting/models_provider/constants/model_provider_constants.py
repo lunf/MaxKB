@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： model_provider_constants.py
-    @date：2023/11/2 14:55
+    @Author:The Tiger
+    @file: model_provider_constants.py
+    @date:2023/11/2 14:55
     @desc:
 """
 from enum import Enum

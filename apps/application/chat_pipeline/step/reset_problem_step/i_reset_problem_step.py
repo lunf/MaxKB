@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： i_reset_problem_step.py
-    @date：2024/1/9 18:12
+    @Author:The Tiger
+    @file: i_reset_problem_step.py
+    @date:2024/1/9 18:12
     @desc: Repeat the problem.
 """
 from abc import abstractmethod

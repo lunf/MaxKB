@@ -7,8 +7,8 @@
       <el-form-item>
         <el-input
           v-model="form.cross_domain_list"
-          placeholder="请输入允许的跨域地址，开启后不输入跨域地址则不限制。
-跨域地址一行一个，如：
+          placeholder="请输入允许的跨域地址, 开启后不输入跨域地址则不限制. 
+跨域地址一行一个, 如:
 http://127.0.0.1:5678 
 https://dataease.io"
           :rows="10"

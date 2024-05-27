@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： application_statistics_serializers.py
-    @date：2024/3/27 10:55
+    @Author:The Tiger
+    @file: application_statistics_serializers.py
+    @date:2024/3/27 10:55
     @desc:
 """
 import datetime

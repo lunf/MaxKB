@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： single_select_field.py
-    @date：2023/10/31 18:00
+    @Author:The Tiger
+    @file: single_select_field.py
+    @date:2023/10/31 18:00
     @desc:
 """
 from typing import List, Dict

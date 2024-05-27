@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： i_search_dataset_step.py
-    @date：2024/1/9 18:10
+    @Author:The Tiger
+    @file: i_search_dataset_step.py
+    @date:2024/1/9 18:10
     @desc: The knowledge base.
 """
 import re

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： __init__.py
-    @date：2023/10/31 17:56
+    @Author:The Tiger
+    @file: __init__.py
+    @date:2023/10/31 17:56
     @desc:
 """
 from .array_object_card import *

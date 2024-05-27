@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： authentication.py
-    @date：2023/9/13 15:00
+    @Author:The Tiger
+    @file: authentication.py
+    @date:2023/9/13 15:00
     @desc: the authority
 """
 from typing import List

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： i_chat_step.py
-    @date：2024/1/9 18:17
+    @Author:The Tiger
+    @file: i_chat_step.py
+    @date:2024/1/9 18:17
     @desc: Dialogue
 """
 from abc import abstractmethod

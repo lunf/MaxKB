@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： ts_vecto_util.py
-    @date：2024/4/16 15:26
+    @Author:The Tiger
+    @file: ts_vecto_util.py
+    @date:2024/4/16 15:26
     @desc:
 """
 import re
@@ -26,7 +26,7 @@ for jieba_word in jieba_word_list_cache:
 word_pattern_list = [r"v\d+.\d+.\d+",
                      r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}"]
 
-remove_chars = '\n , :\'<>！@#￥%……&*（）!@#$%^&*()： ；，/"./'
+remove_chars = '\n , :\'<>！@#￥%……&*（）!@#$%^&*(): ；, /"./'
 
 jieba_remove_flag_list = ['x', 'w']
 
@@ -37,7 +37,7 @@ def get_word_list(text: str):
         word_list = re.findall(pattern, text)
         for child_list in word_list:
             for word in child_list if isinstance(child_list, tuple) else [child_list]:
-                # cannot be: Then use again.: to divide.
+                # cannot be: Then use again.  to divide.
                 if word.__contains__(':'):
                     item_list = word.split(":")
                     for w in item_list:

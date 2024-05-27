@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： file_util.py
-    @date：2023/9/25 21:06
+    @Author:The Tiger
+    @file: file_util.py
+    @date:2023/9/25 21:06
     @desc:
 """
 

@@ -134,8 +134,8 @@ function searchHandle() {
 
 function deleteDataset(row: any) {
   MsgConfirm(
-    `Remove the knowledge base.：${row.name} ?`,
-    `This knowledge base is related. ${row.application_mapping_count} one application.，It cannot be restored after deletion.，Please be careful.。`,
+    `Remove the knowledge base. ${row.name} ?`,
+    `This knowledge base is related. ${row.application_mapping_count} one application. It cannot be restored after deletion. Please be careful. `,
     {
       confirmButtonText: 'removed',
       confirmButtonClass: 'danger'

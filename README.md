@@ -14,11 +14,11 @@ This is English version. For the latest updates, please visit the original at:
  - <https://github.com/1Panel-dev/maxkb>
 
 <hr>
-MaxKB It is based on LLM Big Language Model Knowledge Base Questions System。MaxKB = Max Knowledge Base，It is designed to be the strongest brain of the company.。
+MaxKB It is based on LLM Big Language Model Knowledge Base Questions System. MaxKB = Max Knowledge Base, It is designed to be the strongest brain of the company. 
 
-- **Open the box.**：Support for direct upload of documents.、Automatic retrieval of online documents，Support text automatic separation.、to Quantity.，Intelligent Questions Interactive Experience；
-- **Smoothly Embedded.**：Support zero-coding rapidly embedded into third-party business systems；
-- **Multi-Model Support**：Supporting large-scale connectivity models，Included Ollama Local private model.（as Llama 2、Llama 3、qwen）、A Thousand Questions、OpenAI、Azure OpenAI、Kimi、Intelligence AI、Starfire and a hundred-thousand-layer model.。
+- **Open the box.**:Support for direct upload of documents. Automatic retrieval of online documents, Support text automatic separation. to Quantity. Intelligent Questions Interactive Experience；
+- **Smoothly Embedded.**:Support zero-coding rapidly embedded into third-party business systems；
+- **Multi-Model Support**:Supporting large-scale connectivity models, Included Ollama Local private model.（as Llama 2、Llama 3、qwen）、A Thousand Questions、OpenAI、Azure OpenAI、Kimi、Intelligence AI、Starfire and a hundred-thousand-layer model. 
 
 ## Start quickly.
 
@@ -135,11 +135,11 @@ Inital credentials
 
 ## Technical Stack
 
--   The front：[Vue.js](https://cn.vuejs.org/)
--   The back.：[Python / Django](https://www.djangoproject.com/)
--   LangChain：[LangChain](https://www.langchain.com/)
--   Veto Database：[PostgreSQL / pgvector](https://www.postgresql.org/)
--   The big model.：Azure OpenAI、OpenAI、A hundred-thousand model.、[Ollama](https://github.com/ollama/ollama)、A Thousand Questions、Kimi、Intelligence AI、The Star Fire.
+-   The front:[Vue.js](https://cn.vuejs.org/)
+-   The back. [Python / Django](https://www.djangoproject.com/)
+-   LangChain:[LangChain](https://www.langchain.com/)
+-   Veto Database:[PostgreSQL / pgvector](https://www.postgresql.org/)
+-   The big model. Azure OpenAI、OpenAI、A hundred-thousand model. [Ollama](https://github.com/ollama/ollama)、A Thousand Questions、Kimi、Intelligence AI、The Star Fire.
 
 
 ## License

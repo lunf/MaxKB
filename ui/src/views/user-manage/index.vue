@@ -133,8 +133,8 @@ function createUser() {
 
 function deleteUserManage(row: any) {
   MsgConfirm(
-    `Remove the user.：${row.username} ?`,
-    `Remove Users，The resources created by the user.（Applications、The knowledge base、The model）They will be removed.，Please be careful.。`,
+    `Remove the user. ${row.username} ?`,
+    `Remove Users, The resources created by the user.（Applications、The knowledge base、The model）They will be removed. Please be careful. `,
     {
       confirmButtonText: 'removed',
       confirmButtonClass: 'danger'

@@ -76,7 +76,7 @@ instance.interceptors.response.use(
 
 export const request = instance
 
-/* Simplified Application Method，Unified processing of return results，and increaseloadingProcessed，here to{success,data,message}The return value of the format is an example.，Modified projects according to actual needs */
+/* Simplified Application Method, Unified processing of return results, and increaseloadingProcessed, here to{success,data,message}The return value of the format is an example. Modified projects according to actual needs */
 const promise: (
   request: Promise<any>,
   loading?: NProgress | Ref<boolean> | WritableComputedRef<boolean>

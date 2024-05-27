@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： pg_vector.py
-    @date：2023/10/19 15:28
+    @Author:The Tiger
+    @file: pg_vector.py
+    @date:2023/10/19 15:28
     @desc:
 """
 import json

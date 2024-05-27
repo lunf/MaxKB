@@ -346,7 +346,7 @@ const closeInterval = () => {
 function refreshDocument(row: any) {
   if (row.type === '1') {
     if (row.meta?.source_url) {
-      MsgConfirm(`Confirm synchronized documents.?`, `Synchronization will remove existing data to regain new data.，Please be careful.。`, {
+      MsgConfirm(`Confirm synchronized documents.?`, `Synchronization will remove existing data to regain new data. Please be careful. `, {
         confirmButtonText: 'synchronized',
         confirmButtonClass: 'danger'
       })
@@ -357,7 +357,7 @@ function refreshDocument(row: any) {
         })
         .catch(() => {})
     } else {
-      MsgConfirm(`The Tip`, `cannot synchronize.，Please set up the document. URLAddressed`, {
+      MsgConfirm(`The Tip`, `cannot synchronize. Please set up the document. URLAddressed`, {
         confirmButtonText: 'confirmed',
         type: 'warning'
       })
@@ -420,8 +420,8 @@ function deleteMulDocument() {
 
 function deleteDocument(row: any) {
   MsgConfirm(
-    `Remove the document.：${row.name} ?`,
-    `Under this document. ${row.paragraph_count} Parts will be removed.，Please be careful.。`,
+    `Remove the document. ${row.name} ?`,
+    `Under this document. ${row.paragraph_count} Parts will be removed. Please be careful. `,
     {
       confirmButtonText: 'removed',
       confirmButtonClass: 'danger'

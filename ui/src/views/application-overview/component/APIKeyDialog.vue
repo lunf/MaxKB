@@ -76,8 +76,8 @@ function settingApiKey(row: any) {
 
 function deleteApiKey(row: any) {
   MsgConfirm(
-    `is removed.API Key：${row.secret_key} ?`,
-    `It cannot be used after deletion. API Key Calling the interface.，Please be careful.`,
+    `is removed.API Key:${row.secret_key} ?`,
+    `It cannot be used after deletion. API Key Calling the interface. Please be careful.`,
     {
       confirmButtonText: 'removed',
       confirmButtonClass: 'danger'

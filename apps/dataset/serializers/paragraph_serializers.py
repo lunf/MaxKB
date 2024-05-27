@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： paragraph_serializers.py
-    @date：2023/10/16 15:51
+    @Author:The Tiger
+    @file: paragraph_serializers.py
+    @date:2023/10/16 15:51
     @desc:
 """
 import uuid
@@ -284,7 +284,7 @@ class ParagraphSerializers(ApiMixin, serializers.Serializer):
             paragraph_id_list = instance.get("id_list")
             QuerySet(Paragraph).filter(id__in=paragraph_id_list).delete()
             QuerySet(ProblemParagraphMapping).filter(paragraph_id__in=paragraph_id_list).delete()
-            # 删除向量库
+            # Delete vector library
             ListenerManagement.delete_embedding_by_paragraph_ids(paragraph_id_list)
             return True
 

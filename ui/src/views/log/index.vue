@@ -275,7 +275,7 @@ const setRowClass = ({ row }: any) => {
 }
 
 function deleteLog(row: any) {
-  MsgConfirm(`Remove the dialogue.：${row.abstract} ?`, `It cannot be restored after deletion.，Please be careful.。`, {
+  MsgConfirm(`Remove the dialogue. ${row.abstract} ?`, `It cannot be restored after deletion. Please be careful. `, {
     confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })

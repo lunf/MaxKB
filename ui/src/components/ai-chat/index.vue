@@ -61,7 +61,7 @@
                   shadow="always"
                   class="dialog-card"
                 >
-                  Sorry to，Not found relevant content.，Please resume your question or provide more information.。
+                  Sorry to, Not found relevant content. Please resume your question or provide more information. 
                 </el-card>
                 <el-card v-else-if="item.is_stop" shadow="always" class="dialog-card">
                   stopped answering.
@@ -99,7 +99,7 @@
                       size="small"
                       @click="openParagraph(item)"
                       :disabled="!item.paragraph_list || item.paragraph_list?.length === 0"
-                      >Reference to Section：{{ item.paragraph_list?.length || 0 }}</el-button
+                      >Reference to Section:{{ item.paragraph_list?.length || 0 }}</el-button
                     >
                     <el-tag type="info" effect="plain">
                       consumption tokens: {{ item?.message_tokens + item?.answer_tokens }}
@@ -230,7 +230,7 @@ const isMdArray = (val: string) => val.match(/^-\s.*/m)
 const prologueList = computed(() => {
   const temp = props.available
     ? props.data?.prologue
-    : 'Sorry to，Currently beingined.，cannot provide services.，Please try again later.！'
+    : 'Sorry to, Currently beingined. cannot provide services. Please try again later.！'
   let arr: any = []
   const lines = temp?.split('\n')
   lines?.forEach((str: string, index: number) => {
@@ -285,7 +285,7 @@ const handleDebounceClick = debounce((val) => {
 
 function sendChatHandle(event: any) {
   if (!event.ctrlKey) {
-    // If you do not press the combination key.ctrl，It will stop the default event.
+    // If you do not press the combination key.ctrl, It will stop the default event.
     event.preventDefault()
     if (!isDisabledChart.value && !loading.value && !event.isComposing) {
       if (inputValue.value.trim()) {
@@ -293,7 +293,7 @@ function sendChatHandle(event: any) {
       }
     }
   } else {
-    // Pressing at the same time.ctrl+Back to the car key.，It will change.
+    // Pressing at the same time.ctrl+Back to the car key. It will change.
     inputValue.value += '\n'
   }
 }
@@ -420,7 +420,7 @@ const getWrite = (chat: any, reader: any, stream: boolean) => {
 const errorWrite = (chat: any, message?: string) => {
   ChatManagement.addChatRecord(chat, 50, loading)
   ChatManagement.write(chat.id)
-  ChatManagement.append(chat.id, message || 'Sorry to，Currently beingined.，cannot provide services.，Please try again later.！')
+  ChatManagement.append(chat.id, message || 'Sorry to, Currently beingined. cannot provide services. Please try again later.！')
   ChatManagement.close(chat.id)
 }
 function chatMessage(chat?: any, problem?: string, re_chat?: boolean) {
@@ -470,7 +470,7 @@ function chatMessage(chat?: any, problem?: string, re_chat?: boolean) {
         } else if (response.status === 460) {
           return Promise.reject('Unable to identify user identity.')
         } else if (response.status === 461) {
-          return Promise.reject('Sorry to，Your questions have reached the maximum limit.，Please come again tomorrow.！')
+          return Promise.reject('Sorry to, Your questions have reached the maximum limit. Please come again tomorrow.！')
         } else {
           nextTick(() => {
             // Turn the rotating line to the bottom.

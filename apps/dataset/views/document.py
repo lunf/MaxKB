@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： document.py
-    @date：2023/9/22 11:32
+    @Author:The Tiger
+    @file: document.py
+    @date:2023/9/22 11:32
     @desc:
 """
 

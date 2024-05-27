@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： __init__.py
-    @date：2023/11/10 10:43
+    @Author:The Tiger
+    @file: __init__.py
+    @date:2023/11/10 10:43
     @desc:
 """
 import setting.models

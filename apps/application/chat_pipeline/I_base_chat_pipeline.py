@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： I_base_chat_pipeline.py
-    @date：2024/1/9 17:25
+    @Author:The Tiger
+    @file: I_base_chat_pipeline.py
+    @date:2024/1/9 17:25
     @desc:
 """
 import time

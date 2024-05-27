@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： password_input.py
-    @date：2023/11/1 14:48
+    @Author:The Tiger
+    @file: password_input.py
+    @date:2023/11/1 14:48
     @desc:
 """
 from typing import Dict

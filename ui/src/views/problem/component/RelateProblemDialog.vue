@@ -46,7 +46,7 @@
             <div class="flex-between mb-16">
               <div class="bold title align-center">
                 Choose the section.
-                <el-text> （Selected section.：{{ associationCount(currentDocument) }} one） </el-text>
+                <el-text> （Selected section. {{ associationCount(currentDocument) }} one） </el-text>
               </div>
               <el-input
                 v-model="search"

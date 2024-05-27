@@ -3,7 +3,7 @@
     <el-col class="img" :xs="0" :sm="0" :md="12" :lg="12" :xl="12"> </el-col>
     <el-col class="message-container" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
       <div class="title">404</div>
-      <div class="message">Sorry to me.，Unable to access the application.！</div>
+      <div class="message">Sorry to me. Unable to access the application.！</div>
       <!-- TODO Not temporarily processed. -->
       <!-- <div class="operate"><el-button type="primary" @click="router.push('/')">Back to the first page.</el-button></div> -->
     </el-col>

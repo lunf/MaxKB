@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： dataset_serializers.py
-    @date：2023/9/21 16:14
+    @Author:The Tiger
+    @file: dataset_serializers.py
+    @date:2023/9/21 16:14
     @desc:
 """
 import logging
@@ -45,7 +45,7 @@ from smartdoc.conf import PROJECT_DIR
 # __exact  Exactly equal to like ‘aaa’
 # __iexact Exactly equal to Ignoring the size of writing. ilike 'aaa'
 # __contains Includedlike '%aaa%'
-# __icontains Included Ignoring the size of writing. ilike ‘%aaa%’，But forsqlitefor，containsThe effect is equal toicontains。
+# __icontains Included Ignoring the size of writing. ilike ‘%aaa%’, But forsqlitefor, containsThe effect is equal toicontains. 
 # __gt  greater than
 # __gte More than equal.
 # __lt less than
@@ -54,7 +54,7 @@ from smartdoc.conf import PROJECT_DIR
 # __startswith by…Beginning
 # __istartswith by…Beginning Ignoring the size of writing.
 # __endswith by…The end
-# __iendswith by…The end，Ignoring the size of writing.
+# __iendswith by…The end, Ignoring the size of writing.
 # __range in…within the range
 # __year Year of the Date Field
 # __month Month of Date Fields
@@ -494,7 +494,7 @@ class DataSetSerializers(serializers.ModelSerializer):
         sync_type = serializers.CharField(required=True, error_messages=ErrMessage.char(
             "Types of Sync"), validators=[
             validators.RegexValidator(regex=re.compile("^replace|complete$"),
-                                      message="Simultaneous types only support.:replace|complete", code=500)
+                                      message="Simultaneous types only support. replace|complete", code=500)
         ])
 
         def is_valid(self, *, raise_exception=False):

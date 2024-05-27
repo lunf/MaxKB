@@ -18,7 +18,7 @@ defineOptions({ name: 'MarkdownRenderer' })
 
 const markdownIt = MarkdownIt({
   html: true, // permittedHTMLThe language
-  typographer: true, // activatedTypographerAdditional，You can better handle the characters and point symbols.
+  typographer: true, // activatedTypographerAdditional, You can better handle the characters and point symbols.
   linkify: true // automatically in the text.URLConvert to link.
 })
 

@@ -119,7 +119,7 @@ const emit = defineEmits(['change', 'update:model'])
 const eidtModelRef = ref<InstanceType<typeof EditModel>>()
 let interval: any
 const deleteModel = () => {
-  MsgConfirm(`Remove the model. `, `Remove the model.：${props.model.name} ?`, {
+  MsgConfirm(`Remove the model. `, `Remove the model. ${props.model.name} ?`, {
     confirmButtonText: 'removed',
     confirmButtonClass: 'danger'
   })

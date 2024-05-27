@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： chat_views.py
-    @date：2023/11/14 9:53
+    @Author:The Tiger
+    @file: chat_views.py
+    @date:2023/11/14 9:53
     @desc:
 """
 from drf_yasg.utils import swagger_auto_schema

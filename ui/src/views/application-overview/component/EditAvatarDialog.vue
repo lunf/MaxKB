@@ -39,7 +39,7 @@
             </el-upload>
           </div>
           <div class="el-upload__tip info mt-16">
-            recommended size. 32*32，supported ico、png , The size does not exceed200KB
+            recommended size. 32*32, supported ico、png , The size does not exceed200KB
           </div>
         </el-radio>
       </div>
@@ -93,7 +93,7 @@ const open = (data: any) => {
 }
 
 const onChange = (file: any) => {
-  //1、Deciding whether the file size is legal.，The limitation of documents cannot be greater than 200KB
+  //1、Deciding whether the file size is legal. The limitation of documents cannot be greater than 200KB
   const isLimit = file?.size / 1024 < 200
   if (!isLimit) {
     MsgError('The file is greater. 200KB')

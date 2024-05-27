@@ -20,7 +20,7 @@
       <el-input
         v-model="form.desc"
         type="textarea"
-        placeholder="Description of the knowledge base.，Detailed description will help.AIUnderstand the content of the knowledge base.，To get more accurate content.，Increase the knowledge base.。"
+        placeholder="Description of the knowledge base. Detailed description will help.AIUnderstand the content of the knowledge base. To get more accurate content. Increase the knowledge base. "
         maxlength="256"
         show-word-limit
         :autosize="{ minRows: 3 }"

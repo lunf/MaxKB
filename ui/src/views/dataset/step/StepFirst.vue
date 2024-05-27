@@ -57,7 +57,7 @@
         <el-form-item label="The Selector" v-if="form.type === '1'">
           <el-input
             v-model="form.selector"
-            placeholder="I think body，can enter. .classname/#idname/tagname"
+            placeholder="I think body, can enter. .classname/#idname/tagname"
             @blur="form.selector = form.selector.trim()"
           />
         </el-form-item>

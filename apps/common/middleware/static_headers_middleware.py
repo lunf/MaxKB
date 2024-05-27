@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： static_headers_middleware.py
-    @date：2024/3/13 18:26
+    @Author:The Tiger
+    @file: static_headers_middleware.py
+    @date:2024/3/13 18:26
     @desc:
 """
 from django.db.models import QuerySet

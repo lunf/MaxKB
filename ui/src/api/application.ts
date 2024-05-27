@@ -175,7 +175,7 @@ const postChatMessage: (chat_id: string, data: any) => Promise<any> = (chat_id, 
 }
 
 /**
- * The praise.、step down.
+ * The praise. step down.
  * @param Parameters 
  * application_id : string; chat_id : string; chat_record_id : string
  * {

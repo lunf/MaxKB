@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： chat_message_serializers.py
-    @date：2023/11/14 13:51
+    @Author:The Tiger
+    @file: chat_message_serializers.py
+    @date:2023/11/14 13:51
     @desc:
 """
 import json

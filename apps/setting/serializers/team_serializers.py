@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： team_serializers.py
-    @date：2023/9/5 16:32
+    @Author:The Tiger
+    @file: team_serializers.py
+    @date:2023/9/5 16:32
     @desc:
 """
 import itertools

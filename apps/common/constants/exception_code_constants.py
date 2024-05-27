@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： exception_code_constants.py
-    @date：2023/9/4 14:09
+    @Author:The Tiger
+    @file: exception_code_constants.py
+    @date:2023/9/4 14:09
     @desc: Unusual Classes
 """
 from enum import Enum

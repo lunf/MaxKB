@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： i_generate_human_message_step.py
-    @date：2024/1/9 18:15
+    @Author:The Tiger
+    @file: i_generate_human_message_step.py
+    @date:2024/1/9 18:15
     @desc: Create a dialogue template.
 """
 from abc import abstractmethod

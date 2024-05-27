@@ -17,11 +17,11 @@
         <div class="flex-between">
           <span>{{ child.title || '-' }}</span>
           <div>
-            <!-- 编辑分段按钮 -->
+            <!-- Edit segment button -->
             <el-button link @click="editHandle(child, cIndex)">
               <el-icon><EditPen /></el-icon>
             </el-button>
-            <!-- 删除分段按钮  -->
+            <!-- Delete segment button  -->
             <el-button link @click="deleteHandle(child, cIndex)">
               <el-icon><Delete /></el-icon>
             </el-button>
@@ -78,8 +78,8 @@ const updateContent = (data: any) => {
 }
 
 const deleteHandle = (item: any, cIndex: number) => {
-  MsgConfirm(`是否删除分段：${item.title || '-'} ?`, `删除后将不会存入知识库，对本地文档无影响。`, {
-    confirmButtonText: '删除',
+  MsgConfirm(`Whether to delete the segment: ${item.title || '-'} ?`, `After deletion, it will not be stored in the knowledge base and has no impact on local documents. `, {
+    confirmButtonText: 'Delete',
     confirmButtonClass: 'danger'
   })
     .then(() => {

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： file_cache.py
-    @date：2023/9/11 15:58
+    @Author:The Tiger
+    @file: file_cache.py
+    @date:2023/9/11 15:58
     @desc: Cache of documents.
 """
 import datetime

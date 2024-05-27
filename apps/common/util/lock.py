@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： lock.py
-    @date：2023/9/11 11:45
+    @Author:The Tiger
+    @file: lock.py
+    @date:2023/9/11 11:45
     @desc:
 """
 from datetime import timedelta

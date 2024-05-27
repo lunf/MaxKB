@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： ollama_model_provider.py
-    @date：2024/3/5 17:23
+    @Author:The Tiger
+    @file: ollama_model_provider.py
+    @date:2024/3/5 17:23
     @desc:
 """
 import json
@@ -60,63 +60,63 @@ ollama_llm_model_credential = OllamaLLMModelCredential()
 model_dict = {
     'llama2': ModelInfo(
         'llama2',
-        'Llama 2 A set of pre-trained and micronutrated text models.，The size from 70 Millions to 700 Millions are not waiting.。This is 7B Pre-training model storage。Links to other models can be found in the index below.。',
+        'Llama 2 A set of pre-trained and micronutrated text models. The size from 70 Millions to 700 Millions are not waiting. This is 7B Pre-training model storage. Links to other models can be found in the index below. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'llama2:13b': ModelInfo(
         'llama2:13b',
-        'Llama 2 A set of pre-trained and micronutrated text models.，The size from 70 Millions to 700 Millions are not waiting.。This is 13B Pre-training model storage。Links to other models can be found in the index below.。',
+        'Llama 2 A set of pre-trained and micronutrated text models. The size from 70 Millions to 700 Millions are not waiting. This is 13B Pre-training model storage. Links to other models can be found in the index below. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'llama2:70b': ModelInfo(
         'llama2:70b',
-        'Llama 2 A set of pre-trained and micronutrated text models.，The size from 70 Millions to 700 Millions are not waiting.。This is 70B Pre-training model storage。Links to other models can be found in the index below.。',
+        'Llama 2 A set of pre-trained and micronutrated text models. The size from 70 Millions to 700 Millions are not waiting. This is 70B Pre-training model storage. Links to other models can be found in the index below. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'llama2-chinese:13b': ModelInfo(
         'llama2-chinese:13b',
-        'Because ofLlama2The Chinese is weak.，We use Chinese instructions.，Yesmeta-llama/Llama-2-13b-chat-hfperformedLoRAMinecraft，It has a strong Chinese dialogue ability.。',
+        'Because ofLlama2The Chinese is weak. We use Chinese instructions. Yesmeta-llama/Llama-2-13b-chat-hfperformedLoRAMinecraft, It has a strong Chinese dialogue ability. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'llama3:8b': ModelInfo(
         'llama3:8b',
-        'Meta Llama 3：The most capable open products so farLLM。8Millions of parameters。',
+        'Meta Llama 3:The most capable open products so farLLM. 8Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'llama3:70b': ModelInfo(
         'llama3:70b',
-        'Meta Llama 3：The most capable open products so farLLM。70Millions of parameters。',
+        'Meta Llama 3:The most capable open products so farLLM. 70Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:0.5b': ModelInfo(
         'qwen:0.5b',
-        'qwen 1.5 0.5b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。0.5Millions of parameters。',
+        'qwen 1.5 0.5b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 0.5Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:1.8b': ModelInfo(
         'qwen:1.8b',
-        'qwen 1.5 1.8b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。1.8Millions of parameters。',
+        'qwen 1.5 1.8b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 1.8Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:4b': ModelInfo(
         'qwen:4b',
-        'qwen 1.5 4b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。4Millions of parameters。',
+        'qwen 1.5 4b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 4Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:7b': ModelInfo(
         'qwen:7b',
-        'qwen 1.5 7b Compared to previous versions.，The degree of conformity of the model with human preferences and multi-language1The ability to speak has been significantly enhanced.。All sizes are supported.32768onetokensThe length of the above.。7Millions of parameters。',
+        'qwen 1.5 7b Compared to previous versions. The degree of conformity of the model with human preferences and multi-language1The ability to speak has been significantly enhanced. All sizes are supported.32768onetokensThe length of the above. 7Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:14b': ModelInfo(
         'qwen:14b',
-        'qwen 1.5 14b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。14Millions of parameters。',
+        'qwen 1.5 14b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 14Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:32b': ModelInfo(
         'qwen:32b',
-        'qwen 1.5 32b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。32Millions of parameters。',
+        'qwen 1.5 32b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 32Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:72b': ModelInfo(
         'qwen:72b',
-        'qwen 1.5 72b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。72Millions of parameters。',
+        'qwen 1.5 72b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 72Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'qwen:110b': ModelInfo(
         'qwen:110b',
-        'qwen 1.5 110b Compared to previous versions.，The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved.。All sizes are supported.32768onetokensThe length of the above.。110Millions of parameters。',
+        'qwen 1.5 110b Compared to previous versions. The degree of compatibility with the human preferences and the multi-language processing ability has been significantly improved. All sizes are supported.32768onetokensThe length of the above. 110Millions of parameters. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
     'phi3': ModelInfo(
         'phi3',
-        'Phi-3 MiniisMicrosoftof3.8BParameters，The light level.，The most advanced open model.。',
+        'Phi-3 MiniisMicrosoftof3.8BParameters, The light level. The most advanced open model. ',
         ModelTypeConst.LLM, ollama_llm_model_credential),
 }
 

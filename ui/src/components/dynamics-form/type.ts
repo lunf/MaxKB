@@ -53,7 +53,7 @@ interface Attrs {
    */
   placeholder?: string
   /**
-   * The length of the label，for example '50px'。 as Form The direct subelement. form-item We will inherit the value.。 can be used auto。
+   * The length of the label, for example '50px'.  as Form The direct subelement. form-item We will inherit the value.  can be used auto. 
    */
   labelWidth?: string
   /**
@@ -61,7 +61,7 @@ interface Attrs {
    */
   labelSuffix?: string
   /**
-   * Location of the star.。
+   * Location of the star. 
    */
   requireAsteriskPosition?: 'left' | 'right'
 

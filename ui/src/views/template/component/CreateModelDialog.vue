@@ -81,8 +81,8 @@
               </div>
               <el-tooltip effect="dark" placement="right">
                 <template #content>
-                  <p>If the download option does not list what you want to add.LLMThe model，Customize the input model name after returning to the car.</p>
-                  <p>Attention，The basic model needs to match the model name of the supplier.</p>
+                  <p>If the download option does not list what you want to add.LLMThe model, Customize the input model name after returning to the car.</p>
+                  <p>Attention, The basic model needs to match the model name of the supplier.</p>
                 </template>
                 <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
               </el-tooltip>

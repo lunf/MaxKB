@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： paragraph_serializers.py
-    @date：2023/10/16 15:51
+    @Author:The Tiger
+    @file: paragraph_serializers.py
+    @date:2023/10/16 15:51
     @desc:
 """
 from drf_yasg.utils import swagger_auto_schema
@@ -173,13 +173,13 @@ class Paragraph(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['DELETE'], detail=False)
-        @swagger_auto_schema(operation_summary="批量删除段落",
-                             operation_id="批量删除段落",
+        @swagger_auto_schema(operation_summary="Delete paragraphs in batches",
+                             operation_id="Delete paragraphs in batches",
                              request_body=
                              BatchSerializer.get_request_body_api(),
                              manual_parameters=ParagraphSerializers.Create.get_request_params_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档/段落"])
+                             tags=["Knowledge Base/Documentation/Paragraph"])
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,
                                     dynamic_tag=k.get('dataset_id')))
@@ -191,12 +191,12 @@ class Paragraph(APIView):
         authentication_classes = [TokenAuth]
 
         @action(methods=['PUT'], detail=False)
-        @swagger_auto_schema(operation_summary="批量迁移段落",
-                             operation_id="批量迁移段落",
+        @swagger_auto_schema(operation_summary="Migrate paragraphs in batches",
+                             operation_id="Migrate paragraphs in batches",
                              manual_parameters=ParagraphSerializers.Migrate.get_request_params_api(),
                              request_body=ParagraphSerializers.Migrate.get_request_body_api(),
                              responses=result.get_default_response(),
-                             tags=["知识库/文档/段落"]
+                             tags=["Knowledge Base/Documentation/Paragraph"]
                              )
         @has_permissions(
             lambda r, k: Permission(group=Group.DATASET, operate=Operate.MANAGE,

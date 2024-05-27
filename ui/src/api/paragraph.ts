@@ -151,7 +151,7 @@ const putMigrateMulParagraph: (
 
 /**
  * List of Questions
- * @param Parameters dataset_id，document_id，paragraph_id
+ * @param Parameters dataset_id, document_id, paragraph_id
  */
 const getProblem: (
   dataset_id: string,

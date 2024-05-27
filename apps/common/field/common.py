@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： common.py
-    @date：2024/1/11 18:44
+    @Author:The Tiger
+    @file: common.py
+    @date:2024/1/11 18:44
     @desc:
 """
 from rest_framework import serializers

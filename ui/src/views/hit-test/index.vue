@@ -4,7 +4,7 @@
       <template #header>
         <h3>
           Test of fate.
-          <el-text type="info" class="ml-4">Customer Questions for Compatibility of Debit Sections，Guaranteed Response Effects。</el-text>
+          <el-text type="info" class="ml-4">Customer Questions for Compatibility of Debit Sections, Guaranteed Response Effects. </el-text>
         </h3>
       </template>
       <div class="hit-test__main p-16" v-loading="loading">
@@ -106,7 +106,7 @@
             >
               <el-radio value="keywords" size="large">
                 <p class="mb-4">The complete search.</p>
-                <el-text type="info">Search through Keywords.，Return to the text section containing the most keywords</el-text>
+                <el-text type="info">Search through Keywords. Return to the text section containing the most keywords</el-text>
               </el-radio>
             </el-card>
             <el-card
@@ -117,7 +117,7 @@
               <el-radio value="blend" size="large">
                 <p class="mb-4">Mixed search</p>
                 <el-text type="info"
-                  >At the same time, the full-length recovery and vector recovery.，Again a heavy order.，Select the best results from two categories of query results that match the user problem.</el-text
+                  >At the same time, the full-length recovery and vector recovery. Again a heavy order. Select the best results from two categories of query results that match the user problem.</el-text
                 >
               </el-radio>
             </el-card>
@@ -255,13 +255,13 @@ function editParagraph(row: any) {
 
 function sendChatHandle(event: any) {
   if (!event.ctrlKey) {
-    // If you do not press the combination key.ctrl，It will stop the default event.
+    // If you do not press the combination key.ctrl, It will stop the default event.
     event.preventDefault()
     if (!isDisabledChart.value && !loading.value) {
       getHitTestList()
     }
   } else {
-    // Pressing at the same time.ctrl+Back to the car key.，It will change.
+    // Pressing at the same time.ctrl+Back to the car key. It will change.
     inputValue.value += '\n'
   }
 }

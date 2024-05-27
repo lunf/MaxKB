@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： install_model.py
-    @date：2023/12/18 14:02
+    @Author:The Tiger
+    @file: install_model.py
+    @date:2023/12/18 14:02
     @desc:
 """
 import json

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： wenxin_model_provider.py
-    @date：2023/10/31 16:19
+    @Author:The Tiger
+    @file: wenxin_model_provider.py
+    @date:2023/10/31 16:19
     @desc:
 """
 import os
@@ -63,35 +63,35 @@ class WenxinLLMModelCredential(BaseForm, BaseModelCredential):
 win_xin_llm_model_credential = WenxinLLMModelCredential()
 model_dict = {
     'ERNIE-Bot-4': ModelInfo('ERNIE-Bot-4',
-                             'ERNIE-Bot-4It is a large language model developed by itself.，Coverage of Chinese data，Have a stronger dialogue.、The ability to create content.。',
+                             'ERNIE-Bot-4It is a large language model developed by itself. Coverage of Chinese data, Have a stronger dialogue. The ability to create content. ',
                              ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'ERNIE-Bot': ModelInfo('ERNIE-Bot',
-                           'ERNIE-BotIt is a large language model developed by itself.，Coverage of Chinese data，Have a stronger dialogue.、The ability to create content.。',
+                           'ERNIE-BotIt is a large language model developed by itself. Coverage of Chinese data, Have a stronger dialogue. The ability to create content. ',
                            ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'ERNIE-Bot-turbo': ModelInfo('ERNIE-Bot-turbo',
-                                 'ERNIE-Bot-turboIt is a large language model developed by itself.，Coverage of Chinese data，Have a stronger dialogue.、The ability to create content.，Reacting faster.。',
+                                 'ERNIE-Bot-turboIt is a large language model developed by itself. Coverage of Chinese data, Have a stronger dialogue. The ability to create content. Reacting faster. ',
                                  ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'BLOOMZ-7B': ModelInfo('BLOOMZ-7B',
-                           'BLOOMZ-7BIt is a great language model in the industry.，byBigScienceDevelopment and Open Source，can be46Languages and13Programming language text output。',
+                           'BLOOMZ-7BIt is a great language model in the industry. byBigScienceDevelopment and Open Source, can be46Languages and13Programming language text output. ',
                            ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'Llama-2-7b-chat': ModelInfo('Llama-2-7b-chat',
-                                 'Llama-2-7b-chatbyMeta AIDevelopment and Open Source，in coding.、Excellent scenes such as reasoning and knowledge application.，Llama-2-7b-chatHigh-performance original open source version.，Applied to the dialogue scene.。',
+                                 'Llama-2-7b-chatbyMeta AIDevelopment and Open Source, in coding. Excellent scenes such as reasoning and knowledge application. Llama-2-7b-chatHigh-performance original open source version. Applied to the dialogue scene. ',
                                  ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'Llama-2-13b-chat': ModelInfo('Llama-2-13b-chat',
-                                  'Llama-2-13b-chatbyMeta AIDevelopment and Open Source，in coding.、Excellent scenes such as reasoning and knowledge application.，Llama-2-13b-chatIt is an original open source version that balances performance and performance.，Applied to the dialogue scene.。',
+                                  'Llama-2-13b-chatbyMeta AIDevelopment and Open Source, in coding. Excellent scenes such as reasoning and knowledge application. Llama-2-13b-chatIt is an original open source version that balances performance and performance. Applied to the dialogue scene. ',
                                   ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'Llama-2-70b-chat': ModelInfo('Llama-2-70b-chat',
-                                  'Llama-2-70b-chatbyMeta AIDevelopment and Open Source，in coding.、Excellent scenes such as reasoning and knowledge application.，Llama-2-70b-chatIt is an original open source version with high precision effect.。',
+                                  'Llama-2-70b-chatbyMeta AIDevelopment and Open Source, in coding. Excellent scenes such as reasoning and knowledge application. Llama-2-70b-chatIt is an original open source version with high precision effect. ',
                                   ModelTypeConst.LLM, win_xin_llm_model_credential),
 
     'Qianfan-Chinese-Llama-2-7B': ModelInfo('Qianfan-Chinese-Llama-2-7B',
-                                            'Thousands of teams.Llama-2-7bEnhanced Chinese version based on，inCMMLU、C-EVALExcellent performance in the Chinese knowledge base.。',
+                                            'Thousands of teams.Llama-2-7bEnhanced Chinese version based on, inCMMLU、C-EVALExcellent performance in the Chinese knowledge base. ',
                                             ModelTypeConst.LLM, win_xin_llm_model_credential)
 }
 

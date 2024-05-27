@@ -23,7 +23,7 @@
         </el-input>
       </el-form-item>
       <el-form-item label="The title">
-        <el-input v-model="form.title" placeholder="Please set a title for the current content.，To manage checking.">
+        <el-input v-model="form.title" placeholder="Please set a title for the current content. To manage checking.">
         </el-input>
       </el-form-item>
       <el-form-item label="Choose a Knowledge Base" prop="dataset_id">

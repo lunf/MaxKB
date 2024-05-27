@@ -12,18 +12,18 @@
       <el-card shadow="never" class="mb-16" :class="method === 'replace' ? 'active' : ''">
         <el-radio value="replace" size="large">
           <p class="mb-4">Replacement of Sync.</p>
-          <el-text type="info">Recovered Web Site Documents，Replace documents in the local knowledge base</el-text>
+          <el-text type="info">Recovered Web Site Documents, Replace documents in the local knowledge base</el-text>
         </el-radio>
       </el-card>
 
       <el-card shadow="never" class="mb-16" :class="method === 'complete' ? 'active' : ''">
         <el-radio value="complete" size="large">
           <p class="mb-4">Total synchronization.</p>
-          <el-text type="info">Remove all documents from the local knowledge base.，Recovered Web Site Documents</el-text>
+          <el-text type="info">Remove all documents from the local knowledge base. Recovered Web Site Documents</el-text>
         </el-radio>
       </el-card>
     </el-radio-group>
-    <p class="danger">Attention：All synchronizations will remove existing data to re-accept new data.，Please be careful.。</p>
+    <p class="danger">Attention:All synchronizations will remove existing data to re-accept new data. Please be careful. </p>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>

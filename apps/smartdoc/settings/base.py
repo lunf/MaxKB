@@ -124,9 +124,9 @@ WSGI_APPLICATION = 'smartdoc.wsgi.application'
 # The mail configuration.
 EMAIL_ADDRESS = CONFIG.get('EMAIL_ADDRESS')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = CONFIG.get('EMAIL_USE_TLS')  # Is usedTLSSafe Transfer Agreement(To provide confidentiality and data integrity between two communication applications。)
-EMAIL_USE_SSL = CONFIG.get('EMAIL_USE_SSL')  # Is usedSSLCryptocurrency，qqEnterprise mailbox requires use
-EMAIL_HOST = CONFIG.get('EMAIL_HOST')  # Send the mailbox. of SMTPThe server.，used here.163The mailbox
+EMAIL_USE_TLS = CONFIG.get('EMAIL_USE_TLS')  # Is usedTLSSafe Transfer Agreement(To provide confidentiality and data integrity between two communication applications. )
+EMAIL_USE_SSL = CONFIG.get('EMAIL_USE_SSL')  # Is usedSSLCryptocurrency, qqEnterprise mailbox requires use
+EMAIL_HOST = CONFIG.get('EMAIL_HOST')  # Send the mailbox. of SMTPThe server. used here.163The mailbox
 EMAIL_PORT = CONFIG.get('EMAIL_PORT')  # The mailbox.SMTPThe server port.
 EMAIL_HOST_USER = CONFIG.get('EMAIL_HOST_USER')  # Address of the mail.
 EMAIL_HOST_PASSWORD = CONFIG.get('EMAIL_HOST_PASSWORD')  # Send the mailbox password.(This is the license code.)

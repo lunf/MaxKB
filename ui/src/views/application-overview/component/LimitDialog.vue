@@ -20,7 +20,7 @@
       <el-form-item>
         <el-input
           v-model="form.white_list"
-          placeholder="Please enter the source address that allows the third party to embedded.，One line one.，as：
+          placeholder="Please enter the source address that allows the third party to embedded. One line one. as:
 http://127.0.0.1:5678
 https://dataease.io"
           :rows="10"

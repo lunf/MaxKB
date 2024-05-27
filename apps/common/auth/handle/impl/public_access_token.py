@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： authenticate.py
-    @date：2024/3/14 03:02
+    @Author:The Tiger
+    @file: authenticate.py
+    @date:2024/3/14 03:02
     @desc:  Public Access Connection Certification
 """
 from django.db.models import QuerySet

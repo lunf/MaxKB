@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： test.py
-    @date：2023/11/15 15:13
+    @Author:The Tiger
+    @file: test.py
+    @date:2023/11/15 15:13
     @desc:
 """
 import hashlib

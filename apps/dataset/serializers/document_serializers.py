@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： document_serializers.py
-    @date：2023/9/22 13:43
+    @Author:The Tiger
+    @file: document_serializers.py
+    @date:2023/9/22 13:43
     @desc:
 """
 import logging
@@ -646,8 +646,8 @@ class DocumentSerializers(ApiMixin, serializers.Serializer):
                     {'key': '######', 'value': "(?<=\\n)(?<!#)###### (?!#).*|(?<=^)(?<!#)###### (?!#).*"},
                     {'key': '-', 'value': '(?<! )- .*'},
                     {'key': 'The Space', 'value': '(?<!\\s)\\s(?!\\s)'},
-                    {'key': 'Number of', 'value': '(?<!；)；(?!；)'}, {'key': 'The Comedy', 'value': '(?<!，)，(?!，)'},
-                    {'key': 'The phrase', 'value': '(?<!。)。(?!。)'}, {'key': 'Back to car.', 'value': '(?<!\\n)\\n(?!\\n)'},
+                    {'key': 'Number of', 'value': '(?<!；)；(?!；)'}, {'key': 'The Comedy', 'value': '(?<!, ), (?!, )'},
+                    {'key': 'The phrase', 'value': '(?<!. ). (?!. )'}, {'key': 'Back to car.', 'value': '(?<!\\n)\\n(?!\\n)'},
                     {'key': 'The empty', 'value': '(?<!\\n)\\n\\n(?!\\n)'}]
 
     class Batch(ApiMixin, serializers.Serializer):

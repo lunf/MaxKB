@@ -29,14 +29,14 @@
                 >
                   <el-radio value="keywords" size="large">
                     <p class="mb-4">The complete search.</p>
-                    <el-text type="info">Search through Keywords.，Return to the text section containing the most keywords</el-text>
+                    <el-text type="info">Search through Keywords. Return to the text section containing the most keywords</el-text>
                   </el-radio>
                 </el-card>
                 <el-card shadow="never" :class="form.search_mode === 'blend' ? 'active' : ''">
                   <el-radio value="blend" size="large">
                     <p class="mb-4">Mixed search</p>
                     <el-text type="info"
-                      >At the same time, the full-length recovery and vector recovery.，Again a heavy order.，Select the best results from two categories of query results that match the user problem.</el-text
+                      >At the same time, the full-length recovery and vector recovery. Again a heavy order. Select the best results from two categories of query results that match the user problem.</el-text
                     >
                   </el-radio>
                 </el-card>
@@ -48,7 +48,7 @@
                   <template #label>
                     <div class="flex align-center">
                       <span class="mr-4">Similarity is higher than</span>
-                      <el-tooltip effect="dark" content="The higher the similarity, the stronger the relevance.。" placement="right">
+                      <el-tooltip effect="dark" content="The higher the similarity, the stronger the relevance. " placement="right">
                         <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
                       </el-tooltip>
                     </div>
@@ -165,7 +165,7 @@ const noReferencesformRef = ref()
 const defaultValue = {
   ai_questioning: '{question}',
   designated_answer:
-    'Hello Hello，I am MaxKB The Little Assistant，My knowledge base is included. MaxKB Product Related Knowledge，Please resume your question.。'
+    'Hello Hello, I am MaxKB The Little Assistant, My knowledge base is included. MaxKB Product Related Knowledge, Please resume your question. '
 }
 
 const form = ref<any>({

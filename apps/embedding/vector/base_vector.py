@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： base_vector.py
-    @date：2023/10/18 19:16
+    @Author:The Tiger
+    @file: base_vector.py
+    @date:2023/10/18 19:16
     @desc:
 """
 import threading

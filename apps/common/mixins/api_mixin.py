@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: smart-doc
-    @Author：The Tiger
-    @file： api_mixin.py
-    @date：2023/9/14 17:50
+    @Author:The Tiger
+    @file: api_mixin.py
+    @date:2023/9/14 17:50
     @desc:
 """
 from rest_framework import serializers

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： base_chat_step.py
-    @date：2024/1/9 18:25
+    @Author:The Tiger
+    @file: base_chat_step.py
+    @date:2024/1/9 18:25
     @desc: Dialoguestep Baserealized
 """
 import json
@@ -146,7 +146,7 @@ class BaseChatStep(IChatStep):
                 'status') == 'designated_answer':
             return iter([AIMessageChunk(content=no_references_setting.get('value'))]), False
         if chat_model is None:
-            return iter([AIMessageChunk('Sorry to，No configuration. AI The model，It is impossible to optimize the reference section.，Please set up in the application. AI The model。')]), False
+            return iter([AIMessageChunk('Sorry to, No configuration. AI The model, It is impossible to optimize the reference section. Please set up in the application. AI The model. ')]), False
         else:
             return chat_model.stream(message_list), True
 
@@ -189,7 +189,7 @@ class BaseChatStep(IChatStep):
                 'status') == 'designated_answer':
             return AIMessage(no_references_setting.get('value')), False
         if chat_model is None:
-            return AIMessage('Sorry to，No configuration. AI The model，It is impossible to optimize the reference section.，Please set up in the application. AI The model。'), False
+            return AIMessage('Sorry to, No configuration. AI The model, It is impossible to optimize the reference section. Please set up in the application. AI The model. '), False
         else:
             return chat_model.invoke(message_list), True
 

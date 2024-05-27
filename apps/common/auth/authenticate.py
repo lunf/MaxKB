@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： authenticate.py
-    @date：2023/9/4 11:16
+    @Author:The Tiger
+    @file: authenticate.py
+    @date:2023/9/4 11:16
     @desc:  Certification Classes
 """
 import traceback
@@ -45,7 +45,7 @@ class TokenDetails:
 
 
 class TokenAuth(TokenAuthentication):
-    # again authenticate Method，Customized Certification Rules
+    # again authenticate Method, Customized Certification Rules
     def authenticate(self, request):
         auth = request.META.get('HTTP_AUTHORIZATION')
         # Uncertified

@@ -16,7 +16,7 @@
       <el-form-item label="The document address." prop="source_url" v-if="isImport">
         <el-input
           v-model="form.source_url"
-          placeholder="Please enter the document address.，One line one.，The incorrect address document will fail.。"
+          placeholder="Please enter the document address. One line one. The incorrect address document will fail. "
           :rows="10"
           type="textarea"
         />
@@ -27,7 +27,7 @@
       <el-form-item label="The Selector" v-if="documentType === '1'">
         <el-input
           v-model="form.selector"
-          placeholder="I think body，can enter. .classname/#idname/tagname"
+          placeholder="I think body, can enter. .classname/#idname/tagname"
         />
       </el-form-item>
       <el-form-item v-if="!isImport">
@@ -36,7 +36,7 @@
             <span class="mr-4">Method of Treatment</span>
             <el-tooltip
               effect="dark"
-              content="When User Questions，Parts under the life Chinese file are processed according to the way set.。"
+              content="When User Questions, Parts under the life Chinese file are processed according to the way set. "
               placement="right"
             >
               <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
@@ -102,7 +102,7 @@ const form = ref<any>({
 
 // Document settings
 const documentId = ref('')
-const documentType = ref<string | number>('') //Type of Documentation：1: webDocuments；0:Ordinary Documents
+const documentType = ref<string | number>('') //Type of Documentation:1: webDocuments；0:Ordinary Documents
 
 // Batch settings
 const documentList = ref<Array<string>>([])

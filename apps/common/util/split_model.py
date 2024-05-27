@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: qabot
-    @Author：The Tiger
-    @file： split_model.py
-    @date：2023/9/1 15:12
+    @Author:The Tiger
+    @file: split_model.py
+    @date:2023/9/1 15:12
     @desc:
 """
 import re
@@ -98,7 +98,7 @@ def get_keyword(content: str):
     :param content: The text
     :return: Number of keywords
     """
-    stopwords = ['：', '“', '！', '”', '\n', '\\s']
+    stopwords = [':', '“', '！', '”', '\n', '\\s']
     cutworms = jieba.lcut(content)
     return list(set(list(filter(lambda k: (k not in stopwords) | len(k) > 1, cutworms))))
 
@@ -333,7 +333,7 @@ class SplitModel:
         """
         Analysis of text
         :param text: Text data
-        :return: Data after analysis. {content:Paragraph data,keywords:[‘Paragraph Keywords’],parent_chain:['Paragraph of Father's Link']}
+        :return: Data after analysis. {content:Paragraph data,keywords:['Paragraph Keywords'],parent_chain:['Paragraph of Father's Link']}
         """
         text = text.replace('\r', '\n')
         text = text.replace("\0", '')

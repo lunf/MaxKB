@@ -38,7 +38,7 @@
                 <el-input
                   v-model="applicationForm.desc"
                   type="textarea"
-                  placeholder="Description of the application scenes and purposes，as：MaxKB The assistant responds to the user’s proposed MaxKB Problems with product use"
+                  placeholder="Description of the application scenes and purposes, as:MaxKB The assistant responds to the user's proposed MaxKB Problems with product use"
                   :rows="3"
                   maxlength="256"
                   show-word-limit
@@ -120,8 +120,8 @@
                     </div>
                     <el-tooltip effect="dark" placement="right">
                       <template #content
-                        >By adjusting the words.，You can guide the big model chat direction.，The tip word will be fixed at the beginning of the above.。<br />You can use the variable.：{data}
-                        carrying information in the knowledge base.；{question}Questions Asked by Users。</template
+                        >By adjusting the words. You can guide the big model chat direction. The tip word will be fixed at the beginning of the above. <br />You can use the variable. {data}
+                        carrying information in the knowledge base.；{question}Questions Asked by Users. </template
                       >
                       <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
                     </el-tooltip>
@@ -213,7 +213,7 @@
                     <span class="mr-4">Problems optimized</span>
                     <el-tooltip
                       effect="dark"
-                      content="Optimization of current issues based on history chat，It is better to match knowledge.。"
+                      content="Optimization of current issues based on history chat, It is better to match knowledge. "
                       placement="right"
                     >
                       <AppIcon iconName="app-warning" class="app-warning-icon"></AppIcon>
@@ -286,17 +286,17 @@ const {
   params: { id }
 } = route as any
 
-const defaultPrompt = `known information：
+const defaultPrompt = `known information:
 {data}
-Reply to Request：
-- Use a simple and professional language to answer user questions.。
-- If you do not know the answer.，Please answer“No information found in the knowledge base.，Consulting relevant technical support or reference to official documents for operation”。
-- Avoid mentioning the knowledge you gain from known information.。
-- Please make sure the answer is consistent with the information described in the information.。
-- Please use Markdown Optimization of Answer Formats。
-- Images in known information.、Link address and script language please return directly。
-- Please use the same language to answer the question.。
-The problem：
+Reply to Request:
+- Use a simple and professional language to answer user questions. 
+- If you do not know the answer. Please answer“No information found in the knowledge base. Consulting relevant technical support or reference to official documents for operation”. 
+- Avoid mentioning the knowledge you gain from known information. 
+- Please make sure the answer is consistent with the information described in the information. 
+- Please use Markdown Optimization of Answer Formats. 
+- Images in known information. Link address and script language please return directly. 
+- Please use the same language to answer the question. 
+The problem:
 {question}
 `
 
@@ -314,7 +314,7 @@ const applicationForm = ref<ApplicationFormType>({
   desc: '',
   model_id: '',
   multiple_rounds_dialogue: false,
-  prologue: `Hello to，I am MaxKB The Little Assistant，You can present to me. MaxKB Use of Problems。
+  prologue: `Hello to, I am MaxKB The Little Assistant, You can present to me. MaxKB Use of Problems. 
 - MaxKB What are the main functions?？
 - MaxKB What major language models are supported？
 - MaxKB What types of documents are supported？`,

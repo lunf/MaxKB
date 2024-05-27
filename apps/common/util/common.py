@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： common.py
-    @date：2023/10/16 16:42
+    @Author:The Tiger
+    @file: common.py
+    @date:2023/10/16 16:42
     @desc:
 """
 import importlib

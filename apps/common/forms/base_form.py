@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： base_form.py
-    @date：2023/11/1 16:04
+    @Author:The Tiger
+    @file: base_form.py
+    @date:2023/11/1 16:04
     @desc:
 """
 from common.forms import BaseField

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： qwen_model_provider.py
-    @date：2023/10/31 16:19
+    @Author:The Tiger
+    @file: qwen_model_provider.py
+    @date:2023/10/31 16:19
     @desc:
 """
 import os
@@ -41,7 +41,7 @@ class OpenAILLMModelCredential(BaseForm, BaseModelCredential):
             if isinstance(e, AppApiException):
                 raise e
             if raise_exception:
-                raise AppApiException(ValidCode.valid_error.value, f'Study Failure,Please check if the parameters are correct.: {str(e)}')
+                raise AppApiException(ValidCode.valid_error.value, f'Study Failure,Please check if the parameters are correct.  {str(e)}')
             else:
                 return False
         return True

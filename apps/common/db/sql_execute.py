@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： sql_execute.py
-    @date：2023/9/25 20:05
+    @Author:The Tiger
+    @file: sql_execute.py
+    @date:2023/9/25 20:05
     @desc:
 """
 from typing import List

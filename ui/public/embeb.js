@@ -17,9 +17,9 @@ const guideHtml=`
           </svg>
   </div>
  
-  <div class="maxkb-title"> 🌟 Meeting the problem.，No more obstacles.！</div>
-  <p>Hello Hello，I am your intelligent little assistant.。<br/>
-      to me.，Open Efficient Answer Models，Make the problem a past.。</p>
+  <div class="maxkb-title"> 🌟 Meeting the problem. No more obstacles.！</div>
+  <p>Hello Hello, I am your intelligent little assistant. <br/>
+      to me. Open Efficient Answer Models, Make the problem a past. </p>
   <div class="maxkb-button">
       <button>I know.</button>
   </div>
