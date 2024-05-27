@@ -8,7 +8,7 @@ import uuid
 
 def insert_default_data(apps, schema_editor):
     TeamModel = apps.get_model('setting', 'Team')
-    TeamModel.objects.create(user_id='f0dd8f71-e4ee-11ee-8c84-a8a1595801ab', name='adminThe team.')
+    TeamModel.objects.create(user_id='f0dd8f71-e4ee-11ee-8c84-a8a1595801ab', name='The admin team.')
 
 
 class Migration(migrations.Migration):

@@ -1,9 +1,9 @@
 # coding=utf-8
 """
     @project: maxkb
-    @Author：The Tiger
-    @file： model_management.py
-    @date：2023/10/31 15:11
+    @Author: The Tiger
+    @file:  model_management.py
+    @date: 2023/10/31 15:11
     @desc:
 """
 import uuid
