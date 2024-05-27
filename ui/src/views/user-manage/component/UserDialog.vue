@@ -45,8 +45,8 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
-        <el-button type="primary" @click="submit(userFormRef)" :loading="loading"> preserved </el-button>
+        <el-button @click.prevent="dialogVisible = false"> Cancel </el-button>
+        <el-button type="primary" @click="submit(userFormRef)" :loading="loading"> Save </el-button>
       </span>
     </template>
   </el-dialog>

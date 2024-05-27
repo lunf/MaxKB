@@ -52,8 +52,8 @@
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
-        <el-button type="primary" @click="submitHandle"> preserved </el-button>
+        <el-button @click.prevent="dialogVisible = false"> Cancel </el-button>
+        <el-button type="primary" @click="submitHandle"> Save </el-button>
       </span>
     </template>
   </el-dialog>

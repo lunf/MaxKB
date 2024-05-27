@@ -44,8 +44,8 @@
 
     <template #footer>
       <span class="dialog-footer" v-if="isEdit">
-        <el-button @click.prevent="isEdit = false"> cancelled </el-button>
-        <el-button type="primary" @click="submit(formRef)" :loading="loading"> preserved </el-button>
+        <el-button @click.prevent="isEdit = false"> Cancel </el-button>
+        <el-button type="primary" @click="submit(formRef)" :loading="loading"> Save </el-button>
       </span>
     </template>
   </el-dialog>

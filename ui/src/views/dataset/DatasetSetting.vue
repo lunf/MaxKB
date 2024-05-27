@@ -82,7 +82,7 @@
           </el-row>
 
           <div class="text-right">
-            <el-button @click="submit" type="primary"> preserved </el-button>
+            <el-button @click="submit" type="primary"> Save </el-button>
           </div>
         </div>
       </el-scrollbar>
@@ -138,7 +138,7 @@ async function submit() {
         datasetApi
           .putDataset(id, obj)
           .then((res) => {
-            MsgSuccess('Preserved success.')
+            MsgSuccess('Updating success.')
             loading.value = false
           })
           .catch(() => {

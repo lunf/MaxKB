@@ -144,9 +144,9 @@
     </div>
     <template #footer>
       <span class="dialog-footer p-16">
-        <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
+        <el-button @click.prevent="dialogVisible = false"> Cancel </el-button>
         <el-button type="primary" @click="submit(noReferencesformRef)" :loading="loading">
-          preserved
+          Save
         </el-button>
       </span>
     </template>

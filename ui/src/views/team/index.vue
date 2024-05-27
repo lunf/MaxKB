@@ -67,7 +67,7 @@
         </div>
 
         <div class="submit-button">
-          <el-button type="primary" @click="submitPermissions">preserved</el-button>
+          <el-button type="primary" @click="submitPermissions">Save</el-button>
         </div>
       </div>
     </div>

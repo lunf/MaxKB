@@ -228,7 +228,7 @@
         <div class="text-right border-t p-16">
           <el-button v-if="!id" @click="router.push({ path: `/application` })"> cancelled </el-button>
           <el-button type="primary" @click="submit(applicationFormRef)" :disabled="loading">
-            {{ id ? 'preserved' : 'Created' }}
+            {{ id ? 'Save' : 'Create' }}
           </el-button>
         </div>
       </el-col>
@@ -356,7 +356,7 @@ const submit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       if (id) {
         application.asyncPutApplication(id, applicationForm.value, loading).then((res) => {
-          MsgSuccess('Preserved success.')
+          MsgSuccess('Updating success.')
         })
       } else {
         applicationApi.postApplication(applicationForm.value, loading).then((res) => {

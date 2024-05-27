@@ -78,7 +78,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click.prevent="dialogVisible = false"> cancelled </el-button>
-        <el-button type="primary" @click="submitForm(formRef)" :loading="loading"> preserved </el-button>
+        <el-button type="primary" @click="submitForm(formRef)" :loading="loading"> Save </el-button>
       </span>
     </template>
   </el-dialog>

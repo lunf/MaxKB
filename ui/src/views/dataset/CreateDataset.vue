@@ -131,7 +131,7 @@ function submit() {
 }
 function back() {
   if (baseInfo.value || webInfo.value || documentsFiles.value?.length > 0) {
-    MsgConfirm(`The Tip`, `The current changes are not preserved.，Confirming the withdrawal??`, {
+    MsgConfirm(`The Tip`, `The current changes are not saved. Confirming the withdrawal??`, {
       confirmButtonText: 'confirmed',
       type: 'warning'
     })

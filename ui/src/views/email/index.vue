@@ -46,7 +46,7 @@
 
           <div class="text-right">
             <el-button @click="submit(emailFormRef)" type="primary" :disabled="loading">
-              preserved
+              Save
             </el-button>
           </div>
         </div>

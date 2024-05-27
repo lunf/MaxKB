@@ -23,7 +23,7 @@
         <div class="text-right p-24 pt-0" v-if="problemId && isEdit">
           <el-button @click.prevent="cancelEdit"> cancelled </el-button>
           <el-button type="primary" :disabled="loading" @click="handleDebounceClick">
-            preserved
+            Save
           </el-button>
         </div>
       </el-col>

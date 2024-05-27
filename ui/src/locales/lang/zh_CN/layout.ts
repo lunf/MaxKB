@@ -30,9 +30,9 @@ export default {
                 enterVerificationCode: "Please enter the verification code.",
                 getVerificationCode: "Get the verification code.",
                 verificationCodeSentSuccess:"Verification code sent successfully.",
-                resend:"re-send",
-                cancel:"cancelled",
-                save:"preserved",
+                resend:"Re-send",
+                cancel:"Cancel",
+                save:"Save",
             }
         }
     },
