@@ -16,6 +16,7 @@ from setting.models_provider.impl.wenxin_model_provider.wenxin_model_provider im
 from setting.models_provider.impl.kimi_model_provider.kimi_model_provider import KimiModelProvider
 from setting.models_provider.impl.xf_model_provider.xf_model_provider import XunFeiModelProvider
 from setting.models_provider.impl.zhipu_model_provider.zhipu_model_provider import ZhiPuModelProvider
+from setting.models_provider.impl.gemini_model_provider.gemini_model_provider import GeminiModelProvider
 
 
 class ModelProvideConstants(Enum):
@@ -27,3 +28,4 @@ class ModelProvideConstants(Enum):
     model_qwen_provider = QwenModelProvider()
     model_zhipu_provider = ZhiPuModelProvider()
     model_xf_provider = XunFeiModelProvider()
+    model_gemini_provider = GeminiModelProvider()

@@ -75,6 +75,12 @@ pipx install poetry
 
 # Install application dependencies
 poetry install
+
+# Check install debug
+poetry debug info
+
+# Set Python verion
+poetry env use 3.11
 ```
 
 Update `config_example.yml` file & rename it to `config.yml`
@@ -107,7 +113,7 @@ apps/common/config/tokenizer_manage_config.py  ---> cache_dir
 # Frontend code
 cd ui
 
-# Node version >= v18.20.2
+# Node version >= v18.20.2 -->  nvm use v18.20.2 
 yarn install
 
 # Start UI app
